@@ -1,0 +1,67 @@
+{
+    "info": {
+        "locale": "es_ES"
+    }, 
+    "labels": {
+        "Date": "Fecha", 
+        "Time": "Hora", 
+        "Status": "Estado", 
+        "AmountAndCurrency": "Importe", 
+        "StatusText": "Información", 
+        "Subject": "Descripción", 
+        "TransactionType": "Tipo", 
+        "ReceiptType": "Tipo de Recibo", 
+        "Identifier": "PWID", 
+        "PaymentDetailsSource": "Modo de entrada", 
+        "PaymentDetailsEMVApplicationID": "AID", 
+        "PaymentDetailsSchemeOrLabel": "Tarjeta", 
+        "PaymentDetailsMaskedAccount": "Cuenta", 
+        "PaymentDetailsCustomerVerification": "Verificación", 
+        "PaymentDetailsAccountSequenceNumber": "N° de Tarjeta", 
+        "ClearingDetailsTransactionIdentifier": "Transacción", 
+        "ClearingDetailsOriginalTransactionIdentifier": "Trans. Original", 
+        "ClearingDetailsAuthorizationCode": "Autorización", 
+        "ClearingDetailsMerchantId": "N° de contrato", 
+        "ClearingDetailsTerminalId": "ID del terminal", 
+        "MerchantDetailsPublicName": "Nombre", 
+        "MerchantDetailsAddress": "Dirección", 
+        "MerchantDetailsZip": "Código Postal", 
+        "MerchantDetailsCity": "Ciudad", 
+        "MerchantDetailsCountry": "País", 
+        "MerchantDetailsContact": "Contacto", 
+        "MerchantDetailsAdditionalInformation": "Info. Adicional"
+    }, 
+    "values": {
+        "ReceiptType": {
+            "MERCHANT": "Factura", 
+            "CUSTOMER": "Justificante"
+        }, 
+        "StatusText": {
+            "APPROVED": "Guarde su recibo!", 
+            "DECLINED": "Autoriz. rechazada", 
+            "ABORTED": "Trans. cancelada", 
+            "ERROR": "Trans. inválida"
+        }, 
+        "PaymentDetailsSource": {
+            "ICC": "Chip", 
+            "MAGSTRIPE": "Banda magnética", 
+            "CONTACTLESS": "Sin contacto", 
+            "MAGSTRIPE_AS_FALLBACK": "Banda magnética", 
+            "MANUAL": "Manual", 
+            "MANUAL_AS_FALLBACK": "Manual", 
+            "NFC_ICC": "Sin contacto", 
+            "NFC_MAGSTRIPE": "Sin contacto"
+        }, 
+        "TransactionType": {
+            "CHARGE": "Pago", 
+            "REFUND": "Cancelación"
+        }, 
+        "PaymentDetailsCustomerVerification": {
+            "NONE": "Ninguno", 
+            "PIN": "PIN", 
+            "SIGNATURE": "Firma", 
+            "PIN_AND_SIGNATURE": "PIN y firma", 
+            "SHOPPER_DEVICE": "Dispositivo cliente"
+        }
+    }
+}

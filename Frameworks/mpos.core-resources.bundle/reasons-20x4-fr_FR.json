@@ -1,0 +1,265 @@
+{
+    "info": {
+        "columns": 20, 
+        "locale": "fr_FR", 
+        "rows": 2
+    }, 
+    "localization": {
+        "ABORTED": [
+            "", 
+            "Paiement interrompu"
+        ], 
+        "ABORTED_MERCHANT_ABORTED": [
+            "", 
+            "Paiement interrompu"
+        ], 
+        "ABORTED_SHOPPER_ABORTED": [
+            "", 
+            "Paiement interrompu"
+        ], 
+        "ABORTED_SHOPPER_REMOVED_CARD": [
+            "", 
+            "Paiement interrompu"
+        ], 
+        "ABORTED_PRESENT_CARD_TIMED_OUT": [
+            "", 
+            "Paiement interrompu"
+        ], 
+        "APPROVED": [
+            "", 
+            "Paiement accepté"
+        ], 
+        "DECLINED": [
+            "", 
+            "Refusé"
+        ], 
+        "DECLINED_CARD_EXPIRED": [
+            "Carte périmée", 
+            "Refusé"
+        ], 
+        "DECLINED_CARD_INVALID_PAN": [
+            "Carte non valide", 
+            "Refusé"
+        ], 
+        "DECLINED_CARD_INVALID_SCHEME": [
+            "Carte non autorisée", 
+            "Refusé"
+        ], 
+        "DECLINED_CARD_OR_TERMINAL_DECLINED": [
+            "", 
+            "Refusé"
+        ], 
+        "DECLINED_CARD_STOLEN": [
+            "Carte volée", 
+            "Refusé"
+        ], 
+        "DECLINED_CARD_USE_ORIGINAL": [
+            "Utiliser l'original", 
+            "Refusé"
+        ], 
+        "DECLINED_INVALID_TERMINAL": [
+            "Paiement ", 
+            "impossible"
+        ], 
+        "DECLINED_INVALID_TERMINAL_CONFIG": [
+            "Paiement ", 
+            "impossible"
+        ], 
+        "DECLINED_INVALID_TERMINAL_SOFTWARE": [
+            "Paiement ", 
+            "impossible"
+        ], 
+        "DECLINED_PIN_WRONG": [
+            "NIP incorrect", 
+            "Refusé"
+        ], 
+        "DECLINED_PIN_WRONG_TOO_OFTEN": [
+            "Erreur de PIN trop", 
+            "fréquente, refusé"
+        ], 
+        "DECLINED_PROCESSOR": [
+            "", 
+            "Refusé"
+        ], 
+        "DECLINED_PROCESSOR_EXCEEDS_WITHDRAWAL_COUNT_LIMIT": [
+            "", 
+            "Refusé"
+        ], 
+        "DECLINED_SESSION_EXPIRED": [
+            "Paiement ", 
+            "impossible"
+        ], 
+        "DECLINED_PROCESSOR_INCONSISTENT_STATE": [
+            "", 
+            "Refusé"
+        ], 
+        "DECLINED_MALFORMED_REQUEST": [
+            "", 
+            "Refusé"
+        ], 
+        "DECLINED_MANIPULATION_SUSPECTED": [
+            "Peut-être manipulé", 
+            "Refusé"
+        ], 
+        "DECLINED_CARD_BLOCKED": [
+            "Carte non autorisée", 
+            "Refusé"
+        ], 
+        "DECLINED_INSUFFICIENT_FUNDS": [
+            "Provision insuff.", 
+            "Refusé"
+        ], 
+        "DECLINED_TRANSACTION_FREQUENCY_EXCEEDED": [
+            "Trop de paiements", 
+            "Refusé"
+        ], 
+        "DECLINED_CARD_LOST": [
+            "Carte perdue", 
+            "Refusé"
+        ], 
+        "DECLINED_INVALID_SCHEME": [
+            "Carte non autorisée", 
+            "Refusé"
+        ], 
+        "DECLINED_INVALID_AMOUNT": [
+            "Montant non autorisé", 
+            "Refusé"
+        ], 
+        "DECLINED_INVALID_CONFIGURATION": [
+            "Misconfiguration", 
+            "Refusé"
+        ], 
+        "DECLINED_DUPLICATE_TRANSACTION": [
+            "Transaction en cours", 
+            "Refusé"
+        ], 
+        "DECLINED_INVALID_WORKFLOW": [
+            "", 
+            "Refusé"
+        ], 
+        "DECLINED_PROCESSOR_CARD_EXPIRED": [
+            "Carte périmée", 
+            "Refusé"
+        ], 
+        "DECLINED_PROCESSOR_REFUND_NOT_POSSIBLE": [
+            "Rembours. impossible", 
+            "Refusé"
+        ], 
+        "DECLINED_PROCESSOR_TEMPORARILY_BLACKLISTED": [
+            "Trop de tentatives", 
+            "Refusé"
+        ], 
+        "DECLINED_AMOUNT_EXCEEDS_LIMIT": [
+            "Limite dépassée", 
+            "Refusé"
+        ], 
+        "ERROR": [
+            "Erreur", 
+            ""
+        ], 
+        "ERROR_APPROVED_OFFLINE": [
+            "Erreur", 
+            "(Terminal Approval)"
+        ], 
+        "ERROR_PROCESSOR_INVALID_FORMAT": [
+            "Erreur", 
+            "(Invalid Format)"
+        ], 
+        "ERROR_PROCESSOR_INVALID_NONCE": [
+            "Erreur", 
+            "(Invalid Nonce)"
+        ], 
+        "ERROR_PROCESSOR_INVALID_SESSION": [
+            "Erreur", 
+            "(Invalid Session)"
+        ], 
+        "ERROR_PROCESSOR_INVALID_STATUS": [
+            "Erreur", 
+            "(Invalid Status)"
+        ], 
+        "ERROR_PROCESSOR_MISSING_SESSION": [
+            "Erreur", 
+            "(Missing Session)"
+        ], 
+        "ERROR_PROCESSOR_CONNECTION_ERROR": [
+            "Erreur", 
+            "(Connection Error)"
+        ], 
+        "ERROR_SESSION_TIMEOUT": [
+            "Erreur", 
+            "(Session Timeout)"
+        ], 
+        "ERROR_TERMINAL_ERROR": [
+            "Erreur", 
+            "(Terminal Timeout)"
+        ], 
+        "ERROR_SERVER_INVALID_RESPONSE": [
+            "Erreur", 
+            "(Invalid Response)"
+        ], 
+        "ERROR_SERVER_UNAVAILABLE": [
+            "Erreur", 
+            "(Server unavailable)"
+        ], 
+        "ERROR_SERVER_TIMEOUT": [
+            "Erreur", 
+            "(Server Timeout)"
+        ], 
+        "ERROR_SERVER_AUTHENTICATION_FAILED": [
+            "Erreur", 
+            "(Auth failed)"
+        ], 
+        "ERROR_SERVER_PINNING_FAILED": [
+            "Erreur", 
+            "(Pinning failed)"
+        ], 
+        "ERROR_TERMINAL_TIMEOUT": [
+            "Erreur", 
+            "(Terminal Error)"
+        ], 
+        "ERROR_PROCESSOR_FAILED_INCONSISTENT_STATE_UNRESOLVED": [
+            "Erreur", 
+            "(Inconsistent State)"
+        ], 
+        "ERROR_PROCESSOR_FAILED_INCONSISTENT_STATE_RESOLVED": [
+            "Erreur", 
+            "(Inconsistent State)"
+        ], 
+        "ERROR_PROCESSOR_PAYMENT_DETAILS_EXTRACTION_FAILED": [
+            "Erreur", 
+            "(Details Extraction)"
+        ], 
+        "ERROR_PROCESSOR_INVALID_PAYMENT_DETAILS": [
+            "Erreur", 
+            "(Invalid Details)"
+        ], 
+        "ERROR_PROCESSOR_INVALID_CONFIGURATION": [
+            "Erreur", 
+            "(Invalid Config.)"
+        ], 
+        "ERROR_PROCESSOR_MALFORMED_REQUEST": [
+            "Erreur", 
+            "(Malformed Request)"
+        ], 
+        "ERROR_PROCESSOR_TRANSACTION_ALREADY_IN_PROGRESS": [
+            "Erreur", 
+            "(Tx in progress)"
+        ], 
+        "ERROR_PROCESSOR_CONNECTION_NO_RESPONSE": [
+            "Erreur", 
+            "(No Response) "
+        ], 
+        "NONE": [
+            "", 
+            ""
+        ], 
+        "PENDING": [
+            "", 
+            "Patienter SVP..."
+        ], 
+        "PENDING_WAITING_FOR_FINALIZATION": [
+            "", 
+            "Paiement accepté"
+        ]
+    }
+}

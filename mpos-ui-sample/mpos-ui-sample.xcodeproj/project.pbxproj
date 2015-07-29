@@ -1,0 +1,580 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 46;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		06DC417B48345EDA5E412885 /* libPods.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 2B376F24A9F81427C7F57B9E /* libPods.a */; };
+		445D0E141B5E3E82009F794F /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 445D0E131B5E3E82009F794F /* main.m */; };
+		445D0E171B5E3E82009F794F /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 445D0E161B5E3E82009F794F /* AppDelegate.m */; };
+		445D0E1A1B5E3E82009F794F /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 445D0E191B5E3E82009F794F /* ViewController.m */; };
+		445D0E1D1B5E3E82009F794F /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 445D0E1B1B5E3E82009F794F /* Main.storyboard */; };
+		445D0E1F1B5E3E82009F794F /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 445D0E1E1B5E3E82009F794F /* Images.xcassets */; };
+		445D0E221B5E3E82009F794F /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = 445D0E201B5E3E82009F794F /* LaunchScreen.xib */; };
+		445D0E2E1B5E3E82009F794F /* mpos_ui_sampleTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 445D0E2D1B5E3E82009F794F /* mpos_ui_sampleTests.m */; };
+		445D0E451B5F9276009F794F /* ExternalAccessory.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 445D0E441B5F9276009F794F /* ExternalAccessory.framework */; };
+		445D0E471B5F9280009F794F /* MobileCoreServices.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 445D0E461B5F9280009F794F /* MobileCoreServices.framework */; };
+		445D0E491B5F9297009F794F /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 445D0E481B5F9297009F794F /* SystemConfiguration.framework */; };
+		44C6B02F1B629183004C988C /* libstdc++.6.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 44C6B02E1B629183004C988C /* libstdc++.6.dylib */; };
+		44C6B0311B629191004C988C /* Security.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 44C6B0301B629191004C988C /* Security.framework */; };
+		44C6B0331B62919A004C988C /* AVFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 44C6B0321B62919A004C988C /* AVFoundation.framework */; };
+		44C6B0351B6291A0004C988C /* AudioToolbox.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 44C6B0341B6291A0004C988C /* AudioToolbox.framework */; };
+		44C6B0371B6291AA004C988C /* MediaPlayer.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 44C6B0361B6291AA004C988C /* MediaPlayer.framework */; };
+		44C6B0481B629BA3004C988C /* mpos.accessories.miura-shuttle.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 44C6B0411B629BA3004C988C /* mpos.accessories.miura-shuttle.framework */; };
+		44C6B0491B629BA3004C988C /* mpos.accessories.sewoo.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 44C6B0421B629BA3004C988C /* mpos.accessories.sewoo.framework */; };
+		44C6B04A1B629BA3004C988C /* mpos.accessories.verifone-e105.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 44C6B0431B629BA3004C988C /* mpos.accessories.verifone-e105.framework */; };
+		44C6B04B1B629BA3004C988C /* mpos.comlinks.externalaccessory.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 44C6B0441B629BA3004C988C /* mpos.comlinks.externalaccessory.framework */; };
+		44C6B04C1B629BA3004C988C /* mpos.comlinks.verifone.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 44C6B0451B629BA3004C988C /* mpos.comlinks.verifone.framework */; };
+		44C6B04D1B629BA3004C988C /* mpos.core-resources.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 44C6B0461B629BA3004C988C /* mpos.core-resources.bundle */; };
+		44C6B04E1B629BA3004C988C /* mpos.core.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 44C6B0471B629BA3004C988C /* mpos.core.framework */; };
+		44E718011B6775E8004301EE /* mpos-ui-resources.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 44E717FF1B6775E8004301EE /* mpos-ui-resources.bundle */; };
+		44E718021B6775E8004301EE /* mpos-ui.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 44E718001B6775E8004301EE /* mpos-ui.framework */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		445D0E281B5E3E82009F794F /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 445D0E061B5E3E82009F794F /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 445D0E0D1B5E3E82009F794F;
+			remoteInfo = "mpos-ui-sample";
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXFileReference section */
+		2B376F24A9F81427C7F57B9E /* libPods.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libPods.a; sourceTree = BUILT_PRODUCTS_DIR; };
+		445D0E0E1B5E3E82009F794F /* mpos-ui-sample.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "mpos-ui-sample.app"; sourceTree = BUILT_PRODUCTS_DIR; };
+		445D0E121B5E3E82009F794F /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		445D0E131B5E3E82009F794F /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
+		445D0E151B5E3E82009F794F /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
+		445D0E161B5E3E82009F794F /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
+		445D0E181B5E3E82009F794F /* ViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ViewController.h; sourceTree = "<group>"; };
+		445D0E191B5E3E82009F794F /* ViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ViewController.m; sourceTree = "<group>"; };
+		445D0E1C1B5E3E82009F794F /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
+		445D0E1E1B5E3E82009F794F /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
+		445D0E211B5E3E82009F794F /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/LaunchScreen.xib; sourceTree = "<group>"; };
+		445D0E271B5E3E82009F794F /* mpos-ui-sampleTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "mpos-ui-sampleTests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
+		445D0E2C1B5E3E82009F794F /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		445D0E2D1B5E3E82009F794F /* mpos_ui_sampleTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = mpos_ui_sampleTests.m; sourceTree = "<group>"; };
+		445D0E441B5F9276009F794F /* ExternalAccessory.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = ExternalAccessory.framework; path = System/Library/Frameworks/ExternalAccessory.framework; sourceTree = SDKROOT; };
+		445D0E461B5F9280009F794F /* MobileCoreServices.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MobileCoreServices.framework; path = System/Library/Frameworks/MobileCoreServices.framework; sourceTree = SDKROOT; };
+		445D0E481B5F9297009F794F /* SystemConfiguration.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SystemConfiguration.framework; path = System/Library/Frameworks/SystemConfiguration.framework; sourceTree = SDKROOT; };
+		44C6B02E1B629183004C988C /* libstdc++.6.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = "libstdc++.6.dylib"; path = "usr/lib/libstdc++.6.dylib"; sourceTree = SDKROOT; };
+		44C6B0301B629191004C988C /* Security.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Security.framework; path = System/Library/Frameworks/Security.framework; sourceTree = SDKROOT; };
+		44C6B0321B62919A004C988C /* AVFoundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AVFoundation.framework; path = System/Library/Frameworks/AVFoundation.framework; sourceTree = SDKROOT; };
+		44C6B0341B6291A0004C988C /* AudioToolbox.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AudioToolbox.framework; path = System/Library/Frameworks/AudioToolbox.framework; sourceTree = SDKROOT; };
+		44C6B0361B6291AA004C988C /* MediaPlayer.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MediaPlayer.framework; path = System/Library/Frameworks/MediaPlayer.framework; sourceTree = SDKROOT; };
+		44C6B0411B629BA3004C988C /* mpos.accessories.miura-shuttle.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = "mpos.accessories.miura-shuttle.framework"; path = "../Frameworks/mpos.accessories.miura-shuttle.framework"; sourceTree = "<group>"; };
+		44C6B0421B629BA3004C988C /* mpos.accessories.sewoo.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = mpos.accessories.sewoo.framework; path = ../Frameworks/mpos.accessories.sewoo.framework; sourceTree = "<group>"; };
+		44C6B0431B629BA3004C988C /* mpos.accessories.verifone-e105.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = "mpos.accessories.verifone-e105.framework"; path = "../Frameworks/mpos.accessories.verifone-e105.framework"; sourceTree = "<group>"; };
+		44C6B0441B629BA3004C988C /* mpos.comlinks.externalaccessory.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = mpos.comlinks.externalaccessory.framework; path = ../Frameworks/mpos.comlinks.externalaccessory.framework; sourceTree = "<group>"; };
+		44C6B0451B629BA3004C988C /* mpos.comlinks.verifone.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = mpos.comlinks.verifone.framework; path = ../Frameworks/mpos.comlinks.verifone.framework; sourceTree = "<group>"; };
+		44C6B0461B629BA3004C988C /* mpos.core-resources.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; name = "mpos.core-resources.bundle"; path = "../Frameworks/mpos.core-resources.bundle"; sourceTree = "<group>"; };
+		44C6B0471B629BA3004C988C /* mpos.core.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = mpos.core.framework; path = ../Frameworks/mpos.core.framework; sourceTree = "<group>"; };
+		44E717FF1B6775E8004301EE /* mpos-ui-resources.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; name = "mpos-ui-resources.bundle"; path = "../packaged/mpos-ui-resources.bundle"; sourceTree = "<group>"; };
+		44E718001B6775E8004301EE /* mpos-ui.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = "mpos-ui.framework"; path = "../packaged/mpos-ui.framework"; sourceTree = "<group>"; };
+		7C6ADE1514302FC2B5508670 /* Pods.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.debug.xcconfig; path = "Pods/Target Support Files/Pods/Pods.debug.xcconfig"; sourceTree = "<group>"; };
+		A0C86F307E327030AC26C13F /* Pods.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.release.xcconfig; path = "Pods/Target Support Files/Pods/Pods.release.xcconfig"; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		445D0E0B1B5E3E82009F794F /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				44C6B0371B6291AA004C988C /* MediaPlayer.framework in Frameworks */,
+				44C6B04A1B629BA3004C988C /* mpos.accessories.verifone-e105.framework in Frameworks */,
+				44C6B0481B629BA3004C988C /* mpos.accessories.miura-shuttle.framework in Frameworks */,
+				44C6B04B1B629BA3004C988C /* mpos.comlinks.externalaccessory.framework in Frameworks */,
+				44C6B0351B6291A0004C988C /* AudioToolbox.framework in Frameworks */,
+				44C6B0331B62919A004C988C /* AVFoundation.framework in Frameworks */,
+				44C6B0311B629191004C988C /* Security.framework in Frameworks */,
+				44E718021B6775E8004301EE /* mpos-ui.framework in Frameworks */,
+				44C6B04E1B629BA3004C988C /* mpos.core.framework in Frameworks */,
+				44C6B02F1B629183004C988C /* libstdc++.6.dylib in Frameworks */,
+				445D0E491B5F9297009F794F /* SystemConfiguration.framework in Frameworks */,
+				445D0E471B5F9280009F794F /* MobileCoreServices.framework in Frameworks */,
+				44C6B04C1B629BA3004C988C /* mpos.comlinks.verifone.framework in Frameworks */,
+				445D0E451B5F9276009F794F /* ExternalAccessory.framework in Frameworks */,
+				44C6B0491B629BA3004C988C /* mpos.accessories.sewoo.framework in Frameworks */,
+				06DC417B48345EDA5E412885 /* libPods.a in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		445D0E241B5E3E82009F794F /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		1C47510FDAF7AA0CF7B84607 /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				7C6ADE1514302FC2B5508670 /* Pods.debug.xcconfig */,
+				A0C86F307E327030AC26C13F /* Pods.release.xcconfig */,
+			);
+			name = Pods;
+			sourceTree = "<group>";
+		};
+		445D0E051B5E3E82009F794F = {
+			isa = PBXGroup;
+			children = (
+				445D0E101B5E3E82009F794F /* mpos-ui-sample */,
+				445D0E2A1B5E3E82009F794F /* mpos-ui-sampleTests */,
+				445D0E0F1B5E3E82009F794F /* Products */,
+				1C47510FDAF7AA0CF7B84607 /* Pods */,
+				98FAE6650764AE2A37E916C8 /* Frameworks */,
+			);
+			sourceTree = "<group>";
+		};
+		445D0E0F1B5E3E82009F794F /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				445D0E0E1B5E3E82009F794F /* mpos-ui-sample.app */,
+				445D0E271B5E3E82009F794F /* mpos-ui-sampleTests.xctest */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		445D0E101B5E3E82009F794F /* mpos-ui-sample */ = {
+			isa = PBXGroup;
+			children = (
+				445D0E151B5E3E82009F794F /* AppDelegate.h */,
+				445D0E161B5E3E82009F794F /* AppDelegate.m */,
+				445D0E181B5E3E82009F794F /* ViewController.h */,
+				445D0E191B5E3E82009F794F /* ViewController.m */,
+				445D0E1B1B5E3E82009F794F /* Main.storyboard */,
+				445D0E1E1B5E3E82009F794F /* Images.xcassets */,
+				445D0E201B5E3E82009F794F /* LaunchScreen.xib */,
+				445D0E111B5E3E82009F794F /* Supporting Files */,
+			);
+			path = "mpos-ui-sample";
+			sourceTree = "<group>";
+		};
+		445D0E111B5E3E82009F794F /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				445D0E121B5E3E82009F794F /* Info.plist */,
+				445D0E131B5E3E82009F794F /* main.m */,
+			);
+			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		445D0E2A1B5E3E82009F794F /* mpos-ui-sampleTests */ = {
+			isa = PBXGroup;
+			children = (
+				445D0E2D1B5E3E82009F794F /* mpos_ui_sampleTests.m */,
+				445D0E2B1B5E3E82009F794F /* Supporting Files */,
+			);
+			path = "mpos-ui-sampleTests";
+			sourceTree = "<group>";
+		};
+		445D0E2B1B5E3E82009F794F /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				445D0E2C1B5E3E82009F794F /* Info.plist */,
+			);
+			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		98FAE6650764AE2A37E916C8 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				44E717FF1B6775E8004301EE /* mpos-ui-resources.bundle */,
+				44E718001B6775E8004301EE /* mpos-ui.framework */,
+				44C6B0411B629BA3004C988C /* mpos.accessories.miura-shuttle.framework */,
+				44C6B0421B629BA3004C988C /* mpos.accessories.sewoo.framework */,
+				44C6B0431B629BA3004C988C /* mpos.accessories.verifone-e105.framework */,
+				44C6B0441B629BA3004C988C /* mpos.comlinks.externalaccessory.framework */,
+				44C6B0451B629BA3004C988C /* mpos.comlinks.verifone.framework */,
+				44C6B0461B629BA3004C988C /* mpos.core-resources.bundle */,
+				44C6B0471B629BA3004C988C /* mpos.core.framework */,
+				44C6B0361B6291AA004C988C /* MediaPlayer.framework */,
+				44C6B0341B6291A0004C988C /* AudioToolbox.framework */,
+				44C6B0321B62919A004C988C /* AVFoundation.framework */,
+				44C6B0301B629191004C988C /* Security.framework */,
+				44C6B02E1B629183004C988C /* libstdc++.6.dylib */,
+				445D0E481B5F9297009F794F /* SystemConfiguration.framework */,
+				445D0E461B5F9280009F794F /* MobileCoreServices.framework */,
+				445D0E441B5F9276009F794F /* ExternalAccessory.framework */,
+				2B376F24A9F81427C7F57B9E /* libPods.a */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		445D0E0D1B5E3E82009F794F /* mpos-ui-sample */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 445D0E311B5E3E82009F794F /* Build configuration list for PBXNativeTarget "mpos-ui-sample" */;
+			buildPhases = (
+				C44BA1E86F5EF1DF63B1BD17 /* Check Pods Manifest.lock */,
+				445D0E0A1B5E3E82009F794F /* Sources */,
+				445D0E0B1B5E3E82009F794F /* Frameworks */,
+				445D0E0C1B5E3E82009F794F /* Resources */,
+				7CAF60C541213DEEDB612C5E /* Copy Pods Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = "mpos-ui-sample";
+			productName = "mpos-ui-sample";
+			productReference = 445D0E0E1B5E3E82009F794F /* mpos-ui-sample.app */;
+			productType = "com.apple.product-type.application";
+		};
+		445D0E261B5E3E82009F794F /* mpos-ui-sampleTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 445D0E341B5E3E82009F794F /* Build configuration list for PBXNativeTarget "mpos-ui-sampleTests" */;
+			buildPhases = (
+				445D0E231B5E3E82009F794F /* Sources */,
+				445D0E241B5E3E82009F794F /* Frameworks */,
+				445D0E251B5E3E82009F794F /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				445D0E291B5E3E82009F794F /* PBXTargetDependency */,
+			);
+			name = "mpos-ui-sampleTests";
+			productName = "mpos-ui-sampleTests";
+			productReference = 445D0E271B5E3E82009F794F /* mpos-ui-sampleTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		445D0E061B5E3E82009F794F /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				LastUpgradeCheck = 0640;
+				ORGANIZATIONNAME = Abhijith;
+				TargetAttributes = {
+					445D0E0D1B5E3E82009F794F = {
+						CreatedOnToolsVersion = 6.4;
+					};
+					445D0E261B5E3E82009F794F = {
+						CreatedOnToolsVersion = 6.4;
+						TestTargetID = 445D0E0D1B5E3E82009F794F;
+					};
+				};
+			};
+			buildConfigurationList = 445D0E091B5E3E82009F794F /* Build configuration list for PBXProject "mpos-ui-sample" */;
+			compatibilityVersion = "Xcode 3.2";
+			developmentRegion = English;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+				Base,
+			);
+			mainGroup = 445D0E051B5E3E82009F794F;
+			productRefGroup = 445D0E0F1B5E3E82009F794F /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				445D0E0D1B5E3E82009F794F /* mpos-ui-sample */,
+				445D0E261B5E3E82009F794F /* mpos-ui-sampleTests */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		445D0E0C1B5E3E82009F794F /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				44C6B04D1B629BA3004C988C /* mpos.core-resources.bundle in Resources */,
+				445D0E1D1B5E3E82009F794F /* Main.storyboard in Resources */,
+				445D0E221B5E3E82009F794F /* LaunchScreen.xib in Resources */,
+				44E718011B6775E8004301EE /* mpos-ui-resources.bundle in Resources */,
+				445D0E1F1B5E3E82009F794F /* Images.xcassets in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		445D0E251B5E3E82009F794F /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		7CAF60C541213DEEDB612C5E /* Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "Copy Pods Resources";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods/Pods-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		C44BA1E86F5EF1DF63B1BD17 /* Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "Check Pods Manifest.lock";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [[ $? != 0 ]] ; then\n    cat << EOM\nerror: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\nEOM\n    exit 1\nfi\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		445D0E0A1B5E3E82009F794F /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				445D0E1A1B5E3E82009F794F /* ViewController.m in Sources */,
+				445D0E171B5E3E82009F794F /* AppDelegate.m in Sources */,
+				445D0E141B5E3E82009F794F /* main.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		445D0E231B5E3E82009F794F /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				445D0E2E1B5E3E82009F794F /* mpos_ui_sampleTests.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		445D0E291B5E3E82009F794F /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 445D0E0D1B5E3E82009F794F /* mpos-ui-sample */;
+			targetProxy = 445D0E281B5E3E82009F794F /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
+/* Begin PBXVariantGroup section */
+		445D0E1B1B5E3E82009F794F /* Main.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				445D0E1C1B5E3E82009F794F /* Base */,
+			);
+			name = Main.storyboard;
+			sourceTree = "<group>";
+		};
+		445D0E201B5E3E82009F794F /* LaunchScreen.xib */ = {
+			isa = PBXVariantGroup;
+			children = (
+				445D0E211B5E3E82009F794F /* Base */,
+			);
+			name = LaunchScreen.xib;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
+
+/* Begin XCBuildConfiguration section */
+		445D0E2F1B5E3E82009F794F /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_SYMBOLS_PRIVATE_EXTERN = NO;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.4;
+				MTL_ENABLE_DEBUG_INFO = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = iphoneos;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		445D0E301B5E3E82009F794F /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.4;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				SDKROOT = iphoneos;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		445D0E321B5E3E82009F794F /* Debug */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 7C6ADE1514302FC2B5508670 /* Pods.debug.xcconfig */;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)",
+					"$(PROJECT_DIR)/../Frameworks",
+					"$(PROJECT_DIR)/../packaged",
+				);
+				INFOPLIST_FILE = "mpos-ui-sample/Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+			};
+			name = Debug;
+		};
+		445D0E331B5E3E82009F794F /* Release */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = A0C86F307E327030AC26C13F /* Pods.release.xcconfig */;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)",
+					"$(PROJECT_DIR)/../Frameworks",
+					"$(PROJECT_DIR)/../packaged",
+				);
+				INFOPLIST_FILE = "mpos-ui-sample/Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+			};
+			name = Release;
+		};
+		445D0E351B5E3E82009F794F /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(SDKROOT)/Developer/Library/Frameworks",
+					"$(inherited)",
+				);
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				INFOPLIST_FILE = "mpos-ui-sampleTests/Info.plist";
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/mpos-ui-sample.app/mpos-ui-sample";
+			};
+			name = Debug;
+		};
+		445D0E361B5E3E82009F794F /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(SDKROOT)/Developer/Library/Frameworks",
+					"$(inherited)",
+				);
+				INFOPLIST_FILE = "mpos-ui-sampleTests/Info.plist";
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/mpos-ui-sample.app/mpos-ui-sample";
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		445D0E091B5E3E82009F794F /* Build configuration list for PBXProject "mpos-ui-sample" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				445D0E2F1B5E3E82009F794F /* Debug */,
+				445D0E301B5E3E82009F794F /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		445D0E311B5E3E82009F794F /* Build configuration list for PBXNativeTarget "mpos-ui-sample" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				445D0E321B5E3E82009F794F /* Debug */,
+				445D0E331B5E3E82009F794F /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		445D0E341B5E3E82009F794F /* Build configuration list for PBXNativeTarget "mpos-ui-sampleTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				445D0E351B5E3E82009F794F /* Debug */,
+				445D0E361B5E3E82009F794F /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = 445D0E061B5E3E82009F794F /* Project object */;
+}

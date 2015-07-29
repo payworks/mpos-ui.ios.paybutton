@@ -1,0 +1,205 @@
+{
+    "info": {
+        "columns": 40, 
+        "locale": "nl_BE", 
+        "rows": 2
+    }, 
+    "localization": {
+        "ApplicationSelection": [
+            "Kaart selecteren", 
+            ""
+        ], 
+        "AuthorizingTransaction": [
+            "Betaling", 
+            "wordt gevalideerd..."
+        ], 
+        "BarcodeScannerActive": [
+            "Barcodescanner", 
+            "actief"
+        ], 
+        "CardNotSupportedIccMagstripe": [
+            "", 
+            "Gebruik andere kaart"
+        ], 
+        "CardNotSupportedNfc": [
+            "Ingeven, schuiven of", 
+            "andere kaart"
+        ], 
+        "CompletedWithStatus": [
+            "$reason1$", 
+            ""
+        ], 
+        "CompletingTransaction": [
+            "", 
+            "Betaling wordt opgeslagen..."
+        ], 
+        "GenericError": [
+            "Fout", 
+            ""
+        ], 
+        "Idle": [
+            "Verbonden", 
+            ""
+        ], 
+        "InsertCard": [
+            "$amount$", 
+            "Kaart insteken"
+        ], 
+        "InsertOrSwipeCard": [
+            "$amount$", 
+            "Kaart ingeven of schuiven"
+        ], 
+        "InsertOrSwipeCardActivateNfc": [
+            "$amount$ Kaart ingeven of", 
+            "schuiven, [OK] voor NFC"
+        ], 
+        "PINIncorrect": [
+            "PIN invoeren (verkeerde PIN)", 
+            "$digits$"
+        ], 
+        "PINLastTry": [
+            "PIN invoeren (laatste poging)", 
+            "$digits$"
+        ], 
+        "PINOk": [
+            "PIN OK", 
+            ""
+        ], 
+        "PINStatus": [
+            "PIN-code invoeren", 
+            "$digits$"
+        ], 
+        "PresentCard": [
+            "$amount$", 
+            "Kaart AUB"
+        ], 
+        "ProcessingTransaction": [
+            "Betaling wordt verwerkt...", 
+            ""
+        ], 
+        "ProvideIdentification": [
+            "Identificatie vereist", 
+            ""
+        ], 
+        "ProvideSignature": [
+            "Handtekening vereist", 
+            ""
+        ], 
+        "ProvideSignatureWithStatus": [
+            "$reason1$", 
+            "Handtekening vereist"
+        ], 
+        "ProviderAccessoryCheckingForUpdate": [
+            "Verbind met ", 
+            "kaartlezer"
+        ], 
+        "ProviderAccessoryConnecting": [
+            "Verbind met ", 
+            "kaartlezer"
+        ], 
+        "ProviderAccessoryUpdating": [
+            "Update wordt ", 
+            "uitgevoerd"
+        ], 
+        "ProviderAccessoryWaitingForReader": [
+            "Kaartlezer zoeken", 
+            "Kaartlezer inschakelen"
+        ], 
+        "ProviderAccessoryConnectingPrinter": [
+            "Verbind met", 
+            "printer"
+        ], 
+        "ProviderAccessoryWaitingForPrinter": [
+            "Printer zoeken", 
+            "Printer inschakelen"
+        ], 
+        "ProviderAborted": [
+            "Betaling afgebroken", 
+            ""
+        ], 
+        "ProviderApproved": [
+            "Betaling geslaagd", 
+            ""
+        ], 
+        "ProviderDeclined": [
+            "Betaling geweigerd", 
+            "$reason1$"
+        ], 
+        "ProviderFailed": [
+            "Betaling mislukt", 
+            "$error$"
+        ], 
+        "ProviderNotRefundable": [
+            "Terugbetaling", 
+            "niet mogelijk"
+        ], 
+        "ProviderTransactionQuerying": [
+            "Controleer", 
+            "betaling"
+        ], 
+        "ProviderTransactionRegistering": [
+            "Registreer", 
+            "betaling"
+        ], 
+        "ProviderAccessoryConfiguringConnectionLink": [
+            "Configuratie van", 
+            "de kaartlezer..."
+        ], 
+        "ProviderComponentPrinterSending": [
+            "Afdrukken...", 
+            ""
+        ], 
+        "ProviderComponentPrinterSent": [
+            "Afdrukken...", 
+            ""
+        ], 
+        "ProviderComponentPrinterAborted": [
+            "Afdrukken afgebroken", 
+            ""
+        ], 
+        "ProviderComponentPrinterFailed": [
+            "Afdrukken mislukt", 
+            "$error$"
+        ], 
+        "ReadingEMVCard": [
+            "Kaart wordt gelezen...", 
+            ""
+        ], 
+        "RemoveCardWithStatus": [
+            "$reason1$", 
+            "Kaart terugnemen"
+        ], 
+        "SwipeCard": [
+            "$amount$", 
+            "Kaart doorschuiven"
+        ], 
+        "TransactionAborting": [
+            "Betaling wordt afgebroken...", 
+            ""
+        ], 
+        "UpdatingDevice": [
+            "Update...", 
+            ""
+        ], 
+        "UpdatingDeviceConfigurationUpdate": [
+            "Config-update", 
+            "Een ogenblikje a.u.b. ..."
+        ], 
+        "UpdatingDeviceFirmwareUpdate": [
+            "Firmware-update", 
+            "Dit kan even duren..."
+        ], 
+        "UpdatingDeviceSoftwareUpdate": [
+            "Software-update", 
+            "Dit kan even duren..."
+        ], 
+        "UpdatingDeviceKeyInjection": [
+            "Aanmaak sleutel", 
+            "Dit kan even duren..."
+        ], 
+        "CardNotSupported": [
+            "Kaart niet ondersteund!", 
+            "Andere kaart of afbreken"
+        ]
+    }
+}

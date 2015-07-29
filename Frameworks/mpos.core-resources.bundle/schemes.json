@@ -1,0 +1,173 @@
+{
+    "AMERICAN_EXPRESS": {
+        "aid": "A00000002501",
+        "bins": {
+            "excluded": [],
+            "included": [
+                [
+                    340000,
+                    349999
+                ],
+                [
+                    370000,
+                    379999
+                ]
+            ]
+        },
+        "gateway": {
+            "brand": "AMEX",
+            "method": "CC"
+        },
+        "magstripeSupported": true,
+        "name": "American Express"
+    },
+    "DINERS": {
+        "aid": "A000000152",
+        "bins": {
+            "excluded": [],
+            "included": []
+        },
+        "gateway": {
+            "brand": "DINERS",
+            "method": "__"
+        },
+        "magstripeSupported": true,
+        "name": "Diners Club"
+    },
+    "DISCOVER": {
+        "aid": "A000000324",
+        "bins": {
+            "excluded": [],
+            "included": []
+        },
+        "gateway": {
+            "brand": "DISCOVER",
+            "method": "__"
+        },
+        "magstripeSupported": true,
+        "name": "Discover"
+    },
+    "JCB": {
+        "aid": "A000000065",
+        "bins": {
+            "excluded": [],
+            "included": []
+        },
+        "gateway": {
+            "brand": "JCB",
+            "method": "__"
+        },
+        "magstripeSupported": true,
+        "name": "JCB"
+    },
+    "MAESTRO": {
+        "aid": "A0000000043060",
+        "bins": {
+            "excluded": [
+                [
+                    601100,
+                    601109
+                ],
+                [
+                    601120,
+                    601149
+                ],
+                [
+                    601174,
+                    601174
+                ],
+                [
+                    601177,
+                    601179
+                ],
+                [
+                    601186,
+                    601199
+                ],
+                [
+                    644000,
+                    649999
+                ],
+                [
+                    650000,
+                    659999
+                ]
+            ],
+            "included": [
+                [
+                    500000,
+                    509999
+                ],
+                [
+                    560000,
+                    699999
+                ]
+            ]
+        },
+        "gateway": {
+            "brand": "MAESTRO",
+            "method": "DC"
+        },
+        "magstripeSupported": true,
+        "name": "Maestro"
+    },
+    "MASTERCARD": {
+        "aid": "A0000000041010",
+        "bins": {
+            "excluded": [],
+            "included": [
+                [
+                    510000,
+                    559999
+                ]
+            ]
+        },
+        "gateway": {
+            "brand": "MASTER",
+            "method": "CC"
+        },
+        "magstripeSupported": true,
+        "name": "MasterCard"
+    },
+    "UNION_PAY": {
+        "aid": "A000000333",
+        "bins": {
+            "excluded": [],
+            "included": []
+        },
+        "gateway": {
+            "brand": "__",
+            "method": "__"
+        },
+        "magstripeSupported": true,
+        "name": "Union Pay"
+    },
+    "VISA": {
+        "aid": "A0000000031010",
+        "bins": {
+            "excluded": [],
+            "included": [
+                [
+                    400000,
+                    499999
+                ]
+            ]
+        },
+        "gateway": {
+            "brand": "VISA",
+            "method": "CC"
+        },
+        "magstripeSupported": true,
+        "name": "VISA"
+    },
+    "VISA_ELECTRON": {
+        "aid": "A0000000032010",
+        "bins": null,
+        "gateway": {
+            "brand": "VISAELECTRON",
+            "method": "DC"
+        },
+        "magstripeSupported": false,
+        "name": "VISA Electron"
+    }
+}

@@ -1,0 +1,201 @@
+{
+    "info": {
+        "columns": 40, 
+        "locale": "nl_BE", 
+        "rows": 1
+    }, 
+    "localization": {
+        "ABORTED": [
+            "Betaling afgebroken"
+        ], 
+        "ABORTED_MERCHANT_ABORTED": [
+            "Betaling afgebroken"
+        ], 
+        "ABORTED_SHOPPER_ABORTED": [
+            "Betaling afgebroken"
+        ], 
+        "ABORTED_SHOPPER_REMOVED_CARD": [
+            "Betaling afgebroken"
+        ], 
+        "ABORTED_PRESENT_CARD_TIMED_OUT": [
+            "Betaling afgebroken"
+        ], 
+        "APPROVED": [
+            "Betaling geslaagd"
+        ], 
+        "DECLINED": [
+            "Geweigerd"
+        ], 
+        "DECLINED_CARD_EXPIRED": [
+            "Geweigerd - Kaart vervallen"
+        ], 
+        "DECLINED_CARD_INVALID_PAN": [
+            "Geweigerd - Ongeldige kaart"
+        ], 
+        "DECLINED_CARD_INVALID_SCHEME": [
+            "Geweigerd - Kaart niet toegestaan"
+        ], 
+        "DECLINED_CARD_OR_TERMINAL_DECLINED": [
+            "Geweigerd"
+        ], 
+        "DECLINED_CARD_STOLEN": [
+            "Geweigerd - Gestolen kaart"
+        ], 
+        "DECLINED_CARD_USE_ORIGINAL": [
+            "Geweigerd - Originele kaart gebruiken"
+        ], 
+        "DECLINED_INVALID_TERMINAL": [
+            "Betaling onmogelijk"
+        ], 
+        "DECLINED_INVALID_TERMINAL_CONFIG": [
+            "Betaling onmogelijk"
+        ], 
+        "DECLINED_INVALID_TERMINAL_SOFTWARE": [
+            "Betaling onmogelijk"
+        ], 
+        "DECLINED_PIN_WRONG": [
+            "Geweigerd - Verkeerde PIN"
+        ], 
+        "DECLINED_PIN_WRONG_TOO_OFTEN": [
+            "Geweigerd - Te vaak verkeerde PIN"
+        ], 
+        "DECLINED_PROCESSOR": [
+            "Geweigerd"
+        ], 
+        "DECLINED_PROCESSOR_EXCEEDS_WITHDRAWAL_COUNT_LIMIT": [
+            "Geweigerd"
+        ], 
+        "DECLINED_SESSION_EXPIRED": [
+            "Betaling onmogelijk"
+        ], 
+        "DECLINED_PROCESSOR_INCONSISTENT_STATE": [
+            "Geweigerd"
+        ], 
+        "DECLINED_MALFORMED_REQUEST": [
+            "Geweigerd"
+        ], 
+        "DECLINED_MANIPULATION_SUSPECTED": [
+            "Geweigerd - Evt. manipuleerd"
+        ], 
+        "DECLINED_CARD_BLOCKED": [
+            "Geweigerd - Kaart niet toegestaan"
+        ], 
+        "DECLINED_INSUFFICIENT_FUNDS": [
+            "Geweigerd - Ontoereik. dekking "
+        ], 
+        "DECLINED_TRANSACTION_FREQUENCY_EXCEEDED": [
+            "Geweigerd - Te veel betalingen"
+        ], 
+        "DECLINED_CARD_LOST": [
+            "Geweigerd - Verloren kaart"
+        ], 
+        "DECLINED_INVALID_SCHEME": [
+            "Geweigerd - Kaart niet toegestaan"
+        ], 
+        "DECLINED_INVALID_AMOUNT": [
+            "Geweigerd - Bedrag niet toegest."
+        ], 
+        "DECLINED_INVALID_CONFIGURATION": [
+            "Geweigerd - Verkeerde config."
+        ], 
+        "DECLINED_DUPLICATE_TRANSACTION": [
+            "Geweigerd - Transaction loopt"
+        ], 
+        "DECLINED_INVALID_WORKFLOW": [
+            "Geweigerd"
+        ], 
+        "DECLINED_PROCESSOR_CARD_EXPIRED": [
+            "Geweigerd - Kaart vervallen"
+        ], 
+        "DECLINED_PROCESSOR_REFUND_NOT_POSSIBLE": [
+            "Geweigerd - Terugbet. niet mogel."
+        ], 
+        "DECLINED_PROCESSOR_TEMPORARILY_BLACKLISTED": [
+            "Geweigerd - Te veel pogingen"
+        ], 
+        "DECLINED_AMOUNT_EXCEEDS_LIMIT": [
+            "Geweigerd - Limiet overschreden"
+        ], 
+        "ERROR": [
+            "Fout"
+        ], 
+        "ERROR_APPROVED_OFFLINE": [
+            "Fout (Terminal Approval)"
+        ], 
+        "ERROR_PROCESSOR_INVALID_FORMAT": [
+            "Fout (ongeldig formaat)"
+        ], 
+        "ERROR_PROCESSOR_INVALID_NONCE": [
+            "Fout (ongeldige nonce)"
+        ], 
+        "ERROR_PROCESSOR_INVALID_SESSION": [
+            "Fout (ongeldige sessie)"
+        ], 
+        "ERROR_PROCESSOR_INVALID_STATUS": [
+            "Fout (ongeldige status)"
+        ], 
+        "ERROR_PROCESSOR_MISSING_SESSION": [
+            "Fout (ontbrekende sessie)"
+        ], 
+        "ERROR_PROCESSOR_CONNECTION_ERROR": [
+            "Fout (Connection Error)"
+        ], 
+        "ERROR_SESSION_TIMEOUT": [
+            "Fout (time-out sessie)"
+        ], 
+        "ERROR_TERMINAL_ERROR": [
+            "Fout (terminalfout)"
+        ], 
+        "ERROR_SERVER_INVALID_RESPONSE": [
+            "Fout (ongeldig antwoord)"
+        ], 
+        "ERROR_SERVER_UNAVAILABLE": [
+            "Fout (Server unavailable)"
+        ], 
+        "ERROR_SERVER_TIMEOUT": [
+            "Fout (Server timeout)"
+        ], 
+        "ERROR_SERVER_AUTHENTICATION_FAILED": [
+            "Fout (Auth failed)"
+        ], 
+        "ERROR_SERVER_PINNING_FAILED": [
+            "Fout (Pinning failed)"
+        ], 
+        "ERROR_TERMINAL_TIMEOUT": [
+            "Fout (time-out terminal)"
+        ], 
+        "ERROR_PROCESSOR_FAILED_INCONSISTENT_STATE_UNRESOLVED": [
+            "Fout (Inconsistent State)"
+        ], 
+        "ERROR_PROCESSOR_FAILED_INCONSISTENT_STATE_RESOLVED": [
+            "Fout (Inconsistent State)"
+        ], 
+        "ERROR_PROCESSOR_PAYMENT_DETAILS_EXTRACTION_FAILED": [
+            "Fout (Details Extraction)"
+        ], 
+        "ERROR_PROCESSOR_INVALID_PAYMENT_DETAILS": [
+            "Fout (Invalid Details)"
+        ], 
+        "ERROR_PROCESSOR_INVALID_CONFIGURATION": [
+            "Fout (Invalid Configuration)"
+        ], 
+        "ERROR_PROCESSOR_MALFORMED_REQUEST": [
+            "Fout (Malformed Request)"
+        ], 
+        "ERROR_PROCESSOR_TRANSACTION_ALREADY_IN_PROGRESS": [
+            "Fout (Transaction Ongoing)"
+        ], 
+        "ERROR_PROCESSOR_CONNECTION_NO_RESPONSE": [
+            "Fout (No Response)"
+        ], 
+        "NONE": [
+            ""
+        ], 
+        "PENDING": [
+            "Wachten aub..."
+        ], 
+        "PENDING_WAITING_FOR_FINALIZATION": [
+            "Betaling geslaagd"
+        ]
+    }
+}

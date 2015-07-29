@@ -1,0 +1,201 @@
+{
+    "info": {
+        "columns": 40, 
+        "locale": "de_DE", 
+        "rows": 1
+    }, 
+    "localization": {
+        "ABORTED": [
+            "Zahlung abgebrochen"
+        ], 
+        "ABORTED_MERCHANT_ABORTED": [
+            "Zahlung abgebrochen"
+        ], 
+        "ABORTED_SHOPPER_ABORTED": [
+            "Zahlung abgebrochen"
+        ], 
+        "ABORTED_SHOPPER_REMOVED_CARD": [
+            "Zahlung abgebrochen"
+        ], 
+        "ABORTED_PRESENT_CARD_TIMED_OUT": [
+            "Zahlung abgebrochen"
+        ], 
+        "APPROVED": [
+            "Zahlung erfolgreich"
+        ], 
+        "DECLINED": [
+            "Abgelehnt"
+        ], 
+        "DECLINED_CARD_EXPIRED": [
+            "Abgelehnt - Karte abgelaufen"
+        ], 
+        "DECLINED_CARD_INVALID_PAN": [
+            "Abgelehnt - ungültige Karte"
+        ], 
+        "DECLINED_CARD_INVALID_SCHEME": [
+            "Abgelehnt - Karte nicht erlaubt"
+        ], 
+        "DECLINED_CARD_OR_TERMINAL_DECLINED": [
+            "Abgelehnt"
+        ], 
+        "DECLINED_CARD_STOLEN": [
+            "Abgelehnt - Gestohlene Karte"
+        ], 
+        "DECLINED_CARD_USE_ORIGINAL": [
+            "Abgelehnt - Original verwenden"
+        ], 
+        "DECLINED_INVALID_TERMINAL": [
+            "Zahlung nicht möglich"
+        ], 
+        "DECLINED_INVALID_TERMINAL_CONFIG": [
+            "Zahlung nicht möglich"
+        ], 
+        "DECLINED_INVALID_TERMINAL_SOFTWARE": [
+            "Zahlung nicht möglich"
+        ], 
+        "DECLINED_PIN_WRONG": [
+            "Abgelehnt - Falsche PIN"
+        ], 
+        "DECLINED_PIN_WRONG_TOO_OFTEN": [
+            "Abgelehnt - Falsche PIN zu oft"
+        ], 
+        "DECLINED_PROCESSOR": [
+            "Abgelehnt"
+        ], 
+        "DECLINED_PROCESSOR_EXCEEDS_WITHDRAWAL_COUNT_LIMIT": [
+            "Abgelehnt"
+        ], 
+        "DECLINED_SESSION_EXPIRED": [
+            "Zahlung nicht möglich"
+        ], 
+        "DECLINED_PROCESSOR_INCONSISTENT_STATE": [
+            "Abgelehnt"
+        ], 
+        "DECLINED_MALFORMED_REQUEST": [
+            "Abgelehnt"
+        ], 
+        "DECLINED_MANIPULATION_SUSPECTED": [
+            "Abgelehnt - Evtl. manipuliert"
+        ], 
+        "DECLINED_CARD_BLOCKED": [
+            "Abgelehnt - Karte nicht erlaubt"
+        ], 
+        "DECLINED_INSUFFICIENT_FUNDS": [
+            "Abgelehnt - Karte nicht gedeckt"
+        ], 
+        "DECLINED_TRANSACTION_FREQUENCY_EXCEEDED": [
+            "Abgelehnt - Zu viele Zahlungen"
+        ], 
+        "DECLINED_CARD_LOST": [
+            "Abgelehnt - Verlorene Karte"
+        ], 
+        "DECLINED_INVALID_SCHEME": [
+            "Abgelehnt - Karte nicht erlaubt"
+        ], 
+        "DECLINED_INVALID_AMOUNT": [
+            "Abgelehnt - Betrag nicht erlaubt"
+        ], 
+        "DECLINED_INVALID_CONFIGURATION": [
+            "Abgelehnt - Konfiguration falsch"
+        ], 
+        "DECLINED_DUPLICATE_TRANSACTION": [
+            "Abgelehnt - Transaktion läuft"
+        ], 
+        "DECLINED_INVALID_WORKFLOW": [
+            "Abgelehnt"
+        ], 
+        "DECLINED_PROCESSOR_CARD_EXPIRED": [
+            "Abgelehnt - Karte abgelaufen"
+        ], 
+        "DECLINED_PROCESSOR_REFUND_NOT_POSSIBLE": [
+            "Abgelehnt - Erstattung abgelehnt"
+        ], 
+        "DECLINED_PROCESSOR_TEMPORARILY_BLACKLISTED": [
+            "Abgelehnt - Zu viele Versuche"
+        ], 
+        "DECLINED_AMOUNT_EXCEEDS_LIMIT": [
+            "Abgelehnt - Limit überschritten"
+        ], 
+        "ERROR": [
+            "Verarbeitungsfehler"
+        ], 
+        "ERROR_APPROVED_OFFLINE": [
+            "Fehler (Terminal Approval)"
+        ], 
+        "ERROR_PROCESSOR_INVALID_FORMAT": [
+            "Fehler (Invalid Format)"
+        ], 
+        "ERROR_PROCESSOR_INVALID_NONCE": [
+            "Fehler (Invalid Nonce)"
+        ], 
+        "ERROR_PROCESSOR_INVALID_SESSION": [
+            "Fehler (Invalid Session)"
+        ], 
+        "ERROR_PROCESSOR_INVALID_STATUS": [
+            "Fehler (Invalid Status)"
+        ], 
+        "ERROR_PROCESSOR_MISSING_SESSION": [
+            "Fehler (Missing Session)"
+        ], 
+        "ERROR_PROCESSOR_CONNECTION_ERROR": [
+            "Fehler (Connection Error)"
+        ], 
+        "ERROR_SESSION_TIMEOUT": [
+            "Fehler (Session Timeout)"
+        ], 
+        "ERROR_TERMINAL_ERROR": [
+            "Fehler (Terminal Error)"
+        ], 
+        "ERROR_SERVER_INVALID_RESPONSE": [
+            "Fehler (Invalid Response)"
+        ], 
+        "ERROR_SERVER_UNAVAILABLE": [
+            "Fehler (Server unavailable)"
+        ], 
+        "ERROR_SERVER_TIMEOUT": [
+            "Fehler (Server timeout)"
+        ], 
+        "ERROR_SERVER_AUTHENTICATION_FAILED": [
+            "Fehler (Auth failed)"
+        ], 
+        "ERROR_SERVER_PINNING_FAILED": [
+            "Fehler (Pinning failed)"
+        ], 
+        "ERROR_TERMINAL_TIMEOUT": [
+            "Fehler (Terminal Timeout)"
+        ], 
+        "ERROR_PROCESSOR_FAILED_INCONSISTENT_STATE_UNRESOLVED": [
+            "Fehler (Inconsistent State)"
+        ], 
+        "ERROR_PROCESSOR_FAILED_INCONSISTENT_STATE_RESOLVED": [
+            "Fehler (Inconsistent State)"
+        ], 
+        "ERROR_PROCESSOR_PAYMENT_DETAILS_EXTRACTION_FAILED": [
+            "Fehler (Details Extraction)"
+        ], 
+        "ERROR_PROCESSOR_INVALID_PAYMENT_DETAILS": [
+            "Fehler (Invalid Details)"
+        ], 
+        "ERROR_PROCESSOR_INVALID_CONFIGURATION": [
+            "Fehler (Invalid Configuration)"
+        ], 
+        "ERROR_PROCESSOR_MALFORMED_REQUEST": [
+            "Fehler (Malformed Request)"
+        ], 
+        "ERROR_PROCESSOR_TRANSACTION_ALREADY_IN_PROGRESS": [
+            "Fehler (Transaction Ongoing)"
+        ], 
+        "ERROR_PROCESSOR_CONNECTION_NO_RESPONSE": [
+            "Fehler (No Response)"
+        ], 
+        "NONE": [
+            ""
+        ], 
+        "PENDING": [
+            "Bitte warten..."
+        ], 
+        "PENDING_WAITING_FOR_FINALIZATION": [
+            "Zahlung erfolgreich"
+        ]
+    }
+}

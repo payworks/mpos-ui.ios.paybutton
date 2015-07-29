@@ -1,0 +1,117 @@
+{
+    "info": {
+        "locale": "de_DE", 
+        "rows": 1, 
+        "columns": 40
+    }, 
+    "localization": {
+        "ParameterMissing": [
+            "Parameter fehlt"
+        ], 
+        "ParameterInvalid": [
+            "Parameter ungültig"
+        ], 
+        "AccessoryNotFound": [
+            "Gerät nicht gefunden"
+        ], 
+        "AccessoryNotConnected": [
+            "Keine Verbindung zum Gerät"
+        ], 
+        "AccessoryAlreadyConnected": [
+            "Gerät bereits verbunden"
+        ], 
+        "AccessoryAlreadyDisconnected": [
+            "Verbindung zum Gerät bereits getrennt"
+        ], 
+        "AccessoryBusy": [
+            "Gerät ist blockiert"
+        ], 
+        "AccessoryNotWhitelisted": [
+            "Kein Whitelisting des Geräts"
+        ], 
+        "AccessoryDeactivated": [
+            "Gerät deaktiviert"
+        ], 
+        "AccessoryRequiresUpdate": [
+            "Geräte-Update erforderlich"
+        ], 
+        "AccessoryBatteryLow": [
+            "Niedrige Batterieladung"
+        ], 
+        "AccessoryTampered": [
+            "Gerät manipuliert"
+        ], 
+        "AccessoryError": [
+            "Gerätefehler"
+        ], 
+        "AccessoryComponentNotFound": [
+            "Gerätekomponente nicht gefunden"
+        ], 
+        "AccessoryComponentPrinterBusy": [
+            "Drucker ist blockiert"
+        ], 
+        "AccessoryComponentPrinterPaperLowOrOut": [
+            "Kein oder wenig Papier im Drucker"
+        ], 
+        "AccessoryComponentPrinterCoverOpen": [
+            "Druckergehäuse ist offen"
+        ], 
+        "TransactionSessionNotFound": [
+            "Transaktions-Session nicht gefunden"
+        ], 
+        "TransactionReferenceNotFound": [
+            "Transaktionsreferenz nicht gefunden"
+        ], 
+        "TransactionInvalid": [
+            "Transaktion ungültig"
+        ], 
+        "TransactionBusy": [
+            "Transaktion blockiert"
+        ], 
+        "TransactionNoLongerAbortable": [
+            "Transaktion nicht mehr abbrechbar"
+        ], 
+        "TransactionDeclined": [
+            "Transaktion abgelehnt"
+        ], 
+        "TransactionAborted": [
+            "Transaktion abgebrochen"
+        ], 
+        "TransactionError": [
+            "Transaktionsfehler"
+        ], 
+        "TransactionActionError": [
+            "Transaktion, Bedienungsfehler"
+        ], 
+        "ServerTimeout": [
+            "Server Zeitüberschreitung"
+        ], 
+        "ServerUnavailable": [
+            "Internetverbindung prüfen"
+        ], 
+        "ServerAuthenticationFailed": [
+            "Gateway-Authentifizierung fehlgeschlagen"
+        ], 
+        "ServerPinningWithRemoteFailed": [
+            "Gateway-Prüfung fehlgeschlagen"
+        ], 
+        "ServerError": [
+            "Serverfehler"
+        ], 
+        "SDKResourcesNotFound": [
+            "Ressourcen nicht gefunden"
+        ], 
+        "SDKResourcesModified": [
+            "Ressourcen modifiziert"
+        ], 
+        "SDKConfigurationMissing": [
+            "Konfiguration fehlt"
+        ], 
+        "InternalInconsistency": [
+            "Interner Fehler"
+        ], 
+        "UnknownUsername": [
+            "No account found"
+        ]
+    }
+}

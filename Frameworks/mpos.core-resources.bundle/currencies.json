@@ -1,0 +1,179 @@
+{
+    "AED": {
+        "exponent": 2,
+        "isPrefix": true,
+        "isoNumber": 784,
+        "name": "United Arab Emirates Dirham",
+        "symbol": "AED",
+        "symbolDelimiter": " "
+    },
+    "AUD": {
+        "exponent": 2,
+        "isPrefix": true,
+        "isoNumber": 36,
+        "name": "Australian dollar",
+        "symbol": "$",
+        "symbolDelimiter": " "
+    },
+    "BGN": {
+        "exponent": 2,
+        "isPrefix": false,
+        "isoNumber": 975,
+        "name": "Bulgarian Lev",
+        "symbol": "lv",
+        "symbolDelimiter": " "
+    },
+    "BRL": {
+        "exponent": 2,
+        "isPrefix": true,
+        "isoNumber": 986,
+        "name": "Brazilian Real",
+        "symbol": "R$"
+    },
+    "CHF": {
+        "exponent": 2,
+        "isPrefix": true,
+        "isoNumber": 756,
+        "name": "Swiss Franc",
+        "symbol": "CHF",
+        "symbolDelimiter": " "
+    },
+    "CZK": {
+        "exponent": 2,
+        "isPrefix": true,
+        "isoNumber": 203,
+        "name": "Czech Koruna",
+        "symbol": "CZK",
+        "symbolDelimiter": " "
+    },
+    "DKK": {
+        "exponent": 2,
+        "isPrefix": false,
+        "isoNumber": 208,
+        "name": "Danish Krone",
+        "symbol": "kr.",
+        "symbolDelimiter": " "
+    },
+    "EUR": {
+        "exponent": 2,
+        "isPrefix": false,
+        "isoNumber": 978,
+        "name": "Euro",
+        "symbol": "\u20ac"
+    },
+    "GBP": {
+        "exponent": 2,
+        "isPrefix": true,
+        "isoNumber": 826,
+        "name": "Pound sterling",
+        "symbol": "\u00a3"
+    },
+    "HKD": {
+        "exponent": 2,
+        "isPrefix": true,
+        "isoNumber": 344,
+        "name": "Hong Kong Dollars",
+        "symbol": "HK$"
+    },
+    "HRK": {
+        "exponent": 2,
+        "isPrefix": false,
+        "isoNumber": 191,
+        "name": "Croatian Kuna",
+        "symbol": "kn",
+        "symbolDelimiter": " "
+    },
+    "HUF": {
+        "exponent": 2,
+        "isPrefix": false,
+        "isoNumber": 348,
+        "name": "Hungarian Forint",
+        "symbol": "Ft",
+        "symbolDelimiter": " "
+    },
+    "INR": {
+        "exponent": 2,
+        "isPrefix": true,
+        "isoNumber": 356,
+        "name": "Indian Rupee",
+        "symbol": "Rs.",
+        "symbolDelimiter": " "
+    },
+    "LTL": {
+        "exponent": 2,
+        "isPrefix": false,
+        "isoNumber": 440,
+        "name": "Lithuanian Litas",
+        "symbol": "Lt",
+        "symbolDelimiter": " "
+    },
+    "LVL": {
+        "exponent": 2,
+        "isPrefix": false,
+        "isoNumber": 428,
+        "name": "Latvian Lats",
+        "symbol": "Ls",
+        "symbolDelimiter": " "
+    },
+    "NOK": {
+        "exponent": 2,
+        "isPrefix": true,
+        "isoNumber": 578,
+        "name": "Norwegian Krone",
+        "symbol": "kr",
+        "symbolDelimiter": " "
+    },
+    "PLN": {
+        "exponent": 2,
+        "isPrefix": true,
+        "isoNumber": 985,
+        "name": "Polish Zloty",
+        "symbol": "PLN",
+        "symbolDelimiter": " "
+    },
+    "RON": {
+        "exponent": 2,
+        "isPrefix": false,
+        "isoNumber": 946,
+        "name": "Romanian Leu",
+        "symbol": "lei",
+        "symbolDelimiter": " "
+    },
+    "SEK": {
+        "exponent": 2,
+        "isPrefix": false,
+        "isoNumber": 752,
+        "name": "Swedish Krona",
+        "symbol": "kr",
+        "symbolDelimiter": " "
+    },
+    "SGD": {
+        "exponent": 2,
+        "isPrefix": true,
+        "isoNumber": 702,
+        "name": "Singapore Dollar",
+        "symbol": "S$"
+    },
+    "UNKNOWN": {
+        "exponent": 2,
+        "isPrefix": false,
+        "isoNumber": 999,
+        "name": "UNKNOWN",
+        "symbol": "?"
+    },
+    "USD": {
+        "exponent": 2,
+        "isPrefix": true,
+        "isoNumber": 840,
+        "name": "United States dollar",
+        "symbol": "$"
+    },
+    "ZAR": {
+        "exponent": 2,
+        "isPrefix": true,
+        "isoNumber": 710,
+        "name": "South African Rand",
+        "symbol": "R",
+        "symbolDelimiter": " "
+    }
+}

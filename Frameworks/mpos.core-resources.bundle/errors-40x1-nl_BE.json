@@ -1,0 +1,117 @@
+{
+    "info": {
+        "locale": "nl_BE", 
+        "rows": 1, 
+        "columns": 40
+    }, 
+    "localization": {
+        "ParameterMissing": [
+            "Parameter ontbreekt"
+        ], 
+        "ParameterInvalid": [
+            "Ongeldige parameter"
+        ], 
+        "AccessoryNotFound": [
+            "Randapparatuur niet gevonden"
+        ], 
+        "AccessoryNotConnected": [
+            "Randapparaat niet verbonden"
+        ], 
+        "AccessoryAlreadyConnected": [
+            "Randapparatuur al verbonden"
+        ], 
+        "AccessoryAlreadyDisconnected": [
+            "Randapparaat al afgekoppeld"
+        ], 
+        "AccessoryBusy": [
+            "Randapparaat is bezig"
+        ], 
+        "AccessoryNotWhitelisted": [
+            "Randapparaat staat niet op witte lijst"
+        ], 
+        "AccessoryDeactivated": [
+            "Randapparaat is gedeactiveerd"
+        ], 
+        "AccessoryRequiresUpdate": [
+            "Update randapparatuur vereist"
+        ], 
+        "AccessoryBatteryLow": [
+            "Batterij bijna leeg"
+        ], 
+        "AccessoryTampered": [
+            "Randapparatuur onrechtmatig gewijzigd"
+        ], 
+        "AccessoryError": [
+            "Fout randapparaat"
+        ], 
+        "AccessoryComponentNotFound": [
+            "Component niet gevonden"
+        ], 
+        "AccessoryComponentPrinterBusy": [
+            "Printer is bezig"
+        ], 
+        "AccessoryComponentPrinterPaperLowOrOut": [
+            "De printer heeft geen papier"
+        ], 
+        "AccessoryComponentPrinterCoverOpen": [
+            "Het deksel van de printer is geopend"
+        ], 
+        "TransactionSessionNotFound": [
+            "Transactiesessie niet gevonden"
+        ], 
+        "TransactionReferenceNotFound": [
+            "Transactiereferentie niet gevonden"
+        ], 
+        "TransactionInvalid": [
+            "Transactie ongeldig"
+        ], 
+        "TransactionBusy": [
+            "Transactie is bezig"
+        ], 
+        "TransactionNoLongerAbortable": [
+            "Transactie kan niet meer gestopt worden"
+        ], 
+        "TransactionDeclined": [
+            "Transactie geweigerd"
+        ], 
+        "TransactionAborted": [
+            "Transactie afgebroken"
+        ], 
+        "TransactionError": [
+            "Transactiefout"
+        ], 
+        "TransactionActionError": [
+            "Fout transactie-actie"
+        ], 
+        "ServerTimeout": [
+            "Server timeout"
+        ], 
+        "ServerUnavailable": [
+            "Controleer uw internetverbinding"
+        ], 
+        "ServerAuthenticationFailed": [
+            "Gateway authenticatie mislukt"
+        ], 
+        "ServerPinningWithRemoteFailed": [
+            "Gateway verificatie mislukt"
+        ], 
+        "ServerError": [
+            "Serverfout"
+        ], 
+        "SDKResourcesNotFound": [
+            "Resources niet gevonden"
+        ], 
+        "SDKResourcesModified": [
+            "Resources gewijzigd"
+        ], 
+        "SDKConfigurationMissing": [
+            "Configuratie ontbreekt"
+        ], 
+        "InternalInconsistency": [
+            "Interne fout"
+        ], 
+        "UnknownUsername": [
+            "No account found"
+        ]
+    }
+}

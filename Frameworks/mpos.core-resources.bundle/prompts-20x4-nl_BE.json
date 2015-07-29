@@ -1,0 +1,255 @@
+{
+    "info": {
+        "columns": 20, 
+        "locale": "nl_BE", 
+        "rows": 4
+    }, 
+    "localization": {
+        "ApplicationSelection": [
+            "Gelieve ", 
+            "een rekening", 
+            "te kiezen", 
+            ""
+        ], 
+        "AuthorizingTransaction": [
+            "", 
+            "Betaling", 
+            "wordt gevalideerd...", 
+            ""
+        ], 
+        "BarcodeScannerActive": [
+            "", 
+            "Barcodescanner", 
+            "actief", 
+            ""
+        ], 
+        "CardNotSupportedIccMagstripe": [
+            "", 
+            "", 
+            "Gebruik andere kaart", 
+            ""
+        ], 
+        "CardNotSupportedNfc": [
+            "", 
+            "Ingeven,", 
+            "schuiven of", 
+            "andere kaart"
+        ], 
+        "CompletedWithStatus": [
+            "", 
+            "$reason1$", 
+            "$reason2$", 
+            ""
+        ], 
+        "CompletingTransaction": [
+            "", 
+            "Betaling", 
+            "wordt opgeslagen...", 
+            ""
+        ], 
+        "GenericError": [
+            "", 
+            "", 
+            "Fout", 
+            ""
+        ], 
+        "Idle": [
+            "", 
+            "", 
+            "Verbonden", 
+            ""
+        ], 
+        "InsertCard": [
+            "$amount$", 
+            "", 
+            "Kaart ingeven", 
+            ""
+        ], 
+        "InsertOrSwipeCard": [
+            "$amount$", 
+            "", 
+            "Kaart ingeven of ", 
+            "schuiven"
+        ], 
+        "InsertOrSwipeCardActivateNfc": [
+            "$amount$", 
+            "Kaart ingeven of ", 
+            "schuiven", 
+            "[OK] voor NFC"
+        ], 
+        "PINIncorrect": [
+            "", 
+            "Voer PIN in", 
+            "$digits$", 
+            "(foute PIN)"
+        ], 
+        "PINLastTry": [
+            "", 
+            "PIN-code invoeren", 
+            "$digits$", 
+            "(laatste poging)"
+        ], 
+        "PINOk": [
+            "", 
+            "", 
+            "PIN OK", 
+            ""
+        ], 
+        "PINStatus": [
+            "", 
+            "PIN-code invoeren", 
+            "$digits$", 
+            ""
+        ], 
+        "PresentCard": [
+            "$amount$", 
+            "", 
+            "Kaart AUB", 
+            ""
+        ], 
+        "ProcessingTransaction": [
+            "", 
+            "Betaling wordt", 
+            " verwerkt...", 
+            ""
+        ], 
+        "ProvideIdentification": [
+            "", 
+            "Identificatie", 
+            "vereist", 
+            ""
+        ], 
+        "ProvideSignature": [
+            "", 
+            "Handtekening", 
+            "vereist", 
+            ""
+        ], 
+        "ProvideSignatureWithStatus": [
+            "$reason1$", 
+            "$reason2$", 
+            "Handtekening", 
+            "vereist"
+        ], 
+        "ProviderAccessoryCheckingForUpdate": [
+            ""
+        ], 
+        "ProviderAccessoryConnecting": [
+            ""
+        ], 
+        "ProviderAccessoryUpdating": [
+            ""
+        ], 
+        "ProviderAccessoryWaitingForReader": [
+            ""
+        ], 
+        "ProviderAccessoryConnectingPrinter": [
+            ""
+        ], 
+        "ProviderAccessoryWaitingForPrinter": [
+            ""
+        ], 
+        "ProviderAborted": [
+            ""
+        ], 
+        "ProviderApproved": [
+            ""
+        ], 
+        "ProviderDeclined": [
+            ""
+        ], 
+        "ProviderFailed": [
+            ""
+        ], 
+        "ProviderNotRefundable": [
+            ""
+        ], 
+        "ProviderTransactionQuerying": [
+            ""
+        ], 
+        "ProviderTransactionRegistering": [
+            ""
+        ], 
+        "ProviderAccessoryConfiguringConnectionLink": [
+            ""
+        ], 
+        "ProviderComponentPrinterSending": [
+            ""
+        ], 
+        "ProviderComponentPrinterSent": [
+            ""
+        ], 
+        "ProviderComponentPrinterAborted": [
+            ""
+        ], 
+        "ProviderComponentPrinterFailed": [
+            ""
+        ], 
+        "ReadingEMVCard": [
+            "", 
+            "Kaart wordt", 
+            "gelezen...", 
+            ""
+        ], 
+        "RemoveCardWithStatus": [
+            "$reason1$", 
+            "$reason2$", 
+            "", 
+            "Kaart terugnemen"
+        ], 
+        "SwipeCard": [
+            "$amount$", 
+            "", 
+            "Kaart doorschuiven", 
+            ""
+        ], 
+        "TransactionAborting": [
+            "", 
+            "Betaling wordt", 
+            "afgebroken...", 
+            ""
+        ], 
+        "UpdatingDevice": [
+            "", 
+            "Toestel wordt", 
+            "bijgewerkt...", 
+            ""
+        ], 
+        "UpdatingDeviceConfigurationUpdate": [
+            "Config-update", 
+            "", 
+            "Een ogenblikje ", 
+            "a.u.b. ..."
+        ], 
+        "UpdatingDeviceFirmwareUpdate": [
+            "Firmware-update", 
+            "", 
+            "Dit kan even", 
+            "duren..."
+        ], 
+        "UpdatingDeviceKeyInjection": [
+            "Aanmaken sleutel", 
+            "", 
+            "Dit kan even", 
+            "duren..."
+        ], 
+        "UpdatingDeviceSoftwareUpdate": [
+            "Software-update", 
+            "", 
+            "Dit kan iets", 
+            "langer duren..."
+        ], 
+        "CardNotSupported": [
+            "Kaart niet", 
+            "ondersteund!", 
+            "Andere kaart", 
+            "of afbreken"
+        ], 
+        "SelectApp": [
+            "Select:", 
+            "", 
+            "", 
+            "more"
+        ]
+    }
+}

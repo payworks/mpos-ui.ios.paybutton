@@ -1,0 +1,117 @@
+{
+    "info": {
+        "locale": "fr_FR", 
+        "rows": 1, 
+        "columns": 40
+    }, 
+    "localization": {
+        "ParameterMissing": [
+            "Absence de paramètre"
+        ], 
+        "ParameterInvalid": [
+            "Paramètre non valide"
+        ], 
+        "AccessoryNotFound": [
+            "Accessoire introuvable"
+        ], 
+        "AccessoryNotConnected": [
+            "Accessoire non connecté"
+        ], 
+        "AccessoryAlreadyConnected": [
+            "Accessoire déjà déconnecté"
+        ], 
+        "AccessoryAlreadyDisconnected": [
+            "Accessoire déjà déconnecté"
+        ], 
+        "AccessoryBusy": [
+            "Accessoire occupé"
+        ], 
+        "AccessoryNotWhitelisted": [
+            "Accessoire absent de la liste autorisée"
+        ], 
+        "AccessoryDeactivated": [
+            "Accessoire désactivé"
+        ], 
+        "AccessoryRequiresUpdate": [
+            "Mise à jour d'accessoire requise"
+        ], 
+        "AccessoryBatteryLow": [
+            "Batterie faible"
+        ], 
+        "AccessoryTampered": [
+            "Accessoire altéré"
+        ], 
+        "AccessoryError": [
+            "Erreur d'accessoire"
+        ], 
+        "AccessoryComponentNotFound": [
+            "Composant introuvable"
+        ], 
+        "AccessoryComponentPrinterBusy": [
+            "Imprimante occupée"
+        ], 
+        "AccessoryComponentPrinterPaperLowOrOut": [
+            "L'imprimante manque de papier"
+        ], 
+        "AccessoryComponentPrinterCoverOpen": [
+            "Le capot de l'imprimante est ouvert"
+        ], 
+        "TransactionSessionNotFound": [
+            "Transaction: session introuvable"
+        ], 
+        "TransactionReferenceNotFound": [
+            "Référence de transaction introuvable"
+        ], 
+        "TransactionInvalid": [
+            "Transaction non valide"
+        ], 
+        "TransactionBusy": [
+            "Transaction en cours"
+        ], 
+        "TransactionNoLongerAbortable": [
+            "Abandon de la transaction impossible"
+        ], 
+        "TransactionDeclined": [
+            "Transaction refusée"
+        ], 
+        "TransactionAborted": [
+            "Transaction abandonnée"
+        ], 
+        "TransactionError": [
+            "Erreur de transaction"
+        ], 
+        "TransactionActionError": [
+            "Erreur d'exécution de la transaction"
+        ], 
+        "ServerTimeout": [
+            "Délai dépassé du serveur"
+        ], 
+        "ServerUnavailable": [
+            "Vérifiez votre liaison internet"
+        ], 
+        "ServerAuthenticationFailed": [
+            "Echec d'authentification de passerelle"
+        ], 
+        "ServerPinningWithRemoteFailed": [
+            "Échec de contrôle de passerelle"
+        ], 
+        "ServerError": [
+            "Erreur du serveur"
+        ], 
+        "SDKResourcesNotFound": [
+            "Ressources introuvables"
+        ], 
+        "SDKResourcesModified": [
+            "Ressources modifiées"
+        ], 
+        "SDKConfigurationMissing": [
+            "Absence de configuration"
+        ], 
+        "InternalInconsistency": [
+            "Erreur interne"
+        ], 
+        "UnknownUsername": [
+            "No account found"
+        ]
+    }
+}

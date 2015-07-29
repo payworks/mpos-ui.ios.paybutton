@@ -1,0 +1,255 @@
+{
+    "info": {
+        "columns": 20, 
+        "locale": "en_US", 
+        "rows": 4
+    }, 
+    "localization": {
+        "ApplicationSelection": [
+            "", 
+            "Please select", 
+            "your account", 
+            ""
+        ], 
+        "AuthorizingTransaction": [
+            "", 
+            "Authorizing", 
+            "payment...", 
+            ""
+        ], 
+        "BarcodeScannerActive": [
+            "", 
+            "Barcode scanner", 
+            "active", 
+            ""
+        ], 
+        "CardNotSupportedIccMagstripe": [
+            "", 
+            "", 
+            "Try another card", 
+            ""
+        ], 
+        "CardNotSupportedNfc": [
+            "", 
+            "Insert, swipe or", 
+            "try another card", 
+            ""
+        ], 
+        "CompletedWithStatus": [
+            "", 
+            "$reason1$", 
+            "$reason2$", 
+            ""
+        ], 
+        "CompletingTransaction": [
+            "", 
+            "Completing", 
+            "payment...", 
+            ""
+        ], 
+        "GenericError": [
+            "", 
+            "", 
+            "Error", 
+            ""
+        ], 
+        "Idle": [
+            "", 
+            "", 
+            "Connected", 
+            ""
+        ], 
+        "InsertCard": [
+            "$amount$", 
+            "", 
+            "Insert card", 
+            ""
+        ], 
+        "InsertOrSwipeCard": [
+            "$amount$", 
+            "", 
+            "Insert or", 
+            "swipe card"
+        ], 
+        "InsertOrSwipeCardActivateNfc": [
+            "$amount$", 
+            "Insert or", 
+            "swipe card", 
+            "[OK] for NFC"
+        ], 
+        "PINIncorrect": [
+            "", 
+            "Enter PIN", 
+            "$digits$", 
+            "(PIN incorrect)"
+        ], 
+        "PINLastTry": [
+            "", 
+            "Enter PIN", 
+            "$digits$", 
+            "(last try)"
+        ], 
+        "PINOk": [
+            "", 
+            "", 
+            "PIN OK", 
+            ""
+        ], 
+        "PINStatus": [
+            "", 
+            "Enter PIN", 
+            "$digits$", 
+            ""
+        ], 
+        "PresentCard": [
+            "$amount$", 
+            "", 
+            "Present card", 
+            ""
+        ], 
+        "ProcessingTransaction": [
+            "", 
+            "Processing", 
+            "payment...", 
+            ""
+        ], 
+        "ProvideIdentification": [
+            "", 
+            "Identification", 
+            "required", 
+            ""
+        ], 
+        "ProvideSignature": [
+            "", 
+            "Signature", 
+            "required", 
+            ""
+        ], 
+        "ProvideSignatureWithStatus": [
+            "$reason1$", 
+            "$reason2$", 
+            "Signature", 
+            "required"
+        ], 
+        "ProviderAccessoryCheckingForUpdate": [
+            ""
+        ], 
+        "ProviderAccessoryConnecting": [
+            ""
+        ], 
+        "ProviderAccessoryUpdating": [
+            ""
+        ], 
+        "ProviderAccessoryWaitingForReader": [
+            ""
+        ], 
+        "ProviderAccessoryConnectingPrinter": [
+            ""
+        ], 
+        "ProviderAccessoryWaitingForPrinter": [
+            ""
+        ], 
+        "ProviderAborted": [
+            ""
+        ], 
+        "ProviderApproved": [
+            ""
+        ], 
+        "ProviderDeclined": [
+            ""
+        ], 
+        "ProviderFailed": [
+            ""
+        ], 
+        "ProviderNotRefundable": [
+            ""
+        ], 
+        "ProviderTransactionQuerying": [
+            ""
+        ], 
+        "ProviderTransactionRegistering": [
+            ""
+        ], 
+        "ProviderAccessoryConfiguringConnectionLink": [
+            ""
+        ], 
+        "ProviderComponentPrinterSending": [
+            ""
+        ], 
+        "ProviderComponentPrinterSent": [
+            ""
+        ], 
+        "ProviderComponentPrinterAborted": [
+            ""
+        ], 
+        "ProviderComponentPrinterFailed": [
+            ""
+        ], 
+        "ReadingEMVCard": [
+            "", 
+            "", 
+            "Reading card...", 
+            ""
+        ], 
+        "RemoveCardWithStatus": [
+            "$reason1$", 
+            "$reason2$", 
+            "", 
+            "Remove card"
+        ], 
+        "SwipeCard": [
+            "$amount$", 
+            "", 
+            "Swipe card", 
+            ""
+        ], 
+        "TransactionAborting": [
+            "", 
+            "Aborting", 
+            "payment...", 
+            ""
+        ], 
+        "UpdatingDevice": [
+            "", 
+            "", 
+            "Updating...", 
+            ""
+        ], 
+        "UpdatingDeviceConfigurationUpdate": [
+            "Updating Config", 
+            "", 
+            "", 
+            "Please wait..."
+        ], 
+        "UpdatingDeviceFirmwareUpdate": [
+            "Updating Firmware", 
+            "", 
+            "", 
+            "Please wait..."
+        ], 
+        "UpdatingDeviceKeyInjection": [
+            "Generating Keys", 
+            "", 
+            "", 
+            "Please wait..."
+        ], 
+        "UpdatingDeviceSoftwareUpdate": [
+            "Updating Software", 
+            "", 
+            "", 
+            "Please wait..."
+        ], 
+        "CardNotSupported": [
+            "Card not", 
+            "supported!", 
+            "Try another", 
+            "or press cancel"
+        ], 
+        "SelectApp": [
+            "Select:", 
+            "", 
+            "", 
+            "more"
+        ]
+    }
+}

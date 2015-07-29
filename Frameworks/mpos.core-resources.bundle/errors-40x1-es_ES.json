@@ -1,0 +1,117 @@
+{
+    "info": {
+        "locale": "es_ES", 
+        "rows": 1, 
+        "columns": 40
+    }, 
+    "localization": {
+        "ParameterMissing": [
+            "Falta un parámetro"
+        ], 
+        "ParameterInvalid": [
+            "Parámetro inválido"
+        ], 
+        "AccessoryNotFound": [
+            "Accesorio no encontrado"
+        ], 
+        "AccessoryNotConnected": [
+            "Accesorio no conectado"
+        ], 
+        "AccessoryAlreadyConnected": [
+            "Accesorio ya contectado"
+        ], 
+        "AccessoryAlreadyDisconnected": [
+            "Accesorio desconectado"
+        ], 
+        "AccessoryBusy": [
+            "Accesorio ocupado"
+        ], 
+        "AccessoryNotWhitelisted": [
+            "Accesorio no autorizado"
+        ], 
+        "AccessoryDeactivated": [
+            "Accesorio desactivado"
+        ], 
+        "AccessoryRequiresUpdate": [
+            "Accesorio requiere actualización"
+        ], 
+        "AccessoryBatteryLow": [
+            "Batería baja"
+        ], 
+        "AccessoryTampered": [
+            "Accesorio manipulado"
+        ], 
+        "AccessoryError": [
+            "Error en accesorio"
+        ], 
+        "AccessoryComponentNotFound": [
+            "Componente no encontrado"
+        ], 
+        "AccessoryComponentPrinterBusy": [
+            "Impresora ocupado"
+        ], 
+        "AccessoryComponentPrinterPaperLowOrOut": [
+            "La impresora se quedó sin papel"
+        ], 
+        "AccessoryComponentPrinterCoverOpen": [
+            "La cubierta del impresora está abierta"
+        ], 
+        "TransactionSessionNotFound": [
+            "No se encontró la sesión de la transacción"
+        ], 
+        "TransactionReferenceNotFound": [
+            "No se encontró la referencia de la transacción"
+        ], 
+        "TransactionInvalid": [
+            "Transacción inválida"
+        ], 
+        "TransactionBusy": [
+            "Transacción ocupada"
+        ], 
+        "TransactionNoLongerAbortable": [
+            "La transacción ya no puede ser cancelada"
+        ], 
+        "TransactionDeclined": [
+            "Transacción rechazada"
+        ], 
+        "TransactionAborted": [
+            "Transacción cancelada"
+        ], 
+        "TransactionError": [
+            "Error en la transacción"
+        ], 
+        "TransactionActionError": [
+            "Error al ejecutar la transacción"
+        ], 
+        "ServerTimeout": [
+            "Server timeout"
+        ], 
+        "ServerUnavailable": [
+            "Verifique su conexión a Internet"
+        ], 
+        "ServerAuthenticationFailed": [
+            "Error en la autentificación a la Pasarela"
+        ], 
+        "ServerPinningWithRemoteFailed": [
+            "Error en la verificación con la Pasarela"
+        ], 
+        "ServerError": [
+            "Error en servidor"
+        ], 
+        "SDKResourcesNotFound": [
+            "Recursos no encontrado"
+        ], 
+        "SDKResourcesModified": [
+            "Recursos modificados"
+        ], 
+        "SDKConfigurationMissing": [
+            "Configuración incompleta"
+        ], 
+        "InternalInconsistency": [
+            "Error interno"
+        ], 
+        "UnknownUsername": [
+            "No account found"
+        ]
+    }
+}
