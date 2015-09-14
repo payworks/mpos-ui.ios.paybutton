@@ -44,9 +44,11 @@ NSString *const CheckoutControllerMerchantSecret = @"merchant_secret";
 @property (weak, nonatomic) IBOutlet UIButton *summaryButton;
 @property (weak, nonatomic) IBOutlet UIButton *printButton;
 @property (weak, nonatomic) IBOutlet UIButton *refundButton;
+@property (weak, nonatomic) IBOutlet UIButton *customReceiptButton;
 
 @property (nonatomic, strong) MPUMposUi *mposUi;
 @property (nonatomic, strong) MPTransaction *lastTransaction;
+@property (nonatomic, assign) BOOL applicationMode;
 
 @end
 
@@ -62,14 +64,9 @@ NSString *const CheckoutControllerMerchantSecret = @"merchant_secret";
     
     [self enableLastTransactionActions:NO transaction:nil];
     
-    //Initializing in the mock mode.
-    self.mposUi = [MPUMposUi initializeWithProviderMode:MPProviderModeMOCK
-                                     merchantIdentifier:CheckoutControllerMerchantIdentifier
-                                         merchantSecret:CheckoutControllerMerchantSecret];
-
+    //Initializing in the test mode.
+    [self initWithTestProvider:nil];
 }
-
-
 
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
@@ -81,6 +78,7 @@ NSString *const CheckoutControllerMerchantSecret = @"merchant_secret";
     self.summaryButton.hidden = !enabled;
     self.printButton.hidden = !enabled;
     self.refundButton.hidden = !enabled;
+    self.customReceiptButton.hidden = !enabled;
 }
 
 - (void)startMockPayment:(NSString *)amount {
@@ -112,18 +110,11 @@ NSString *const CheckoutControllerMerchantSecret = @"merchant_secret";
 
 - (void)startTestPayment:(NSString *)amount withAccessory:(MPAccessoryFamily)accessory {
     // Usually you only need initialize the provider only once in your app. Since the configuration is with MOCK configuration currently, we reinitialize again with TEST.
-    self.mposUi = [MPUMposUi initializeWithProviderMode:MPProviderModeTEST merchantIdentifier:CheckoutControllerMerchantIdentifier merchantSecret:CheckoutControllerMerchantSecret];
-    self.mposUi.configuration.terminalFamily = accessory;               // Using a MIURA/Verifone accessory
-    self.mposUi.configuration.printerFamily = MPAccessoryFamilySewoo;    // Using a SEWOO printer
     
-    self.mposUi.configuration.appearance.navigationBarTint = UIColorFromRGB(0x2196F3);          // Color of the navigation bar
-    self.mposUi.configuration.appearance.navigationBarTextColor = UIColorFromRGB(0xFFFFFF);     // Color of the text in the navigation bar
-    self.mposUi.configuration.appearance.backgroundColor = UIColorFromRGB(0xF7F5F4);            // Background color is customizable. Recommended light colors.
-    
-    // Features the summary screen should have.
-    self.mposUi.configuration.summaryFeatures = MPUMposUiConfigurationSummaryFeaturePrintReceipt |
-                                                MPUMposUiConfigurationSummaryFeatureRefundTransaction |
-                                                MPUMposUiConfigurationSummaryFeatureSendReceiptViaEmail;
+    if (!self.applicationMode) {
+        [self initializeWithProvider];
+        self.mposUi.configuration.terminalFamily = accessory;               // Using a MIURA/Verifone accessory
+    }
     
     UIViewController *viewController = [self.mposUi createChargeTransactionViewControllerWithAmount:[NSDecimalNumber decimalNumberWithString:amount] currency:MPCurrencyEUR subject:@"subject" customIdentifier:nil completed:^(UIViewController *controller, MPUTransactionResult result, MPTransaction *transaction) {
         
@@ -137,6 +128,21 @@ NSString *const CheckoutControllerMerchantSecret = @"merchant_secret";
     }];
     [self displayViewController:viewController];
 }
+
+- (void)initializeWithProvider {
+    self.mposUi = [MPUMposUi initializeWithProviderMode:MPProviderModeTEST merchantIdentifier:CheckoutControllerMerchantIdentifier merchantSecret:CheckoutControllerMerchantSecret];
+    self.mposUi.configuration.printerFamily = MPAccessoryFamilySewoo;    // Using a SEWOO printer
+    
+    self.mposUi.configuration.appearance.navigationBarTint = UIColorFromRGB(0x2196F3);          // Color of the navigation bar
+    self.mposUi.configuration.appearance.navigationBarTextColor = UIColorFromRGB(0xFFFFFF);     // Color of the text in the navigation bar
+    self.mposUi.configuration.appearance.backgroundColor = UIColorFromRGB(0xF7F5F4);            // Background color is customizable. Recommended light colors.
+    
+    // Features the summary screen should have.
+    self.mposUi.configuration.summaryFeatures = MPUMposUiConfigurationSummaryFeaturePrintReceipt |
+    MPUMposUiConfigurationSummaryFeatureRefundTransaction |
+    MPUMposUiConfigurationSummaryFeatureSendReceiptViaEmail;
+}
+
 
 - (void)showSummary:(NSString *)transactionIdentifier {
     // We make use of the exisiting mposUi configurations.
@@ -169,6 +175,7 @@ NSString *const CheckoutControllerMerchantSecret = @"merchant_secret";
             [self.view makeToast:@"Refund failed" duration:2.0 position:CSToastPositionBottom];
         }
     }];
+    
     [self displayViewController:viewController];
 }
 
@@ -215,6 +222,84 @@ NSString *const CheckoutControllerMerchantSecret = @"merchant_secret";
 
 - (IBAction)refund:(id)sender {
     [self startRefund:self.lastTransaction.identifier];
+}
+
+- (IBAction)initWithTestProvider:(id)sender {
+    self.applicationMode = NO;
+}
+
+- (IBAction)initWithConCardis:(id)sender {
+    
+    self.applicationMode = YES;
+    self.mposUi = [MPUMposUi initializeWithApplication:MPUApplicationNameConcardis integratorIdentifier:@"TESTINTEGRATOR"];
+}
+
+- (IBAction)initWithMcashier:(id)sender {
+    if (self.applicationMode){
+        [self.mposUi logoutFromApplication];
+    }
+    self.applicationMode = YES;
+    self.mposUi = [MPUMposUi initializeWithApplication:MPUApplicationNameMcashier integratorIdentifier:@"TESTINTEGRATOR"];
+}
+
+- (IBAction)settings:(id)sender {
+    if ( self.applicationMode ) {
+        UIViewController *viewController = [self.mposUi createSettingsViewController:^(UIViewController *controller) {
+            [controller dismissViewControllerAnimated:YES completion:nil];
+        }];
+        [self displayViewController:viewController];
+    }
+}
+
+- (IBAction)forceLogin:(id)sender {
+    if ( self.applicationMode ) {
+        UIViewController *viewController = [self.mposUi createLoginViewController:^(UIViewController *controller, MPULoginResult result) {
+            [controller dismissViewControllerAnimated:YES completion:nil];
+        }];
+        [self displayViewController:viewController];
+    }
+}
+
+- (IBAction)customReceipt:(id)sender {
+    if ([self.mposUi isApplicationLoggedIn]) {
+        [self fetchAndShowCustomReceipt];
+    } else {
+        NSLog(@"Not logged in");
+        // Here we can show the login screen
+        UIViewController *viewController = [self.mposUi createLoginViewController:^(UIViewController *controller, MPULoginResult result) {
+            [controller dismissViewControllerAnimated:YES completion:nil];
+            if (result == MPULoginResultFailed) {
+                [self.view makeToast:@"Login failed" duration:2.0 position:CSToastPositionBottom];
+            } else {
+                [self.view makeToast:@"Login successful" duration:2.0 position:CSToastPositionBottom];
+                [self fetchAndShowCustomReceipt];
+            }
+        }];
+        [self displayViewController:viewController];
+        
+    }
+    // NOTE : [self.mposUi isApplicationLoggedIn] will throw an exception if the MposUi is not initialized using the application.
+
+}
+
+- (void) fetchAndShowCustomReceipt {
+    // To fetch receipts from payworks, use the transactionProvider from the mposUi object.
+    [self.mposUi.transactionProvider queryCustomerTransactionReceiptByTransactionIdentifier:self.lastTransaction.identifier completed:^(NSString *transactionIdentifier, MPReceipt *receipt, NSError *error) {
+        
+        NSString *merchantName = [[receipt receiptLineItemForKey:MPReceiptLineKeyMerchantDetailsPublicName] value];
+        NSString *subject = [[receipt receiptLineItemForKey:MPReceiptLineKeySubject] value];
+        NSString *amount = [[receipt receiptLineItemForKey:MPReceiptLineKeyAmountAndCurrency] value];
+        
+        NSString *receiptText = [NSString stringWithFormat:@"%@ \n %@ \n %@",merchantName,subject,amount];
+        
+        UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Custom Receipt"
+                                                        message:receiptText
+                                                       delegate:nil
+                                              cancelButtonTitle:@"OK"
+                                              otherButtonTitles:nil];
+        [alert show];
+    }];
+    // NOTE : Do not keep a reference to the mposUi.transactionProvider as it is subject to change and might result in unexpected behaviour if used improperly.
 }
 
 @end

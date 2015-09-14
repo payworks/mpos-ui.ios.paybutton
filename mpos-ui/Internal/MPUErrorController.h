@@ -27,13 +27,10 @@
 #import <UIKit/UIKit.h>
 #import "MPUAbstractController.h"
 
-typedef void (^MPUErrorRetry)();
-typedef void (^MPUErrorCancel)();
-
 @protocol MPUErrorDelegate
 
 @required
-- (void)errorCancelClicked;
+- (void)errorCancelClicked:(BOOL)authenticationFailed;
 - (void)errorRetryClicked;
 
 @end
@@ -42,7 +39,7 @@ typedef void (^MPUErrorCancel)();
 @interface MPUErrorController : MPUAbstractController
 
 @property (nonatomic, strong) NSError *error;
-@property (nonatomic, retain) id<MPUErrorDelegate> delegate;
+@property (nonatomic, weak) id<MPUErrorDelegate> delegate;
 @property (nonatomic, strong) MPTransactionProcessDetails *details;
 @property (nonatomic, assign) BOOL retryEnabled;
 

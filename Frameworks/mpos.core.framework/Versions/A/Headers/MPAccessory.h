@@ -59,7 +59,9 @@ typedef NS_ENUM(NSUInteger, MPAccessoryType){
     MPAccessoryTypeSewooLKP21,
 
     /** BBPOS WisePad */
-    MPAccessoryTypeBBPOSWisePad
+    MPAccessoryTypeBBPOSWisePad,
+    /** BBPOS Chipper */
+    MPAccessoryTypeBBPOSChipper
 };
 
 
@@ -169,7 +171,9 @@ typedef NS_OPTIONS(NSUInteger, MPAccessoryComponentType) {
     /** Barcode scanner component available */
     MPAccessoryComponentTypeBarcodeScanner      = 1 << 0,
     /** Printer component available */
-    MPAccessoryComponentTypePrinter             = 2 << 0
+    MPAccessoryComponentTypePrinter             = 2 << 0,
+    /** Log access component available */
+    MPAccessoryComponentTypeLog                 = 3 << 0
 };
 
 @class MPAccessoryDetails;

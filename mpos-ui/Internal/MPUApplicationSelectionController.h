@@ -29,6 +29,7 @@
 
 @protocol MPUApplicationSelectionDelegate
 
+@required
 - (void)applicationSelected:(id)application;
 - (void)applicationSelectionAbortClicked;
 

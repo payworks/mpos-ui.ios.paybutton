@@ -40,7 +40,7 @@
 @property (nonatomic, weak) IBOutlet UIButton* retryButton;
 @property (nonatomic, weak) IBOutlet UIButton* cancelButton;
 @property (nonatomic, weak) IBOutlet NSLayoutConstraint* transactionStatusIconTopMargin;
-
+@property (nonatomic, assign) BOOL authFailed;
 @end
 
 @implementation MPUErrorController
@@ -64,10 +64,18 @@
         self.retryButton.hidden = YES;
     }
     
+    self.authFailed = NO;
     if (self.error.type == MPErrorTypeServerAuthenticationFailed) {
         self.retryButton.hidden = YES;
+        self.authFailed = YES;
+        if (self.mposUi.mposUiMode == MPUMposUiModeApplication) {
+            [self.mposUi clearMerchantCredentials];
+        }
     }
-    
+    [self l10n];
+}
+
+- (void)l10n {
     [self.retryButton setTitle:[MPUUIHelper localizedString:@"MPURetry"] forState:UIControlStateNormal];
     [self.cancelButton setTitle:[MPUUIHelper localizedString:@"MPUClose"] forState:UIControlStateNormal];
 }
@@ -98,7 +106,7 @@
 
 
 - (IBAction)didTapCancelButton:(id)sender {
-    [self.delegate errorCancelClicked];
+    [self.delegate errorCancelClicked:self.authFailed];
 }
 
 - (IBAction)didTapRetryButton:(id)sender {

@@ -1,6 +1,8 @@
 /*
  * mpos-ui : http://www.payworksmobile.com
  *
+ * The MIT License (MIT)
+ *
  * Copyright (c) 2015 payworks GmbH
  *
  * Permission is hereby granted, free of charge, to any person obtaining a copy
@@ -21,7 +23,6 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-
 #import "MPUAbstractContainerViewController.h"
 
 @interface MPUAbstractContainerViewController ()
@@ -33,6 +34,10 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     self.mposUi = [MPUMposUi sharedInitializedInstance];
+    self.showLoginScreen = NO;
+    if (self.mposUi.mposUiMode == MPUMposUiModeApplication && ![self.mposUi isApplicationLoggedIn]) {
+        self.showLoginScreen = YES;
+    }
 }
 
 - (void)swapToViewController:(UIViewController *)toViewController {
@@ -69,6 +74,11 @@
 - (void)backButtonPressed {
     //NO-OP
     // Make sure to override this if you need back button behaviour.
+}
+
+- (void)closeButtonPressed {
+    //NO-OP
+    // Make sure to override this if you need close button behaviour
 }
 
 @end

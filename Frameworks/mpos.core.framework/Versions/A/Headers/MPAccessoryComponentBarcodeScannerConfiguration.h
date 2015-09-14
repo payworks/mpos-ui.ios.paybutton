@@ -19,37 +19,37 @@
  * The available trigger modes.
  * @since 2.2.0
  */
-typedef NS_ENUM(int, MPBarcodeTriggerMode) {
+typedef NS_ENUM(int, MPAccessoryComponentBarcodeScannerConfigurationTriggerMode) {
     /** Edge trigger */
-    MPBarcodeTriggerModeEdge = 0,
+    MPAccessoryComponentBarcodeScannerConfigurationTriggerModeEdge = 0,
     /** Level trigger */
-    MPBarcodeTriggerModeLevel,
+    MPAccessoryComponentBarcodeScannerConfigurationTriggerModeLevel,
     /** Soft trigger */
-    MPBarcodeTriggerModeSoft,
+    MPAccessoryComponentBarcodeScannerConfigurationTriggerModeSoft,
     /** Passive trigger */
-    MPBarcodeTriggerModePassive
+    MPAccessoryComponentBarcodeScannerConfigurationTriggerModePassive
 };
 
 /**
  * The available scan modes.
  * @since 2.2.0
  */
-typedef NS_ENUM(int, MPBarcodeScanMode) {
+typedef NS_ENUM(int, MPAccessoryComponentBarcodeScannerConfigurationScanMode) {
     /** 1d only mode */
-    MPBarcodeScanMode1D = 0,
+    MPAccessoryComponentBarcodeScannerConfigurationScanMode1D = 0,
     /** 1D and 2D modes */
-    MPBarcodeScanMode1D2D
+    MPAccessoryComponentBarcodeScannerConfigurationScanMode1D2D
 };
 
 /**
  * The available continuous modes.
  * @since 2.2.0
  */
-typedef NS_ENUM(int, MPBarcodeContinuousMode) {
+typedef NS_ENUM(int, MPAccessoryComponentBarcodeScannerConfigurationContinuousMode) {
     /** Continuous mode disabled */
-    MPBarcodeContinuousModeDisabled = 0,
+    MPAccessoryComponentBarcodeScannerConfigurationContinuousModeDisabled = 0,
     /** Continuous mode enabled */
-    MPBarcodeContinuousModeEnabled
+    MPAccessoryComponentBarcodeScannerConfigurationContinuousModeEnabled
 };
 
 
@@ -63,18 +63,18 @@ typedef NS_ENUM(int, MPBarcodeContinuousMode) {
  * The triger mode when detecing barcodes and how
  * @since 2.2.0
  */
-@property (assign, nonatomic) MPBarcodeTriggerMode triggerMode;
+@property (assign, nonatomic) MPAccessoryComponentBarcodeScannerConfigurationTriggerMode triggerMode;
 
 /**
  * The types of barcodes to detect.
  * @since 2.2.0
  */
-@property (assign, nonatomic) MPBarcodeScanMode scanMode;
+@property (assign, nonatomic) MPAccessoryComponentBarcodeScannerConfigurationScanMode scanMode;
 
 /**
  * Sets the continuous mode on the scanner.
  * @since 2.2.0
  */
-@property (assign, nonatomic) MPBarcodeContinuousMode continuousMode;
+@property (assign, nonatomic) MPAccessoryComponentBarcodeScannerConfigurationContinuousMode continuousMode;
 
 @end

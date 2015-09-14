@@ -44,6 +44,7 @@ static NSString *const MRActivityIndicatorViewSpinAnimationKey = @"MRActivityInd
     }
     return self;
 }
+
 - (id)initWithCoder:(NSCoder *)aDecoder {
     self = [super initWithCoder:aDecoder];
     if (self) {
@@ -51,6 +52,7 @@ static NSString *const MRActivityIndicatorViewSpinAnimationKey = @"MRActivityInd
     }
     return self;
 }
+
 - (void)initProgressView {
     self.isAccessibilityElement = YES;
     CAShapeLayer *shapeLayer = [CAShapeLayer new];
@@ -91,30 +93,21 @@ static NSString *const MRActivityIndicatorViewSpinAnimationKey = @"MRActivityInd
                                        clockwise:YES];
 }
 
-- (void)startAnimating {
+- (void)setAnimating:(BOOL)animating {
+    if (self.animating == animating) {
+        return;
+    }
+    
     if (animating) {
-        return;
+        [self addAnimation];
+        self.hidden = NO;
+    } else {
+        [self removeAnimation];
+        self.hidden = YES;
     }
-    animating = YES;
-    [self addAnimation];
-
-    self.hidden = NO;
+    
+    _animating = animating;
 }
-- (void)stopAnimating {
-    if (!animating) {
-        return;
-    }
-    animating = NO;
-    [self removeAnimation];
-
-    self.hidden = YES;
-
-}
-- (BOOL)isAnimating {
-    return animating;
-}
-
-
 
 - (void)addAnimation {
     CABasicAnimation *spinAnimation = [CABasicAnimation animationWithKeyPath:@"transform.rotation"];
@@ -124,10 +117,9 @@ static NSString *const MRActivityIndicatorViewSpinAnimationKey = @"MRActivityInd
     spinAnimation.repeatCount = INFINITY;
     [self.shapeLayer addAnimation:spinAnimation forKey:MRActivityIndicatorViewSpinAnimationKey];
 }
+
 - (void)removeAnimation {
     [self.shapeLayer removeAnimationForKey:MRActivityIndicatorViewSpinAnimationKey];
 }
-
-
 
 @end

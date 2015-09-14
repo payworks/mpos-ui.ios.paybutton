@@ -31,6 +31,7 @@
 #import "MPPaymentDetails.h"
 #import "MPLocationDetails.h"
 #import "MPRefundDetails.h"
+#import "MPRefundTransaction.h"
 
 #import "MPTransactionActionSupport.h"
 #import "MPTransactionActionResponse.h"
@@ -50,6 +51,13 @@
 #import "MPAccessoryComponentDelegate.h"
 #import "MPAbstractDisplayUpdateSupportWrapper.h"
 #import "MPPINDisplayUpdateSupportWrapper.h"
+
+#import "MPAccessoryComponent.h"
+#import "MPAccessoryComponentPrinter.h"
+#import "MPAccessoryComponentLog.h"
+#import "MPAccessoryComponentBarcodeScanner.h"
+#import "MPAccessoryComponentBarcodeScannerConfiguration.h"
+#import "MPAccessoryComponentBarcodeScannerData.h"
 
 #import "MPPINInformation.h"
 #import "MPApplicationInformation.h"

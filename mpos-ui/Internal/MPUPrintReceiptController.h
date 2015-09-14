@@ -39,7 +39,7 @@
 
 @interface MPUPrintReceiptController : MPUAbstractController
 
-@property(nonatomic, strong) NSString* transactionIdentifer;
-@property(nonatomic, assign) id<MPUPrintReceiptDelegate> delegate;
+@property (nonatomic, strong) NSString* transactionIdentifer;
+@property (nonatomic, weak) id<MPUPrintReceiptDelegate> delegate;
 
 @end

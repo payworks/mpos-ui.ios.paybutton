@@ -38,6 +38,6 @@ typedef void (^MPUReceiptSent)();
 @interface MPUSendReceiptController : MPUAbstractController<UIAlertViewDelegate>
 
 @property (nonatomic, strong) NSString *transactionIdentifier;
-@property (nonatomic, assign) id<MPUSendReceiptDelegate> delegate;
+@property (nonatomic, weak) id<MPUSendReceiptDelegate> delegate;
 
 @end

@@ -25,7 +25,6 @@
  */
 
 #import "MPUAbstractMainController.h"
-#import "MPUMposUi_Internal.h"
 #import "MPUMposUiConfiguration.h"
 #import "MPUMposUiAppearance.h"
 #import "MPUUIHelper.h"
@@ -33,6 +32,7 @@
 @interface MPUAbstractMainController ()
 
 @property (nonatomic, strong) UIBarButtonItem *backButton;
+@property (nonatomic, strong) UIBarButtonItem *closeButton;
 
 @end
 
@@ -43,7 +43,10 @@
     self.mposUi = [MPUMposUi sharedInitializedInstance];
     self.mposUi.error = nil; //We clear the error everytime.
     
-    self.backButton = [[UIBarButtonItem alloc]initWithTitle:@"Back" style:UIBarButtonItemStylePlain target:self action:@selector(backButtonPressed)];
+    self.backButton = [[UIBarButtonItem alloc]initWithTitle:[MPUUIHelper localizedString:@"MPUBack"] style:UIBarButtonItemStylePlain target:self action:@selector(backButtonPressed)];
+    
+    self.closeButton = [[UIBarButtonItem alloc]initWithTitle:[MPUUIHelper localizedString:@"MPUClose"] style:UIBarButtonItemStyleDone target:self action:@selector(closeButtonPressed)];
+    
     self.navigationController.navigationBar.translucent = NO;
     MPUMposUiConfiguration *configuration = self.mposUi.configuration;
     if (configuration.appearance.navigationBarTint) {
@@ -64,6 +67,21 @@
     [self setNeedsStatusBarAppearanceUpdate];
 }
 
+- (UIStatusBarStyle)preferredStatusBarStyle {
+    return self.mposUi.configuration.appearance.statusBarStyle;
+}
+
+
+- (void)backButtonPressed{
+    //NOOP
+}
+
+- (void)closeButtonPressed{
+    //NOOP
+}
+
+#pragma mark - MPUContainerViewDelegate
+
 - (void)titleChanged:(NSString *)title {
     if (!IS_OS_8_OR_LATER) {
         //iOS7 this fading doesnt work well. Not at all!
@@ -79,6 +97,7 @@
     self.navigationItem.title = title;
 }
 
+
 - (void)hideBackButton:(BOOL)hide {
     if (hide) {
         self.navigationItem.leftBarButtonItem = nil;
@@ -87,8 +106,12 @@
     }
 }
 
-- (UIStatusBarStyle)preferredStatusBarStyle {
-    return self.mposUi.configuration.appearance.statusBarStyle;
+- (void)hideCloseButton:(BOOL)hide {
+    if (hide) {
+        self.navigationItem.rightBarButtonItem = nil;
+    } else {
+        self.navigationItem.rightBarButtonItem = self.closeButton;
+    }
 }
 
 @end

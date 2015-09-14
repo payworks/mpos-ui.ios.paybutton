@@ -38,6 +38,6 @@
 @interface MPULoadTransactionController : MPUAbstractController
 
 @property (nonatomic, strong) NSString *transactionIdentifer;
-@property (nonatomic, assign) id<MPULoadTransactionDelegate> delegate;
+@property (nonatomic, weak) id<MPULoadTransactionDelegate> delegate;
 
 @end

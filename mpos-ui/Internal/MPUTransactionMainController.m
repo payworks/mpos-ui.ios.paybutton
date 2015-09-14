@@ -39,20 +39,6 @@ NSString* const MPUSegueIdentifierTransactionContainer = @"embedTransactionConta
 
 @implementation MPUTransactionMainController
 
-- (void)viewDidLoad {
-    [super viewDidLoad];
-    // Do any additional setup after loading the view.
-}
-
-- (void)didReceiveMemoryWarning {
-    [super didReceiveMemoryWarning];
-    // Dispose of any resources that can be recreated.
-}
-
-- (BOOL)shouldPerformSegueWithIdentifier:(NSString *)identifier sender:(id)sender {
-    return YES;
-}
-
 #pragma mark - Navigation
 
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
@@ -65,8 +51,14 @@ NSString* const MPUSegueIdentifierTransactionContainer = @"embedTransactionConta
     }
 }
 
+#pragma mark - Navigation buttons handling
+
 - (void)backButtonPressed {
     [self.transactionContainer backButtonPressed];
+}
+
+- (void)closeButtonPressed {
+    [self.transactionContainer closeButtonPressed];
 }
 
 @end

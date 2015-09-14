@@ -29,13 +29,22 @@
 #import "MPUTransactionParameters.h"
 #import <CoreText/CoreText.h>
 
+NSString *const MPUUIHelperFrameworkBundleName = @"mpos-ui-resources";
+
 @implementation MPUUIHelper
 
-+ (NSBundle*)frameworkBundle {
-    return  [NSBundle bundleWithURL:[[NSBundle mainBundle] URLForResource:@"mpos-ui-resources" withExtension:@"bundle"]];
++ (NSBundle *)frameworkBundle {
+    static NSBundle *frameworkBundle = nil;
+    static dispatch_once_t frameworkBundleOnce;
+    dispatch_once(&frameworkBundleOnce, ^{
+        
+        frameworkBundle = [NSBundle bundleWithURL:[[NSBundle mainBundle] URLForResource:@"mpos-ui-resources" withExtension:@"bundle"]];
+        DDLogDebug(@"bundle found: %@", ((frameworkBundle != nil) ? @"YES" : @"NO"));
+    });
+    return frameworkBundle;
 }
 
-+ (void) loadMyCustomFont{
++ (void)loadIconFont{
     // register the font:
     NSURL *url = [[MPUUIHelper frameworkBundle] URLForResource:@"FontAwesome" withExtension:@"otf"];
     NSData *fontData = [NSData dataWithContentsOfURL:url];

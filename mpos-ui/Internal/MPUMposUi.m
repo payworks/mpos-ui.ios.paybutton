@@ -28,11 +28,19 @@
 #import "MPUUIHelper.h"
 #import "MPUTransactionParameters.h"
 #import "MPUMposUiConfiguration.h"
+#import "MPUApplicationData.h"
 #import "MPUSummaryMainController.h"
 #import "MPUTransactionMainController.h"
 #import "MPUPrintReceiptmainController.h"
+#import "MPUSettingsMainController.h"
+#import "MPULoginMainController.h"
+#import <Lockbox/Lockbox.h>
 
-NSString *const MPMposUiSDKVersion = @"2.4.1";
+NSString *const MPMposUiSDKVersion = @"2.4.4";
+
+NSString *const MPUKeychainUsername =               @"MPUKeychainUsername";
+NSString *const MPUKeychainMerchantIdentifier =     @"MPUKeychainMerchantIdentifier";
+NSString *const MPUKeychainMerchantSecretKey =      @"MPUKeychainMerchantSecretKey";
 
 static MPUMposUi *theInstance;
 
@@ -47,10 +55,19 @@ static MPUMposUi *theInstance;
 + (id)initializeWithProviderMode:(MPProviderMode)providerMode merchantIdentifier:(NSString *)merchantIdentifier merchantSecret:(NSString *)merchantSecret {
     static dispatch_once_t token;
     dispatch_once(&token, ^{
-        [MPUUIHelper loadMyCustomFont];
+        [MPUUIHelper loadIconFont];
     });
 
-    theInstance = [[MPUMposUi alloc] initWith:providerMode identifier:merchantIdentifier secret:merchantSecret];
+    theInstance = [[MPUMposUi alloc] initWithProvider:providerMode identifier:merchantIdentifier secret:merchantSecret];
+    return theInstance;
+}
+
++ (id)initializeWithApplication:(MPUApplicationName)applicationName integratorIdentifier:(NSString *)integratorIdentifier {
+    static dispatch_once_t token;
+    dispatch_once(&token, ^{
+        [MPUUIHelper loadIconFont];
+    });
+    theInstance = [[MPUMposUi alloc] initWithApplication:applicationName integratorIdentifier:integratorIdentifier];
     return theInstance;
 }
 
@@ -58,37 +75,97 @@ static MPUMposUi *theInstance;
     return theInstance;
 }
 
-- (id)initWith:(MPProviderMode)providerMode identifier:(NSString *)merchantIdentifier secret:(NSString *)merchantSecret {
+- (id)initWithProvider:(MPProviderMode)providerMode identifier:(NSString *)merchantIdentifier secret:(NSString *)merchantSecret {
     
     self = [super init];
-    if (self == nil)
-    {
+    if (self == nil) {
         return nil;
     }
     
+    self.mposUiMode = MPUMposUiModeProvider;
     self.providerMode = providerMode;
+    self.applicationData = nil;
     self.merchantIdentifier = merchantIdentifier;
-    self.merchantSecret = merchantSecret;
+    self.merchantSecretKey = merchantSecret;
+    self.username = nil;
+    
     self.configuration = [[MPUMposUiConfiguration alloc] init];
-    self.transactionProvider = [MPMpos transactionProviderForMode:self.providerMode merchantIdentifier:self.merchantIdentifier merchantSecretKey:self.merchantSecret];
-
+    self.transactionProvider = [MPMpos transactionProviderForMode:self.providerMode merchantIdentifier:self.merchantIdentifier merchantSecretKey:self.merchantSecretKey];
+    
     return self;
 }
 
-- (UIViewController *)createTransactionViewControllerWithSessionIdentifier:(NSString *)sessionIdentifier completed:(MPUTransactionCompleted)completed {
+- (id)initWithApplication:(MPUApplicationName)applicationName integratorIdentifier:(NSString *)integratorIdentifier {
+    self = [super init];
+    if (self == nil) {
+        return nil;
+    }
     
+    self.mposUiMode = MPUMposUiModeApplication;
+    self.applicationData =  [[MPUApplicationData alloc] initWithApplication:applicationName];
+    self.configuration = self.applicationData.configuration;
+    self.integratorIdentifier = integratorIdentifier;
+    self.providerMode = MPProviderModeLIVE;
+    self.merchantIdentifier = [Lockbox stringForKey:MPUKeychainMerchantIdentifier];
+    self.merchantSecretKey = [Lockbox stringForKey:MPUKeychainMerchantSecretKey];
+    self.username = [Lockbox stringForKey:MPUKeychainUsername];
+
+    if(self.merchantIdentifier != nil && self.merchantSecretKey !=nil) {
+        self.transactionProvider = [MPMpos transactionProviderForMode:self.providerMode merchantIdentifier:self.merchantIdentifier merchantSecretKey:self.merchantSecretKey];
+    }
+    
+    return self;
+}
+
+- (void)storeMerchantCredentials:(NSString *)merchantIdentifier merchantSecretKey:(NSString *)merchantSecretKey username:(NSString *)username {
+    self.merchantIdentifier = merchantIdentifier;
+    self.merchantSecretKey = merchantSecretKey;
+    self.username = username;
+    self.transactionProvider = [MPMpos transactionProviderForMode:self.providerMode merchantIdentifier:self.merchantIdentifier merchantSecretKey:self.merchantSecretKey];
+    
+    [Lockbox setString:merchantIdentifier forKey:MPUKeychainMerchantIdentifier];
+    [Lockbox setString:merchantSecretKey forKey:MPUKeychainMerchantSecretKey];
+    [Lockbox setString:username forKey:MPUKeychainUsername];
+}
+
+- (void)clearMerchantCredentials {
+    [Lockbox setString:nil forKey:MPUKeychainMerchantIdentifier];
+    [Lockbox setString:nil forKey:MPUKeychainMerchantSecretKey];
+    
+    self.merchantIdentifier = nil;
+    self.merchantSecretKey = nil;
+    self.transactionProvider = nil;
+}
+
+- (UIViewController *)createTransactionViewControllerWithSessionIdentifier:(NSString *)sessionIdentifier completed:(MPUTransactionCompleted)completed {
+    if (self.mposUiMode != MPUMposUiModeProvider) {
+        [self throwExceptionForWrongMode:MPUMposUiModeProvider];
+    }
     MPUTransactionParameters *parameters = [[MPUTransactionParameters alloc] initWithSessionIdentifier:sessionIdentifier];
     return [self createTransactionViewControllerWithParameters:parameters completed:completed];
 }
 
 - (UIViewController *)createChargeTransactionViewControllerWithAmount:(NSDecimalNumber *)amount currency:(MPCurrency)currency subject:(NSString *)subject customIdentifier:(NSString *)customIdentifier completed:(MPUTransactionCompleted)completed {
+    MPUTransactionParameters *parameters = nil;
     
-    MPUTransactionParameters *parameters = [[MPUTransactionParameters alloc] initWithAmount:amount currency:currency subject:subject customIdentifier:customIdentifier];
+    if(self.mposUiMode == MPUMposUiModeProvider) {
+        parameters = [[MPUTransactionParameters alloc] initWithAmount:amount currency:currency subject:subject customIdentifier:customIdentifier];
+    } else {
+        parameters = [[MPUTransactionParameters alloc] initWithAmount:amount currency:currency subject:subject customIdentifier:customIdentifier integratorIdentifier:self.integratorIdentifier];
+    }
+    
     return [self createTransactionViewControllerWithParameters:parameters completed:completed];
 }
 
 - (UIViewController *)createRefundTransactionViewControllerWithTransactionIdentifer:(NSString *)transactionIndentifier subject:(NSString *)subject customIdentifier:(NSString *)customIdentifier completed:(MPUTransactionCompleted)completed {
-    MPUTransactionParameters *parameters = [[MPUTransactionParameters alloc]initWithTransactionIdentifier:transactionIndentifier subject:subject customIdentifier:customIdentifier];
+    MPUTransactionParameters *parameters = nil;
+    
+    if(self.mposUiMode == MPUMposUiModeProvider) {
+        parameters = [[MPUTransactionParameters alloc]initWithTransactionIdentifier:transactionIndentifier subject:subject customIdentifier:customIdentifier];
+    } else {
+        parameters = [[MPUTransactionParameters alloc]initWithTransactionIdentifier:transactionIndentifier subject:subject customIdentifier:customIdentifier integratorIdentifier:self.integratorIdentifier];
+    }
+    
     return [self createTransactionViewControllerWithParameters:parameters completed:completed];
 }
 
@@ -116,6 +193,57 @@ static MPUMposUi *theInstance;
     viewController.transactionIdentifer = transactionIdentifier;
     viewController.completed = completed;
     return viewController;
+}
+
+- (UIViewController *)createSettingsViewController:(MPUSettingsCompleted)completed {
+    if (self.mposUiMode != MPUMposUiModeApplication) {
+        [self throwExceptionForWrongMode:MPUMposUiModeApplication];
+    }
+    UIStoryboard *storyboard = [UIStoryboard storyboardWithName:@"mpos-ui" bundle:[MPUUIHelper frameworkBundle]];
+    MPUSettingsMainController *viewController = [storyboard instantiateViewControllerWithIdentifier:@"MPUSettingsMainController"];
+    viewController.completed = completed;
+    return viewController;
+}
+
+- (UIViewController *)createLoginViewController:(MPULoginCompleted)completed {
+    if (self.mposUiMode != MPUMposUiModeApplication) {
+        [self throwExceptionForWrongMode:MPUMposUiModeApplication];
+    }
+    UIStoryboard *storyboard = [UIStoryboard storyboardWithName:@"mpos-ui" bundle:[MPUUIHelper frameworkBundle]];
+    MPULoginMainController *viewController = [storyboard instantiateViewControllerWithIdentifier:@"MPULoginMainController"];
+    viewController.completed = completed;
+    return viewController;
+}
+
+- (void)logoutFromApplication {
+    if (self.mposUiMode != MPUMposUiModeApplication) {
+        [self throwExceptionForWrongMode:MPUMposUiModeApplication];
+    } else {
+        [self clearMerchantCredentials];
+        [Lockbox setString:nil forKey:MPUKeychainUsername];
+    }
+}
+
+- (BOOL)isApplicationLoggedIn {
+    if (self.mposUiMode != MPUMposUiModeApplication) {
+        [self throwExceptionForWrongMode:MPUMposUiModeApplication];
+    } else if (self.transactionProvider != nil) {
+        return YES;
+    }
+    return NO;
+}
+
+- (void)throwExceptionForWrongMode:(MPUMposUiMode)mode {
+    if (mode == MPUMposUiModeApplication) {
+        @throw [NSException exceptionWithName:NSInternalInconsistencyException
+                                       reason:@"This method is only available if the MPUMposUi is initialzed with an Application"
+                                     userInfo:nil];
+    } else if (mode == MPUMposUiModeProvider) {
+        @throw [NSException exceptionWithName:NSInternalInconsistencyException
+                                       reason:@"This method is only available if the MPUMposUi is initialzed with a Provider"
+                                     userInfo:nil];
+    }
+    
 }
 
 @end

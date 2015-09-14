@@ -51,23 +51,24 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    // Do any additional setup after loading the view.
+    
     self.navigationItem.hidesBackButton = NO;
+    
     MPUMposUiConfiguration *configuration = self.mposUi.configuration;
     self.statusIcon.textColor = configuration.appearance.navigationBarTint;
-    self.navigationController.navigationBar.tintColor = configuration.appearance.navigationBarTextColor;
     self.statusIcon.text = @"\uf0e0";
-    [self.emailField becomeFirstResponder];
-    
-    [self registerForNotifications];
-
     self.progressView.hidden = YES;
-    //[self.progressView startAnimating];
     self.sendButton.enabled = NO;
     
+    [self.emailField becomeFirstResponder];
+    
+    [self l10n];
+    [self registerForNotifications];
+}
+
+- (void)l10n {
     [self.sendButton setTitle:[MPUUIHelper localizedString:@"MPUSend"] forState:UIControlStateNormal];
     [self.emailField setPlaceholder:[MPUUIHelper localizedString:@"MPUEnterEmailAddress"]];
-
 }
 
 #pragma mark - IBActions
@@ -84,7 +85,7 @@
         
         [self.emailField resignFirstResponder];
         self.progressView.hidden = NO;
-        [self.progressView startAnimating];
+        self.progressView.animating = YES;
         self.sendButton.enabled = NO;
         self.navigationItem.hidesBackButton = YES;
         self.emailField.enabled = NO;
@@ -108,11 +109,11 @@
 - (void)success {
     self.statusIcon.text = @"\uf00c";
     self.progressView.hidden = YES;
-    [self.progressView stopAnimating];
+    self.progressView.animating = NO;;
     [self.delegate sendReciptSuccess];
 }
 
-- (void)fail:(NSError*) error {
+- (void)fail:(NSError *) error {
     UIAlertView *alert = [[UIAlertView alloc] initWithTitle:[MPUUIHelper localizedString:@"MPUCouldNotSendReceipt"]
                                                     message:[error localizedDescription]
                                                    delegate:self
@@ -122,7 +123,7 @@
     alert.delegate = self;
     
     self.sendButton.enabled = [self isEmailValid:self.emailField.text];
-    [self.progressView stopAnimating];
+    self.progressView.animating = NO;
     self.progressView.hidden = YES;
     self.emailField.enabled = YES;
     self.navigationItem.hidesBackButton = NO;
@@ -192,7 +193,7 @@
 }
 
 
-- (void)keyboardWillShow:(NSNotification*)aNotification {
+- (void)keyboardWillShow:(NSNotification *)aNotification {
      NSDictionary* info = [aNotification userInfo];
      self.keyboardSize = [self.view convertRect:[[info objectForKey:UIKeyboardFrameEndUserInfoKey] CGRectValue] fromView:self.view.window].size;
      self.keyboardShown = YES;
@@ -209,7 +210,7 @@
       } completion:nil];
 }
  
-- (void)keyboardWillBeHidden:(NSNotification*)aNotification {
+- (void)keyboardWillBeHidden:(NSNotification *)aNotification {
      NSDictionary* info = [aNotification userInfo];
      self.keyboardSize = CGSizeMake(0.0, 0.0);
      self.keyboardShown = NO;

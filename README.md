@@ -38,7 +38,7 @@ We recommend using the pre-build sdk from CocoaPods but, if you want to build fr
 1. Clone the repository
 
   ```bash
-  $ git clone https://github.com/payworks/mpos-ui.ios.paybutton.git
+  $ git clone https://github.com/payworks/mpos-ui-ios.git
   ```
 
 2. Make sure you have CocoaPods installed. Do a `pod install` in `mpos-ui` and `mpos-ui-sample` folders. This will create an .xcworkspace for both the projects. Open them up in Xcode.

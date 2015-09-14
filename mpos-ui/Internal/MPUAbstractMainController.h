@@ -23,11 +23,13 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
+
 #import <UIKit/UIKit.h>
+#import "MPUMposUi_Internal.h"
 #import "MPUAbstractContainerViewController.h"
 
 @interface MPUAbstractMainController : UIViewController<MPUContainerViewDelegate>
 
-@property (nonatomic, strong)MPUMposUi *mposUi;
+@property (nonatomic, strong) MPUMposUi *mposUi;
 
 @end

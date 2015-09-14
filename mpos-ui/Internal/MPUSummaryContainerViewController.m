@@ -1,6 +1,8 @@
 /*
  * mpos-ui : http://www.payworksmobile.com
  *
+ * The MIT License (MIT)
+ *
  * Copyright (c) 2015 payworks GmbH
  *
  * Permission is hereby granted, free of charge, to any person obtaining a copy
@@ -31,6 +33,8 @@ NSString* const MPUSegueIdentifierSummary_Summary = @"smPushSummary";
 NSString* const MPUSegueIdentifierSummary_SendReceipt = @"smPushSend";
 NSString* const MPUSegueIdentifierSummary_PrintReceipt = @"smPushPrint";
 NSString* const MPUSegueIdentifierSummary_Error = @"smPushError";
+NSString* const MPUSegueIdentifierSummary_Login = @"smPushLogin";
+
 
 @interface MPUSummaryContainerViewController ()
 
@@ -40,6 +44,7 @@ NSString* const MPUSegueIdentifierSummary_Error = @"smPushError";
 @property (nonatomic, weak) MPUSendReceiptController *sendReceiptViewController;
 @property (nonatomic, weak) MPUPrintReceiptController *printReceiptViewController;
 @property (nonatomic, weak) MPUErrorController *errorViewController;
+@property (nonatomic, weak) MPULoginController *loginViewController;
 
 @property (nonatomic, strong) MPTransaction *transaction;
 @property (nonatomic, strong) MPTransaction *refundTransaction;
@@ -57,13 +62,24 @@ NSString* const MPUSegueIdentifierSummary_Error = @"smPushError";
 - (void)viewDidLoad {
     [super viewDidLoad];
     
-    // Do any additional setup after loading the view.
     self.modified = false;
     self.viewTransitionInProgress = NO;
-    self.previousSegueIdentifier = MPUSegueIdentifierSummary_LoadTransaction;
     
-    // First we always load the transaction from the server.
-    [self performSegueWithIdentifier:MPUSegueIdentifierSummary_LoadTransaction sender:nil];
+    if (self.showLoginScreen) {
+        self.previousSegueIdentifier = MPUSegueIdentifierSummary_Login;
+        [self performSegueWithIdentifier:MPUSegueIdentifierSummary_Login sender:nil];
+    } else {
+        self.previousSegueIdentifier = MPUSegueIdentifierSummary_LoadTransaction;
+        [self performSegueWithIdentifier:MPUSegueIdentifierSummary_LoadTransaction sender:nil];
+    }
+}
+
+- (void)viewWillAppear:(BOOL)animated {
+    // we can to show/hide the close button only after the first view is added.
+    // we wait till the view is ready to appear and then hide/show naivgation bar buttons.
+    if ([self.currentSegueIdentifier isEqualToString:MPUSegueIdentifierSummary_Login]) {
+        [self.delegate hideCloseButton:NO];
+    }
 }
 
 - (void)didReceiveMemoryWarning {
@@ -79,14 +95,14 @@ NSString* const MPUSegueIdentifierSummary_Error = @"smPushError";
     self.currentSegueIdentifier = segue.identifier;
     
     if ([segue.identifier isEqualToString:MPUSegueIdentifierSummary_LoadTransaction]) {
-        DDLogDebug(@"Load");
+        DDLogDebug(@"prepareForSegue:Load");
         self.loadTransactionViewController = segue.destinationViewController;
         [self showLoadTransaction:self.transactionIdentifer];
         [self swapToViewController:self.loadTransactionViewController];
     }
     
     if ([segue.identifier isEqualToString:MPUSegueIdentifierSummary_Summary]) {
-        DDLogDebug(@"Summary");
+        DDLogDebug(@"prepareForSegue:Summary");
         if(self.summaryShown) {
             // We've already created the screen before. No need to create it again.
             [self.delegate titleChanged:[MPUUIHelper localizedString:@"MPUSummary"]];
@@ -99,22 +115,29 @@ NSString* const MPUSegueIdentifierSummary_Error = @"smPushError";
         [self swapToViewController:self.summaryViewController];
     }
     
+    if ([segue.identifier isEqualToString:MPUSegueIdentifierSummary_Login]) {
+        DDLogDebug(@"prepareForSegue:Login");
+        self.loginViewController = segue.destinationViewController;
+        [self showLogin];
+        [self swapToViewController:self.loginViewController];
+    }
+    
     if ([segue.identifier isEqualToString:MPUSegueIdentifierSummary_SendReceipt]) {
-        DDLogDebug(@"Send Receip[t");
+        DDLogDebug(@"prepareForSegue:Send Receip[t");
         self.sendReceiptViewController = segue.destinationViewController;
         [self showSendReceipt:self.transactionIdentifer];
         [self swapToViewController:self.sendReceiptViewController];
     }
     
     if ([segue.identifier isEqualToString:MPUSegueIdentifierSummary_PrintReceipt]) {
-        DDLogDebug(@"Print Receipt");
+        DDLogDebug(@"prepareForSegue:Print Receipt");
         self.printReceiptViewController = segue.destinationViewController;
         [self showPrintReceipt:self.transactionIdentifer];
         [self swapToViewController:self.printReceiptViewController];
     }
     
     if ([segue.identifier isEqualToString:MPUSegueIdentifierSummary_Error]) {
-        DDLogDebug(@"Error");
+        DDLogDebug(@"prepareForSegue:Error");
         self.errorViewController = segue.destinationViewController;
         [self showError:self.lastError];
         [self swapToViewController:self.errorViewController];
@@ -133,6 +156,13 @@ NSString* const MPUSegueIdentifierSummary_Error = @"smPushError";
     self.summaryViewController.refundEnabled = YES;
     self.summaryViewController.retryEnabled = NO;
     self.summaryViewController.delegate = self;
+}
+
+- (void)showLogin {
+    [self.delegate hideCloseButton:NO];
+    [self.delegate titleChanged:[MPUUIHelper localizedString:@"MPULogin"]];
+    self.loginViewController.prefillUsername = self.mposUi.username;
+    self.loginViewController.delegate = self;
 }
 
 - (void)showError:(NSError *)error{
@@ -175,6 +205,15 @@ NSString* const MPUSegueIdentifierSummary_Error = @"smPushError";
     [self.delegate hideBackButton:YES];
 }
 
+- (void)closeButtonPressed {
+    // Close only if the close button is enabled in login.
+    if ([self.currentSegueIdentifier isEqualToString:MPUSegueIdentifierSummary_Login]
+       && self.loginViewController
+       && self.loginViewController.closeButtonEnabled) {
+        self.completed(self);
+    }
+}
+
 #pragma mark - MPULoadTransactionDelegate
 
 - (void)loadTransactionSuccess:(MPTransaction *)transaction {
@@ -212,6 +251,13 @@ NSString* const MPUSegueIdentifierSummary_Error = @"smPushError";
     self.completed(self);
 }
 
+#pragma mark - MPULoginDelegate
+
+- (void)loginSuccess:(NSString *)username merchantIdentifier:(NSString *)merchantIdentifier merchantSecret:(NSString *)merchantSecret {
+    [self.delegate hideCloseButton:YES];
+    [self performSegueWithIdentifier:MPUSegueIdentifierSummary_LoadTransaction sender:nil];
+}
+
 #pragma mark - MPUErrorDelegate
 
 - (void)errorRetryClicked {
@@ -223,12 +269,18 @@ NSString* const MPUSegueIdentifierSummary_Error = @"smPushError";
     }
 }
 
-- (void)errorCancelClicked {
-    if ([self.previousSegueIdentifier isEqualToString:MPUSegueIdentifierSummary_LoadTransaction]) {
-        self.completed(self);
-    }
-    else if ([self.previousSegueIdentifier isEqualToString:MPUSegueIdentifierSummary_PrintReceipt]) {
-        [self performSegueWithIdentifier:MPUSegueIdentifierSummary_Summary sender:nil];
+- (void)errorCancelClicked:(BOOL)authenticationFailed {
+    if (self.mposUi.mposUiMode == MPUMposUiModeApplication && authenticationFailed) {
+        [self performSegueWithIdentifier:MPUSegueIdentifierSummary_Login sender:nil];
+    } else {
+     
+        if ([self.previousSegueIdentifier isEqualToString:MPUSegueIdentifierSummary_LoadTransaction]) {
+            self.completed(self);
+        }
+        else if ([self.previousSegueIdentifier isEqualToString:MPUSegueIdentifierSummary_PrintReceipt]) {
+            [self performSegueWithIdentifier:MPUSegueIdentifierSummary_Summary sender:nil];
+        
+        }
     }
 }
 
@@ -259,4 +311,5 @@ NSString* const MPUSegueIdentifierSummary_Error = @"smPushError";
 - (void)printReceiptAborted {
     [self performSegueWithIdentifier:MPUSegueIdentifierSummary_Summary sender:nil];
 }
+
 @end

@@ -30,17 +30,21 @@
 
 @interface MPUTransactionParameters : NSObject
 
-@property(nonatomic, retain) NSString *sessionIdentifier;
-@property(nonatomic, retain) NSString *transactionIdentifier;
-@property(nonatomic, retain) NSDecimalNumber *amount;
+@property(nonatomic, strong) NSString *sessionIdentifier;
+@property(nonatomic, strong) NSString *transactionIdentifier;
+@property(nonatomic, strong) NSDecimalNumber *amount;
 @property(nonatomic, assign) MPCurrency currency;
-@property(nonatomic, retain) NSString *subject;
-@property(nonatomic, retain) NSString *customIdentifier;
+@property(nonatomic, strong) NSString *subject;
+@property(nonatomic, strong) NSString *customIdentifier;
 
-- (id)initWithSessionIdentifier:(NSString *)identifier;
+- (instancetype)initWithSessionIdentifier:(NSString *)identifier;
 
-- (id)initWithAmount:(NSDecimalNumber *)number currency:(MPCurrency)currency subject:(NSString *)subject customIdentifier:(NSString *)identifier;
+- (instancetype)initWithAmount:(NSDecimalNumber *)number currency:(MPCurrency)currency subject:(NSString *)subject customIdentifier:(NSString *)customIdentifier;
 
-- (id)initWithTransactionIdentifier:(NSString *)transactionIndentifier subject:(NSString *)subject customIdentifier:(NSString *)identifier;
+- (instancetype)initWithAmount:(NSDecimalNumber *)amount currency:(MPCurrency)currency subject:(NSString *)subject customIdentifier:(NSString *)customIdentifier integratorIdentifier:(NSString *)integratorIdentifier;
+
+- (instancetype)initWithTransactionIdentifier:(NSString *)transactionIndentifier subject:(NSString *)subject customIdentifier:(NSString *)customIdentifier;
+
+- (instancetype)initWithTransactionIdentifier:(NSString *)transactionIndentifier subject:(NSString *)subject customIdentifier:(NSString *)customIdentifier integratorIdentifier:(NSString *)integratorIdentifier;
 
 @end

@@ -26,7 +26,6 @@
 
 #import "MPUMposUiAppearance.h"
 #import "MPUUIHelper.h"
-#import <UIKit/UIKit.h>
 
 @interface MPUMposUiAppearance ()
 
@@ -35,7 +34,7 @@
 @implementation MPUMposUiAppearance
 
 
-- (id)init {
+- (instancetype)init {
 
     self = [super init];
     if (self == nil)
@@ -49,6 +48,5 @@
     self.statusBarStyle = UIStatusBarStyleDefault;
     return self;
 }
-
 
 @end

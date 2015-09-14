@@ -1,6 +1,8 @@
 /*
  * mpos-ui : http://www.payworksmobile.com
  *
+ * The MIT License (MIT)
+ *
  * Copyright (c) 2015 payworks GmbH
  *
  * Permission is hereby granted, free of charge, to any person obtaining a copy
@@ -31,6 +33,7 @@
 #import "MPUSendReceiptController.h"
 #import "MPUPrintReceiptController.h"
 #import "MPULoadTransactionController.h"
+#import "MPULoginController.h"
 
 @interface MPUTransactionContainerViewController : MPUAbstractContainerViewController<MPUTransactionDelegate,
                                                                                         MPUApplicationSelectionDelegate,
@@ -38,7 +41,8 @@
                                                                                         MPUSummaryDelegate,
                                                                                         MPUPrintReceiptDelegate,
                                                                                         MPUSendReceiptDelegate,
-                                                                                        MPULoadTransactionDelegate>
+                                                                                        MPULoadTransactionDelegate,
+                                                                                        MPULoginDelegate>
 
 @property (nonatomic, strong) MPUTransactionParameters *parameters;
 @property (nonatomic, copy) MPUTransactionCompleted completed;

@@ -48,10 +48,13 @@
     self.selectAccountLabel.backgroundColor = appearance.navigationBarTint;
     self.selectAccountLabel.textColor = appearance.navigationBarTextColor;
     self.applicationsTableView.backgroundColor = appearance.backgroundColor;
-    self.selectAccountLabel.text = [MPUUIHelper localizedString:@"MPUSelectAccount"];
     
     self.applicationsTableView.hidden = YES;
     self.applicationsTableView.tableFooterView = [[UIView alloc] initWithFrame:CGRectZero];
+}
+
+- (void)l10n {
+    self.selectAccountLabel.text = [MPUUIHelper localizedString:@"MPUSelectAccount"];
 }
 
 - (void)viewDidAppear:(BOOL)animated {

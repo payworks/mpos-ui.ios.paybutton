@@ -34,9 +34,9 @@
 
 @interface MPUUIHelper : NSObject
 
-+ (NSBundle*)frameworkBundle;
++ (NSBundle *)frameworkBundle;
 
-+ (void) loadMyCustomFont;
++ (void)loadIconFont;
 
 + (BOOL)isStringEmpty:(NSString *)string;
 

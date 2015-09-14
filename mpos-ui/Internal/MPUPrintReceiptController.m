@@ -40,7 +40,7 @@
 @property (nonatomic, weak) IBOutlet UIButton *abortButton;
 @property (nonatomic, weak) IBOutlet NSLayoutConstraint *progressViewMarginTopConstraint;
 
-@property(nonatomic, retain) MPPrintingProcess *printingProcess;
+@property (nonatomic, strong) MPPrintingProcess *printingProcess;
 
 @end
 
@@ -48,7 +48,7 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    [self.progressView startAnimating];
+    self.progressView.animating = YES;
     [self.printingStatusIcon setText:@"\uf02f"]; //fa-print
     [self.printingStatusInfo setText:@""];
     
@@ -88,13 +88,13 @@
     }];
 }
 
-- (void)updatePrintStatus:(MPPrintingProcessDetails*) details {
+- (void)updatePrintStatus:(MPPrintingProcessDetails *) details {
     self.printingStatusInfo.text = [details.information componentsJoinedByString:@"\n"];
     self.abortButton.hidden = ![self.printingProcess canBeAborted];
     [self updateProgressView:details];
 }
 
-- (void)updateProgressView:(MPPrintingProcessDetails*) details {
+- (void)updateProgressView:(MPPrintingProcessDetails *) details {
     BOOL visible = YES;
     switch (details.stateDetails) {
         case MPPrintingProcessDetailsStateDetailsCreated:
@@ -116,10 +116,10 @@
     
     if (visible) {
         self.progressView.hidden = NO;
-        [self.progressView startAnimating];
+        self.progressView.animating = YES;;
     } else {
         self.progressView.hidden = YES;
-        [self.progressView stopAnimating];
+        self.progressView.animating = NO;;
     }
 }
 

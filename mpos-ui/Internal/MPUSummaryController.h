@@ -32,11 +32,11 @@
 @protocol MPUSummaryDelegate
 
 @required
-- (void) summaryRefundClicked:(NSString *)transactionIdentifier;
-- (void) summarySendReceiptClicked:(NSString *)transactionIdentifier;
-- (void) summaryPrintReceiptClicked:(NSString *)transactionIdentifier;
-- (void) summaryRetryClicked;
-- (void) summaryCloseClicked;
+- (void)summaryRefundClicked:(NSString *)transactionIdentifier;
+- (void)summarySendReceiptClicked:(NSString *)transactionIdentifier;
+- (void)summaryPrintReceiptClicked:(NSString *)transactionIdentifier;
+- (void)summaryRetryClicked;
+- (void)summaryCloseClicked;
 
 @end
 
@@ -44,7 +44,7 @@
 
 @property (nonatomic, strong) MPTransaction *transaction;
 @property (nonatomic, strong) MPUTransactionParameters *parameters;
-@property(nonatomic, retain) id<MPUSummaryDelegate> delegate;
+@property (nonatomic, weak) id<MPUSummaryDelegate> delegate;
 
 @property (nonatomic, assign) BOOL retryEnabled;
 @property (nonatomic, assign) BOOL refundEnabled;

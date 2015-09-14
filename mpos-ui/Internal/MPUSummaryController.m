@@ -139,9 +139,11 @@
 
 - (void) updateTransactionTypeView {
     switch (self.transaction.type) {
+        case MPTransactionTypePreauthorize:
         case MPTransactionTypeCharge:
             self.transactionTypeView.text = [MPUUIHelper localizedString:@"MPUSale"];
             break;
+        case MPTransactionTypeCredit:
         case MPTransactionTypeRefund:
             self.transactionTypeView.text = [MPUUIHelper localizedString:@"MPURefund"];
             break;

@@ -41,7 +41,6 @@
 @property(nonatomic, strong) MPTransaction *transaction;
 @property(nonatomic, strong) MPTransactionProcess *transactionProcess;
 
-
 @property (nonatomic, weak) IBOutlet UILabel *transactionStatusInfo;
 @property (nonatomic, weak) IBOutlet UILabel *transactionStatusIcon;
 @property (nonatomic, weak) IBOutlet MPUProgressView *progressView;
@@ -186,7 +185,7 @@
     [self updateProgressView:details];
 }
 
-- (NSString*)iconForTransactionState:(MPTransactionProcessDetails*) details {
+- (NSString *)iconForTransactionState:(MPTransactionProcessDetails*) details {
     switch(details.stateDetails) {
         case MPTransactionProcessDetailsStateDetailsConnectingToAccessoryWaitingForReader:
             return @"\uf002"; //fa-search
@@ -254,10 +253,10 @@
 
     if (visible) {
         self.progressView.hidden = NO;
-        [self.progressView startAnimating];
+        self.progressView.animating = YES;
     } else {
         self.progressView.hidden = YES;
-        [self.progressView stopAnimating];
+        self.progressView.animating = NO;
     }
 }
 

@@ -1,6 +1,8 @@
 /*
  * mpos-ui : http://www.payworksmobile.com
  *
+ * The MIT License (MIT)
+ *
  * Copyright (c) 2015 payworks GmbH
  *
  * Permission is hereby granted, free of charge, to any person obtaining a copy
@@ -31,12 +33,14 @@
 #import "MPUSendReceiptController.h"
 #import "MPUPrintReceiptController.h"
 #import "MPUApplicationSelectionController.h"
+#import "MPULoginController.h"
 
 @interface MPUSummaryContainerViewController : MPUAbstractContainerViewController<MPULoadTransactionDelegate,
                                                                                     MPUSummaryDelegate,
                                                                                     MPUErrorDelegate,
                                                                                     MPUSendReceiptDelegate,
-                                                                                    MPUPrintReceiptDelegate>
+                                                                                    MPUPrintReceiptDelegate,
+                                                                                    MPULoginDelegate>
 
 @property (nonatomic, strong) NSString *transactionIdentifer;
 @property (nonatomic, copy) MPUSummaryCompleted completed;

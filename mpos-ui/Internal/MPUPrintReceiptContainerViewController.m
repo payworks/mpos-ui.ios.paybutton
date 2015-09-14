@@ -1,6 +1,8 @@
 /*
  * mpos-ui : http://www.payworksmobile.com
  *
+ * The MIT License (MIT)
+ *
  * Copyright (c) 2015 payworks GmbH
  *
  * Permission is hereby granted, free of charge, to any person obtaining a copy
@@ -27,12 +29,13 @@
 
 NSString* const MPUSegueIdentifierPrint_PrintReceipt = @"ptPushPrint";
 NSString* const MPUSegueIdentifierPrint_Error = @"ptPushError";
+NSString* const MPUSegueIdentifierPrint_Login = @"ptPushLogin";
 
 @interface MPUPrintReceiptContainerViewController ()
 
 @property (nonatomic, weak) MPUPrintReceiptController *printReceiptViewController;
 @property (nonatomic, weak) MPUErrorController *errorViewController;
-
+@property (nonatomic, weak) MPULoginController *loginViewController;
 @property (nonatomic, strong) NSError *lastError;
 
 @end
@@ -43,9 +46,22 @@ NSString* const MPUSegueIdentifierPrint_Error = @"ptPushError";
     [super viewDidLoad];
     
     self.viewTransitionInProgress = NO;
-    self.previousSegueIdentifier = MPUSegueIdentifierPrint_PrintReceipt;
-    // Do any additional setup after loading the view.
-    [self performSegueWithIdentifier:MPUSegueIdentifierPrint_PrintReceipt sender:nil];
+    
+    if (self.showLoginScreen) {
+        self.previousSegueIdentifier = MPUSegueIdentifierPrint_Login;
+        [self performSegueWithIdentifier:MPUSegueIdentifierPrint_Login sender:nil];
+    } else {
+        self.previousSegueIdentifier = MPUSegueIdentifierPrint_PrintReceipt;
+        [self performSegueWithIdentifier:MPUSegueIdentifierPrint_PrintReceipt sender:nil];
+    }
+}
+
+- (void)viewWillAppear:(BOOL)animated {
+    // we can to show/hide the close button only after the first view is added.
+    // we wait till the view is ready to appear and then hide/show naivgation bar buttons.
+    if ([self.currentSegueIdentifier isEqualToString:MPUSegueIdentifierPrint_Login]) {
+        [self.delegate hideCloseButton:NO];
+    }
 }
 
 - (void)didReceiveMemoryWarning {
@@ -76,6 +92,13 @@ NSString* const MPUSegueIdentifierPrint_Error = @"ptPushError";
         [self showError:self.lastError];
         [self swapToViewController:self.errorViewController];
     }
+    
+    if ([segue.identifier isEqualToString:MPUSegueIdentifierPrint_Login]) {
+        DDLogDebug(@"prepareForSegue:Login");
+        self.loginViewController = segue.destinationViewController;
+        [self showLogin];
+        [self swapToViewController:self.loginViewController];
+    }
 }
 
 - (void)showPrintReceipt:(NSString *)transactionIdentifier {
@@ -91,10 +114,26 @@ NSString* const MPUSegueIdentifierPrint_Error = @"ptPushError";
     self.errorViewController.retryEnabled = YES;
 }
 
+- (void)showLogin {
+    [self.delegate hideCloseButton:NO];
+    [self.delegate titleChanged:[MPUUIHelper localizedString:@"MPULogin"]];
+    self.loginViewController.prefillUsername = self.mposUi.username;
+    self.loginViewController.delegate = self;
+}
+
 #pragma mark - Public
 
-- (void)backButtonPressed{
+- (void)backButtonPressed {
     //NO OP
+}
+
+- (void)closeButtonPressed {
+    // Close only if the close button is enabled in login.
+    if ([self.currentSegueIdentifier isEqualToString:MPUSegueIdentifierPrint_Login]
+       && self.loginViewController
+       && self.loginViewController.closeButtonEnabled) {
+        self.completed(self, MPUPrintReceiptResultFailed);
+    }
 }
 
 #pragma mark - MPUPrintReceiptDelegate
@@ -112,9 +151,20 @@ NSString* const MPUSegueIdentifierPrint_Error = @"ptPushError";
     self.completed(self, MPUPrintReceiptResultFailed);
 }
 
+#pragma mark - MPULoginDelegate
+
+- (void)loginSuccess:(NSString *)username merchantIdentifier:(NSString *)merchantIdentifier merchantSecret:(NSString *)merchantSecret {
+    [self.delegate hideCloseButton:YES];
+    [self performSegueWithIdentifier:MPUSegueIdentifierPrint_PrintReceipt sender:nil];
+}
+
 #pragma mark - MPUErrorDelegate
-- (void)errorCancelClicked {
-    self.completed(self, MPUPrintReceiptResultFailed);
+- (void)errorCancelClicked:(BOOL)authenticationFailed {
+    if (self.mposUi.mposUiMode == MPUMposUiModeApplication && authenticationFailed) {
+        [self performSegueWithIdentifier:MPUSegueIdentifierPrint_Login sender:nil];
+    } else {
+        self.completed(self, MPUPrintReceiptResultFailed);
+    }
 }
 
 - (void)errorRetryClicked {

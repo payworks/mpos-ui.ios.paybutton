@@ -31,8 +31,8 @@
 
 @required
 - (void)transactionApplicationSelectionRequired:(NSArray *)applicaitons;
-- (void)transactionSignatureRequired:(MPPaymentDetailsScheme)scheme amount:(NSString*)amount;
-- (void)transactionError:(NSError*)error;
+- (void)transactionSignatureRequired:(MPPaymentDetailsScheme)scheme amount:(NSString *)amount;
+- (void)transactionError:(NSError *)error;
 - (void)transactionRefunded:(MPTransaction *)transaction;
 - (void)transactionSummary:(MPTransaction *)transaction;
 
@@ -41,7 +41,7 @@
 @interface MPUTransactionController : MPUAbstractController
 
 @property (nonatomic, strong) MPUTransactionParameters *parameters;
-@property (nonatomic, assign) id<MPUTransactionDelegate> delegate;
+@property (nonatomic, weak) id<MPUTransactionDelegate> delegate;
 
 - (void)continueWithSelectedApplication:(id)application;
 - (void)continueWithCustomerSignature:(UIImage *)signature verified:(BOOL)verified;

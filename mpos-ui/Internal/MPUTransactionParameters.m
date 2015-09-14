@@ -29,7 +29,7 @@
 @implementation MPUTransactionParameters {
 
 }
-- (id)initWithSessionIdentifier:(NSString *)identifier {
+- (instancetype)initWithSessionIdentifier:(NSString *)identifier {
     self = [super init];
     if (self) {
         self.sessionIdentifier = identifier;
@@ -37,23 +37,52 @@
     return self;
 }
 
-- (id)initWithAmount:(NSDecimalNumber *)amount currency:(MPCurrency)currency subject:(NSString *)subject customIdentifier:(NSString *)identifier {
+- (instancetype)initWithAmount:(NSDecimalNumber *)amount currency:(MPCurrency)currency subject:(NSString *)subject customIdentifier:(NSString *)customIdentifier {
     self = [super init];
     if (self) {
         self.amount = amount;
         self.currency = currency;
+        self.subject = subject;
+        self.customIdentifier = customIdentifier;
+    }
+    return self;
+}
+
+- (instancetype)initWithAmount:(NSDecimalNumber *)amount currency:(MPCurrency)currency subject:(NSString *)subject customIdentifier:(NSString *)customIdentifier integratorIdentifier:(NSString *)integratorIdentifier {
+    self = [super init];
+    if (self) {
+        self.amount = amount;
+        self.currency = currency;
+        self.subject = subject;
+        if (customIdentifier) {
+            self.customIdentifier = [NSString stringWithFormat:@"%@-%@", integratorIdentifier, customIdentifier];
+        } else {
+            self.customIdentifier = integratorIdentifier;
+        }
+    }
+    return self;
+}
+
+-(instancetype)initWithTransactionIdentifier:(NSString *)transactionIndentifier subject:(NSString *)subject customIdentifier:(NSString *)identifier {
+    self = [super init];
+    if (self) {
+        self.transactionIdentifier = transactionIndentifier;
         self.subject = subject;
         self.customIdentifier = identifier;
     }
     return self;
 }
 
--(id)initWithTransactionIdentifier:(NSString *)transactionIndentifier subject:(NSString *)subject customIdentifier:(NSString *)identifier {
+- (instancetype)initWithTransactionIdentifier:(NSString *)transactionIndentifier subject:(NSString *)subject customIdentifier:(NSString *)customIdentifier integratorIdentifier:(NSString *)integratorIdentifier {
     self = [super init];
     if (self) {
         self.transactionIdentifier = transactionIndentifier;
         self.subject = subject;
-        self.customIdentifier = identifier;
+        if (customIdentifier) {
+            self.customIdentifier = [NSString stringWithFormat:@"%@-%@", integratorIdentifier, customIdentifier];
+        } else {
+            self.customIdentifier = integratorIdentifier;
+        }
     }
     return self;
 }

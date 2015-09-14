@@ -28,9 +28,22 @@
 
 @interface MPUMposUi ()
 
+typedef NS_ENUM(NSUInteger, MPUMposUiMode){
+    MPUMposUiModeProvider = 0,
+    MPUMposUiModeApplication
+};
+
+@property (nonatomic, assign) MPUMposUiMode mposUiMode;
+
 @property (nonatomic, strong) NSString *merchantIdentifier;
-@property (nonatomic, strong) NSString *merchantSecret;
+@property (nonatomic, strong) NSString *merchantSecretKey;
 @property (nonatomic, assign) MPProviderMode providerMode;
-@property (nonatomic, strong) MPTransactionProvider *transactionProvider;
+
+@property (nonatomic, strong) MPUApplicationData *applicationData;
+@property (nonatomic, strong) NSString *username;
+@property (nonatomic, strong) NSString *integratorIdentifier;
+
+- (void)storeMerchantCredentials:(NSString *)merchantIdentifier merchantSecretKey:(NSString *)merchantSecretKey username:(NSString *)username;
+- (void)clearMerchantCredentials;
 
 @end

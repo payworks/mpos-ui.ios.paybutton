@@ -27,11 +27,8 @@
 #import <UIKit/UIKit.h>
 
 
-@interface MPUProgressView : UIView {
-    BOOL animating;
-}
+@interface MPUProgressView : UIView
 
-- (void)startAnimating;
-- (void)stopAnimating;
-- (BOOL)isAnimating;
+@property (nonatomic, assign) BOOL animating;
+
 @end

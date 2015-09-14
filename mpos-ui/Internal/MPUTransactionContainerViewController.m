@@ -1,6 +1,8 @@
 /*
  * mpos-ui : http://www.payworksmobile.com
  *
+ * The MIT License (MIT)
+ *
  * Copyright (c) 2015 payworks GmbH
  *
  * Permission is hereby granted, free of charge, to any person obtaining a copy
@@ -33,15 +35,16 @@ NSString* const MPUSegueIdentifierTransaction_Summary = @"txPushSummary";
 NSString* const MPUSegueIdentifierTransaction_SendReceipt = @"txPushSend";
 NSString* const MPUSegueIdentifierTransaction_PrintReceipt = @"txPushPrint";
 NSString* const MPUSegueIdentifierTransaction_LoadTransaction = @"txPushLoad";
+NSString* const MPUSegueIdentifierTransaction_Login = @"txPushLogin";
 
 @interface MPUTransactionContainerViewController ()
 
 //The view controllers
 @property (nonatomic, strong) MPUTransactionController *transactionViewController;  // We reuse this. So we keep this strong.
 @property (nonatomic, strong) MPUSummaryController *summaryViewController;          // We reuse this. So we keep this strong.
+@property (nonatomic, weak) MPULoginController *loginViewController;
 @property (nonatomic, weak) MPUApplicationSelectionController *applicationSelectionViewController;
 @property (nonatomic, weak) MPUErrorController *errorViewController;
-
 @property (nonatomic, weak) MPUSendReceiptController *sendReceiptViewController;
 @property (nonatomic, weak) MPUPrintReceiptController *printReceiptViewController;
 @property (nonatomic, weak) MPULoadTransactionController *loadTransactionViewController;
@@ -62,20 +65,26 @@ NSString* const MPUSegueIdentifierTransaction_LoadTransaction = @"txPushLoad";
     [super viewDidLoad];
     
     // Do any additional setup after loading the view.
-    self.viewTransitionInProgress = YES;
-    self.previousSegueIdentifier = MPUSegueIdentifierTransaction_Transaction;
+    self.viewTransitionInProgress = NO;
     
-    // First start with the transaction view controller.
-    [self performSegueWithIdentifier:MPUSegueIdentifierTransaction_Transaction sender:nil];
-    self.transactionInProgress = YES;
-
+    if (self.showLoginScreen) {
+        self.previousSegueIdentifier = MPUSegueIdentifierTransaction_Login;
+        [self performSegueWithIdentifier:MPUSegueIdentifierTransaction_Login sender:nil];
+        self.transactionInProgress = NO;
+    } else {
+        self.previousSegueIdentifier = MPUSegueIdentifierTransaction_Transaction;
+        [self performSegueWithIdentifier:MPUSegueIdentifierTransaction_Transaction sender:nil];
+        self.transactionInProgress = YES;
+    }
 }
 
-- (void)didReceiveMemoryWarning {
-    [super didReceiveMemoryWarning];
-    // Dispose of any resources that can be recreated.
+- (void)viewWillAppear:(BOOL)animated {
+    // we can to show/hide the close button only after the first view is added.
+    // we wait till the view is ready to appear and then hide/show naivgation bar buttons.
+    if ([self.currentSegueIdentifier isEqualToString:MPUSegueIdentifierTransaction_Login]) {
+        [self.delegate hideCloseButton:NO];
+    }
 }
-
 
 #pragma mark - Navigation
 
@@ -93,6 +102,13 @@ NSString* const MPUSegueIdentifierTransaction_LoadTransaction = @"txPushLoad";
             [self showTransaction:self.parameters];
         }
         [self swapToViewController:self.transactionViewController];
+    }
+    
+    if ([segue.identifier isEqualToString:MPUSegueIdentifierTransaction_Login]) {
+        DDLogDebug(@"Login");
+        self.loginViewController = segue.destinationViewController;
+        [self showLogin];
+        [self swapToViewController:self.loginViewController];
     }
     
     if ([segue.identifier isEqualToString:MPUSegueIdentifierTransaction_ApplicationSelection]) {
@@ -150,6 +166,13 @@ NSString* const MPUSegueIdentifierTransaction_LoadTransaction = @"txPushLoad";
     [self.delegate titleChanged:title];
     self.transactionViewController.parameters = parameters;
     self.transactionViewController.delegate = self;
+}
+
+- (void)showLogin {
+    [self.delegate hideCloseButton:NO];
+    [self.delegate titleChanged:[MPUUIHelper localizedString:@"MPULogin"]];
+    self.loginViewController.prefillUsername = self.mposUi.username;
+    self.loginViewController.delegate = self;
 }
 
 - (void)showApplicaitonSelection:(NSArray *)applications {
@@ -251,6 +274,15 @@ NSString* const MPUSegueIdentifierTransaction_LoadTransaction = @"txPushLoad";
     [self.delegate hideBackButton:YES];
 }
 
+- (void)closeButtonPressed {
+    // Close only if the close button is enabled in login.
+    if ([self.currentSegueIdentifier isEqualToString:MPUSegueIdentifierTransaction_Login]
+       && self.loginViewController
+       && self.loginViewController.closeButtonEnabled) {
+        self.completed(self, MPUTransactionResultFailed, self.mposUi.transaction);
+    }
+}
+
 #pragma mark - MPUTransactionDelegate
 
 - (void)transactionApplicationSelectionRequired:(NSArray *)applications {
@@ -258,11 +290,11 @@ NSString* const MPUSegueIdentifierTransaction_LoadTransaction = @"txPushLoad";
     [self performSegueWithIdentifier:MPUSegueIdentifierTransaction_ApplicationSelection sender:nil];
 }
 
-- (void)transactionSignatureRequired:(MPPaymentDetailsScheme)scheme amount:(NSString*)amount {
+- (void)transactionSignatureRequired:(MPPaymentDetailsScheme)scheme amount:(NSString *)amount {
     [self showSignatureScreenForScheme:scheme amount:amount];
 }
 
-- (void)transactionError:(NSError*)error {
+- (void)transactionError:(NSError *)error {
     self.transactionInProgress = NO;
     self.lastError = error;
     [self performSegueWithIdentifier:MPUSegueIdentifierTransaction_Error sender:nil];
@@ -280,6 +312,14 @@ NSString* const MPUSegueIdentifierTransaction_LoadTransaction = @"txPushLoad";
     self.refundedTransaction = transaction;
     self.transactionIdentifier = transaction.referencedTransactionIdentifier;
     [self performSegueWithIdentifier:MPUSegueIdentifierTransaction_LoadTransaction sender:nil];
+}
+
+#pragma mark - MPULoginDelegate
+
+- (void)loginSuccess:(NSString *)username merchantIdentifier:(NSString *)merchantIdentifier merchantSecret:(NSString *)merchantSecret {
+    //We proceed with the transaction yes? :D
+    [self.delegate hideCloseButton:YES];
+    [self performSegueWithIdentifier:MPUSegueIdentifierTransaction_Transaction sender:nil];
 }
 
 #pragma mark - MPUApplicationSelectionDelegate
@@ -305,12 +345,16 @@ NSString* const MPUSegueIdentifierTransaction_LoadTransaction = @"txPushLoad";
     }
 }
 
-- (void)errorCancelClicked {
-    if ([self.previousSegueIdentifier isEqualToString:MPUSegueIdentifierTransaction_Transaction]) {
-        self.completed(self, MPUTransactionResultFailed, self.mposUi.transaction);
-    }
-    else if ([self.previousSegueIdentifier isEqualToString:MPUSegueIdentifierTransaction_PrintReceipt]) {
-        [self performSegueWithIdentifier:MPUSegueIdentifierTransaction_Summary sender:nil];
+- (void)errorCancelClicked:(BOOL)authenticationFailed {
+    if (self.mposUi.mposUiMode == MPUMposUiModeApplication && authenticationFailed) {
+        [self performSegueWithIdentifier:MPUSegueIdentifierTransaction_Login sender:nil];
+    } else {
+        if ([self.previousSegueIdentifier isEqualToString:MPUSegueIdentifierTransaction_Transaction]) {
+            self.completed(self, MPUTransactionResultFailed, self.mposUi.transaction);
+        }
+        else if ([self.previousSegueIdentifier isEqualToString:MPUSegueIdentifierTransaction_PrintReceipt]) {
+            [self performSegueWithIdentifier:MPUSegueIdentifierTransaction_Summary sender:nil];
+        }
     }
 }
 
@@ -335,9 +379,9 @@ NSString* const MPUSegueIdentifierTransaction_LoadTransaction = @"txPushLoad";
 
 - (void)summaryCloseClicked {
     if (self.transaction && self.transaction.status == MPTransactionStatusApproved) {
-        self.completed(self, MPUTransactionResultApproved, self.transaction);
+        self.completed(self, MPUTransactionResultApproved, self.mposUi.transaction);
     } else {
-        self.completed(self, MPUTransactionResultFailed, self.transaction);
+        self.completed(self, MPUTransactionResultFailed, self.mposUi.transaction);
     }
 }
 

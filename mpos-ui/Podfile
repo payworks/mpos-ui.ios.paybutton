@@ -1,11 +1,14 @@
 source 'https://github.com/CocoaPods/Specs.git'
 source 'https://bitbucket.org/mpymnt/io.mpymnt.repo.pods.git'
 
+platform :ios, '7.0'
+
 pod 'dummypod',    :path => 'DummyPodspec'
 
 target :"mpos-ui.podsdummy", :exclusive => true do
     pod 'CocoaLumberjack',              '~> 2.0'
     pod 'MPBSignatureViewController',   '~> 1.4.11'
+    pod 'Lockbox',                      '~> 2.1.0'
 end
 
 post_install do |installer_representation|
@@ -17,11 +20,11 @@ post_install do |installer_representation|
             searchPaths = config.build_settings['FRAMEWORK_SEARCH_PATHS']
             searchPaths = [ '$(inherited)' ] if searchPaths == nil;
             searchPaths.push('$(PLATFORM_DIR)/Developer/Library/Frameworks')
-            config.build_settings['FRAMEWORK_SEARCH_PATHS'] = searchPaths           
+            config.build_settings['FRAMEWORK_SEARCH_PATHS'] = searchPaths
 
         end
     end
     puts("[X] Enabled always building all architectures [ONLY_ACTIVE_ARCH]")
     puts("[X] Deactivated autolinking of frameworks/modules [CLANG_MODULES_AUTOLINK]")
-    puts("[X] Added XCTest platform frameworks to framework search path [FRAMEWORK_SEARCH_PATHS]")  
+    puts("[X] Added XCTest platform frameworks to framework search path [FRAMEWORK_SEARCH_PATHS]")
 end

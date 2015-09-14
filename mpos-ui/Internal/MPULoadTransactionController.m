@@ -47,7 +47,7 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    [self.progressView startAnimating];
+    self.progressView.animating = YES;
     [self.transactionStatusIcon setText:@"\uf1da"];
     self.transactionStatusIcon.textColor = self.mposUi.configuration.appearance.navigationBarTint;
     if (UIDeviceOrientationIsLandscape([UIDevice currentDevice].orientation) && UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPhone) {
@@ -60,7 +60,7 @@
 
 #pragma mark - Private
 
-- (void) l10n {
+- (void)l10n {
     self.transactionStatusInfo.text = [MPUUIHelper localizedString:@"MPUFetching"];
 }
 
