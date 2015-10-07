@@ -93,7 +93,6 @@
 		F48683291B0CBF970042FF15 /* MPUUIHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = F48683251B0CBF970042FF15 /* MPUUIHelper.m */; };
 		F486832B1B0CC0A10042FF15 /* MPUMposUi.h in Headers */ = {isa = PBXBuildFile; fileRef = F486832A1B0CC0A10042FF15 /* MPUMposUi.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		F486832D1B0CECCE0042FF15 /* MPUMposUi_Internal.h in Headers */ = {isa = PBXBuildFile; fileRef = F486832C1B0CECCE0042FF15 /* MPUMposUi_Internal.h */; };
-		F48683321B0D06C20042FF15 /* Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = F48682C11B0CBA6B0042FF15 /* Info.plist */; };
 		F48683391B0D06C20042FF15 /* FontAwesome.otf in Resources */ = {isa = PBXBuildFile; fileRef = F48682B51B0CBA570042FF15 /* FontAwesome.otf */; };
 		F486833A1B0D06C20042FF15 /* mpos-ui.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = F48682BD1B0CBA570042FF15 /* mpos-ui.storyboard */; };
 		F486833B1B0D06C20042FF15 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = F48682B91B0CBA570042FF15 /* Images.xcassets */; };
@@ -622,7 +621,7 @@
 		2D959B5C1A7B8D0F00DC5310 /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
-				LastUpgradeCheck = 0620;
+				LastUpgradeCheck = 0700;
 				ORGANIZATIONNAME = payworks;
 				TargetAttributes = {
 					F486823C1B0CA93C0042FF15 = {
@@ -676,7 +675,6 @@
 				F486833F1B0E06650042FF15 /* mpos-ui.strings in Resources */,
 				F48683401B0E06650042FF15 /* mpos-ui.strings in Resources */,
 				F48683411B0E06650042FF15 /* mpos-ui.strings in Resources */,
-				F48683321B0D06C20042FF15 /* Info.plist in Resources */,
 				4461B2581B96ED1D00EE55AF /* mcashier.plist in Resources */,
 				F48683391B0D06C20042FF15 /* FontAwesome.otf in Resources */,
 				F486833A1B0D06C20042FF15 /* mpos-ui.storyboard in Resources */,
@@ -917,6 +915,7 @@
 				COPY_PHASE_STRIP = NO;
 				CURRENT_PROJECT_VERSION = 1;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
 				GCC_C_LANGUAGE_STANDARD = gnu99;
 				GCC_DYNAMIC_NO_PIC = NO;
 				GCC_OPTIMIZATION_LEVEL = 0;
@@ -933,6 +932,7 @@
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				IPHONEOS_DEPLOYMENT_TARGET = 6.1;
 				MTL_ENABLE_DEBUG_INFO = YES;
+				ONLY_ACTIVE_ARCH = YES;
 				SDKROOT = iphoneos;
 				TARGETED_DEVICE_FAMILY = "1,2";
 				VERSIONING_SYSTEM = "apple-generic";
@@ -1024,6 +1024,7 @@
 				);
 				INFOPLIST_FILE = Resources/Info.plist;
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Bundles";
+				PRODUCT_BUNDLE_IDENTIFIER = "io.mpos.ios.$(PRODUCT_NAME:rfc1034identifier)";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PUBLIC_HEADERS_FOLDER_PATH = Headers;
 				SDKROOT = iphoneos;
@@ -1039,6 +1040,7 @@
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				INFOPLIST_FILE = Resources/Info.plist;
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Bundles";
+				PRODUCT_BUNDLE_IDENTIFIER = "io.mpos.ios.$(PRODUCT_NAME:rfc1034identifier)";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PUBLIC_HEADERS_FOLDER_PATH = Headers;
 				SDKROOT = iphoneos;

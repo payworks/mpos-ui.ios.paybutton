@@ -86,7 +86,7 @@
 }
 
 - (IBAction)didTapSendReceipt:(id)sender {
-    [self.delegate summarySendReceiptClicked:self.transaction.identifier];
+    [self.delegate summarySendReceiptClicked:[self transactionIdentifierForSendingAndPrintingReceipt]];
 }
 
 - (IBAction)didTapRefundButton:(id)sender {
@@ -100,7 +100,7 @@
 };
 
 - (IBAction)didTapPrintReceiptButton:(id)sender{
-    [self.delegate summaryPrintReceiptClicked:self.transaction.identifier];
+    [self.delegate summaryPrintReceiptClicked:[self transactionIdentifierForSendingAndPrintingReceipt]];
 }
 
 #pragma mark - Public 
@@ -111,7 +111,6 @@
 - (void)updateSendReceiptButtonText {
     [self.sendReceiptButton setTitle:[MPUUIHelper localizedString:@"MPUResendReceipt"] forState:UIControlStateNormal];
 }
-
 
 #pragma mark - UIAlertViewDelegate
 
@@ -125,6 +124,18 @@
 
 #pragma mark - Private
 
+- (NSString *)transactionIdentifierForSendingAndPrintingReceipt {
+    // If this is a refund, we look for the transaction identifier from the refundTransactions list.
+    if (self.transaction.refundDetails.status == MPRefundDetailsStatusRefunded
+        && self.transaction.refundDetails.refundTransactions != nil
+        && self.transaction.refundDetails.refundTransactions.count > 0) {
+        MPRefundTransaction *refundTransaction = self.transaction.refundDetails.refundTransactions[0];
+        return refundTransaction.identifier;
+    }
+    
+    return self.transaction.identifier;
+}
+
 - (void)updateViews {
     [self initContainerView];
     [self updateTransactionStatusView];
@@ -137,7 +148,7 @@
     [self updateTransactionTypeView];
 }
 
-- (void) updateTransactionTypeView {
+- (void)updateTransactionTypeView {
     switch (self.transaction.type) {
         case MPTransactionTypePreauthorize:
         case MPTransactionTypeCharge:

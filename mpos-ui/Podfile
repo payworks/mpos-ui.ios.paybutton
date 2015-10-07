@@ -7,7 +7,7 @@ pod 'dummypod',    :path => 'DummyPodspec'
 
 target :"mpos-ui.podsdummy", :exclusive => true do
     pod 'CocoaLumberjack',              '~> 2.0'
-    pod 'MPBSignatureViewController',   '~> 1.4.11'
+    pod 'MPBSignatureViewController',   '~> 1.4.12'
     pod 'Lockbox',                      '~> 2.1.0'
 end
 

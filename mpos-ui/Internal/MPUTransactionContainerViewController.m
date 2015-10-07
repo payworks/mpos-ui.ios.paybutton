@@ -54,6 +54,7 @@ NSString* const MPUSegueIdentifierTransaction_Login = @"txPushLogin";
 @property (nonatomic, strong) MPTransaction *transaction;
 @property (nonatomic, strong) MPTransaction *refundedTransaction;
 @property (nonatomic, strong) NSString *transactionIdentifier;
+@property (nonatomic, strong) NSString *sendPrintTransactionIdentifier;
 @property (nonatomic, assign) BOOL transactionInProgress;
 @property (nonatomic, assign) BOOL summaryShown;
 
@@ -142,14 +143,14 @@ NSString* const MPUSegueIdentifierTransaction_Login = @"txPushLogin";
     if ([segue.identifier isEqualToString:MPUSegueIdentifierTransaction_SendReceipt]) {
         DDLogDebug(@"Send");
         self.sendReceiptViewController = segue.destinationViewController;
-        [self showSendReceipt:self.transactionIdentifier];
+        [self showSendReceipt:self.sendPrintTransactionIdentifier];
         [self swapToViewController:self.sendReceiptViewController];
     }
     
     if ([segue.identifier isEqualToString:MPUSegueIdentifierTransaction_PrintReceipt]) {
         DDLogDebug(@"Print");
         self.printReceiptViewController = segue.destinationViewController;
-        [self showPrintReceipt:self.transactionIdentifier];
+        [self showPrintReceipt:self.sendPrintTransactionIdentifier];
         [self swapToViewController:self.printReceiptViewController];
     }
     
@@ -250,13 +251,13 @@ NSString* const MPUSegueIdentifierTransaction_Login = @"txPushLogin";
 - (void)showSendReceipt:(NSString *)transactionIdentifier {
     [self.delegate titleChanged:[MPUUIHelper localizedString:@"MPUSendReceipt"]];
     [self.delegate hideBackButton:NO];
-    self.sendReceiptViewController.transactionIdentifier = self.transactionIdentifier;
+    self.sendReceiptViewController.transactionIdentifier = transactionIdentifier;
     self.sendReceiptViewController.delegate = self;
 }
 
 - (void)showPrintReceipt:(NSString *)transactionIdentifier {
     [self.delegate titleChanged:[MPUUIHelper localizedString:@"MPUPrinting"]];
-    self.printReceiptViewController.transactionIdentifer = self.transactionIdentifier;
+    self.printReceiptViewController.transactionIdentifer = transactionIdentifier;
     self.printReceiptViewController.delegate = self;
 }
 
@@ -365,10 +366,12 @@ NSString* const MPUSegueIdentifierTransaction_Login = @"txPushLogin";
 }
 
 - (void)summarySendReceiptClicked:(NSString *)transactionIdentifier {
+    self.sendPrintTransactionIdentifier = transactionIdentifier;
     [self performSegueWithIdentifier:MPUSegueIdentifierTransaction_SendReceipt sender:nil];
 }
 
 - (void)summaryPrintReceiptClicked:(NSString *)transactionIdentifier {
+    self.sendPrintTransactionIdentifier = transactionIdentifier;
     [self performSegueWithIdentifier:MPUSegueIdentifierTransaction_PrintReceipt sender:nil];
 }
 

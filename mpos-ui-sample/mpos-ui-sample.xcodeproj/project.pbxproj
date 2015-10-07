@@ -8,12 +8,13 @@
 
 /* Begin PBXBuildFile section */
 		06DC417B48345EDA5E412885 /* libPods.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 2B376F24A9F81427C7F57B9E /* libPods.a */; };
+		44296C1E1BAFFB7D00E8B880 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 44296C1D1BAFFB7D00E8B880 /* LaunchScreen.storyboard */; settings = {ASSET_TAGS = (); }; };
+		44296C201BB00CA000E8B880 /* Default-568h@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 44296C1F1BB00CA000E8B880 /* Default-568h@2x.png */; settings = {ASSET_TAGS = (); }; };
 		445D0E141B5E3E82009F794F /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 445D0E131B5E3E82009F794F /* main.m */; };
 		445D0E171B5E3E82009F794F /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 445D0E161B5E3E82009F794F /* AppDelegate.m */; };
 		445D0E1A1B5E3E82009F794F /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 445D0E191B5E3E82009F794F /* ViewController.m */; };
 		445D0E1D1B5E3E82009F794F /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 445D0E1B1B5E3E82009F794F /* Main.storyboard */; };
 		445D0E1F1B5E3E82009F794F /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 445D0E1E1B5E3E82009F794F /* Images.xcassets */; };
-		445D0E221B5E3E82009F794F /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = 445D0E201B5E3E82009F794F /* LaunchScreen.xib */; };
 		445D0E2E1B5E3E82009F794F /* mpos_ui_sampleTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 445D0E2D1B5E3E82009F794F /* mpos_ui_sampleTests.m */; };
 		445D0E451B5F9276009F794F /* ExternalAccessory.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 445D0E441B5F9276009F794F /* ExternalAccessory.framework */; };
 		445D0E471B5F9280009F794F /* MobileCoreServices.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 445D0E461B5F9280009F794F /* MobileCoreServices.framework */; };
@@ -46,6 +47,8 @@
 
 /* Begin PBXFileReference section */
 		2B376F24A9F81427C7F57B9E /* libPods.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libPods.a; sourceTree = BUILT_PRODUCTS_DIR; };
+		44296C1D1BAFFB7D00E8B880 /* LaunchScreen.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = LaunchScreen.storyboard; sourceTree = "<group>"; };
+		44296C1F1BB00CA000E8B880 /* Default-568h@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "Default-568h@2x.png"; path = "../Default-568h@2x.png"; sourceTree = "<group>"; };
 		445D0E0E1B5E3E82009F794F /* mpos-ui-sample.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "mpos-ui-sample.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		445D0E121B5E3E82009F794F /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		445D0E131B5E3E82009F794F /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
@@ -55,7 +58,6 @@
 		445D0E191B5E3E82009F794F /* ViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ViewController.m; sourceTree = "<group>"; };
 		445D0E1C1B5E3E82009F794F /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		445D0E1E1B5E3E82009F794F /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
-		445D0E211B5E3E82009F794F /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/LaunchScreen.xib; sourceTree = "<group>"; };
 		445D0E271B5E3E82009F794F /* mpos-ui-sampleTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "mpos-ui-sampleTests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
 		445D0E2C1B5E3E82009F794F /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		445D0E2D1B5E3E82009F794F /* mpos_ui_sampleTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = mpos_ui_sampleTests.m; sourceTree = "<group>"; };
@@ -152,8 +154,9 @@
 				445D0E191B5E3E82009F794F /* ViewController.m */,
 				445D0E1B1B5E3E82009F794F /* Main.storyboard */,
 				445D0E1E1B5E3E82009F794F /* Images.xcassets */,
-				445D0E201B5E3E82009F794F /* LaunchScreen.xib */,
 				445D0E111B5E3E82009F794F /* Supporting Files */,
+				44296C1D1BAFFB7D00E8B880 /* LaunchScreen.storyboard */,
+				44296C1F1BB00CA000E8B880 /* Default-568h@2x.png */,
 			);
 			path = "mpos-ui-sample";
 			sourceTree = "<group>";
@@ -255,7 +258,7 @@
 		445D0E061B5E3E82009F794F /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
-				LastUpgradeCheck = 0640;
+				LastUpgradeCheck = 0700;
 				ORGANIZATIONNAME = Abhijith;
 				TargetAttributes = {
 					445D0E0D1B5E3E82009F794F = {
@@ -293,9 +296,10 @@
 			files = (
 				44C6B04D1B629BA3004C988C /* mpos.core-resources.bundle in Resources */,
 				445D0E1D1B5E3E82009F794F /* Main.storyboard in Resources */,
-				445D0E221B5E3E82009F794F /* LaunchScreen.xib in Resources */,
+				44296C1E1BAFFB7D00E8B880 /* LaunchScreen.storyboard in Resources */,
 				44E718011B6775E8004301EE /* mpos-ui-resources.bundle in Resources */,
 				445D0E1F1B5E3E82009F794F /* Images.xcassets in Resources */,
+				44296C201BB00CA000E8B880 /* Default-568h@2x.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -379,14 +383,6 @@
 			name = Main.storyboard;
 			sourceTree = "<group>";
 		};
-		445D0E201B5E3E82009F794F /* LaunchScreen.xib */ = {
-			isa = PBXVariantGroup;
-			children = (
-				445D0E211B5E3E82009F794F /* Base */,
-			);
-			name = LaunchScreen.xib;
-			sourceTree = "<group>";
-		};
 /* End PBXVariantGroup section */
 
 /* Begin XCBuildConfiguration section */
@@ -410,7 +406,9 @@
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				COPY_PHASE_STRIP = NO;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_BITCODE = NO;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
 				GCC_C_LANGUAGE_STANDARD = gnu99;
 				GCC_DYNAMIC_NO_PIC = NO;
 				GCC_NO_COMMON_BLOCKS = YES;
@@ -454,6 +452,7 @@
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				COPY_PHASE_STRIP = NO;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_BITCODE = NO;
 				ENABLE_NS_ASSERTIONS = NO;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
 				GCC_C_LANGUAGE_STANDARD = gnu99;
@@ -477,7 +476,8 @@
 			baseConfigurationReference = 7C6ADE1514302FC2B5508670 /* Pods.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
+				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = BrandAsset;
+				ENABLE_BITCODE = NO;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)",
@@ -487,6 +487,7 @@
 				INFOPLIST_FILE = "mpos-ui-sample/Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = "io.payworks.ios.$(PRODUCT_NAME:rfc1034identifier)";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 			};
 			name = Debug;
@@ -496,7 +497,8 @@
 			baseConfigurationReference = A0C86F307E327030AC26C13F /* Pods.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
+				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = BrandAsset;
+				ENABLE_BITCODE = NO;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)",
@@ -506,6 +508,7 @@
 				INFOPLIST_FILE = "mpos-ui-sample/Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = "io.payworks.ios.$(PRODUCT_NAME:rfc1034identifier)";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 			};
 			name = Release;
@@ -524,6 +527,7 @@
 				);
 				INFOPLIST_FILE = "mpos-ui-sampleTests/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = "io.payworks.ios.$(PRODUCT_NAME:rfc1034identifier)";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/mpos-ui-sample.app/mpos-ui-sample";
 			};
@@ -539,6 +543,7 @@
 				);
 				INFOPLIST_FILE = "mpos-ui-sampleTests/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = "io.payworks.ios.$(PRODUCT_NAME:rfc1034identifier)";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/mpos-ui-sample.app/mpos-ui-sample";
 			};

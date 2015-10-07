@@ -50,6 +50,7 @@ NSString* const MPUSegueIdentifierSummary_Login = @"smPushLogin";
 @property (nonatomic, strong) MPTransaction *refundTransaction;
 @property (nonatomic, strong) NSError *lastError;
 @property (nonatomic, strong) UIImage *customerSignature;
+@property (nonatomic, strong) NSString *sendPrintTransactionIdentifier;
 @property (nonatomic, assign) BOOL modified;
 @property (nonatomic, assign) BOOL refundingInProgress;
 @property (nonatomic, assign) BOOL summaryShown;
@@ -125,14 +126,14 @@ NSString* const MPUSegueIdentifierSummary_Login = @"smPushLogin";
     if ([segue.identifier isEqualToString:MPUSegueIdentifierSummary_SendReceipt]) {
         DDLogDebug(@"prepareForSegue:Send Receip[t");
         self.sendReceiptViewController = segue.destinationViewController;
-        [self showSendReceipt:self.transactionIdentifer];
+        [self showSendReceipt:self.sendPrintTransactionIdentifier];
         [self swapToViewController:self.sendReceiptViewController];
     }
     
     if ([segue.identifier isEqualToString:MPUSegueIdentifierSummary_PrintReceipt]) {
         DDLogDebug(@"prepareForSegue:Print Receipt");
         self.printReceiptViewController = segue.destinationViewController;
-        [self showPrintReceipt:self.transactionIdentifer];
+        [self showPrintReceipt:self.sendPrintTransactionIdentifier];
         [self swapToViewController:self.printReceiptViewController];
     }
     
@@ -240,10 +241,12 @@ NSString* const MPUSegueIdentifierSummary_Login = @"smPushLogin";
 }
 
 - (void) summarySendReceiptClicked:(NSString *)transactionIdentifier {
+    self.sendPrintTransactionIdentifier = transactionIdentifier;
     [self performSegueWithIdentifier:MPUSegueIdentifierSummary_SendReceipt sender:nil];
 }
 
 - (void) summaryPrintReceiptClicked:(NSString *)transactionIdentifier {
+    self.sendPrintTransactionIdentifier = transactionIdentifier;
     [self performSegueWithIdentifier:MPUSegueIdentifierSummary_PrintReceipt sender:nil];
 }
 

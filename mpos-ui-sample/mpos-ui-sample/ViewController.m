@@ -75,10 +75,10 @@ NSString *const CheckoutControllerMerchantSecret = @"merchant_secret";
 
 - (void)enableLastTransactionActions:(BOOL)enabled transaction:(MPTransaction *) transaction {
     self.lastTransaction = transaction;
-    self.summaryButton.hidden = !enabled;
-    self.printButton.hidden = !enabled;
-    self.refundButton.hidden = !enabled;
-    self.customReceiptButton.hidden = !enabled;
+    self.summaryButton.enabled = enabled;
+    self.printButton.enabled = enabled;
+    self.refundButton.enabled = enabled;
+    self.customReceiptButton.enabled = enabled;
 }
 
 - (void)startMockPayment:(NSString *)amount {
