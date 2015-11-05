@@ -121,12 +121,12 @@ typedef NS_ENUM(NSInteger, MPReceiptLineKey) {
  * The localized label of the line item.
  * @since 2.1.0
  */
-@property (readonly, strong, nonatomic) NSString *label;
+@property (readonly, strong, nonatomic, nonnull) NSString *label;
 
 /**
  * The (localized) value of the line item.
  * @since 2.1.0
  */
-@property (readonly, strong, nonatomic) NSString *value;
+@property (readonly, strong, nonatomic, nonnull) NSString *value;
 
 @end

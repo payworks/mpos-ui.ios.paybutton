@@ -16,6 +16,8 @@
 // TO REPRODUCE, DISCLOSE OR DISTRIBUTE ITS CONTENTS, OR TO MANUFACTURE, USE, OR SELL ANYTHING THAT IT  MAY DESCRIBE, IN WHOLE OR IN PART.
 
 #import "MPProvider.h"
+
+
 @class MPTransactionTemplate;
 @class MPTransactionTemplateFactory;
 
@@ -24,14 +26,14 @@
  * @param transaction The requested transaction
  * @since 2.0.0
  */
-typedef void (^MPTransactionCreateSuccess)(MPTransaction *transaction);
+typedef void (^MPTransactionCreateSuccess)(MPTransaction * _Nonnull transaction);
 
 /**
  * Failure handler for creating a new transaction and registering it within our systems.
  * @param error Error describing why it failed
  * @since 2.0.0
  */
-typedef void (^MPTransactionCreateFailure)(NSError *error);
+typedef void (^MPTransactionCreateFailure)(NSError * _Nonnull error);
 
 /**
  * Provider additions, exposing some functionalities that should normally be handled by a server.
@@ -44,7 +46,7 @@ typedef void (^MPTransactionCreateFailure)(NSError *error);
  * Returns a factory that must be used to generate a new transaction template for creating a transaction.
  * @since 2.0.0
  */
-@property (strong, readonly, nonatomic) MPTransactionTemplateFactory *transactionTemplateFactory;
+@property (strong, readonly, nonatomic, nonnull) MPTransactionTemplateFactory *transactionTemplateFactory;
 
 /**
  * Registers a new transaction that can then be used to complete a transaction. This step is normally done via a direct server-to-server call but is exposed for testing and rapid prototyping applications. 
@@ -54,6 +56,6 @@ typedef void (^MPTransactionCreateFailure)(NSError *error);
  * @throws NSException If the parameters are invalid
  * @since 2.0.0
  */
-- (void)registerTransactionWithTemplate:(MPTransactionTemplate *)template success:(MPTransactionCreateSuccess)success failure:(MPTransactionCreateFailure)failure;
+- (void)registerTransactionWithTemplate:(nonnull MPTransactionTemplate *)template success:(nonnull MPTransactionCreateSuccess)success failure:(nonnull MPTransactionCreateFailure)failure;
 
 @end

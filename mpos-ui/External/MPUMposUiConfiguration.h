@@ -78,7 +78,7 @@ typedef NS_OPTIONS(NSUInteger, MPUMposUiConfigurationSummaryFeature) {
 /**
  * The appearance that will be used for the transaction.
  */
-@property (nonatomic, strong) MPUMposUiAppearance *appearance;
+@property (nonatomic, strong, nonnull) MPUMposUiAppearance *appearance;
 
 /**
  * The signature method that will be used for the transaction.

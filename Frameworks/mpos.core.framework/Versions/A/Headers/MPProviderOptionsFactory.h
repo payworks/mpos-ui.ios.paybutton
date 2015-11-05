@@ -17,6 +17,7 @@
 
 #import "MPProvider.h"
 
+
 @class MPProviderOptions;
 
 /**
@@ -35,13 +36,14 @@
  * @throws NSException If the parameters are not valid
  * @since 2.0.0
  */
-- (MPProviderOptions *)providerOptionsWithMode:(MPProviderMode)mode merchantIdentifer:(NSString *)merchantIdentifier merchantSecretKey:(NSString *)merchantSecretKey supportedActions:(MPTransactionAction)supportedActions;
+- (nonnull MPProviderOptions *)providerOptionsWithMode:(MPProviderMode)mode merchantIdentifer:(nonnull NSString *)merchantIdentifier merchantSecretKey:(nonnull NSString *)merchantSecretKey supportedActions:(MPTransactionAction)supportedActions;
 
 /**
  * Returns new payment provider options that can be used to initialize a provider with mock options.
  * @param supportedActions The actions you support during a transaction workflow
  * @since 2.0.0
  */
-- (MPProviderOptions *)mockOptionsWithSupportedActions:(MPTransactionAction)supportedActions;
+- (nonnull MPProviderOptions *)mockOptionsWithSupportedActions:(MPTransactionAction)supportedActions;
 
 @end
+

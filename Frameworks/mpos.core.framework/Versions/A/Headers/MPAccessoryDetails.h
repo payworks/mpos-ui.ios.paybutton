@@ -15,6 +15,7 @@
 // LAWS AND INTERNATIONAL TREATIES.  THE RECEIPT OR POSSESSION OF  THIS SOURCE CODE AND/OR RELATED INFORMATION DOES NOT CONVEY OR IMPLY ANY RIGHTS
 // TO REPRODUCE, DISCLOSE OR DISTRIBUTE ITS CONTENTS, OR TO MANUFACTURE, USE, OR SELL ANYTHING THAT IT  MAY DESCRIBE, IN WHOLE OR IN PART.
 
+
 /**
  * Object wrapping details of the accessory.
  * @since 2.0.0
@@ -25,24 +26,24 @@
  * The serial number of the accessory
  * @since 2.0.0
  */
-@property (strong, readonly, nonatomic) NSString *serialNumber;
+@property (strong, readonly, nonatomic, nullable) NSString *serialNumber;
 
 /**
  * The OS version running on the accessory.
  * @since 2.0.0
  */
-@property (strong, readonly, nonatomic) NSString *osVersion;
+@property (strong, readonly, nonatomic, nullable) NSString *osVersion;
 
 /**
  * The software version running on the accessory.
  * @since 2.0.0
  */
-@property (strong, readonly, nonatomic) NSString *softwareVersion;
+@property (strong, readonly, nonatomic, nullable) NSString *softwareVersion;
 
 /**
  * The type of the accessory, indicating the environment it can be used in.
  * @since 2.0.0
  */
-@property (strong, readonly, nonatomic) NSString *type; //TEST | PROD
+@property (strong, readonly, nonatomic, nullable) NSString *type; //TEST | PROD
 
 @end

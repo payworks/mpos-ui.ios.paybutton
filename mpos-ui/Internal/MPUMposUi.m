@@ -41,6 +41,7 @@ NSString *const MPMposUiSDKVersion = @"2.4.6";
 NSString *const MPUKeychainUsername =               @"MPUKeychainUsername";
 NSString *const MPUKeychainMerchantIdentifier =     @"MPUKeychainMerchantIdentifier";
 NSString *const MPUKeychainMerchantSecretKey =      @"MPUKeychainMerchantSecretKey";
+NSString *const MPUKeychainApplicationIdentifier =  @"MPUKeychainApplicationIdentifier";
 
 static MPUMposUi *theInstance;
 
@@ -109,9 +110,15 @@ static MPUMposUi *theInstance;
     self.merchantIdentifier = [Lockbox stringForKey:MPUKeychainMerchantIdentifier];
     self.merchantSecretKey = [Lockbox stringForKey:MPUKeychainMerchantSecretKey];
     self.username = [Lockbox stringForKey:MPUKeychainUsername];
+    NSString *applicationIdentifier = [Lockbox stringForKey:MPUKeychainApplicationIdentifier];
 
     if(self.merchantIdentifier != nil && self.merchantSecretKey !=nil) {
-        self.transactionProvider = [MPMpos transactionProviderForMode:self.providerMode merchantIdentifier:self.merchantIdentifier merchantSecretKey:self.merchantSecretKey];
+        // Make sure the user is using the same application used to log in with.
+        if (applicationIdentifier != nil && [applicationIdentifier isEqualToString:self.applicationData.identifier]) {
+            self.transactionProvider = [MPMpos transactionProviderForMode:self.providerMode merchantIdentifier:self.merchantIdentifier merchantSecretKey:self.merchantSecretKey];
+        } else {
+            [self clearMerchantCredentialsIncludingUsername:YES];
+        }
     }
     
     return self;
@@ -126,11 +133,18 @@ static MPUMposUi *theInstance;
     [Lockbox setString:merchantIdentifier forKey:MPUKeychainMerchantIdentifier];
     [Lockbox setString:merchantSecretKey forKey:MPUKeychainMerchantSecretKey];
     [Lockbox setString:username forKey:MPUKeychainUsername];
+    [Lockbox setString:self.applicationData.identifier forKey:MPUKeychainApplicationIdentifier];
 }
 
-- (void)clearMerchantCredentials {
+- (void)clearMerchantCredentialsIncludingUsername:(BOOL)clearUsername {
     [Lockbox setString:nil forKey:MPUKeychainMerchantIdentifier];
     [Lockbox setString:nil forKey:MPUKeychainMerchantSecretKey];
+    [Lockbox setString:nil forKey:MPUKeychainApplicationIdentifier];
+
+    if(clearUsername){
+        [Lockbox setString:nil forKey:MPUKeychainUsername];
+        self.username = nil;
+    }
     
     self.merchantIdentifier = nil;
     self.merchantSecretKey = nil;
@@ -219,7 +233,7 @@ static MPUMposUi *theInstance;
     if (self.mposUiMode != MPUMposUiModeApplication) {
         [self throwExceptionForWrongMode:MPUMposUiModeApplication];
     } else {
-        [self clearMerchantCredentials];
+        [self clearMerchantCredentialsIncludingUsername:NO];
         [Lockbox setString:nil forKey:MPUKeychainUsername];
     }
 }

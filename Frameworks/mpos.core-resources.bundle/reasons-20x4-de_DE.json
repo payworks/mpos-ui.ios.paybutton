@@ -191,7 +191,7 @@
         ], 
         "ERROR_TERMINAL_ERROR": [
             "Fehler", 
-            "(Terminal Timeout)"
+            "(Terminal Error)"
         ], 
         "ERROR_SERVER_INVALID_RESPONSE": [
             "Fehler", 
@@ -215,7 +215,7 @@
         ], 
         "ERROR_TERMINAL_TIMEOUT": [
             "Fehler", 
-            "(Terminal Error)"
+            "(Terminal Timeout)"
         ], 
         "ERROR_PROCESSOR_FAILED_INCONSISTENT_STATE_UNRESOLVED": [
             "Fehler", 

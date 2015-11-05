@@ -16,6 +16,8 @@
 // TO REPRODUCE, DISCLOSE OR DISTRIBUTE ITS CONTENTS, OR TO MANUFACTURE, USE, OR SELL ANYTHING THAT IT  MAY DESCRIBE, IN WHOLE OR IN PART.
 
 #import "MPAccessory.h"
+
+
 @class MPAccessoryOptions;
 
 
@@ -34,7 +36,7 @@
  * @throws NSException if the parameters are invalid
  * @since 2.0.0
  */
-- (MPAccessoryOptions *)externalAccessoryOptionsWithType:(MPAccessoryType)type protocol:(NSString *)protocol namePrefix:(NSString *)prefix;
+- (nonnull MPAccessoryOptions *)externalAccessoryOptionsWithType:(MPAccessoryType)type protocol:(nonnull NSString *)protocol namePrefix:(nullable NSString *)prefix;
 
 /**
  * Creates new accessory options for a device connected via th audio jack.
@@ -43,7 +45,7 @@
  * @throws NSException if the parameters are invalid
  * @since 2.0.0
  */
-- (MPAccessoryOptions *)audioJackAccessoryOptionsWithType:(MPAccessoryType)type;
+- (nonnull MPAccessoryOptions *)audioJackAccessoryOptionsWithType:(MPAccessoryType)type;
 
 
 /**
@@ -51,5 +53,7 @@
  * @returns A new set mock acccessory options
  * @since 2.0.0
  */
-- (MPAccessoryOptions *)mockAccessoryOptions;
+- (nonnull MPAccessoryOptions *)mockAccessoryOptions;
+
 @end
+

@@ -48,6 +48,10 @@
 "MPUActions" = "Aktionen";
 "MPUSettings" = "Einstellungen";
 "MPUInfo" = "Info";
+"MPUVisa" = "Visa";
+"MPUMastercard" = "Mastercard";
+"MPUMaestro" = "Maestro";
+"MPUAmericanExpress" = "American Express";
 "MPUPrintReceipt" = "Beleg drucken";
 "MPUReprintReceipt" = "Beleg nochmals drucken";
 "MPUPrinting" = "Drucken...";

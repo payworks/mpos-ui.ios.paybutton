@@ -16,13 +16,15 @@
 // TO REPRODUCE, DISCLOSE OR DISTRIBUTE ITS CONTENTS, OR TO MANUFACTURE, USE, OR SELL ANYTHING THAT IT  MAY DESCRIBE, IN WHOLE OR IN PART.
 
 #import "MPAccessoryComponent.h"
+
+
 @class MPAccessoryComponentLog;
 
-typedef void (^MPAccessoryComponentLogDownloadLogSuccess)(MPAccessoryComponentLog *component, NSData *log);
-typedef void (^MPAccessoryComponentLogDownloadLogFailure)(MPAccessoryComponentLog *component, NSError *error);
+typedef void (^MPAccessoryComponentLogDownloadLogSuccess)(MPAccessoryComponentLog * _Nonnull component, NSData * _Nonnull log);
+typedef void (^MPAccessoryComponentLogDownloadLogFailure)(MPAccessoryComponentLog * _Nonnull component, NSError * _Nonnull error);
 
-typedef void (^MPAccessoryComponentLogDeleteLogSuccess)(MPAccessoryComponentLog *component);
-typedef void (^MPAccessoryComponentLogDeleteLogFailure)(MPAccessoryComponentLog *component, NSError *error);
+typedef void (^MPAccessoryComponentLogDeleteLogSuccess)(MPAccessoryComponentLog * _Nonnull component);
+typedef void (^MPAccessoryComponentLogDeleteLogFailure)(MPAccessoryComponentLog * _Nonnull component, NSError * _Nonnull error);
 
 @interface MPAccessoryComponentLog : MPAccessoryComponent
 
@@ -33,8 +35,8 @@ typedef void (^MPAccessoryComponentLogDeleteLogFailure)(MPAccessoryComponentLog 
  * @param failure The failure callback for downloading the logs
  * @since 2.5.0
  */
-- (void)downloadLogWithSuccess:(MPAccessoryComponentLogDownloadLogSuccess)success
-                       failure:(MPAccessoryComponentLogDownloadLogFailure)failure;
+- (void)downloadLogWithSuccess:(nonnull MPAccessoryComponentLogDownloadLogSuccess)success
+                       failure:(nonnull MPAccessoryComponentLogDownloadLogFailure)failure;
 
 /**
  * Deletes the log from the accessory. This can be called before starting a new transaction in order to wipe the logs.
@@ -43,7 +45,7 @@ typedef void (^MPAccessoryComponentLogDeleteLogFailure)(MPAccessoryComponentLog 
  * @param failure The failure callback for deleting the logs
  * @since 2.5.0
  */
-- (void)deleteLogWithSuccess:(MPAccessoryComponentLogDeleteLogSuccess)success
-                     failure:(MPAccessoryComponentLogDeleteLogFailure)failure;
+- (void)deleteLogWithSuccess:(nonnull MPAccessoryComponentLogDeleteLogSuccess)success
+                     failure:(nonnull MPAccessoryComponentLogDeleteLogFailure)failure;
 
 @end

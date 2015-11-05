@@ -17,6 +17,7 @@
 
 #import "MPTransaction.h"
 
+
 /**
  * Helper toolbox to format amounts, currencies and dates
  * @since 2.3.0
@@ -30,7 +31,7 @@
  * @return A formatted amound and currency
  * @since 2.3.0
  */
-- (NSString *)textFormattedForAmount:(NSDecimalNumber *)amount currency:(MPCurrency)currency;
+- (nullable NSString *)textFormattedForAmount:(nullable NSDecimalNumber *)amount currency:(MPCurrency)currency;
 
 /**
  * Formats a date based on the system region and locale.
@@ -38,14 +39,15 @@
  * @return A formatted date
  * @since 2.3.0
  */
-- (NSString *)textFormattedForDate:(NSDate *)date;
+- (nullable NSString *)textFormattedForDate:(nullable NSDate *)date;
 
 /**
  * Formats a time based on the system region and locale.
  * @param time The time to format
  * @return A formatted time
  * @since 2.3.0
- */- (NSString *)textFormattedForTime:(NSDate *)time;
+ */
+- (nullable NSString *)textFormattedForTime:(nullable NSDate *)time;
 
 /**
  * Formats a date and time based on the system region and locale.
@@ -53,8 +55,7 @@
  * @return A formatted date and time
  * @since 2.3.0
  */
-- (NSString *)textFormattedForTimeAndDate:(NSDate *)datetime;
+- (nullable NSString *)textFormattedForTimeAndDate:(nullable NSDate *)datetime;
 
 @end
-
 

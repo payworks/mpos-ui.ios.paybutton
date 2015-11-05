@@ -69,7 +69,7 @@
         self.retryButton.hidden = YES;
         self.authFailed = YES;
         if (self.mposUi.mposUiMode == MPUMposUiModeApplication) {
-            [self.mposUi clearMerchantCredentials];
+            [self.mposUi clearMerchantCredentialsIncludingUsername:NO];
         }
     }
     [self l10n];

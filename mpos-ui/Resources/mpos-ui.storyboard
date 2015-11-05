@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="8191" systemVersion="14E46" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="9059" systemVersion="14F27" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="8154"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="9049"/>
         <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
     </dependencies>
     <customFonts key="customFonts">
@@ -1009,7 +1009,7 @@
         <!--Navigation Controller-->
         <scene sceneID="Pzd-Ak-R7I">
             <objects>
-                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="1f6-6G-zP3" sceneMemberID="viewController">
+                <navigationController storyboardIdentifier="MPUSummaryNavigationController" automaticallyAdjustsScrollViewInsets="NO" id="1f6-6G-zP3" sceneMemberID="viewController">
                     <toolbarItems/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="BPx-XZ-nfU">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
@@ -1027,7 +1027,7 @@
         <!--Summary Container View Controller-->
         <scene sceneID="ixD-cO-AqB">
             <objects>
-                <viewController automaticallyAdjustsScrollViewInsets="NO" id="2x4-aD-h9q" customClass="MPUSummaryContainerViewController" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="MPSummaryContainerViewController" automaticallyAdjustsScrollViewInsets="NO" id="2x4-aD-h9q" customClass="MPUSummaryContainerViewController" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="JDD-6I-Afe"/>
                         <viewControllerLayoutGuide type="bottom" id="RNO-zw-rHy"/>
@@ -1054,7 +1054,7 @@
         <!--Navigation Controller-->
         <scene sceneID="1Od-Vc-6X7">
             <objects>
-                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="7az-Og-zhx" sceneMemberID="viewController">
+                <navigationController storyboardIdentifier="MPUTransactionNavigationController" automaticallyAdjustsScrollViewInsets="NO" id="7az-Og-zhx" sceneMemberID="viewController">
                     <toolbarItems/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="z6C-rd-xlh">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
@@ -1101,7 +1101,7 @@
         <!--Navigation Controller-->
         <scene sceneID="JYG-sk-0jP">
             <objects>
-                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="uKz-ih-ztd" sceneMemberID="viewController">
+                <navigationController storyboardIdentifier="MPUPrintReceiptNavigationController" automaticallyAdjustsScrollViewInsets="NO" id="uKz-ih-ztd" sceneMemberID="viewController">
                     <extendedEdge key="edgesForExtendedLayout"/>
                     <toolbarItems/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="fw9-DP-48U">
@@ -1223,7 +1223,7 @@
                                             <action selector="didTapRequestPassword:" destination="Xp8-AL-ZpJ" eventType="touchUpInside" id="PZu-Dg-enu"/>
                                         </connections>
                                     </button>
-                                    <activityIndicatorView opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" hidesWhenStopped="YES" style="gray" translatesAutoresizingMaskIntoConstraints="NO" id="HPo-8e-C6k">
+                                    <activityIndicatorView hidden="YES" opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" hidesWhenStopped="YES" style="gray" translatesAutoresizingMaskIntoConstraints="NO" id="HPo-8e-C6k">
                                         <rect key="frame" x="290" y="379" width="20" height="20"/>
                                     </activityIndicatorView>
                                     <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="mCashier" translatesAutoresizingMaskIntoConstraints="NO" id="Bg6-yk-anj">
@@ -1517,7 +1517,7 @@
         <!--Navigation Controller-->
         <scene sceneID="DfL-D8-rhQ">
             <objects>
-                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="jCI-Jq-nhQ" sceneMemberID="viewController">
+                <navigationController storyboardIdentifier="MPUSettingsNavigationController" automaticallyAdjustsScrollViewInsets="NO" id="jCI-Jq-nhQ" sceneMemberID="viewController">
                     <toolbarItems/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="DBj-PJ-syW">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
@@ -1558,7 +1558,7 @@
         <!--Navigation Controller-->
         <scene sceneID="qNT-n1-QuV">
             <objects>
-                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="N8M-LJ-soZ" sceneMemberID="viewController">
+                <navigationController storyboardIdentifier="MPULoginNavigationController" automaticallyAdjustsScrollViewInsets="NO" id="N8M-LJ-soZ" sceneMemberID="viewController">
                     <toolbarItems/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="b5V-l6-1ly">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
@@ -1600,9 +1600,9 @@
         <image name="mCashier" width="393" height="128"/>
     </resources>
     <inferredMetricsTieBreakers>
+        <segue reference="z7y-vN-JGO"/>
         <segue reference="YbD-3j-bqa"/>
         <segue reference="zRc-BW-jKU"/>
-        <segue reference="z7y-vN-JGO"/>
         <segue reference="kKl-sg-2ml"/>
         <segue reference="CU7-mJ-7CF"/>
         <segue reference="o3s-zU-cOf"/>

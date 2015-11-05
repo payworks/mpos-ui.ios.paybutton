@@ -18,6 +18,7 @@
 #import "MPAbstractDisplayUpdateSupportWrapper.h"
 #import "MPPINInformation.h"
 
+
 /**
  * A PIN information wrapper for display update support data.
  * @since 2.0.0
@@ -28,6 +29,7 @@
  * PIN information for this event, giving more specific accesss to PIN digits and the state.
  * @since 2.0.0
  */
-@property (strong, readonly, nonatomic) MPPINInformation *information;
+@property (strong, readonly, nonatomic, nonnull) MPPINInformation *information;
 
 @end
+

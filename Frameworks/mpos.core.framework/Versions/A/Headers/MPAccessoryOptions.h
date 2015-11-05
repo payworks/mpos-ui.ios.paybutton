@@ -17,6 +17,7 @@
 
 #import "MPAccessory.h"
 
+
 /**
  * Options that will be provided for opening a connection.
  * @since 2.0.0
@@ -39,14 +40,14 @@
  * Additional information used during a connect attempt, the values are dependent on the connection type.
  * @since 2.0.0
  */
-@property (strong, readonly, nonatomic) NSArray *filters;
+@property (strong, readonly, nonatomic, nullable) NSArray *filters;
 
 
 /**
  * The text displayed as an idle screen.
  * @since 2.0.0
  */
-@property (strong, nonatomic) NSArray *idleScreenText;
+@property (strong, nonatomic, nullable) NSArray *idleScreenText;
 
 /**
  * The language to use for displaying information and prompts on the display.
@@ -55,3 +56,4 @@
 @property (assign, nonatomic) MPLocale locale;
 
 @end
+

@@ -36,17 +36,17 @@
 /**
  * The tint of the navigation bar.
  */
-@property (nonatomic, strong) UIColor *navigationBarTint;
+@property (nonatomic, strong, nonnull) UIColor *navigationBarTint;
 
 /**
  * The color of the navigation bar text.
  */
-@property (nonatomic, strong) UIColor *navigationBarTextColor;
+@property (nonatomic, strong, nonnull) UIColor *navigationBarTextColor;
 
 /**
  * The color of the background view.
  */
-@property (nonatomic, strong) UIColor *backgroundColor;
+@property (nonatomic, strong, nonnull) UIColor *backgroundColor;
 
 /**
  * The style of the status bar.

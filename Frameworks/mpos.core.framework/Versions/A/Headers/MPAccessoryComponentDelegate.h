@@ -17,6 +17,7 @@
 
 #import "MPAccessory.h"
 
+
 /**
  * Card events that can occur on the accessory.
  * @since 2.0.0
@@ -65,7 +66,7 @@ typedef NS_ENUM(NSUInteger , MPAccessoryKeyEvent) {
  * @param level The new battery level of the accessory
  * @since 2.0.0
  */
-- (void)accessory:(MPAccessory *)accessory didChangeBatteryState:(MPAccessoryBatteryState)state level:(NSInteger)level;
+- (void)accessory:(nonnull MPAccessory *)accessory didChangeBatteryState:(MPAccessoryBatteryState)state level:(NSInteger)level;
 
 /**
  * A card was inserted or swiped.
@@ -73,7 +74,7 @@ typedef NS_ENUM(NSUInteger , MPAccessoryKeyEvent) {
  * @param event Information about the card
  * @since 2.0.0
  */
-- (void)accessory:(MPAccessory *)accessory didEmitCardEvent:(MPAccessoryCardEvent)event;
+- (void)accessory:(nonnull MPAccessory *)accessory didEmitCardEvent:(MPAccessoryCardEvent)event;
 
 /**
  * A key was pressed on the accessory.
@@ -81,6 +82,7 @@ typedef NS_ENUM(NSUInteger , MPAccessoryKeyEvent) {
  * @param event The key that was pressed
  * @since 2.0.0
  */
-- (void)accessory:(MPAccessory *)accessory didEmitKeyEvent:(MPAccessoryKeyEvent)event;
+- (void)accessory:(nonnull MPAccessory *)accessory didEmitKeyEvent:(MPAccessoryKeyEvent)event;
 
 @end
+

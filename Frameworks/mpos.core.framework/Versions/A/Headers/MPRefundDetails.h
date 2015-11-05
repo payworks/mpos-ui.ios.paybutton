@@ -15,6 +15,7 @@
 // LAWS AND INTERNATIONAL TREATIES.  THE RECEIPT OR POSSESSION OF  THIS SOURCE CODE AND/OR RELATED INFORMATION DOES NOT CONVEY OR IMPLY ANY RIGHTS
 // TO REPRODUCE, DISCLOSE OR DISTRIBUTE ITS CONTENTS, OR TO MANUFACTURE, USE, OR SELL ANYTHING THAT IT  MAY DESCRIBE, IN WHOLE OR IN PART.
 
+
 /**
  * Enum specifiying the refund status of a transaction.
  * @since 2.1.0
@@ -71,6 +72,6 @@ typedef NS_OPTIONS(NSUInteger, MPRefundDetailsProcess) {
  * List information about the refund transactions. The array contains MPRefundTransaction objects
  * @since 2.4.4
  */
-@property (strong, readonly, nonatomic) NSArray *refundTransactions;
+@property (strong, readonly, nonatomic, nonnull) NSArray *refundTransactions;
 
 @end

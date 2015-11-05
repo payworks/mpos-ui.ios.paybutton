@@ -12,9 +12,9 @@
 // LAWS AND INTERNATIONAL TREATIES.  THE RECEIPT OR POSSESSION OF  THIS SOURCE CODE AND/OR RELATED INFORMATION DOES NOT CONVEY OR IMPLY ANY RIGHTS
 // TO REPRODUCE, DISCLOSE OR DISTRIBUTE ITS CONTENTS, OR TO MANUFACTURE, USE, OR SELL ANYTHING THAT IT  MAY DESCRIBE, IN WHOLE OR IN PART.
 
-
 #import "MPAccessoryUpdateRequirement.h"
 #import "MPPaymentDetails.h"
+
 
 /**
  * Defines the transaction outcome on the accessory.
@@ -217,3 +217,4 @@ typedef NS_ENUM(NSUInteger, MPMockConfigurationMockUpdateBehavior) {
 
 
 @end
+

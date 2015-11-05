@@ -18,6 +18,7 @@
 #import "MPTransaction.h"
 #import "MPProvider.h"
 
+
 @class UIImage;
 @class MPTransactionActionSupport;
 @class MPApplicationInformation;
@@ -34,7 +35,7 @@
  * @param transaction The transaction reference that was created (same as transactionProcess.transaction)
  * @since 2.2.0
  */
-typedef void (^MPTransactionProcessRegistered)(MPTransactionProcess *transactionProcess, MPTransaction *transaction);
+typedef void (^MPTransactionProcessRegistered)(MPTransactionProcess * _Nonnull transactionProcess, MPTransaction * _Nonnull transaction);
 
 /**
  * Indicates a status change of the overall process and provides information about whats happening with process.
@@ -42,7 +43,7 @@ typedef void (^MPTransactionProcessRegistered)(MPTransactionProcess *transaction
  * @param transaction The transaction that is currently being processed (same as transactionProcess.transaction)
  * @since 2.2.0
  */
-typedef void (^MPTransactionProcessStatusChanged)(MPTransactionProcess *transactionProcess, MPTransaction *transaction, MPTransactionProcessDetails *details);
+typedef void (^MPTransactionProcessStatusChanged)(MPTransactionProcess * _Nonnull transactionProcess, MPTransaction * _Nonnull transaction, MPTransactionProcessDetails * _Nonnull details);
 
 /**
  * Indicates that an explicit user interaction is required. The SDK blocks until a call to paymentProcess continueWith... is called.
@@ -52,7 +53,7 @@ typedef void (^MPTransactionProcessStatusChanged)(MPTransactionProcess *transact
  * @param support Additional data that might be necessary to complete the action
  * @since 2.2.0
  */
-typedef void (^MPTransactionProcessActionRequired)(MPTransactionProcess *transactionProcess, MPTransaction *transaction, MPTransactionAction action, MPTransactionActionSupport *support);
+typedef void (^MPTransactionProcessActionRequired)(MPTransactionProcess * _Nonnull transactionProcess, MPTransaction * _Nonnull transaction, MPTransactionAction action, MPTransactionActionSupport * _Nullable support);
 
 /**
  * Indicates that the process has been completed. The paymentProcess.details provide additional information on the result of the process.
@@ -61,7 +62,7 @@ typedef void (^MPTransactionProcessActionRequired)(MPTransactionProcess *transac
  * @param details The latest details object for providing access to the overall processing status (same as transactionProcess.details)
  * @since 2.2.5
  */
-typedef void (^MPTransactionProcessCompleted)(MPTransactionProcess *transactionProcess, MPTransaction *transaction, MPTransactionProcessDetails *details);
+typedef void (^MPTransactionProcessCompleted)(MPTransactionProcess * _Nonnull transactionProcess, MPTransaction * _Nonnull transaction, MPTransactionProcessDetails * _Nonnull details);
 
 
 /**
@@ -74,32 +75,32 @@ typedef void (^MPTransactionProcessCompleted)(MPTransactionProcess *transactionP
  * The provider instance that is used by the process.
  * @since 2.2.0
  */
-@property (strong, readonly, nonatomic) MPTransactionProvider *provider;
+@property (strong, readonly, nonatomic, nullable) MPTransactionProvider *provider;
 
 /**
  * The transaction object used by the process.
  * @since 2.2.0
  */
-@property (strong, readonly, nonatomic) MPTransaction *transaction;
+@property (strong, readonly, nonatomic, nonnull) MPTransaction *transaction;
 
 /**
  * The accessory object used by the process.
  * @since 2.2.0
  */
-@property (strong, readonly, nonatomic) MPAccessory *accessory;
+@property (strong, readonly, nonatomic, nullable) MPAccessory *accessory;
 
 /**
  * The process details providing access to the current status.
  * @since 2.2.0
  */
-@property (strong, readonly, nonatomic) MPTransactionProcessDetails *details;
+@property (strong, readonly, nonatomic, nonnull) MPTransactionProcessDetails *details;
 
 
 /**
  * The factory to generate transaction receipts for the customer and merchant;
  * @since 2.2.0
  */
-@property (strong, readonly, nonatomic) MPReceiptFactory *receiptFactory;
+@property (strong, readonly, nonatomic, nonnull) MPReceiptFactory *receiptFactory;
 
 /**
  * Continues a transaction with a signature after a respective actionRequired callback was called.
@@ -107,7 +108,7 @@ typedef void (^MPTransactionProcessCompleted)(MPTransactionProcess *transactionP
  * @param verified Indicates if the signature matches the one on the card
  * @since 2.2.0
  */
-- (void)continueWithCustomerSignature:(UIImage *)signature
+- (void)continueWithCustomerSignature:(nonnull UIImage *)signature
                              verified:(BOOL)verified;
 
 /**
@@ -128,7 +129,7 @@ typedef void (^MPTransactionProcessCompleted)(MPTransactionProcess *transactionP
  * @param application The application to use for the transaction
  * @since 2.2.0
  */
-- (void)continueWithSelectedApplication:(MPApplicationInformation *)application;
+- (void)continueWithSelectedApplication:(nonnull MPApplicationInformation *)application;
 
 /**
  * Requests an abort at the next possible moment. Repeated calls are ignored.
@@ -146,3 +147,4 @@ typedef void (^MPTransactionProcessCompleted)(MPTransactionProcess *transactionP
 - (BOOL)canBeAborted;
 
 @end
+

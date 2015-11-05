@@ -15,6 +15,7 @@
 // LAWS AND INTERNATIONAL TREATIES.  THE RECEIPT OR POSSESSION OF  THIS SOURCE CODE AND/OR RELATED INFORMATION DOES NOT CONVEY OR IMPLY ANY RIGHTS
 // TO REPRODUCE, DISCLOSE OR DISTRIBUTE ITS CONTENTS, OR TO MANUFACTURE, USE, OR SELL ANYTHING THAT IT  MAY DESCRIBE, IN WHOLE OR IN PART.
 
+
 /**
  * Detailing the current state of a printing process.
  * @since 2.4.0
@@ -98,12 +99,13 @@ typedef NS_ENUM(NSUInteger, MPPrintingProcessDetailsStateDetails){
  * Provides two localized lines of text (each with max 40 characters) that can be displayed on screen suitable for the current status
  * @since 2.4.0
  */
-@property (strong, readonly, nonatomic) NSArray *information;
+@property (strong, readonly, nonatomic, nonnull) NSArray *information;
 
 /**
  * Holds the error thrown by the underlying components in case of a failure. Only populated in case of state == MPPrintingProcessDetailsStateFailed
  * @since 2.4.0
  */
-@property (strong, readonly, nonatomic) NSError *error;
+@property (strong, readonly, nonatomic, nullable) NSError *error;
 
 @end
+

@@ -20,16 +20,17 @@
 #import "MPAccessoryComponentBarcodeScannerConfiguration.h"
 #import "MPAccessoryComponentBarcodeScannerData.h"
 
+
 @class MPAccessoryComponentBarcodeScanner;
 
-typedef void (^MPAccessoryComponentBarcodeScannerStartScanSuccess)(MPAccessoryComponentBarcodeScanner *component);
-typedef void (^MPAccessoryComponentBarcodeScannerStartScanScan)(MPAccessoryComponentBarcodeScanner *component, MPAccessoryComponentBarcodeScannerData *data);
-typedef void (^MPAccessoryComponentBarcodeScannerStartScanButton)(MPAccessoryComponentBarcodeScanner *component, NSUInteger buttonStatus);
-typedef void (^MPAccessoryComponentBarcodeScannerStartScanFailure)(MPAccessoryComponentBarcodeScanner *component, NSError *error) ;
+typedef void (^MPAccessoryComponentBarcodeScannerStartScanSuccess)(MPAccessoryComponentBarcodeScanner * _Nonnull component);
+typedef void (^MPAccessoryComponentBarcodeScannerStartScanScan)(MPAccessoryComponentBarcodeScanner * _Nonnull component, MPAccessoryComponentBarcodeScannerData * _Nonnull data);
+typedef void (^MPAccessoryComponentBarcodeScannerStartScanButton)(MPAccessoryComponentBarcodeScanner * _Nonnull component, NSUInteger buttonStatus);
+typedef void (^MPAccessoryComponentBarcodeScannerStartScanFailure)(MPAccessoryComponentBarcodeScanner * _Nonnull component, NSError * _Nonnull error) ;
 
 
-typedef void (^MPAccessoryComponentBarcodeScannerStopScanSuccess)(MPAccessoryComponentBarcodeScanner *component);
-typedef void (^MPAccessoryComponentBarcodeScannerStopScanFailure)(MPAccessoryComponentBarcodeScanner *component, NSError *error);
+typedef void (^MPAccessoryComponentBarcodeScannerStopScanSuccess)(MPAccessoryComponentBarcodeScanner * _Nonnull component);
+typedef void (^MPAccessoryComponentBarcodeScannerStopScanFailure)(MPAccessoryComponentBarcodeScanner * _Nonnull component, NSError * _Nonnull error);
 
 
 /**
@@ -47,11 +48,11 @@ typedef void (^MPAccessoryComponentBarcodeScannerStopScanFailure)(MPAccessoryCom
  * @param failure The failure handler called when the scan failed
  * @since 2.2.0
  */
-- (void)startScanWithConfiguration:(MPAccessoryComponentBarcodeScannerConfiguration *)configuration
-                           success:(MPAccessoryComponentBarcodeScannerStartScanSuccess)success
-                              scan:(MPAccessoryComponentBarcodeScannerStartScanScan)scan
-                            button:(MPAccessoryComponentBarcodeScannerStartScanButton)button
-                           failure:(MPAccessoryComponentBarcodeScannerStartScanFailure)failure;
+- (void)startScanWithConfiguration:(nullable MPAccessoryComponentBarcodeScannerConfiguration *)configuration
+                           success:(nonnull MPAccessoryComponentBarcodeScannerStartScanSuccess)success
+                              scan:(nonnull MPAccessoryComponentBarcodeScannerStartScanScan)scan
+                            button:(nonnull MPAccessoryComponentBarcodeScannerStartScanButton)button
+                           failure:(nonnull MPAccessoryComponentBarcodeScannerStartScanFailure)failure;
 
 
 /**
@@ -62,10 +63,10 @@ typedef void (^MPAccessoryComponentBarcodeScannerStopScanFailure)(MPAccessoryCom
  * @param failure The failure handler called when the scan failed
  * @since 2.2.0
  */
-- (void)startScanWithSuccess:(MPAccessoryComponentBarcodeScannerStartScanSuccess)success
-                        scan:(MPAccessoryComponentBarcodeScannerStartScanScan)scan
-                      button:(MPAccessoryComponentBarcodeScannerStartScanButton)button
-                     failure:(MPAccessoryComponentBarcodeScannerStartScanFailure)failure;
+- (void)startScanWithSuccess:(nonnull MPAccessoryComponentBarcodeScannerStartScanSuccess)success
+                        scan:(nonnull MPAccessoryComponentBarcodeScannerStartScanScan)scan
+                      button:(nonnull MPAccessoryComponentBarcodeScannerStartScanButton)button
+                     failure:(nonnull MPAccessoryComponentBarcodeScannerStartScanFailure)failure;
 
 
 /**
@@ -74,6 +75,6 @@ typedef void (^MPAccessoryComponentBarcodeScannerStopScanFailure)(MPAccessoryCom
  * @param failure The failure handler called when the abort failed
  * @since 2.2.0
  */
-- (void)stopScanWithSuccess:(MPAccessoryComponentBarcodeScannerStopScanSuccess)success
-                    failure:(MPAccessoryComponentBarcodeScannerStopScanFailure)failure;
+- (void)stopScanWithSuccess:(nonnull MPAccessoryComponentBarcodeScannerStopScanSuccess)success
+                    failure:(nonnull MPAccessoryComponentBarcodeScannerStopScanFailure)failure;
 @end

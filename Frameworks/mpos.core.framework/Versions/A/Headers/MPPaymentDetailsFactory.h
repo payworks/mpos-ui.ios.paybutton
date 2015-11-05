@@ -15,6 +15,7 @@
 // LAWS AND INTERNATIONAL TREATIES.  THE RECEIPT OR POSSESSION OF  THIS SOURCE CODE AND/OR RELATED INFORMATION DOES NOT CONVEY OR IMPLY ANY RIGHTS
 // TO REPRODUCE, DISCLOSE OR DISTRIBUTE ITS CONTENTS, OR TO MANUFACTURE, USE, OR SELL ANYTHING THAT IT  MAY DESCRIBE, IN WHOLE OR IN PART.
 
+
 @class MPPaymentDetails;
 
 /**
@@ -30,6 +31,6 @@
  * @throws NSException If the parameters are not valid
  * @since 2.0.0
  */
-- (MPPaymentDetails *)paymentDetails;
+- (nonnull MPPaymentDetails *)paymentDetails;
 
 @end

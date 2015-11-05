@@ -17,6 +17,7 @@
 
 #import "MPProvider.h"
 
+
 /**
  * Options for instantiating a provider.
  * @since 2.0.0
@@ -28,13 +29,13 @@
  * Credential identifying the merchant
  * @since 2.0.0
  */
-@property (strong, readonly, nonatomic) NSString *merchantIdentifier;
+@property (strong, readonly, nonatomic, nonnull) NSString *merchantIdentifier;
 
 /**
  * The secret key for the merchant
  * @since 2.0.0
  */
-@property (strong, readonly, nonatomic) NSString *merchantSecretKey;
+@property (strong, readonly, nonatomic, nonnull) NSString *merchantSecretKey;
 
 /**
  * The mode the provider is running in.
@@ -51,3 +52,4 @@
 @property (assign, nonatomic) MPTransactionAction supportedActions;
 
 @end
+

@@ -19,35 +19,39 @@
  * Constant describing the error domain produces by the SDK
  * @since 2.0.0
  */
-extern NSString *const MPErrorDomainKey;
+extern NSString *const _Nonnull MPErrorDomainKey;
 
 
 /**
  * Constant describing the key for the error source
  * @since 2.0.0
  */
-extern NSString *const MPErrorSourceKey;
+extern NSString *const _Nonnull MPErrorSourceKey;
+
 /**
  * Constant describing the key for the error type
  * @since 2.0.0
  */
-extern NSString *const MPErrorTypeKey;
+extern NSString *const _Nonnull MPErrorTypeKey;
 
 /**
  * Constant describing the key for the error description
  * @since 2.0.0
  */
-extern NSString *const MPErrorInfoKey;
+extern NSString *const _Nonnull MPErrorInfoKey;
+
 /**
  * Constant describing the key for the error developer description
  * @since 2.0.0
  */
-extern NSString *const MPErrorDeveloperInfoKey;
+extern NSString *const _Nonnull MPErrorDeveloperInfoKey;
+
 /**
  * Constant describing the key for the error localized description, also available for NSLocalizedDescriptionKey
  * @since 2.0.0
  */
-extern NSString *const MPErrorLocalizedDescriptionKey;
+extern NSString *const _Nonnull MPErrorLocalizedDescriptionKey;
+
 
 /**
  * Enum describing the class of the error.
@@ -181,13 +185,13 @@ typedef NS_ENUM(NSUInteger, MPErrorType){
  * A human readable description of the error.
  * @since 2.0.0
  */
-@property (strong, readonly, nonatomic) NSString *info;
+@property (strong, readonly, nonatomic, nullable) NSString *info;
 
 /**
  * A more specific description of the error, also gives hints on how to resolve it.
  * @since 2.0.0
  */
-@property (strong, readonly, nonatomic) NSString *developerInfo;
+@property (strong, readonly, nonatomic, nullable) NSString *developerInfo;
 
 /**
  * Checks if the NSError resulted from the framework domain.
@@ -197,3 +201,4 @@ typedef NS_ENUM(NSUInteger, MPErrorType){
 - (BOOL)isMPError;
 
 @end
+

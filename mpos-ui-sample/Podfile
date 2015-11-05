@@ -1,7 +1,7 @@
-source 'https://github.com/CocoaPods/Specs.git'
 source 'https://bitbucket.org/mpymnt/io.mpymnt.repo.pods.git'
+source 'https://github.com/CocoaPods/Specs.git'
 
-pod 'AFNetworking', 				        '2.5.4'
+pod 'AFNetworking',                 '2.5.4'
 pod 'CocoaLumberjack',              '~> 2.0'
 pod 'MPBSignatureViewController',   '~> 1.4.12'
 pod 'Toast',                        '~> 2.4'

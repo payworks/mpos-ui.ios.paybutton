@@ -18,6 +18,7 @@
 #import "MPTransaction.h"
 #import "MPProvider.h"
 
+
 @class MPTransaction;
 @class MPTransactionProvider;
 @class MPPrintingProcess;
@@ -31,7 +32,7 @@
  * @param transaction The transaction that is currently being processed (same as printingProcess.transaction)
  * @since 2.4.0
  */
-typedef void (^MPPrintingProcessStatusChanged)(MPPrintingProcess *printingProcess, MPTransaction *transaction, MPPrintingProcessDetails *details);
+typedef void (^MPPrintingProcessStatusChanged)(MPPrintingProcess * _Nonnull printingProcess, MPTransaction * _Nullable transaction, MPPrintingProcessDetails * _Nonnull details);
 
 /**
  * Indicates that the process has been completed. The printingProcess.details provide additional information on the result of the process.
@@ -40,7 +41,7 @@ typedef void (^MPPrintingProcessStatusChanged)(MPPrintingProcess *printingProces
  * @param details The latest details object for providing access to the overall processing status (same as printingProcess.details)
  * @since 2.4.0
  */
-typedef void (^MPPrintingProcessCompleted)(MPPrintingProcess *printingProcess, MPTransaction *transaction, MPPrintingProcessDetails *details);
+typedef void (^MPPrintingProcessCompleted)(MPPrintingProcess * _Nonnull printingProcess, MPTransaction * _Nullable transaction, MPPrintingProcessDetails * _Nonnull details);
 
 /**
  * Automated workflow that encapsulates all steps required for making a transaction.
@@ -52,19 +53,19 @@ typedef void (^MPPrintingProcessCompleted)(MPPrintingProcess *printingProcess, M
  * The provider instance that is used by the process.
  * @since 2.4.0
  */
-@property (strong, readonly, nonatomic) MPTransactionProvider *provider;
+@property (strong, readonly, nonatomic, nullable) MPTransactionProvider *provider;
 
 /**
  * The accessory object used by the process.
  * @since 2.4.0
  */
-@property (strong, readonly, nonatomic) MPAccessory *accessory;
+@property (strong, readonly, nonatomic, nullable) MPAccessory *accessory;
 
 /**
  * The process details providing access to the current status.
  * @since 2.4.0
  */
-@property (strong, readonly, nonatomic) MPPrintingProcessDetails *details;
+@property (strong, readonly, nonatomic, nonnull) MPPrintingProcessDetails *details;
 
 /**
  * Requests an abort at the next possible moment. Repeated calls are ignored.
@@ -82,3 +83,4 @@ typedef void (^MPPrintingProcessCompleted)(MPPrintingProcess *printingProcess, M
 - (BOOL)canBeAborted;
 
 @end
+

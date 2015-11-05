@@ -48,6 +48,10 @@
 "MPUActions" = "Acties";
 "MPUSettings" = "Instellingen";
 "MPUInfo" = "Info";
+"MPUVisa" = "Visa";
+"MPUMastercard" = "Mastercard";
+"MPUMaestro" = "Maestro";
+"MPUAmericanExpress" = "American Express";
 "MPUPrintReceipt" = "Betalingsbewijs afdrukken";
 "MPUReprintReceipt" = "Betalingsbewijs opnieuw afdrukken";
 "MPUPrinting" = "Afdrukken...";

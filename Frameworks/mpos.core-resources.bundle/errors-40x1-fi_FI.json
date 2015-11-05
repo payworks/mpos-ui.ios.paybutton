@@ -1,0 +1,117 @@
+{
+    "info": {
+        "locale": "fi_FI", 
+        "rows": 1, 
+        "columns": 40
+    }, 
+    "localization": {
+        "ParameterMissing": [
+            "Puuttuva parametri"
+        ], 
+        "ParameterInvalid": [
+            "Virheellinen parametri"
+        ], 
+        "AccessoryNotFound": [
+            "Lisälaitetta ei löydy"
+        ], 
+        "AccessoryNotConnected": [
+            "Lisälaitetta ei ole liitetty"
+        ], 
+        "AccessoryAlreadyConnected": [
+            "Lisälaite on jo liitetty"
+        ], 
+        "AccessoryAlreadyDisconnected": [
+            "Lisälaite on jo irrotettu"
+        ], 
+        "AccessoryBusy": [
+            "Lisälaite on varattu"
+        ], 
+        "AccessoryNotWhitelisted": [
+            "Lisälaite ei ole sallittujen luettelossa"
+        ], 
+        "AccessoryDeactivated": [
+            "Lisälaite on poistettu käytöstä"
+        ], 
+        "AccessoryRequiresUpdate": [
+            "Lisälaitteen päivitys vaaditaan"
+        ], 
+        "AccessoryBatteryLow": [
+            "Alhainen akun varaus"
+        ], 
+        "AccessoryTampered": [
+            "Lisälaitetta muokattu"
+        ], 
+        "AccessoryError": [
+            "Lisälaitevirhe"
+        ], 
+        "AccessoryComponentNotFound": [
+            "Lisälaitekomponenttia ei löydy"
+        ], 
+        "AccessoryComponentPrinterBusy": [
+            "Tulostin varattu"
+        ], 
+        "AccessoryComponentPrinterPaperLowOrOut": [
+            "Tulostuspaperi vähissä tai lopussa"
+        ], 
+        "AccessoryComponentPrinterCoverOpen": [
+            "Tulostimen kansi on auki"
+        ], 
+        "TransactionSessionNotFound": [
+            "Tapahtumaistuntoa ei löydy"
+        ], 
+        "TransactionReferenceNotFound": [
+            "Tapahtumaviitettä ei löydy"
+        ], 
+        "TransactionInvalid": [
+            "Virheellinen tapahtuma"
+        ], 
+        "TransactionBusy": [
+            "Tapahtuma on varattu"
+        ], 
+        "TransactionNoLongerAbortable": [
+            "Tapahtumaa ei voi enää keskeyttää"
+        ], 
+        "TransactionDeclined": [
+            "Tapahtuma hylätty"
+        ], 
+        "TransactionAborted": [
+            "Tapahtuma keskeytetty"
+        ], 
+        "TransactionError": [
+            "Tapahtumavirhe"
+        ], 
+        "TransactionActionError": [
+            "Tapahtumatoimintavirhe"
+        ], 
+        "ServerTimeout": [
+            "Palvelimen aikakatkaisu"
+        ], 
+        "ServerUnavailable": [
+            "Tarkista Internet-yhteys"
+        ], 
+        "ServerAuthenticationFailed": [
+            "Yhdyskäytävään tunnistautuminen epäon."
+        ], 
+        "ServerPinningWithRemoteFailed": [
+            "Yhdyskäytävän varmennus epäonnistui"
+        ], 
+        "ServerError": [
+            "Palvelinvirhe"
+        ], 
+        "SDKResourcesNotFound": [
+            "Resursseja ei löydy"
+        ], 
+        "SDKResourcesModified": [
+            "Resursseja muokattu"
+        ], 
+        "SDKConfigurationMissing": [
+            "Konfiguraatio puuttuu"
+        ], 
+        "InternalInconsistency": [
+            "Sisäinen virhe"
+        ], 
+        "ServerUnknownUsername": [
+            "Tiliä ei löydy"
+        ]
+    }
+}

@@ -17,6 +17,7 @@
 
 #import "MPTransaction.h"
 
+
 /**
  * A template describing the initial parameters or a transaction.
  * The template is used to register a transaction via the MPServerSubsystem category.
@@ -28,7 +29,7 @@
  * The amount of the transaction.
  * @since 2.0.0
  */
-@property (strong, readonly, nonatomic) NSDecimalNumber *amount;
+@property (strong, readonly, nonatomic, nullable) NSDecimalNumber *amount;
 
 /**
  * The currency of the transaction.
@@ -46,26 +47,26 @@
  * The subject of the transaction.
  * @since 2.0.0
  */
-@property (strong, readonly, readonly, nonatomic) NSString *subject;
+@property (strong, readonly, nonatomic, nullable) NSString *subject;
 
 /**
  * An (optional) custom identifier, that can be used to reference transaction to your internal system.
  * Valid range is ([A-Z][a-z][0-9])*{0,256}.
  * @since 2.0.0
  */
-@property (strong, readonly, nonatomic) NSString *customIdentifier;
+@property (strong, readonly, nonatomic, nullable) NSString *customIdentifier;
 
 /**
  * A reference to a previous transaction.
  * Required for referencing transactions (e.g. refund).
  * @since 2.0.0
  */
-@property (strong, readonly, nonatomic) NSString *referencedTransactionIdentifier;
+@property (strong, readonly, nonatomic, nullable) NSString *referencedTransactionIdentifier;
 
 /*
  * A reference to the custom Identifier of a previous transaction
  * @since 2.4.0
  */
-@property (strong, readonly, nonatomic) NSString *referencedCustomIdentifier;
+@property (strong, readonly, nonatomic, nullable) NSString *referencedCustomIdentifier;
 
 @end

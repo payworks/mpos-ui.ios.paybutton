@@ -18,8 +18,10 @@
 
 #import "MPTransaction.h"
 #import "MPAccessory.h"
+
 @class MPProvider;
 @class MPDisplayUpdateSupport;
+
 
 /**
  * The type of display update.
@@ -46,7 +48,7 @@ typedef NS_ENUM(NSUInteger, MPProviderComponentDelegateDisplayUpdateType){
  * @param state The new state
  * @since 2.0.0
  */
-- (void)accessory:(MPAccessory *)accessory didChangeState:(MPAccessoryState)state;
+- (void)accessory:(nonnull MPAccessory *)accessory didChangeState:(MPAccessoryState)state;
 
 /**
  * The state of a transaction changed.
@@ -55,7 +57,7 @@ typedef NS_ENUM(NSUInteger, MPProviderComponentDelegateDisplayUpdateType){
  * @param abortable Indicates if the transaction is abortable in this state
  * @since 2.0.0
  */
-- (void)transaction:(MPTransaction *)transaction didChangeState:(MPTransactionState)state abortable:(BOOL)abortable;
+- (void)transaction:(nonnull MPTransaction *)transaction didChangeState:(MPTransactionState)state abortable:(BOOL)abortable;
 
 /**
  * The provider has new information that might be displayed. Using context specific wrappers for the support, more detailed information can be accessed.
@@ -65,6 +67,6 @@ typedef NS_ENUM(NSUInteger, MPProviderComponentDelegateDisplayUpdateType){
  * @param support Additional support data providing additional context data
  * @since 2.0.0
  */
-- (void)provider:(MPProvider *)provider didRequestDisplayUpdateForType:(MPProviderComponentDelegateDisplayUpdateType)type text:(NSArray *)text support:(MPDisplayUpdateSupport *)support;
+- (void)provider:(nonnull MPProvider *)provider didRequestDisplayUpdateForType:(MPProviderComponentDelegateDisplayUpdateType)type text:(nonnull NSArray *)text support:(nonnull MPDisplayUpdateSupport *)support;
 
 @end

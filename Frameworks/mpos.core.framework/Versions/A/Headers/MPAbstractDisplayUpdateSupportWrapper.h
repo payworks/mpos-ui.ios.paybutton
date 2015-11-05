@@ -15,6 +15,7 @@
 // LAWS AND INTERNATIONAL TREATIES.  THE RECEIPT OR POSSESSION OF  THIS SOURCE CODE AND/OR RELATED INFORMATION DOES NOT CONVEY OR IMPLY ANY RIGHTS
 // TO REPRODUCE, DISCLOSE OR DISTRIBUTE ITS CONTENTS, OR TO MANUFACTURE, USE, OR SELL ANYTHING THAT IT  MAY DESCRIBE, IN WHOLE OR IN PART.
 
+
 @class MPDisplayUpdateSupport;
 
 /**
@@ -29,6 +30,6 @@
  * @return A new wrapper giving acccess to specific properties
  * @since 2.0.0
  */
-+ (instancetype)wrapAround:(MPDisplayUpdateSupport *)support;
++ (nonnull instancetype)wrapAround:(nonnull MPDisplayUpdateSupport *)support;
 
 @end

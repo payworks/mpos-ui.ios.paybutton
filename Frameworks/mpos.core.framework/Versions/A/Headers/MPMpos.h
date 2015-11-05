@@ -15,13 +15,14 @@
 // LAWS AND INTERNATIONAL TREATIES.  THE RECEIPT OR POSSESSION OF  THIS SOURCE CODE AND/OR RELATED INFORMATION DOES NOT CONVEY OR IMPLY ANY RIGHTS
 // TO REPRODUCE, DISCLOSE OR DISTRIBUTE ITS CONTENTS, OR TO MANUFACTURE, USE, OR SELL ANYTHING THAT IT  MAY DESCRIBE, IN WHOLE OR IN PART.
 
+#import "MPProvider.h"
+
 /** 
  * The version of the SDK.
  * @since 2.0.0
  */
-extern NSString *const MPConnectSDKVersion;
+extern NSString * _Nonnull const MPConnectSDKVersion;
 
-#import "MPProvider.h"
 @class MPProviderOptions;
 @class MPProviderOptionsFactory;
 @class MPTransactionProvider;
@@ -37,7 +38,7 @@ extern NSString *const MPConnectSDKVersion;
  * @return An options factory to build provider options
  * @since 2.0.0
  */
-+ (MPProviderOptionsFactory *)providerOptionsFactory;
++ (nonnull MPProviderOptionsFactory *)providerOptionsFactory;
 
 /**
  * Returns a new payment provider to be used for consecutive payments.
@@ -46,14 +47,14 @@ extern NSString *const MPConnectSDKVersion;
  * @throws NSException if the options are invalid
  * @since 2.0.0
  */
-+ (MPProvider *)providerWithOptions:(MPProviderOptions *)options;
++ (nonnull MPProvider *)providerWithOptions:(nonnull MPProviderOptions *)options;
 
 /**
  * Returns the version of the connect SDK.
  * @return The version of the SDK
  * @since 2.0.0
  */
-+ (NSString *)version;
++ (nonnull NSString *)version;
 
 /**
  * Returns a new transaction provider that is taylord for simple transaction processing.
@@ -62,7 +63,7 @@ extern NSString *const MPConnectSDKVersion;
  * @param merchantSecretKey The merchant credentials to use for the transactions
  * @since 2.2.0
  */
-+ (MPTransactionProvider *)transactionProviderForMode:(MPProviderMode)mode merchantIdentifier:(NSString *)merchantIdentifier merchantSecretKey:(NSString *)merchantSecretKey;
++ (nonnull MPTransactionProvider *)transactionProviderForMode:(MPProviderMode)mode merchantIdentifier:(nonnull NSString *)merchantIdentifier merchantSecretKey:(nonnull NSString *)merchantSecretKey;
 
 
 @end

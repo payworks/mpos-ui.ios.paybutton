@@ -110,7 +110,7 @@
         "InternalInconsistency": [
             "Errore interno"
         ], 
-        "UnknownUsername": [
+        "ServerUnknownUsername": [
             "No account found"
         ]
     }

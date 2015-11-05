@@ -37,13 +37,13 @@
  * @param accessory The connected accessory
  * @since 2.0.0
  */
-typedef void (^MPAccessoryConnectSuccess)(MPAccessory *accessory);
+typedef void (^MPAccessoryConnectSuccess)(MPAccessory * _Nonnull accessory);
 /**
  * Failure handler for connecting to an accessory (e.g. PED or a printer).
  * @param error Error describing what happened
  * @since 2.0.0
  */
-typedef void (^MPAccessoryConnectFailure)(NSError *error);
+typedef void (^MPAccessoryConnectFailure)(NSError * _Nonnull error);
 
 
 /**
@@ -52,14 +52,14 @@ typedef void (^MPAccessoryConnectFailure)(NSError *error);
  * @param updateRequirement Indicating the update requirement
  * @since 2.0.0
  */
-typedef void (^MPAccessoryCheckUpdateSuccess)(MPAccessory *accessory, MPAccessoryUpdateRequirement *updateRequirement);
+typedef void (^MPAccessoryCheckUpdateSuccess)(MPAccessory * _Nonnull accessory, MPAccessoryUpdateRequirement * _Nonnull updateRequirement);
 /**
  * Failure handler for checking if an accessory must be updated before it can be used.
  * @param accessory The accessory that failed to update
  * @param error Error describing why the update failed
  * @since 2.0.0
  */
-typedef void (^MPAccessoryCheckUpdateFailure)(MPAccessory *accessory, NSError *error);
+typedef void (^MPAccessoryCheckUpdateFailure)(MPAccessory * _Nonnull accessory, NSError * _Nonnull error);
 
 
 /**
@@ -67,42 +67,42 @@ typedef void (^MPAccessoryCheckUpdateFailure)(MPAccessory *accessory, NSError *e
  * @param accessory The accessory that was updated
  * @since 2.0.0
  */
-typedef void (^MPAccessoryUpdateSuccess)(MPAccessory *accessory);
+typedef void (^MPAccessoryUpdateSuccess)(MPAccessory * _Nonnull  accessory);
 /**
  * Failure handler for updating an accessory.
  * @param accessory The accessory that failed to update
  * @param error Error describing why the update failed
  * @since 2.0.0
  */
-typedef void (^MPAccessoryUpdateFailure)(MPAccessory *accessory, NSError *error);
+typedef void (^MPAccessoryUpdateFailure)(MPAccessory * _Nonnull accessory, NSError * _Nonnull error);
 
 
 /**
  * Success handler for updating accessory state
  * @param accessory The accessory with updated state
  */
-typedef void (^MPAccessoryUpdateStateSuccess)(MPAccessory *accesory);
+typedef void (^MPAccessoryUpdateStateSuccess)(MPAccessory * _Nonnull accesory);
 
 /**
  * Failure handler for updating accessory state
  * @param accessory The accessory whose state failed to be updated
  * @param error Error describing why the update failed
  */
-typedef void (^MPAccessoryUpdateStateFailure)(MPAccessory *accesory, NSError *error);
+typedef void (^MPAccessoryUpdateStateFailure)(MPAccessory * _Nonnull accesory, NSError * _Nonnull error);
 
 /**
  * Success handler for disconnection from an accessory.
  * @param accessory The accessory that was disconnected - the reference is no longer valid for interactions
  * @since 2.0.0
  */
-typedef void (^MPAccessoryDisconnectSuccess)(MPAccessory *accessory);
+typedef void (^MPAccessoryDisconnectSuccess)(MPAccessory * _Nonnull accessory);
 /**
  * Failure handler for disconnection from an accessory.
  * @param accessory The accessory that should have been disconnected
  * @param error Error describing why the disconnect failed
  * @since 2.0.0
  */
-typedef void (^MPAccessoryDisconnectFailure)(MPAccessory *accessory, NSError *error);
+typedef void (^MPAccessoryDisconnectFailure)(MPAccessory * _Nonnull accessory, NSError * _Nonnull error);
 
 
 /**
@@ -110,21 +110,21 @@ typedef void (^MPAccessoryDisconnectFailure)(MPAccessory *accessory, NSError *er
  * @param transaction The requested transaction
  * @since 2.0.0
  */
-typedef void (^MPTransactionLookupSuccess)(MPTransaction *transaction);
+typedef void (^MPTransactionLookupSuccess)(MPTransaction * _Nonnull transaction);
 /**
  * Failure handler for a transaction lookup with our gateway.
  * @param identifier The identifier used to lookup the transaction
  * @param error Error describing why the lookup failed
  * @since 2.0.0
  */
-typedef void (^MPTransactionLookupFailure)(NSString *identifier, NSError *error);
+typedef void (^MPTransactionLookupFailure)(NSString * _Nonnull identifier, NSError * _Nonnull error);
 
 /**
  * Success handler for a transactions lookup with our gateway.
  * @param transactions the requested transactions
  * @since 2.3.1
  */
-typedef void (^MPTransactionsLookupSuccess)(NSArray *transactions);
+typedef void (^MPTransactionsLookupSuccess)(NSArray * _Nonnull transactions);
 
 /**
  * Failure handler for a transactions lookup with our gateway.
@@ -132,28 +132,28 @@ typedef void (^MPTransactionsLookupSuccess)(NSArray *transactions);
  * @param error Error describing why the lookup failed
  * @since 2.3.1
  */
-typedef void (^MPTransactionsLookupFailure)(NSString *customIdentifier, NSError *error);
+typedef void (^MPTransactionsLookupFailure)(NSString * _Nonnull customIdentifier, NSError * _Nonnull error);
 
 /**
  * Approval handler for executing a tranaction. At this stage the transaction is approved (completed successfully, executed and approved by the host).
  * @param transaction The approved transaction
  * @since 2.0.0
  */
-typedef void (^MPTransactionApproval)(MPTransaction *transaction);
+typedef void (^MPTransactionApproval)(MPTransaction * _Nonnull transaction);
 
 /**
  * Decline handler for executing a tranaction. At this stage the transaction is declined (completed successfully, executed but declined by the host or terminal).
  * @param transaction The declined transaction
  * @since 2.0.0
  */
-typedef void (^MPTransactionDecline)(MPTransaction *transaction);
+typedef void (^MPTransactionDecline)(MPTransaction * _Nonnull transaction);
 
 /**
  * Abort handler for executing a tranaction. At this stage the transaction is aborted.
  * @param transaction The declined transaction
  * @since 2.0.0
  */
-typedef void (^MPTransactionAbort)(MPTransaction *transaction);
+typedef void (^MPTransactionAbort)(MPTransaction * _Nonnull transaction);
 
 /**
  * Failure handler for the execution of a transaction. There are different reasons why a transaction may fail: network errors, missing parameters, invalid payment details). Some of those errors are recoverable (e.g. by just starting the transaction again). The error will provide information about the recoverability. The error is also attached to the transaction as an error property, giving access to it at a later stage.
@@ -161,7 +161,7 @@ typedef void (^MPTransactionAbort)(MPTransaction *transaction);
  * @param error Indicates what happened and how to proceed
  * @since 2.0.0
  */
-typedef void (^MPTransactionFailure)(MPTransaction *transaction, NSError *error);
+typedef void (^MPTransactionFailure)(MPTransaction * _Nonnull transaction, NSError * _Nonnull error);
 /**
  * Action handler for a transaction, used to request additional details when needed (e.g. some POS transaction needs a customer signature).
  * To only get requests for actions that you support, provide a bitmask of actions when initializing the provider.
@@ -170,7 +170,7 @@ typedef void (^MPTransactionFailure)(MPTransaction *transaction, NSError *error)
  * @param supportData Additional data that may be needed for certain types of actions (will require a downcast)
  * @since 2.0.0
  */
-typedef void (^MPTransactionActionRequired)(MPTransaction *transaction, MPTransactionAction action, MPTransactionActionSupport *supportData);
+typedef void (^MPTransactionActionRequired)(MPTransaction * _Nonnull transaction, MPTransactionAction action, MPTransactionActionSupport * _Nullable supportData);
 
 
 /**
@@ -178,7 +178,7 @@ typedef void (^MPTransactionActionRequired)(MPTransaction *transaction, MPTransa
  * @param transaction The aborted transaction
  * @since 2.0.0
  */
-typedef void (^MPTransactionAbortSuccess)(MPTransaction *transaction);
+typedef void (^MPTransactionAbortSuccess)(MPTransaction * _Nonnull transaction);
 
 /**
  * Handler indicating an error during an attempted abort of a transaction. If this is called, the transaction was NOT aborted.
@@ -186,21 +186,21 @@ typedef void (^MPTransactionAbortSuccess)(MPTransaction *transaction);
  * @param error The error that occured while aborting the transaction
  * @since 2.0.0
  */
-typedef void (^MPTransactionAbortFailure)(MPTransaction *transaction, NSError *error);
+typedef void (^MPTransactionAbortFailure)(MPTransaction * _Nonnull transaction, NSError * _Nonnull error);
 
 /**
  * Handler indicating an approved refund of a transaction.
  * @param transaction The refunded transaction
  * @since 2.3.0
  */
-typedef void (^MPRefundTransactionWithoutCardApproved)(MPTransaction *transaction);
+typedef void (^MPRefundTransactionWithoutCardApproved)(MPTransaction * _Nonnull transaction);
 
 /**
  * Handler indicating a declined refund of a transaction.
  * @param transaction The refunded transaction
  * @since 2.3.0
  */
-typedef void (^MPRefundTransactionWithoutCardDeclined)(MPTransaction *transaction);
+typedef void (^MPRefundTransactionWithoutCardDeclined)(MPTransaction * _Nonnull transaction);
 
 /**
  * Handler indicating an error during an attempted refund without card. If this is called, the transaction was NOT refunded:
@@ -208,33 +208,34 @@ typedef void (^MPRefundTransactionWithoutCardDeclined)(MPTransaction *transactio
  * @param error The error that occured while refunding the transaction
  * @since 2.3.0
  */
-typedef void (^MPRefundTransactionWithoutCardFailure)(MPTransactionTemplate *transactionTemplate, NSError *error);
+typedef void (^MPRefundTransactionWithoutCardFailure)(MPTransactionTemplate * _Nonnull transactionTemplate, NSError * _Nonnull error);
 
 /**
  * Success handler for sending a receipt via email.
  * @since 2.3.0
  */
-typedef void (^MPCustomerReceiptSendingSuccess)(NSString *transactionIdentifier, NSString *emailAddress);
+typedef void (^MPCustomerReceiptSendingSuccess)(NSString * _Nonnull transactionIdentifier, NSString * _Nonnull emailAddress);
 
 /**
  * Failure handler for sending a receipt via email.
  * @param error Error describing why the mail sending failed
  * @since 2.3.0
  */
-typedef void (^MPCustomerReceiptSendingFailure)(NSString *transactionIdentifier, NSString *emailAddress, NSError *);
+typedef void (^MPCustomerReceiptSendingFailure)(NSString * _Nonnull transactionIdentifier, NSString * _Nonnull emailAddress, NSError * _Nonnull error);
 
 /**
  * Success handler for querying a transaction receipt.
  * @since 2.4.0
  */
-typedef void (^MPTransactionReceiptQuerySuccess)(NSString *transactionIdentifier, MPReceipt *receipt);
+typedef void (^MPTransactionReceiptQuerySuccess)(NSString * _Nonnull transactionIdentifier, MPReceipt * _Nonnull receipt);
 
 /**
  * Failure handler for querying a transaction receipt.
  * @param error Error describing why the query failed
  * @since 2.4.0
  */
-typedef void (^MPTransactionReceiptQueryFailure)(NSString *transactionIdentifier, NSError *error);
+typedef void (^MPTransactionReceiptQueryFailure)(NSString * _Nonnull transactionIdentifier, NSError * _Nonnull error);
+
 
 
 /**
@@ -279,32 +280,32 @@ typedef NS_ENUM(NSUInteger, MPProviderMode){
  * Returns a factory that must be used to generate the payment params when making a transaction.
  * @since 2.0.0
  */
-@property (strong, readonly, nonatomic) MPPaymentDetailsFactory *paymentDetailsFactory;
+@property (strong, readonly, nonatomic, nonnull) MPPaymentDetailsFactory *paymentDetailsFactory;
 
 /**
  * Returns a factory that must be used to generate the accessory options.
  * @since 2.0.0
  */
 
-@property (strong, readonly, nonatomic) MPAccessoryOptionsFactory *accessoryOptionsFactory;
+@property (strong, readonly, nonatomic, nonnull) MPAccessoryOptionsFactory *accessoryOptionsFactory;
 
 /**
  * Returns a factory that must be used to generate action responses during transactions.
  * @since 2.0.0
  */
-@property (strong, readonly, nonatomic) MPTransactionActionResponseFactory *transactionActionResponseFactory;
+@property (strong, readonly, nonatomic, nonnull) MPTransactionActionResponseFactory *transactionActionResponseFactory;
 
 /**
  * Returns a factory that must be used to generate receipts.
  * @since 2.0.0
  */
-@property (strong, readonly, nonatomic) MPReceiptFactory *receiptFactory DEPRECATED_ATTRIBUTE;
+@property (strong, readonly, nonatomic, nonnull) MPReceiptFactory *receiptFactory DEPRECATED_ATTRIBUTE;
 
 /**
  * Returns a set containing all accessories that are currently handled by the provider (either connected/disconnected/not in range).
  * @since 2.0.0
  */
-@property (strong, readonly, nonatomic) NSSet *accessories;
+@property (strong, readonly, nonatomic, nonnull) NSSet *accessories;
 
 #pragma mark -
 #pragma mark Callback queue
@@ -312,7 +313,7 @@ typedef NS_ENUM(NSUInteger, MPProviderMode){
  * Dispatch queue used for block callbacks. If not set (NULL), dispatch_get_main_queue() will be used.
  * @since 2.0.0
  */
-@property (strong, nonatomic) dispatch_queue_t callbackQueue;
+@property (strong, nonatomic, nonnull) dispatch_queue_t callbackQueue;
 
 #pragma mark -
 #pragma mark Handle Accessories
@@ -326,7 +327,7 @@ typedef NS_ENUM(NSUInteger, MPProviderMode){
  * @throws NSException If the options are invalid
  * @since 2.0.0
  */
-- (void)connectToAccessory:(MPAccessoryOptions *)options success:(MPAccessoryConnectSuccess)success failure:(MPAccessoryConnectFailure)failure;
+- (void)connectToAccessory:(nonnull MPAccessoryOptions *)options success:(nonnull MPAccessoryConnectSuccess)success failure:(nonnull MPAccessoryConnectFailure)failure;
 
 /**
  * Checks if an update for the given accessory is available and must be installed before a transaction can take place.
@@ -336,7 +337,7 @@ typedef NS_ENUM(NSUInteger, MPProviderMode){
  * @throws NSException if the accessory is invalid
  * @since 2.0.0
  */
-- (void)checkUpdateRequirementForAccessory:(MPAccessory *)accessory success:(MPAccessoryCheckUpdateSuccess)success failure:(MPAccessoryCheckUpdateFailure)failure;
+- (void)checkUpdateRequirementForAccessory:(nonnull MPAccessory *)accessory success:(nonnull MPAccessoryCheckUpdateSuccess)success failure:(nonnull MPAccessoryCheckUpdateFailure)failure;
 
 
 /**
@@ -347,7 +348,7 @@ typedef NS_ENUM(NSUInteger, MPProviderMode){
  * @throws NSException If the accessory is invalid
  * @since 2.0.0
  */
-- (void)updateAccessory:(MPAccessory *)accessory success:(MPAccessoryUpdateSuccess)success failure:(MPAccessoryUpdateFailure)failure;
+- (void)updateAccessory:(nonnull MPAccessory *)accessory success:(nonnull MPAccessoryUpdateSuccess)success failure:(nonnull MPAccessoryUpdateFailure)failure;
 
 
 /**
@@ -358,7 +359,7 @@ typedef NS_ENUM(NSUInteger, MPProviderMode){
  * @param failure The failure handler called when accessory battery state failed to update
  * @since 2.0.1
  */
-- (void)updateAccessoryState:(MPAccessory*)accessory success:(MPAccessoryUpdateStateSuccess)success failure:(MPAccessoryUpdateStateFailure)failure;
+- (void)updateAccessoryState:(nonnull MPAccessory*)accessory success:(nonnull MPAccessoryUpdateStateSuccess)success failure:(nonnull MPAccessoryUpdateStateFailure)failure;
 
 /**
  * Disconnects a given accessory. This is normally required if more than once accessory using the Bluetooth connection consecutively (e.g. fist a PED and then a printer).
@@ -369,7 +370,7 @@ typedef NS_ENUM(NSUInteger, MPProviderMode){
  * @throws NSException If the accessory is invalid
  * @since 2.0.0
  */
-- (void)disconnectFromAccessory:(MPAccessory *)accessory success:(MPAccessoryDisconnectSuccess)success failure:(MPAccessoryDisconnectFailure)failure;
+- (void)disconnectFromAccessory:(nonnull MPAccessory *)accessory success:(nonnull MPAccessoryDisconnectSuccess)success failure:(nonnull MPAccessoryDisconnectFailure)failure;
 
 
 #pragma mark -
@@ -384,7 +385,7 @@ typedef NS_ENUM(NSUInteger, MPProviderMode){
  * @throws NSException If the identifier is invalid
  * @since 2.0.0
  */
-- (void)lookupTransactionWithSessionIdentifier:(NSString *)identifier success:(MPTransactionLookupSuccess)success failure:(MPTransactionLookupFailure)failure;
+- (void)lookupTransactionWithSessionIdentifier:(nonnull NSString *)identifier success:(nonnull MPTransactionLookupSuccess)success failure:(nonnull MPTransactionLookupFailure)failure;
 
 /**
  * Queries a previous transaction (including state), typically when the transaction failed due to network errors.
@@ -394,7 +395,7 @@ typedef NS_ENUM(NSUInteger, MPProviderMode){
  * @throws NSException If the identifier is invalid
  * @since 2.3.0
  */
-- (void)lookupTransactionWithTransactionIdentifier:(NSString *)identifier success:(MPTransactionLookupSuccess)success failure:(MPTransactionLookupFailure)failure;
+- (void)lookupTransactionWithTransactionIdentifier:(nonnull NSString *)identifier success:(nonnull MPTransactionLookupSuccess)success failure:(nonnull MPTransactionLookupFailure)failure;
 
 /**
  * Queries previous transactions (including state).
@@ -404,7 +405,7 @@ typedef NS_ENUM(NSUInteger, MPProviderMode){
  * @throws NSException If the identifier is invalid
  * @since 2.3.1
  */
-- (void)lookupTransactionsWithCustomIdentifier:(NSString *)customIdentifier success:(MPTransactionsLookupSuccess)success failure:(MPTransactionsLookupFailure)failure;
+- (void)lookupTransactionsWithCustomIdentifier:(nonnull NSString *)customIdentifier success:(nonnull MPTransactionsLookupSuccess)success failure:(nonnull MPTransactionsLookupFailure)failure;
 
 
 #pragma mark -
@@ -424,7 +425,7 @@ typedef NS_ENUM(NSUInteger, MPProviderMode){
  * @throws NSException If the transaction is invalid
  * @since 2.2.0
  */
-- (void)startTransaction:(MPTransaction *)transaction usingAccessory:(MPAccessory *)accessory approval:(MPTransactionApproval)approval decline:(MPTransactionDecline)decline abort:(MPTransactionAbort)abort failure:(MPTransactionFailure)failure actionRequired:(MPTransactionActionRequired)actionRequired;
+- (void)startTransaction:(nonnull MPTransaction *)transaction usingAccessory:(nonnull MPAccessory *)accessory approval:(nonnull MPTransactionApproval)approval decline:(nonnull MPTransactionDecline)decline abort:(nonnull MPTransactionAbort)abort failure:(nonnull MPTransactionFailure)failure actionRequired:(nonnull MPTransactionActionRequired)actionRequired;
 
 
 /**
@@ -435,7 +436,7 @@ typedef NS_ENUM(NSUInteger, MPProviderMode){
  * @throws NSException If the transaction is invalid
  * @since 2.0.0
  */
-- (void)continueTransaction:(MPTransaction *)transaction withAction:(MPTransactionAction)action response:(MPTransactionActionResponse *)response;
+- (void)continueTransaction:(nonnull MPTransaction *)transaction withAction:(MPTransactionAction)action response:(nullable MPTransactionActionResponse *)response;
 
 /**
  * Attempts to abort a transactions. This is only possible until a certain point of the transaction.
@@ -446,7 +447,7 @@ typedef NS_ENUM(NSUInteger, MPProviderMode){
  * @throws NSException If the transaction is invalid
  * @since 2.0.0
  */
-- (void)abortTransaction:(MPTransaction *)transaction success:(MPTransactionAbortSuccess)success failure:(MPTransactionAbortFailure)failure;
+- (void)abortTransaction:(nonnull MPTransaction *)transaction success:(nonnull MPTransactionAbortSuccess)success failure:(nonnull MPTransactionAbortFailure)failure;
 
 #pragma mark -
 #pragma mark Send Receipts
@@ -460,7 +461,7 @@ typedef NS_ENUM(NSUInteger, MPProviderMode){
  * @throws NSException If the transation is invalid
  * @since 2.3.0
  */
-- (void)sendCustomerReceiptForTransactionIdentifier:(NSString *)transactionIdentifier emailAddress:(NSString *)emailAddress success:(MPCustomerReceiptSendingSuccess)success failure:(MPCustomerReceiptSendingFailure)failure;
+- (void)sendCustomerReceiptForTransactionIdentifier:(nonnull NSString *)transactionIdentifier emailAddress:(nonnull NSString *)emailAddress success:(nonnull MPCustomerReceiptSendingSuccess)success failure:(nonnull MPCustomerReceiptSendingFailure)failure;
 
 #pragma mark -
 #pragma mark Refund Transation without card
@@ -475,7 +476,7 @@ typedef NS_ENUM(NSUInteger, MPProviderMode){
  * @throws NSException If the transation is invalid
  * @since 2.3.0
  */
-- (void)refundTransactionWithoutCardForTemplate:(MPTransactionTemplate *)transactionTemplate approved:(MPRefundTransactionWithoutCardApproved)approved declined:(MPRefundTransactionWithoutCardDeclined)declined failure:(MPRefundTransactionWithoutCardFailure)failure;
+- (void)refundTransactionWithoutCardForTemplate:(nonnull MPTransactionTemplate *)transactionTemplate approved:(nonnull MPRefundTransactionWithoutCardApproved)approved declined:(nonnull MPRefundTransactionWithoutCardDeclined)declined failure:(nonnull MPRefundTransactionWithoutCardFailure)failure;
 
 /**
  * Queries a receipt for a given transaction.
@@ -486,7 +487,7 @@ typedef NS_ENUM(NSUInteger, MPProviderMode){
  * @throws NSException If the transation is invalid
  * @since 2.4.0
  */
-- (void)queryTransactionReceiptByTransactionIdentifier:(NSString *)transactionIdentifier receiptType:(MPReceiptType)receiptType success:(MPTransactionReceiptQuerySuccess)success failure:(MPTransactionReceiptQueryFailure)failure;
+- (void)queryTransactionReceiptByTransactionIdentifier:(nonnull NSString *)transactionIdentifier receiptType:(MPReceiptType)receiptType success:(nonnull MPTransactionReceiptQuerySuccess)success failure:(nonnull MPTransactionReceiptQueryFailure)failure;
 
 #pragma mark -
 #pragma mark Register Callbacks
@@ -497,25 +498,26 @@ typedef NS_ENUM(NSUInteger, MPProviderMode){
  * @param delegate The delegate to add
  * @since 2.0.0
  */
-- (void)addProviderComponentDelegate:(id<MPProviderComponentDelegate>)delegate;
+- (void)addProviderComponentDelegate:(nonnull id<MPProviderComponentDelegate>)delegate;
 /**
  * Removes an existing provider delegate.
  * @param delegate The delegate to remove
  * @since 2.0.0
  */
-- (void)removeProviderComponentDelegate:(id<MPProviderComponentDelegate>)delegate;
+- (void)removeProviderComponentDelegate:(nonnull id<MPProviderComponentDelegate>)delegate;
 
 /**
  * Adds an additional accessory delegate.
  * @param delegate The delegate to add
  * @since 2.0.0
  */
-- (void)addAccessoryComponentCallback:(id<MPAccessoryComponentDelegate>)delegate;
+- (void)addAccessoryComponentCallback:(nonnull id<MPAccessoryComponentDelegate>)delegate;
 /**
  * Removes an existing accessory delegate.
  * @param delegate The delegate to remove
  * @since 2.0.0
  */
-- (void)removeAccessoryComponentCallback:(id<MPAccessoryComponentDelegate>)delegate;
+- (void)removeAccessoryComponentCallback:(nonnull id<MPAccessoryComponentDelegate>)delegate;
+
 
 @end

@@ -17,19 +17,20 @@
 
 #import "MPTransaction.h"
 
+
 @interface MPRefundTransaction : NSObject
 
 /**
  * The reference within our infrastructure to identify the transaction (payworks identifier).
  * @since 2.4.4
  */
-@property (strong, readonly, nonatomic) NSString *identifier;
+@property (strong, readonly, nonatomic, nullable) NSString *identifier;
 
 /**
  * Timestamp when the transaction was created. This timestamp will always be UTC.
  * @since 2.4.4
  */
-@property (strong, readonly, nonatomic) NSDate *created;
+@property (strong, readonly, nonatomic, nullable) NSDate *created;
 
 /**
  * The type the transaction.
@@ -47,6 +48,6 @@
  * Additional details associated with the current status, providing more detailed information for the current status and debug information.
  * @since 2.4.4
  */
-@property (strong, readonly, nonatomic) MPStatusDetails *statusDetails;
+@property (strong, readonly, nonatomic, nullable) MPStatusDetails *statusDetails;
 
 @end

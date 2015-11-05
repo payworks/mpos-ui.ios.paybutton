@@ -51,6 +51,6 @@
  * @throw NSException if the parameters are invalid
  * @since 2.0.0
  */
-+ (instancetype)locationDetailsWithLatitude:(double)latitude longitude:(double)longitude horizontalAccuracy:(double)horizontalAccuracy;
++ (nonnull instancetype)locationDetailsWithLatitude:(double)latitude longitude:(double)longitude horizontalAccuracy:(double)horizontalAccuracy;
 
 @end

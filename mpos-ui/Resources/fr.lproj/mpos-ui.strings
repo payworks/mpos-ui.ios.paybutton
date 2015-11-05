@@ -48,6 +48,10 @@
 "MPUActions" = "Actes";
 "MPUSettings" = "Paramètres";
 "MPUInfo" = "Infos";
+"MPUVisa" = "Visa";
+"MPUMastercard" = "Mastercard";
+"MPUMaestro" = "Maestro";
+"MPUAmericanExpress" = "American Express";
 "MPUPrintReceipt" = "Imprimer le justificatif";
 "MPUReprintReceipt" = "Reimprimer le justificatif";
 "MPUPrinting" = "Imprimant...";

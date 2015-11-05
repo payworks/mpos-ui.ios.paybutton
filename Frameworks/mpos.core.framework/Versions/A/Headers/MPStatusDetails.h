@@ -15,6 +15,7 @@
 // LAWS AND INTERNATIONAL TREATIES.  THE RECEIPT OR POSSESSION OF  THIS SOURCE CODE AND/OR RELATED INFORMATION DOES NOT CONVEY OR IMPLY ANY RIGHTS
 // TO REPRODUCE, DISCLOSE OR DISTRIBUTE ITS CONTENTS, OR TO MANUFACTURE, USE, OR SELL ANYTHING THAT IT  MAY DESCRIBE, IN WHOLE OR IN PART.
 
+
 /**
  * Enum incicating a more detailed status on the transaction.
  * @since 2.0.0
@@ -176,12 +177,13 @@ typedef NS_ENUM(NSUInteger, MPTransactionStatusDetailsCode){
  * A humand readable description of the current status.
  * @since 2.0.0
  */
-@property (strong, readonly, nonatomic) NSString *detailedDescription;
+@property (strong, readonly, nonatomic, nullable) NSString *detailedDescription;
 
 /**
  * A developer facing message/description about the current status. Might containg tips on how to resolve an issue.
  * @since 2.0.0
  */
-@property (strong, readonly, nonatomic) NSString *developerDescription;
+@property (strong, readonly, nonatomic, nullable) NSString *developerDescription;
 
 @end
+

@@ -42,7 +42,7 @@ NSString* const MPUSegueIdentifierLogin_Login = @"lnPushLogin";
     
     // If already logged in, we force logout.
     if ([self.mposUi isApplicationLoggedIn]) {
-        [self.mposUi clearMerchantCredentials];
+        [self.mposUi clearMerchantCredentialsIncludingUsername:NO];
     }
     self.viewTransitionInProgress = NO;
     self.previousSegueIdentifier = MPUSegueIdentifierLogin_Login;

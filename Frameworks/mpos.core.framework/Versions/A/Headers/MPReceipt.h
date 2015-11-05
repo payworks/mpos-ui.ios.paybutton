@@ -18,6 +18,7 @@
 #import "MPTransaction.h"
 #import "MPReceiptLineItem.h"
 
+
 /**
  * The available types for a receipt type.
  * @since 2.5.0
@@ -40,49 +41,49 @@ typedef NS_ENUM(NSUInteger, MPReceiptType) {
  * Type of the receipt (merchant or customer).
  * @since 2.1.0
  */
-@property (strong, readonly, nonatomic) MPReceiptLineItem *receiptType;
+@property (strong, readonly, nonatomic, nonnull) MPReceiptLineItem *receiptType;
 
 /**
  * Type of the transaction (charge or refund).
  * @since 2.1.0
  */
-@property (strong, readonly, nonatomic) MPReceiptLineItem *transactionType;
+@property (strong, readonly, nonatomic, nonnull) MPReceiptLineItem *transactionType;
 
 /**
  * The subject of the receipt.
  * @since 2.1.0
  */
-@property (strong, readonly, nonatomic) MPReceiptLineItem *subject;
+@property (strong, readonly, nonatomic, nullable) MPReceiptLineItem *subject;
 
 /**
  * The transaction identifier.
  * @since 2.1.0
  */
-@property (strong, readonly, nonatomic) MPReceiptLineItem *identifier;
+@property (strong, readonly, nonatomic, nonnull) MPReceiptLineItem *identifier;
 
 /**
  * The amount and currency formatted for the current system locale, using the NumberFormat.
  * @since 2.1.0
  */
-@property (strong, readonly, nonatomic) MPReceiptLineItem *amountAndCurrency;
+@property (strong, readonly, nonatomic, nonnull) MPReceiptLineItem *amountAndCurrency;
 
 /**
  * The date formatted for the current system locale, using the ShortDatePattern.
  * @since 2.1.0
  */
-@property (strong, readonly, nonatomic) MPReceiptLineItem *date;
+@property (strong, readonly, nonatomic, nonnull) MPReceiptLineItem *date;
 
 /**
  * The time formatted for the current system locale, using the LongTimePattern.
  * @since 2.1.0
  */
-@property (strong, readonly, nonatomic) MPReceiptLineItem *time;
+@property (strong, readonly, nonatomic, nonnull) MPReceiptLineItem *time;
 
 /**
  * The status text based on the transaction state.
  * @since 2.1.0
  */
-@property (strong, readonly, nonatomic) MPReceiptLineItem *statusText;
+@property (strong, readonly, nonatomic, nonnull) MPReceiptLineItem *statusText;
 
 /**
  * Indicates if a signature line must be present on the receipt.
@@ -95,21 +96,21 @@ typedef NS_ENUM(NSUInteger, MPReceiptType) {
  * Array of MPReceiptLineItem objects
  * @since 2.1.0
  */
-@property (strong, readonly, nonatomic) NSArray *clearingDetails;
+@property (strong, readonly, nonatomic, nonnull) NSArray *clearingDetails;
 
 /**
  * Payment details of the receipt.
  * Array of MPReceiptLineItem objects
  * @since 2.1.0
  */
-@property (strong, readonly, nonatomic) NSArray *paymentDetails;
+@property (strong, readonly, nonatomic, nonnull) NSArray *paymentDetails;
 
 /**
  * Merchant details of the receipt.
  * Array of MPReceiptLineItem objects
  * @since 2.1.0
  */
-@property (strong, readonly, nonatomic) NSArray *merchantDetails;
+@property (strong, readonly, nonatomic, nonnull) NSArray *merchantDetails;
 
 /**
  * Key-based lookup for individual line items.
@@ -117,13 +118,13 @@ typedef NS_ENUM(NSUInteger, MPReceiptType) {
  * @return The respective line item, or nil if the item is not available
  * @since 2.1.0
  */
-- (MPReceiptLineItem *)receiptLineItemForKey:(MPReceiptLineKey)key;
+- (nullable MPReceiptLineItem *)receiptLineItemForKey:(MPReceiptLineKey)key;
 
 /**
  * Pretty printed debug representation of the receipt.
  * @return A formatted string that holds all receipt information.
  * @since 2.1.0
  */
-- (NSString *)prettyPrinted;
+- (nonnull NSString *)prettyPrinted;
 
 @end

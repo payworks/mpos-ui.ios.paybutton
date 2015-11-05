@@ -61,7 +61,16 @@
             "PIN": "PIN", 
             "SIGNATURE": "Assinatura", 
             "PIN_AND_SIGNATURE": "PIN e assinatura", 
-            "SHOPPER_DEVICE": "Dispositivo cliente"
+            "SHOPPER_DEVICE": "Dispositivo cliente", 
+            "CARD_SECURITY_CODE": "Card security code verified.", 
+            "UNKNOWN": "Unknown cardholder verification performed."
+        }, 
+        "MessagesRetentionReminder": {
+            "MessagesRetentionReminder": "Guarde o recibo!"
+        }, 
+        "MessagesMerchantDeclaration": {
+            "REFUND": "PLEASE CREDIT MY ACCOUNT WITH TOTAL SHOWN", 
+            "CHARGE": "PLEASE DEBIT MY ACCOUNT WITH TOTAL SHOWN"
         }
     }
 }

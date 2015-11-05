@@ -29,12 +29,12 @@
  * The transaction that might be referenceed.
  * @since 2.0.0
  */
-@property (strong, readonly, nonatomic) MPTransaction *transaction;
+@property (strong, readonly, nonatomic, nullable) MPTransaction *transaction;
 
 /**
  * The accessory that might be referenced.
  * @since 2.0.0
  */
-@property (strong, readonly, nonatomic) MPAccessory *accessory;
+@property (strong, readonly, nonatomic, nullable) MPAccessory *accessory;
 
 @end

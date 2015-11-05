@@ -157,7 +157,9 @@ typedef NS_ENUM(NSUInteger, MPLocale){
     /** Portuguese */
     MPLocale_pt_PT,
     /** Spanish */
-    MPLocale_es_ES
+    MPLocale_es_ES,
+    /** Finnish*/
+    MPLocale_fi_FI
 };
 
 
@@ -203,7 +205,7 @@ typedef NS_OPTIONS(NSUInteger, MPAccessoryComponentType) {
  * Information about the device (including software version), only available once connected.
  * @since 2.0.0
  */
-@property (strong, readonly, nonatomic) MPAccessoryDetails *details;
+@property (strong, readonly, nonatomic, nonnull) MPAccessoryDetails *details;
 
 
 
@@ -259,7 +261,7 @@ typedef NS_OPTIONS(NSUInteger, MPAccessoryComponentType) {
  * @return The respective component, or nil if the component is not available.
  * @since 2.1.0
  */
-- (MPAccessoryComponent *)componentForType:(MPAccessoryComponentType)component;
+- (nullable MPAccessoryComponent *)componentForType:(MPAccessoryComponentType)component;
 
 @end
 

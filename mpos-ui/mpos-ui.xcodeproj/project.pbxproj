@@ -54,6 +54,7 @@
 		44AEEBE21B58FACD00531369 /* MPUPrintReceiptMainController.m in Sources */ = {isa = PBXBuildFile; fileRef = 44AEEBE01B58FACD00531369 /* MPUPrintReceiptMainController.m */; };
 		44AEEBE51B58FB5600531369 /* MPUPrintReceiptContainerViewController.h in Headers */ = {isa = PBXBuildFile; fileRef = 44AEEBE31B58FB5600531369 /* MPUPrintReceiptContainerViewController.h */; };
 		44AEEBE61B58FB5600531369 /* MPUPrintReceiptContainerViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 44AEEBE41B58FB5600531369 /* MPUPrintReceiptContainerViewController.m */; };
+		44B3EE211BDFD8320089D194 /* mpos-ui.strings in Resources */ = {isa = PBXBuildFile; fileRef = 44B3EE1F1BDFD8320089D194 /* mpos-ui.strings */; settings = {ASSET_TAGS = (); }; };
 		44C6B0511B629C04004C988C /* mpos.core.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 44C6B0501B629C04004C988C /* mpos.core.framework */; };
 		44D986081B4C3E53006F2F62 /* MPUEmptySegue.h in Headers */ = {isa = PBXBuildFile; fileRef = 44D986061B4C3E53006F2F62 /* MPUEmptySegue.h */; };
 		44D986091B4C3E53006F2F62 /* MPUEmptySegue.m in Sources */ = {isa = PBXBuildFile; fileRef = 44D986071B4C3E53006F2F62 /* MPUEmptySegue.m */; };
@@ -179,6 +180,7 @@
 		44AEEBE01B58FACD00531369 /* MPUPrintReceiptMainController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MPUPrintReceiptMainController.m; sourceTree = "<group>"; };
 		44AEEBE31B58FB5600531369 /* MPUPrintReceiptContainerViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MPUPrintReceiptContainerViewController.h; sourceTree = "<group>"; };
 		44AEEBE41B58FB5600531369 /* MPUPrintReceiptContainerViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MPUPrintReceiptContainerViewController.m; sourceTree = "<group>"; };
+		44B3EE201BDFD8320089D194 /* fi */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = fi; path = "mpos-ui.strings"; sourceTree = "<group>"; };
 		44C6B04F1B629C04004C988C /* mpos.core-resources.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; name = "mpos.core-resources.bundle"; path = "../Frameworks/mpos.core-resources.bundle"; sourceTree = "<group>"; };
 		44C6B0501B629C04004C988C /* mpos.core.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = mpos.core.framework; path = ../Frameworks/mpos.core.framework; sourceTree = "<group>"; };
 		44D986061B4C3E53006F2F62 /* MPUEmptySegue.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MPUEmptySegue.h; sourceTree = "<group>"; };
@@ -267,8 +269,8 @@
 			isa = PBXGroup;
 			children = (
 				2D959B671A7B8D0F00DC5310 /* mpos-ui */,
-				2D959B901A7B8DD400DC5310 /* Resources */,
 				2D959B661A7B8D0F00DC5310 /* Products */,
+				2D959B901A7B8DD400DC5310 /* Resources */,
 				A7E1C857019530F746C6C2CA /* Frameworks */,
 				953122E2C857066A9B07E0DA /* Pods */,
 			);
@@ -304,6 +306,7 @@
 				F48682B61B0CBA570042FF15 /* fr.lproj */,
 				F48682BA1B0CBA570042FF15 /* it.lproj */,
 				F48682BE1B0CBA570042FF15 /* nl.lproj */,
+				44B3EE141BDFD1870089D194 /* fi.lproj */,
 				F48682B51B0CBA570042FF15 /* FontAwesome.otf */,
 				F48682BD1B0CBA570042FF15 /* mpos-ui.storyboard */,
 				F48682B91B0CBA570042FF15 /* Images.xcassets */,
@@ -338,6 +341,14 @@
 				4461B2571B96ED1D00EE55AF /* mcashier.plist */,
 			);
 			path = "application-customization";
+			sourceTree = "<group>";
+		};
+		44B3EE141BDFD1870089D194 /* fi.lproj */ = {
+			isa = PBXGroup;
+			children = (
+				44B3EE1F1BDFD8320089D194 /* mpos-ui.strings */,
+			);
+			path = fi.lproj;
 			sourceTree = "<group>";
 		};
 		44F4D1611B4FB1AC00EC26C7 /* ParentViewController */ = {
@@ -649,6 +660,7 @@
 				it,
 				nl,
 				es,
+				fi,
 			);
 			mainGroup = 2D959B5B1A7B8D0F00DC5310;
 			productRefGroup = 2D959B661A7B8D0F00DC5310 /* Products */;
@@ -671,10 +683,11 @@
 				F486833D1B0E06650042FF15 /* mpos-ui.strings in Resources */,
 				F486833C1B0E06650042FF15 /* mpos-ui.strings in Resources */,
 				F486833E1B0E06650042FF15 /* mpos-ui.strings in Resources */,
-				4461B2561B96E27B00EE55AF /* concardis.plist in Resources */,
 				F486833F1B0E06650042FF15 /* mpos-ui.strings in Resources */,
 				F48683401B0E06650042FF15 /* mpos-ui.strings in Resources */,
 				F48683411B0E06650042FF15 /* mpos-ui.strings in Resources */,
+				44B3EE211BDFD8320089D194 /* mpos-ui.strings in Resources */,
+				4461B2561B96E27B00EE55AF /* concardis.plist in Resources */,
 				4461B2581B96ED1D00EE55AF /* mcashier.plist in Resources */,
 				F48683391B0D06C20042FF15 /* FontAwesome.otf in Resources */,
 				F486833A1B0D06C20042FF15 /* mpos-ui.storyboard in Resources */,
@@ -842,6 +855,14 @@
 /* End PBXTargetDependency section */
 
 /* Begin PBXVariantGroup section */
+		44B3EE1F1BDFD8320089D194 /* mpos-ui.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				44B3EE201BDFD8320089D194 /* fi */,
+			);
+			name = "mpos-ui.strings";
+			sourceTree = "<group>";
+		};
 		F48682AD1B0CBA570042FF15 /* mpos-ui.strings */ = {
 			isa = PBXVariantGroup;
 			children = (

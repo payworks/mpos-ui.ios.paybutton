@@ -96,6 +96,7 @@
 
     MPTransactionProcessStatusChanged statusChanged = ^(MPTransactionProcess *transactionProcess, MPTransaction *transaction, MPTransactionProcessDetails *details) {
         DDLogDebug(@"transaction status changed");
+        self.transaction = transaction;
         self.mposUi.transaction = transaction;
         self.mposUi.transactionProcessDetails = details;
         [self updateTransactionStatus:details withTransaction:transaction];

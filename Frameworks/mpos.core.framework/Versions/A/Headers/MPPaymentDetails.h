@@ -15,6 +15,7 @@
 // LAWS AND INTERNATIONAL TREATIES.  THE RECEIPT OR POSSESSION OF  THIS SOURCE CODE AND/OR RELATED INFORMATION DOES NOT CONVEY OR IMPLY ANY RIGHTS
 // TO REPRODUCE, DISCLOSE OR DISTRIBUTE ITS CONTENTS, OR TO MANUFACTURE, USE, OR SELL ANYTHING THAT IT  MAY DESCRIBE, IN WHOLE OR IN PART.
 
+
 /**
  * The actual source of the payment details (when applying the MPTransactionInputMethod).
  * @since 2.0.0
@@ -111,7 +112,8 @@ typedef NS_ENUM(NSUInteger, MPPaymentDetailsCustomerVerification) {
  * The (masked) account number used for the transaction.
  * @since 2.4.0
  */
-@property (strong, readonly, nonatomic) NSString *accountNumber;
+@property (strong, readonly, nonatomic, nullable) NSString *accountNumber;
 
 
 @end
+

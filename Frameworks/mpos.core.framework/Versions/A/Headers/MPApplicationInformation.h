@@ -26,12 +26,12 @@
  * The identifier of the application.
  * @since 2.0.0
  */
-@property (strong, readonly, nonatomic) NSString *applicationIdentifier;
+@property (strong, readonly, nonatomic, nonnull) NSString *applicationIdentifier;
 
 /**
  * The name of the application.
  * @since 2.0.0
  */
-@property (strong, readonly, nonatomic) NSString *applicationName;
+@property (strong, readonly, nonatomic, nonnull) NSString *applicationName;
 
 @end

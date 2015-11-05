@@ -15,11 +15,12 @@
 // LAWS AND INTERNATIONAL TREATIES.  THE RECEIPT OR POSSESSION OF  THIS SOURCE CODE AND/OR RELATED INFORMATION DOES NOT CONVEY OR IMPLY ANY RIGHTS
 // TO REPRODUCE, DISCLOSE OR DISTRIBUTE ITS CONTENTS, OR TO MANUFACTURE, USE, OR SELL ANYTHING THAT IT  MAY DESCRIBE, IN WHOLE OR IN PART.
 
+
 /**
  * Constant describing the error object associated with the exception.
  * @since 2.0.0
  */
-extern NSString *const MPErrorKey;
+extern NSString * _Nonnull const MPErrorKey;
 
 /**
  * Additions to the NSExceptions, offering specific error access.
@@ -31,6 +32,7 @@ extern NSString *const MPErrorKey;
  * Returns the error associated with the exception.
  * @since 2.0.0
  */
-@property (strong, readonly, nonatomic) NSError *errorInfo;
+@property (strong, readonly, nonatomic, nullable) NSError *errorInfo;
 
 @end
+

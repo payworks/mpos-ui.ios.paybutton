@@ -15,18 +15,19 @@
 // LAWS AND INTERNATIONAL TREATIES.  THE RECEIPT OR POSSESSION OF  THIS SOURCE CODE AND/OR RELATED INFORMATION DOES NOT CONVEY OR IMPLY ANY RIGHTS
 // TO REPRODUCE, DISCLOSE OR DISTRIBUTE ITS CONTENTS, OR TO MANUFACTURE, USE, OR SELL ANYTHING THAT IT  MAY DESCRIBE, IN WHOLE OR IN PART.
 
+
 /**
- * The available trigger modes.
+ * The available trigger modes that control the behavior of the scanner itself.
  * @since 2.2.0
  */
 typedef NS_ENUM(int, MPAccessoryComponentBarcodeScannerConfigurationTriggerMode) {
-    /** Edge trigger */
+    /** Edge trigger. Scanning starts with pressing a button and stops when its pressed again. */
     MPAccessoryComponentBarcodeScannerConfigurationTriggerModeEdge = 0,
-    /** Level trigger */
+    /** Level trigger. Scanning starts with pressing a button, continues while holding the button and then stops when its released again. */
     MPAccessoryComponentBarcodeScannerConfigurationTriggerModeLevel,
-    /** Soft trigger */
+    /** Soft trigger. Scanning is on all the time and the buttons do not have any effect on the scan. */
     MPAccessoryComponentBarcodeScannerConfigurationTriggerModeSoft,
-    /** Passive trigger */
+    /** Passive trigger. Scanning is on all the time and no button press is reported back. */
     MPAccessoryComponentBarcodeScannerConfigurationTriggerModePassive
 };
 
@@ -35,9 +36,9 @@ typedef NS_ENUM(int, MPAccessoryComponentBarcodeScannerConfigurationTriggerMode)
  * @since 2.2.0
  */
 typedef NS_ENUM(int, MPAccessoryComponentBarcodeScannerConfigurationScanMode) {
-    /** 1d only mode */
+    /** 1D only mode. Detects only 1D barcodes. */
     MPAccessoryComponentBarcodeScannerConfigurationScanMode1D = 0,
-    /** 1D and 2D modes */
+    /** 1D and 2D modes. Detects 1D and 2D barcodes. */
     MPAccessoryComponentBarcodeScannerConfigurationScanMode1D2D
 };
 
@@ -46,9 +47,9 @@ typedef NS_ENUM(int, MPAccessoryComponentBarcodeScannerConfigurationScanMode) {
  * @since 2.2.0
  */
 typedef NS_ENUM(int, MPAccessoryComponentBarcodeScannerConfigurationContinuousMode) {
-    /** Continuous mode disabled */
+    /** Continuous mode disabled. */
     MPAccessoryComponentBarcodeScannerConfigurationContinuousModeDisabled = 0,
-    /** Continuous mode enabled */
+    /** Continuous mode enabled. */
     MPAccessoryComponentBarcodeScannerConfigurationContinuousModeEnabled
 };
 
@@ -78,3 +79,4 @@ typedef NS_ENUM(int, MPAccessoryComponentBarcodeScannerConfigurationContinuousMo
 @property (assign, nonatomic) MPAccessoryComponentBarcodeScannerConfigurationContinuousMode continuousMode;
 
 @end
+

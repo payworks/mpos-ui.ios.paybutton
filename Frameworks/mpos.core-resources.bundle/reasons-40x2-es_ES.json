@@ -120,7 +120,7 @@
             "Error procesando el pago"
         ], 
         "ERROR_APPROVED_OFFLINE": [
-            "Error (confirmado Terminal)"
+            "Error (Terminal Approval)"
         ], 
         "ERROR_PROCESSOR_INVALID_FORMAT": [
             "Error (formato inválido)"

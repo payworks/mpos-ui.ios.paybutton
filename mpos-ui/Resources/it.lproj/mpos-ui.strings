@@ -48,6 +48,10 @@
 "MPUActions" = "Azioni";
 "MPUSettings" = "Impostazioni";
 "MPUInfo" = "Info";
+"MPUVisa" = "Visa";
+"MPUMastercard" = "Mastercard";
+"MPUMaestro" = "Maestro";
+"MPUAmericanExpress" = "American Express";
 "MPUPrintReceipt" = "Stampare giustificativo";
 "MPUReprintReceipt" = "Stampara giustificativo a nuovo";
 "MPUPrinting" = "Stampando...";

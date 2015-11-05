@@ -62,7 +62,7 @@ echo ""
 echo "### Building Versions ###"
 echo ""
 echo "iphoneos build: ${PWC_BUILD_TOOL} -workspace ${PWC_WORKSPACE} -scheme ${PWC_SCHEME} -configuration ${PWC_CONFIGURATION} -sdk ${PWC_SDK_NAME_IPHONEOS} ${PWC_ACTION} FRAMEWORK_EXPORT_DIR=${PWC_PACKAGE_DIR}"
-${PWC_BUILD_TOOL} -workspace "${PWC_WORKSPACE}" -scheme "${PWC_SCHEME}" -configuration "${PWC_CONFIGURATION}" -sdk "${PWC_SDK_NAME_IPHONEOS}" ${PWC_ACTION} FRAMEWORK_EXPORT_DIR="${PWC_PACKAGE_DIR}"
+${PWC_BUILD_TOOL} -workspace "${PWC_WORKSPACE}" -scheme "${PWC_SCHEME}" -configuration "${PWC_CONFIGURATION}" -sdk "${PWC_SDK_NAME_IPHONEOS}" ${PWC_ACTION} FRAMEWORK_EXPORT_DIR="${PWC_PACKAGE_DIR}" OTHER_CFLAGS="-fembed-bitcode -Qunused-arguments"
 
 echo ""
 echo ""

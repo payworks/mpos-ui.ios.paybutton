@@ -44,6 +44,6 @@ typedef NS_ENUM(NSUInteger, MPUMposUiMode){
 @property (nonatomic, strong) NSString *integratorIdentifier;
 
 - (void)storeMerchantCredentials:(NSString *)merchantIdentifier merchantSecretKey:(NSString *)merchantSecretKey username:(NSString *)username;
-- (void)clearMerchantCredentials;
+- (void)clearMerchantCredentialsIncludingUsername:(BOOL)clearUsername;
 
 @end

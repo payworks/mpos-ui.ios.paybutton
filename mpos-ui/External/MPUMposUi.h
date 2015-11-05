@@ -48,7 +48,7 @@ typedef NS_ENUM(NSUInteger, MPUTransactionResult) {
     MPUTransactionResultFailed
 };
 
-typedef void (^MPUTransactionCompleted)(UIViewController *controller, MPUTransactionResult result, MPTransaction *transaction);
+typedef void (^MPUTransactionCompleted)(UIViewController * _Nonnull controller, MPUTransactionResult result, MPTransaction * _Nullable transaction);
 
 /**
  * Enum describing the result of the receipt printing process.
@@ -92,13 +92,13 @@ typedef NS_ENUM(NSUInteger, MPUApplicationName) {
     MPUApplicationNameConcardis
 };
 
-typedef void (^MPUPrintReceiptCompleted)(UIViewController *controller, MPUPrintReceiptResult result);
+typedef void (^MPUPrintReceiptCompleted)(UIViewController * _Nonnull controller, MPUPrintReceiptResult result);
 
-typedef void (^MPUSummaryCompleted)(UIViewController *controller);
+typedef void (^MPUSummaryCompleted)(UIViewController * _Nonnull controller);
 
-typedef void (^MPUSettingsCompleted)(UIViewController *controller);
+typedef void (^MPUSettingsCompleted)(UIViewController * _Nonnull controller);
 
-typedef void (^MPULoginCompleted)(UIViewController *controller, MPULoginResult result);
+typedef void (^MPULoginCompleted)(UIViewController * _Nonnull controller, MPULoginResult result);
 
 
 /**
@@ -109,28 +109,28 @@ typedef void (^MPULoginCompleted)(UIViewController *controller, MPULoginResult r
 /**
  * The last transaction that has been processed.
  */
-@property (nonatomic, strong) MPTransaction *transaction;
+@property (nonatomic, strong, nullable) MPTransaction *transaction;
 
 /**
  * The transaction provider that processes the transaction.
  */
-@property (nonatomic, strong) MPTransactionProvider *transactionProvider;
+@property (nonatomic, strong, nullable) MPTransactionProvider *transactionProvider;
 
 /**
  * The details about the last transaction that has been processed.
  */
-@property (nonatomic, strong) MPTransactionProcessDetails *transactionProcessDetails;
+@property (nonatomic, strong, nullable) MPTransactionProcessDetails *transactionProcessDetails;
 
 /**
  * The last error encountered in the process.
  */
-@property (nonatomic, strong) NSError *error;
+@property (nonatomic, strong, nullable) NSError *error;
 
 
 /**
  * The configuration for creating new controllers.
  */
-@property (nonatomic, strong) MPUMposUiConfiguration *configuration;
+@property (nonatomic, strong, nonnull) MPUMposUiConfiguration *configuration;
 
 
 /**
@@ -138,13 +138,13 @@ typedef void (^MPULoginCompleted)(UIViewController *controller, MPULoginResult r
  * @return The version of the SDK
  * @since 2.0.0
  */
-+ (NSString *)version;
++ (nonnull NSString *)version;
 
 /**
  * Returns an instance of the initialized MposUi.
  * @return The initialized instance or nil of none is initialized.
  */
-+ (MPUMposUi *)sharedInitializedInstance;
++ (nullable instancetype)sharedInitializedInstance;
 
 #pragma mark - Initialize with merchantIdentifier / merchantSecret
 /**
@@ -153,7 +153,7 @@ typedef void (^MPULoginCompleted)(UIViewController *controller, MPULoginResult r
  * @param merchantIdentifier The merchant identifier to use.
  * @param merchantSecret The merchant secret to use.
  */
-+ (id)initializeWithProviderMode:(MPProviderMode)providerMode merchantIdentifier:(NSString *)merchantIdentifier merchantSecret:(NSString *)merchantSecret;
++ (nonnull instancetype)initializeWithProviderMode:(MPProviderMode)providerMode merchantIdentifier:(nonnull NSString *)merchantIdentifier merchantSecret:(nonnull NSString *)merchantSecret;
 
 #pragma mark - Initialize with Login / Logout with an exisiting application.
 /**
@@ -161,7 +161,7 @@ typedef void (^MPULoginCompleted)(UIViewController *controller, MPULoginResult r
  * @param applicationName The login to use.
  * @param integratorIdentifier The integratorIdentifier to use.
  */
-+ (id)initializeWithApplication:(MPUApplicationName)applicationName integratorIdentifier:(NSString *)integratorIdentifier;
++ (nonnull instancetype)initializeWithApplication:(MPUApplicationName)applicationName integratorIdentifier:(nonnull NSString *)integratorIdentifier;
 
 #pragma mark - Transaction methods
 /**
@@ -171,7 +171,7 @@ typedef void (^MPULoginCompleted)(UIViewController *controller, MPULoginResult r
  * @return The ViewController ready to be pushed for display
  * @throws NSInternalInconsistencyException if the MPUMposUi not initialized with a provider.
  */
-- (UIViewController *)createTransactionViewControllerWithSessionIdentifier:(NSString *)sessionIdentifier completed:(MPUTransactionCompleted)completed;
+- (nonnull UIViewController *)createTransactionViewControllerWithSessionIdentifier:(nonnull NSString *)sessionIdentifier completed:(nonnull MPUTransactionCompleted)completed;
 
 
 /**
@@ -183,7 +183,7 @@ typedef void (^MPULoginCompleted)(UIViewController *controller, MPULoginResult r
  * @param completed Completed callback notifying about the completion of a transaction. The ViewController can be dismissed afterwards.
  * @return The ViewController ready to be pushed for display.
  */
-- (UIViewController *)createChargeTransactionViewControllerWithAmount:(NSDecimalNumber *)amount currency:(MPCurrency)currency subject:(NSString *)subject customIdentifier:(NSString *)customIdentifier completed:(MPUTransactionCompleted)completed;
+- (nonnull UIViewController *)createChargeTransactionViewControllerWithAmount:(nonnull NSDecimalNumber *)amount currency:(MPCurrency)currency subject:(nullable NSString *)subject customIdentifier:(nullable NSString *)customIdentifier completed:(nonnull MPUTransactionCompleted)completed;
 
 
 /**
@@ -194,7 +194,7 @@ typedef void (^MPULoginCompleted)(UIViewController *controller, MPULoginResult r
  * @param completed Completed callback notifying about the completion of a transaction. The ViewController can be dismissed afterwards. 
  * @return The ViewController ready to be pushed for display.
  */
-- (UIViewController *)createRefundTransactionViewControllerWithTransactionIdentifer:(NSString *)transactionIndentifier subject:(NSString *)subject customIdentifier:(NSString *)customIdentifier completed:(MPUTransactionCompleted)completed;
+- (nonnull UIViewController *)createRefundTransactionViewControllerWithTransactionIdentifer:(nonnull NSString *)transactionIndentifier subject:(nullable NSString *)subject customIdentifier:(nullable NSString *)customIdentifier completed:(nonnull MPUTransactionCompleted)completed;
 
 /**
  * Creates an UIViewController that starts the summary view for the transaction.
@@ -203,7 +203,7 @@ typedef void (^MPULoginCompleted)(UIViewController *controller, MPULoginResult r
  * @param completed Completed callback notifiying the completion of the summary. The ViewController can be dismissed afterwards.
  * @return The ViewControlller ready to be pushed for display.
  */
-- (UIViewController *)createSummaryViewControllerWithTransactionIdentifier:(NSString *)transacitonIdentifier completed:(MPUSummaryCompleted)completed;
+- (nonnull UIViewController *)createSummaryViewControllerWithTransactionIdentifier:(nonnull NSString *)transacitonIdentifier completed:(nonnull MPUSummaryCompleted)completed;
 
 /**
  * Creates an UIViewController that starts the receipt printing view for the transaction.
@@ -211,7 +211,7 @@ typedef void (^MPULoginCompleted)(UIViewController *controller, MPULoginResult r
  * @param completed The completed callback notifying the completion of printing. The ViewController can be dismissed afterwards.
  * @return The ViewControlller ready to be pushed for display.
  */
-- (UIViewController *)createPrintTransactionViewControllerWithTransactionIdentifier:(NSString *)transactionIdentifier completed:(MPUPrintReceiptCompleted)completed;
+- (nonnull UIViewController *)createPrintTransactionViewControllerWithTransactionIdentifier:(nonnull NSString *)transactionIdentifier completed:(nonnull MPUPrintReceiptCompleted)completed;
 
 #pragma mark - Application specific methods
 /**
@@ -221,7 +221,7 @@ typedef void (^MPULoginCompleted)(UIViewController *controller, MPULoginResult r
  * @return The ViewControlller ready to be pushed for display.
  * @throws NSInternalInconsistencyException if the MPUMposUi not initialized with an application.
  */
-- (UIViewController *)createSettingsViewController:(MPUSettingsCompleted)completed;
+- (nonnull UIViewController *)createSettingsViewController:(nonnull MPUSettingsCompleted)completed;
 
 /**
  * Creates an UIViewController that shows the application login. The user is logged out forcefully if already logged in.
@@ -230,7 +230,7 @@ typedef void (^MPULoginCompleted)(UIViewController *controller, MPULoginResult r
  * @return The ViewControlller ready to be pushed for display.
  * @throws NSInternalInconsistencyException if the MPUMposUi not initialized with an application.
  */
-- (UIViewController *)createLoginViewController:(MPULoginCompleted)completed;
+- (nonnull UIViewController *)createLoginViewController:(nonnull MPULoginCompleted)completed;
 
 /**
  * Logs the user out of the application.

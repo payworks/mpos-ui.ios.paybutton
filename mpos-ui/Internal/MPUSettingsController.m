@@ -57,7 +57,7 @@
 }
 
 - (void)logout {
-    [self.mposUi clearMerchantCredentials];
+    [self.mposUi clearMerchantCredentialsIncludingUsername:NO];
     [self.delegate logoutPressed];
 }
 

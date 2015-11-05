@@ -16,14 +16,16 @@
 // TO REPRODUCE, DISCLOSE OR DISTRIBUTE ITS CONTENTS, OR TO MANUFACTURE, USE, OR SELL ANYTHING THAT IT  MAY DESCRIBE, IN WHOLE OR IN PART.
 
 #import "MPMpos.h"
+
+
 @class MPMockConfiguration;
 
 
-typedef void (^MPMposLoginSuccess)(NSString *username, NSString *merchantIdentifier, NSString *merchantSecretKey);
-typedef void (^MPMposLoginFailure)(NSString *username, NSError *error);
+typedef void (^MPMposLoginSuccess)(NSString * _Nonnull username, NSString * _Nonnull merchantIdentifier, NSString * _Nonnull merchantSecretKey);
+typedef void (^MPMposLoginFailure)(NSString * _Nonnull username, NSError * _Nonnull error);
 
-typedef void (^MPMposPasswordResetRequestSuccess)(NSString *username);
-typedef void (^MPMposPasswordResetRequestFailure)(NSString *username, NSError *error);
+typedef void (^MPMposPasswordResetRequestSuccess)(NSString * _Nonnull username);
+typedef void (^MPMposPasswordResetRequestFailure)(NSString * _Nonnull username, NSError * _Nonnull error);
 
 /**
  * Extension to the base SDK, offering additional functionalities for logging and mocking.
@@ -36,7 +38,7 @@ typedef void (^MPMposPasswordResetRequestFailure)(NSString *username, NSError *e
  * @return The current mocking configuration.
  * @since 2.0.0
  */
-+ (MPMockConfiguration *) mockConfiguration;
++ (nonnull MPMockConfiguration *) mockConfiguration;
 
 /**
  * Enables logging within the SDK.
@@ -55,11 +57,11 @@ typedef void (^MPMposPasswordResetRequestFailure)(NSString *username, NSError *e
  * @param failure
  */
 + (void)loginWithMode:(MPProviderMode)mode
- applicationIdentifier:(NSString *)applicationIdentifier
-              username:(NSString *)username
-              password:(NSString *)password
-               success:(MPMposLoginSuccess)success
-               failure:(MPMposLoginFailure)failure;
+ applicationIdentifier:(nonnull NSString *)applicationIdentifier
+              username:(nonnull NSString *)username
+              password:(nonnull NSString *)password
+               success:(nonnull MPMposLoginSuccess)success
+               failure:(nonnull MPMposLoginFailure)failure;
 
 
 /**
@@ -71,9 +73,9 @@ typedef void (^MPMposPasswordResetRequestFailure)(NSString *username, NSError *e
  * @param failure
  */
 + (void)passwordResetRequest:(MPProviderMode)mode
-        applicationIdentifier:(NSString *)applicationIdentifier
-                     username:(NSString *)username
-                      success:(MPMposPasswordResetRequestSuccess)success
-                      failure:(MPMposPasswordResetRequestFailure)failure;
+        applicationIdentifier:(nonnull NSString *)applicationIdentifier
+                     username:(nonnull NSString *)username
+                      success:(nonnull MPMposPasswordResetRequestSuccess)success
+                      failure:(nonnull MPMposPasswordResetRequestFailure)failure;
 
 @end

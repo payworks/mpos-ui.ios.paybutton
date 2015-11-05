@@ -61,7 +61,16 @@
             "PIN": "PIN", 
             "SIGNATURE": "Handtekening", 
             "PIN_AND_SIGNATURE": "PIN en handtekening", 
-            "SHOPPER_DEVICE": "Apparaat klant"
+            "SHOPPER_DEVICE": "Apparaat klant", 
+            "CARD_SECURITY_CODE": "Card security code verified.", 
+            "UNKNOWN": "Unknown cardholder verification performed."
+        }, 
+        "MessagesRetentionReminder": {
+            "MessagesRetentionReminder": "Betalingsbewijs bewaren a.u.b.!"
+        }, 
+        "MessagesMerchantDeclaration": {
+            "REFUND": "PLEASE CREDIT MY ACCOUNT WITH TOTAL SHOWN", 
+            "CHARGE": "PLEASE DEBIT MY ACCOUNT WITH TOTAL SHOWN"
         }
     }
 }

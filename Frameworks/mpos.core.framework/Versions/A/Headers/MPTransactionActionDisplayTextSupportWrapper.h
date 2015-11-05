@@ -16,8 +16,8 @@
 // TO REPRODUCE, DISCLOSE OR DISTRIBUTE ITS CONTENTS, OR TO MANUFACTURE, USE, OR SELL ANYTHING THAT IT  MAY DESCRIBE, IN WHOLE OR IN PART.
 
 
-
 #import "MPAbstractTransactionActionSupportWrapper.h"
+
 
 /**
  * Wrapper for display text actions, providing access to the text to display.
@@ -29,6 +29,6 @@
  * The text to display.
  * @since 2.0.0
  */
-@property (strong, readonly, nonatomic) NSArray *text;
+@property (strong, readonly, nonatomic, nonnull) NSArray *text;
 
 @end

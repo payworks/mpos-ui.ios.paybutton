@@ -15,6 +15,7 @@
 // LAWS AND INTERNATIONAL TREATIES.  THE RECEIPT OR POSSESSION OF  THIS SOURCE CODE AND/OR RELATED INFORMATION DOES NOT CONVEY OR IMPLY ANY RIGHTS
 // TO REPRODUCE, DISCLOSE OR DISTRIBUTE ITS CONTENTS, OR TO MANUFACTURE, USE, OR SELL ANYTHING THAT IT  MAY DESCRIBE, IN WHOLE OR IN PART.
 
+
 @class MPTransactionActionResponse;
 @class UIImage;
 @class MPApplicationInformation;
@@ -33,7 +34,7 @@
  * @throws NSException if the parameters are invalid
  * @since 2.0.0
  */
-- (MPTransactionActionResponse *)responseForCustomerSignatureWithResult:(BOOL)signatureVerified signature:(UIImage *)signature;
+- (nonnull MPTransactionActionResponse *)responseForCustomerSignatureWithResult:(BOOL)signatureVerified signature:(nonnull UIImage *)signature;
 
 /**
  * Creates a new signature response object, used for a CustomerSignature request given on paper.
@@ -41,7 +42,7 @@
  * @throws NSException if the parameters are invalid
  * @since 2.0.0
  */
-- (MPTransactionActionResponse *)responseForCustomerSignatureOnReceipt;
+- (nonnull MPTransactionActionResponse *)responseForCustomerSignatureOnReceipt;
 
 /**
  * Creates a new customer identification response object, used for a CustomerIdentification request.
@@ -51,7 +52,7 @@
  * @since 2.0.0
  */
  
-- (MPTransactionActionResponse *)responseForCustomerIdentificationWithResult:(BOOL)customerVerified;
+- (nonnull MPTransactionActionResponse *)responseForCustomerIdentificationWithResult:(BOOL)customerVerified;
 
 
 /**
@@ -61,6 +62,6 @@
  * @throws NSException if the parameters are invalid
  * @since 2.0.0
  */
-- (MPTransactionActionResponse *)responseForApplicationSelectionWithApplication:(MPApplicationInformation *)application;
+- (nonnull MPTransactionActionResponse *)responseForApplicationSelectionWithApplication:(nonnull MPApplicationInformation *)application;
 
 @end

@@ -30,6 +30,6 @@
  * @return The wrapped action support data
  * @since 2.0.0
  */
-+ (instancetype)wrapAround:(MPTransactionActionSupport *)wrappedSupport;
++ (nonnull instancetype)wrapAround:(nonnull MPTransactionActionSupport *)wrappedSupport;
 
 @end

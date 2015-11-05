@@ -15,7 +15,7 @@
 // LAWS AND INTERNATIONAL TREATIES.  THE RECEIPT OR POSSESSION OF  THIS SOURCE CODE AND/OR RELATED INFORMATION DOES NOT CONVEY OR IMPLY ANY RIGHTS
 // TO REPRODUCE, DISCLOSE OR DISTRIBUTE ITS CONTENTS, OR TO MANUFACTURE, USE, OR SELL ANYTHING THAT IT  MAY DESCRIBE, IN WHOLE OR IN PART.
 
-
+#import "MPAccessory.h"
 
 
 
@@ -88,29 +88,27 @@ typedef NS_OPTIONS(NSUInteger, MPPaymentAccessoryRequirement) {
  * Completion handler for displaying text on the accessory.
  * @since 2.0.0
  */
-typedef void (^MPPaymentAccessoryDisplayTextSuccess)(MPAccessory *accessory, NSArray *text);
+typedef void (^MPPaymentAccessoryDisplayTextSuccess)(MPAccessory * _Nonnull accessory, NSArray * _Nonnull text);
 /**
  * Failure handler for displaying text on the accessory.
  * @param error Error that occurred during the process
  * @since 2.0.0
  */
-typedef void (^MPPaymentAccessoryDisplayTextFailure)(MPAccessory *accessory, NSArray *text, NSError *error);
+typedef void (^MPPaymentAccessoryDisplayTextFailure)(MPAccessory * _Nonnull accessory, NSArray * _Nonnull text, NSError * _Nonnull error);
 
 
 /**
  * Completion handler for displaying the idle screen on the accessory.
  * @since 2.0.0
  */
-typedef void (^MPPaymentAccessoryDisplayIdleScreenSuccess)(MPAccessory *accessory);
+typedef void (^MPPaymentAccessoryDisplayIdleScreenSuccess)(MPAccessory * _Nonnull accessory);
 /**
  * Failure handler for displaying the idle screen on the accessory.
  * @param error Error that occurred during the process
  * @since 2.0.0
  */
-typedef void (^MPPaymentAccessoryDisplayIdleScreenFailure)(MPAccessory *accessory, NSError *error);
+typedef void (^MPPaymentAccessoryDisplayIdleScreenFailure)(MPAccessory * _Nonnull accessory, NSError * _Nonnull error);
 
-
-#import "MPAccessory.h"
 
 /**
  * Contains specific information related to a payment accessory.
@@ -131,7 +129,7 @@ typedef void (^MPPaymentAccessoryDisplayIdleScreenFailure)(MPAccessory *accessor
  * The text that should be displayed when the accessory is connected but in idle mode.
  * @since 2.0.0
  */
-@property (strong, readonly, nonatomic) NSArray *idleScreenText;
+@property (strong, readonly, nonatomic, nonnull) NSArray *idleScreenText;
 
 
 
@@ -166,7 +164,7 @@ typedef void (^MPPaymentAccessoryDisplayIdleScreenFailure)(MPAccessory *accessor
  * @throws NSException if the parameters are invalid
  * @since 2.0.0
  */
-- (void)displayText:(NSArray *)text success:(MPPaymentAccessoryDisplayTextSuccess)success failure:(MPPaymentAccessoryDisplayTextFailure)failure;
+- (void)displayText:(nonnull NSArray *)text success:(nonnull MPPaymentAccessoryDisplayTextSuccess)success failure:(nonnull MPPaymentAccessoryDisplayTextFailure)failure;
 
 
 /**
@@ -176,6 +174,7 @@ typedef void (^MPPaymentAccessoryDisplayIdleScreenFailure)(MPAccessory *accessor
  * @throws NSException if the parameters are invalid
  * @since 2.0.0
  */
-- (void)displayIdleScreenWithSuccess:(MPPaymentAccessoryDisplayIdleScreenSuccess)success failure:(MPPaymentAccessoryDisplayIdleScreenFailure)failure;
+- (void)displayIdleScreenWithSuccess:(nonnull MPPaymentAccessoryDisplayIdleScreenSuccess)success failure:(nonnull MPPaymentAccessoryDisplayIdleScreenFailure)failure;
 
 @end
+

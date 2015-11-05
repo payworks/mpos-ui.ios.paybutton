@@ -116,12 +116,12 @@ typedef NS_ENUM(NSUInteger, MPTransactionProcessDetailsStateDetails){
  * Provides two localized lines of text (each with max 40 characters) that can be displayed on screen suitable for the current status
  * @since 2.2.0
  */
-@property (strong, readonly, nonatomic) NSArray *information;
+@property (strong, readonly, nonatomic, nonnull) NSArray *information;
 
 /**
  * Holds the error thrown by the underlying components in case of a failure. Only populated in case of state == MPTransactionProcessDetailsStateFailed
  * @since 2.2.0
  */
-@property (strong, readonly, nonatomic) NSError *error;
+@property (strong, readonly, nonatomic, nullable) NSError *error;
 
 @end

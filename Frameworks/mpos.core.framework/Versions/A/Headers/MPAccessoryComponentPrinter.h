@@ -18,10 +18,11 @@
 #import "MPAccessoryComponent.h"
 #import "MPReceipt.h"
 
+
 @class MPAccessoryComponentPrinter;
 
-typedef void (^MPAccessoryComponentPrinterPrintSuccess)(MPAccessoryComponentPrinter *component, MPReceipt *receipt);
-typedef void (^MPAccessoryComponentPrinterPrintFailure)(MPAccessoryComponentPrinter *component, MPReceipt *receipt, NSError *error);
+typedef void (^MPAccessoryComponentPrinterPrintSuccess)(MPAccessoryComponentPrinter * _Nonnull component, MPReceipt * _Nonnull receipt);
+typedef void (^MPAccessoryComponentPrinterPrintFailure)(MPAccessoryComponentPrinter * _Nonnull component, MPReceipt * _Nonnull receipt, NSError * _Nonnull error);
 
 /**
  * State of printer accessory component.
@@ -66,9 +67,9 @@ typedef NS_ENUM(NSUInteger, MPAccessoryComponentPrinterState){
  * @param failure Printing receipt not successful
  * @since 2.4.0
  */
-- (void)printReceipt:(MPReceipt *)receipt
-             success:(MPAccessoryComponentPrinterPrintSuccess)success
-             failure:(MPAccessoryComponentPrinterPrintFailure)failure;
+- (void)printReceipt:(nonnull MPReceipt *)receipt
+             success:(nonnull MPAccessoryComponentPrinterPrintSuccess)success
+             failure:(nonnull MPAccessoryComponentPrinterPrintFailure)failure;
 
 
 

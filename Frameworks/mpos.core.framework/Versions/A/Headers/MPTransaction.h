@@ -15,6 +15,7 @@
 // LAWS AND INTERNATIONAL TREATIES.  THE RECEIPT OR POSSESSION OF  THIS SOURCE CODE AND/OR RELATED INFORMATION DOES NOT CONVEY OR IMPLY ANY RIGHTS
 // TO REPRODUCE, DISCLOSE OR DISTRIBUTE ITS CONTENTS, OR TO MANUFACTURE, USE, OR SELL ANYTHING THAT IT  MAY DESCRIBE, IN WHOLE OR IN PART.
 
+
 @class MPLocationDetails;
 @class MPPaymentDetails;
 @class MPProcessingDetails;
@@ -178,7 +179,7 @@ typedef NS_ENUM(NSUInteger, MPTransactionState)
  * The amount of the transaction.
  * @since 2.0.0
  */
-@property (strong, readonly, nonatomic) NSDecimalNumber *amount;
+@property (strong, readonly, nonatomic, nonnull) NSDecimalNumber *amount;
 
 /**
  * The currency used for the transaction.
@@ -190,7 +191,7 @@ typedef NS_ENUM(NSUInteger, MPTransactionState)
  * The subject line for the transaction.
  * @since 2.0.0
  */
-@property (strong, readonly, nonatomic) NSString *subject;
+@property (strong, readonly, nonatomic, nullable) NSString *subject;
 
 
 #pragma mark -
@@ -211,13 +212,13 @@ typedef NS_ENUM(NSUInteger, MPTransactionState)
  * The payment params used for the transaction.
  * @since 2.0.0
  */
-@property (strong, readonly, nonatomic) MPPaymentDetails *paymentDetails;
+@property (strong, readonly, nonatomic, nonnull) MPPaymentDetails *paymentDetails;
 
 /**
  * The refund params associated with the transaction.
  * @since 2.0.0
  */
-@property (strong, readonly, nonatomic) MPRefundDetails *refundDetails;
+@property (strong, readonly, nonatomic, nonnull) MPRefundDetails *refundDetails;
 
 
 #pragma mark -
@@ -233,7 +234,7 @@ typedef NS_ENUM(NSUInteger, MPTransactionState)
  * Additional details associated with the current status, providing more detailed information for the current status and debug information.
  * @since 2.0.0
  */
-@property (strong, readonly, nonatomic) MPStatusDetails *statusDetails;
+@property (strong, readonly, nonatomic, nullable) MPStatusDetails *statusDetails;
 
 
 /**
@@ -246,7 +247,7 @@ typedef NS_ENUM(NSUInteger, MPTransactionState)
  * If the transaction execution fails for any reason, this will contain the last error message. Otherwise nil.
  * @since 2.0.0
  */
-@property (strong, readonly, nonatomic) NSError *error;
+@property (strong, readonly, nonatomic, nullable) NSError *error;
 
 #pragma mark -
 #pragma mark Global References
@@ -256,40 +257,40 @@ typedef NS_ENUM(NSUInteger, MPTransactionState)
  * The (temporary) session that references the transaction.
  * @since 2.0.0
  */
-@property (strong, readonly, nonatomic) NSString *sessionIdentifier;
+@property (strong, readonly, nonatomic, nullable) NSString *sessionIdentifier;
 
 
 /**
  * The reference within our infrastructure to identify the transaction (payworks identifier).
  * @since 2.0.0
  */
-@property (strong, readonly, nonatomic) NSString *identifier;
+@property (strong, readonly, nonatomic, nullable) NSString *identifier;
 
 
 /**
  * A reference to a group of transactions that logically belong together.
  * @since 2.0.0
  */
-@property (strong, readonly, nonatomic) NSString *groupIdentifier;
+@property (strong, readonly, nonatomic, nullable) NSString *groupIdentifier;
 
 /**
  * A reference to a transaction that the current transaction is building up on.
  * @since 2.0.0
  */
 
-@property (strong, readonly, nonatomic) NSString *referencedTransactionIdentifier;
+@property (strong, readonly, nonatomic, nullable) NSString *referencedTransactionIdentifier;
 
 /**
  * An identifier that can be set by the developer/user. Must be in the range [0-9a-zA-Z]. This will normally be a reference to a order in your system.
  * @since 2.0.0
  */
-@property (strong, readonly, nonatomic) NSString *customIdentifier;
+@property (strong, readonly, nonatomic, nullable) NSString *customIdentifier;
 
 /**
  * Timestamp when the transaction was created. This timestamp will always be UTC.
  * @since 2.0.0
  */
-@property (strong, readonly, nonatomic) NSDate *created;
+@property (strong, readonly, nonatomic, nullable) NSDate *created;
 
 
 /**
@@ -307,14 +308,14 @@ typedef NS_ENUM(NSUInteger, MPTransactionState)
  * Location information on the current transaction
  * @since 2.0.0
  */
-@property (strong, nonatomic) MPLocationDetails *locationDetails;
+@property (strong, nonatomic, nullable) MPLocationDetails *locationDetails;
 
 
 /**
  * Information and identifiers returned by the processor.
  * @since 2.0.0
  */
-@property (strong, readonly, nonatomic) MPProcessingDetails *processingDetails;
+@property (strong, readonly, nonatomic, nonnull) MPProcessingDetails *processingDetails;
 
 
 @end

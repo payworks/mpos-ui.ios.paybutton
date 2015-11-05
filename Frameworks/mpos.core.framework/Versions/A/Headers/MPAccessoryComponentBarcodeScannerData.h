@@ -35,9 +35,9 @@ typedef NS_ENUM(NSUInteger, MPAccessoryComponentBarcodeScannerConfigurationBarco
 @interface MPAccessoryComponentBarcodeScannerData : NSObject
 
 @property (assign, nonatomic) MPAccessoryComponentBarcodeScannerConfigurationBarcodeType type;
-@property (strong, nonatomic) NSString *barcode;
+@property (strong, nonatomic, nullable) NSString *barcode;
 
-@property (strong, nonatomic) NSData *rawResponse;
-@property (strong, nonatomic) NSData *rawBarcode;
+@property (strong, nonatomic, nonnull) NSData *rawResponse;
+@property (strong, nonatomic, nonnull) NSData *rawBarcode;
 
 @end
