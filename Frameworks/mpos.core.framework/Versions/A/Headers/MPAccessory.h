@@ -64,6 +64,30 @@ typedef NS_ENUM(NSUInteger, MPAccessoryType){
     MPAccessoryTypeBBPOSChipper
 };
 
+/**
+ * The range of models you can to connect to during a checkout.
+ * @since 2.2.0
+ */
+typedef NS_ENUM(NSUInteger, MPAccessoryFamily){
+    /** Use a mock */
+    MPAccessoryFamilyMock,
+    
+    /** Use the Miura MPI devices  */
+    MPAccessoryFamilyMiuraMPI,
+    
+    /** Use the Verifone e-Series (except e105) */
+    MPAccessoryFamilyVerifoneESeries,
+    /** Use the Verifone e105 */
+    MPAccessoryFamilyVerifoneE105,
+    
+    /** Use the Sewoo printer */
+    MPAccessoryFamilySewoo,
+    
+    /** Use the BBPOS WisePad or WisePOS */
+    MPAccessoryFamilyBBPOS,
+    /** Use the BBPOS Chipper */
+    MPAccessoryFamilyBBPOSChipper
+};
 
 
 /**

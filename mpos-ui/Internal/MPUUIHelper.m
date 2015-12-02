@@ -26,7 +26,6 @@
 
 #import "MPUUIHelper.h"
 #import "MPUMposUi_Internal.h"
-#import "MPUTransactionParameters.h"
 #import <CoreText/CoreText.h>
 
 NSString *const MPUUIHelperFrameworkBundleName = @"mpos-ui-resources";
@@ -70,10 +69,10 @@ NSString *const MPUUIHelperFrameworkBundleName = @"mpos-ui-resources";
     return ![[string stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceAndNewlineCharacterSet]] length];
 }
 
-+ (NSString *)defaultControllerTitleBasedOnParameters:(MPUTransactionParameters *)parameters toolbox:(MPLocalizationToolbox *)toolbox {
++ (NSString *)defaultControllerTitleBasedOnParameters:(MPTransactionParameters *)parameters toolbox:(MPLocalizationToolbox *)toolbox {
     
     NSString *titlePrefix;
-    if (parameters.transactionIdentifier != nil){
+    if (parameters.referencedTransactionIdentifier != nil){
         titlePrefix = [MPUUIHelper localizedString:@"MPURefund"];
     }
     else {

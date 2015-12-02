@@ -30,7 +30,6 @@
 #import "MPUMposUi_Internal.h"
 #import "MPUMposUiConfiguration.h"
 #import "MPUMposUiAppearance.h"
-#import "MPUTransactionParameters.h"
 #import "MPUUIHelper.h"
 
 @interface MPUErrorController ()

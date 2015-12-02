@@ -26,7 +26,6 @@
 
 #import <UIKit/UIKit.h>
 #import <mpos.core/MPTransaction.h>
-#import "MPUTransactionParameters.h"
 @class MPLocalizationToolbox;
 
 #define IS_OS_8_OR_LATER    ([[[UIDevice currentDevice] systemVersion] floatValue] >= 8.0)
@@ -40,7 +39,7 @@
 
 + (BOOL)isStringEmpty:(NSString *)string;
 
-+ (NSString *)defaultControllerTitleBasedOnParameters:(MPUTransactionParameters *)parameters toolbox:(MPLocalizationToolbox *)toolbox;
++ (NSString *)defaultControllerTitleBasedOnParameters:(MPTransactionParameters *)parameters toolbox:(MPLocalizationToolbox *)toolbox;
 
 + (UIColor *)colorFromHexString:(NSString *)hexString;
 

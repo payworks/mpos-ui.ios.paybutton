@@ -193,6 +193,12 @@ typedef NS_ENUM(NSUInteger, MPTransactionState)
  */
 @property (strong, readonly, nonatomic, nullable) NSString *subject;
 
+/**
+ * An arbitrary string to be displayed on your customer's credit card statement.
+ * @since 2.4.7
+ */
+@property (strong, readonly, nonatomic, nonnull) NSString *statementDescriptor;
+
 
 #pragma mark -
 #pragma mark Transaction Setup (must be set manually)
@@ -301,9 +307,7 @@ typedef NS_ENUM(NSUInteger, MPTransactionState)
 - (BOOL)canBeAborted;
 
 #pragma mark -
-#pragma mark Customer and Receipt Information
-/** @name Customer and Receipt Information */
-
+#pragma mark Customer Information
 /**
  * Location information on the current transaction
  * @since 2.0.0

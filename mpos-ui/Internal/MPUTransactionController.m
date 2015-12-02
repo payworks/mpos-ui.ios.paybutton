@@ -29,7 +29,6 @@
 #import "MPUSummaryController.h"
 #import "MPUErrorController.h"
 #import "MPUMposUi_Internal.h"
-#import "MPUTransactionParameters.h"
 #import "MPUMposUiConfiguration.h"
 #import "MPUMposUiAppearance.h"
 #import "MPUApplicationSelectionController.h"
@@ -145,38 +144,24 @@
     };
 
 
-    if (self.parameters.sessionIdentifier) {
-        self.transactionProcess = [self.mposUi.transactionProvider startTransactionWithSessionIdentifier:self.parameters.sessionIdentifier
-                                                                                          usingAccessory:self.mposUi.configuration.terminalFamily
+    if (self.sessionIdentifier) {
+        self.transactionProcess = [self.mposUi.transactionProvider startTransactionWithSessionIdentifier:self.sessionIdentifier
+                                                                                     accessoryParameters:self.mposUi.configuration.terminalParameters
                                                                                            statusChanged:statusChanged
                                                                                           actionRequired:actionRequired
                                                                                                completed:completed];
 
-    } else if (self.parameters.transactionIdentifier){ //This is a refund
-        self.isRefund = YES;
-        MPTransactionTemplate* template = [self.mposUi.transactionProvider refundTransactionTemplateWithReferenceToPreviousTransaction:self.parameters.transactionIdentifier
-                                                                                                                               subject:self.parameters.subject
-                                                                                                                      customIdentifier:self.parameters.customIdentifier];
-        self.transactionProcess = [self.mposUi.transactionProvider startTransactionWithTemplate:template
-                                                                                 usingAccessory:self.mposUi.configuration.terminalFamily
+    } else  {
+        
+        self.transactionProcess = [self.mposUi.transactionProvider startTransactionWithParameters:self.parameters
+                                                                              accessoryParameters:self.mposUi.configuration.terminalParameters
                                                                                      registered:registered
                                                                                   statusChanged:statusChanged
                                                                                  actionRequired:actionRequired
                                                                                       completed:completed];
-    } else {
-        MPTransactionTemplate* template = [self.mposUi.transactionProvider chargeTransactionTemplateWithAmount:self.parameters.amount
-                                                                                                      currency:self.parameters.currency
-                                                                                                       subject:self.parameters.subject
-                                                                                              customIdentifier:self.parameters.customIdentifier];
-        self.transactionProcess = [self.mposUi.transactionProvider startTransactionWithTemplate:template
-                                                                                 usingAccessory:self.mposUi.configuration.terminalFamily
-                                                                                     registered:registered
-                                                                                  statusChanged:statusChanged
-                                                                                 actionRequired:actionRequired
-                                                                                      completed:completed];
-
     }
 }
+
 
 
 - (void)updateTransactionStatus:(MPTransactionProcessDetails *)details withTransaction:(MPTransaction *)transaction {

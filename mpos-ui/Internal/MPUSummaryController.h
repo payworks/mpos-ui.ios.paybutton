@@ -43,7 +43,8 @@
 @interface MPUSummaryController : MPUAbstractController<UIAlertViewDelegate>
 
 @property (nonatomic, strong) MPTransaction *transaction;
-@property (nonatomic, strong) MPUTransactionParameters *parameters;
+@property (nonatomic, strong) MPTransactionParameters *parameters;
+@property (nonatomic, copy) NSString *sessionIdentifier;
 @property (nonatomic, weak) id<MPUSummaryDelegate> delegate;
 
 @property (nonatomic, assign) BOOL retryEnabled;

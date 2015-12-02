@@ -100,7 +100,7 @@ NSString* const MPUSegueIdentifierTransaction_Login = @"txPushLogin";
         // so just want to swap view controller back in so that we dont lose state when the transactoin is ongoing.
         if (!self.transactionInProgress) {
             self.transactionViewController = segue.destinationViewController;
-            [self showTransaction:self.parameters];
+            [self showTransaction:self.parameters sessionIdentifier:self.sessionIdentifier];
         }
         [self swapToViewController:self.transactionViewController];
     }
@@ -162,10 +162,11 @@ NSString* const MPUSegueIdentifierTransaction_Login = @"txPushLogin";
     }
 }
 
-- (void)showTransaction:(MPUTransactionParameters *)parameters {
+- (void)showTransaction:(MPTransactionParameters *)parameters sessionIdentifier:(NSString*)sessionIdentifier {
     NSString *title = [MPUUIHelper defaultControllerTitleBasedOnParameters:self.parameters toolbox:self.mposUi.transactionProvider.localizationToolbox];
     [self.delegate titleChanged:title];
     self.transactionViewController.parameters = parameters;
+    self.transactionViewController.sessionIdentifier = sessionIdentifier;
     self.transactionViewController.delegate = self;
 }
 
@@ -197,6 +198,7 @@ NSString* const MPUSegueIdentifierTransaction_Login = @"txPushLogin";
     self.summaryViewController.refundEnabled = NO;
     self.summaryViewController.retryEnabled = YES;
     self.summaryViewController.parameters = self.parameters;
+    self.summaryViewController.sessionIdentifier = self.sessionIdentifier;
     self.summaryViewController.delegate = self;
 }
 

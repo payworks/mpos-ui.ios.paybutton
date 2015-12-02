@@ -23,21 +23,50 @@
  * @since 2.3.0
  */
 typedef NS_ENUM(NSUInteger, MPAccessoryComponentBarcodeScannerConfigurationBarcodeType) {
+    /** An unknown barcode */
     MPAccessoryComponentBarcodeScannerConfigurationBarcodeTypeUnknown = 0,
+    /** EAN barcode */
     MPAccessoryComponentBarcodeScannerConfigurationBarcodeTypeUpcEan,
+    /** Code39 barcode */
     MPAccessoryComponentBarcodeScannerConfigurationBarcodeTypeCode39,
+    /** Code 128 barcode */
     MPAccessoryComponentBarcodeScannerConfigurationBarcodeTypeCode128,
+    /** PDF417 barcode */
     MPAccessoryComponentBarcodeScannerConfigurationBarcodeTypePdf417,
+    /** QR code */
     MPAccessoryComponentBarcodeScannerConfigurationBarcodeTypeQr,
+    /** Invalid barcode scanned */
     MPAccessoryComponentBarcodeScannerConfigurationBarcodeTypeInvalid
 };
 
+/**
+ * Object that encapsulates information from a barcode scan.
+ * @since 2.4.2
+ */
 @interface MPAccessoryComponentBarcodeScannerData : NSObject
 
+/**
+ * The type of the barcode that was scanned.
+ * @since 2.4.2
+ */
 @property (assign, nonatomic) MPAccessoryComponentBarcodeScannerConfigurationBarcodeType type;
+
+/**
+ * The parsed barcode, if the barcode type is known.
+ * @since 2.4.2
+ */
 @property (strong, nonatomic, nullable) NSString *barcode;
 
+/**
+ * The raw response from the barcode hardware.
+ * @since 2.4.2
+ */
 @property (strong, nonatomic, nonnull) NSData *rawResponse;
+
+/**
+ * The raw barcode from the barcode hardware.
+ * @since 2.4.2
+ */
 @property (strong, nonatomic, nonnull) NSData *rawBarcode;
 
 @end

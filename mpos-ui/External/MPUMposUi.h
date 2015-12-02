@@ -28,9 +28,9 @@
 #import <UIKit/UIKit.h>
 #import <mpos.core/mpos-extended.h>
 
+@class MPUTransactionParameters;
 @class MPTransaction;
 @class MPUMposUiConfiguration;
-@class MPUTransactionParameters;
 @class MPUApplicationData;
 
 /**
@@ -181,9 +181,10 @@ typedef void (^MPULoginCompleted)(UIViewController * _Nonnull controller, MPULog
  * @param subject The subject for the transaction.
  * @param customIdentifier The custom identifier for the transaction.
  * @param completed Completed callback notifying about the completion of a transaction. The ViewController can be dismissed afterwards.
+ * @deprecated
  * @return The ViewController ready to be pushed for display.
  */
-- (nonnull UIViewController *)createChargeTransactionViewControllerWithAmount:(nonnull NSDecimalNumber *)amount currency:(MPCurrency)currency subject:(nullable NSString *)subject customIdentifier:(nullable NSString *)customIdentifier completed:(nonnull MPUTransactionCompleted)completed;
+- (nonnull UIViewController *)createChargeTransactionViewControllerWithAmount:(nonnull NSDecimalNumber *)amount currency:(MPCurrency)currency subject:(nullable NSString *)subject customIdentifier:(nullable NSString *)customIdentifier completed:(nonnull MPUTransactionCompleted)completed DEPRECATED_MSG_ATTRIBUTE("Use createTransactionViewControllerWithTransactionParameters:completed: instead");
 
 
 /**
@@ -192,9 +193,18 @@ typedef void (^MPULoginCompleted)(UIViewController * _Nonnull controller, MPULog
  * @param subject The subject for the transaction.
  * @param customIdentifier The custom identifier for the transaction.
  * @param completed Completed callback notifying about the completion of a transaction. The ViewController can be dismissed afterwards. 
+ * @deprecated		
  * @return The ViewController ready to be pushed for display.
  */
-- (nonnull UIViewController *)createRefundTransactionViewControllerWithTransactionIdentifer:(nonnull NSString *)transactionIndentifier subject:(nullable NSString *)subject customIdentifier:(nullable NSString *)customIdentifier completed:(nonnull MPUTransactionCompleted)completed;
+- (nonnull UIViewController *)createRefundTransactionViewControllerWithTransactionIdentifer:(nonnull NSString *)transactionIndentifier subject:(nullable NSString *)subject customIdentifier:(nullable NSString *)customIdentifier completed:(nonnull MPUTransactionCompleted)completed DEPRECATED_MSG_ATTRIBUTE("Use createTransactionViewControllerWithTransactionParameters:completed: instead");
+
+/**
+ * Creates an UIViewController that starts the transactions and updates its views accordingly.
+ * @param transactionParameters Parameters that describe the transaction to be started.
+ * @param completed Completed callback notifying about the completion of a transaction. The ViewController can be dismissed afterwards.
+ * @return The ViewController ready to be pushed for display.
+ */
+- (nonnull UIViewController *)createTransactionViewControllerWithTransactionParameters:(nonnull MPTransactionParameters*)transactionParameters completed:(nonnull MPUTransactionCompleted)completed;
 
 /**
  * Creates an UIViewController that starts the summary view for the transaction.

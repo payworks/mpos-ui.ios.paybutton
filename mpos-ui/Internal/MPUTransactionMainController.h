@@ -26,12 +26,12 @@
 
 #import <UIKit/UIKit.h>
 #import "MPUAbstractMainController.h"
-#import "MPUTransactionParameters.h"
 #import "MPUMposUi.h"
 
 @interface MPUTransactionMainController : MPUAbstractMainController
 
-@property (nonatomic, strong) MPUTransactionParameters *parameters;
+@property (nonatomic, strong) MPTransactionParameters *parameters;
+@property (nonatomic, copy) NSString *sessionIdentifier;
 @property (nonatomic, copy) MPUTransactionCompleted completed;
 
 @end

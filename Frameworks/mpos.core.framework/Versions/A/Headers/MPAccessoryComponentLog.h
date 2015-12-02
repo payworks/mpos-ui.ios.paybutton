@@ -20,12 +20,40 @@
 
 @class MPAccessoryComponentLog;
 
+/**
+ * Success handler for downloading a log.
+ * @param component The component itself.
+ * @param log The log that was downloaded.
+ * @since 2.4.5
+ */
 typedef void (^MPAccessoryComponentLogDownloadLogSuccess)(MPAccessoryComponentLog * _Nonnull component, NSData * _Nonnull log);
+/**
+ * Failure handler for downloading a log.
+ * @param component The component itself.
+ * @param error The error that occured.
+ * @since 2.4.5
+ */
 typedef void (^MPAccessoryComponentLogDownloadLogFailure)(MPAccessoryComponentLog * _Nonnull component, NSError * _Nonnull error);
 
+/**
+ * Success handler for deleting a log.
+ * @param component The component itself.
+ * @since 2.4.5
+ */
 typedef void (^MPAccessoryComponentLogDeleteLogSuccess)(MPAccessoryComponentLog * _Nonnull component);
+/**
+ * Failure handler for deleting a log.
+ * @param component The component itself.
+ * @param error The error that occured.
+ * @since 2.4.5
+ */
 typedef void (^MPAccessoryComponentLogDeleteLogFailure)(MPAccessoryComponentLog * _Nonnull component, NSError * _Nonnull error);
 
+
+/**
+ * Component interface for downloading logs from an accessory.
+ * @since 2.4.5
+ */
 @interface MPAccessoryComponentLog : MPAccessoryComponent
 
 /** 
@@ -33,7 +61,7 @@ typedef void (^MPAccessoryComponentLogDeleteLogFailure)(MPAccessoryComponentLog 
  * Please note that this command must not be executed while a transaction is ongoing. At the same time, do nt start a transaction while this command is still executing!
  * @param success The success callback for downloading the logs
  * @param failure The failure callback for downloading the logs
- * @since 2.5.0
+ * @since 2.4.5
  */
 - (void)downloadLogWithSuccess:(nonnull MPAccessoryComponentLogDownloadLogSuccess)success
                        failure:(nonnull MPAccessoryComponentLogDownloadLogFailure)failure;
@@ -43,7 +71,7 @@ typedef void (^MPAccessoryComponentLogDeleteLogFailure)(MPAccessoryComponentLog 
  * Please note that this command must not be executed while a transaction is ongoing. At the same time, do nt start a transaction while this command is still executing!
  * @param success The success callback for deleting the logs
  * @param failure The failure callback for deleting the logs
- * @since 2.5.0
+ * @since 2.4.5
  */
 - (void)deleteLogWithSuccess:(nonnull MPAccessoryComponentLogDeleteLogSuccess)success
                      failure:(nonnull MPAccessoryComponentLogDeleteLogFailure)failure;

@@ -54,7 +54,7 @@
 		44AEEBE21B58FACD00531369 /* MPUPrintReceiptMainController.m in Sources */ = {isa = PBXBuildFile; fileRef = 44AEEBE01B58FACD00531369 /* MPUPrintReceiptMainController.m */; };
 		44AEEBE51B58FB5600531369 /* MPUPrintReceiptContainerViewController.h in Headers */ = {isa = PBXBuildFile; fileRef = 44AEEBE31B58FB5600531369 /* MPUPrintReceiptContainerViewController.h */; };
 		44AEEBE61B58FB5600531369 /* MPUPrintReceiptContainerViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 44AEEBE41B58FB5600531369 /* MPUPrintReceiptContainerViewController.m */; };
-		44B3EE211BDFD8320089D194 /* mpos-ui.strings in Resources */ = {isa = PBXBuildFile; fileRef = 44B3EE1F1BDFD8320089D194 /* mpos-ui.strings */; settings = {ASSET_TAGS = (); }; };
+		44B3EE211BDFD8320089D194 /* mpos-ui.strings in Resources */ = {isa = PBXBuildFile; fileRef = 44B3EE1F1BDFD8320089D194 /* mpos-ui.strings */; };
 		44C6B0511B629C04004C988C /* mpos.core.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 44C6B0501B629C04004C988C /* mpos.core.framework */; };
 		44D986081B4C3E53006F2F62 /* MPUEmptySegue.h in Headers */ = {isa = PBXBuildFile; fileRef = 44D986061B4C3E53006F2F62 /* MPUEmptySegue.h */; };
 		44D986091B4C3E53006F2F62 /* MPUEmptySegue.m in Sources */ = {isa = PBXBuildFile; fileRef = 44D986071B4C3E53006F2F62 /* MPUEmptySegue.m */; };
@@ -88,8 +88,6 @@
 		F486831F1B0CBF880042FF15 /* MPUProgressView.m in Sources */ = {isa = PBXBuildFile; fileRef = F48683101B0CBF880042FF15 /* MPUProgressView.m */; };
 		F48683201B0CBF880042FF15 /* MPUSendReceiptController.h in Headers */ = {isa = PBXBuildFile; fileRef = F48683111B0CBF880042FF15 /* MPUSendReceiptController.h */; };
 		F48683211B0CBF880042FF15 /* MPUSendReceiptController.m in Sources */ = {isa = PBXBuildFile; fileRef = F48683121B0CBF880042FF15 /* MPUSendReceiptController.m */; };
-		F48683261B0CBF970042FF15 /* MPUTransactionParameters.h in Headers */ = {isa = PBXBuildFile; fileRef = F48683221B0CBF970042FF15 /* MPUTransactionParameters.h */; };
-		F48683271B0CBF970042FF15 /* MPUTransactionParameters.m in Sources */ = {isa = PBXBuildFile; fileRef = F48683231B0CBF970042FF15 /* MPUTransactionParameters.m */; };
 		F48683281B0CBF970042FF15 /* MPUUIHelper.h in Headers */ = {isa = PBXBuildFile; fileRef = F48683241B0CBF970042FF15 /* MPUUIHelper.h */; };
 		F48683291B0CBF970042FF15 /* MPUUIHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = F48683251B0CBF970042FF15 /* MPUUIHelper.m */; };
 		F486832B1B0CC0A10042FF15 /* MPUMposUi.h in Headers */ = {isa = PBXBuildFile; fileRef = F486832A1B0CC0A10042FF15 /* MPUMposUi.h */; settings = {ATTRIBUTES = (Public, ); }; };
@@ -229,8 +227,6 @@
 		F48683101B0CBF880042FF15 /* MPUProgressView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = MPUProgressView.m; path = Internal/MPUProgressView.m; sourceTree = SOURCE_ROOT; };
 		F48683111B0CBF880042FF15 /* MPUSendReceiptController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = MPUSendReceiptController.h; path = Internal/MPUSendReceiptController.h; sourceTree = SOURCE_ROOT; };
 		F48683121B0CBF880042FF15 /* MPUSendReceiptController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = MPUSendReceiptController.m; path = Internal/MPUSendReceiptController.m; sourceTree = SOURCE_ROOT; };
-		F48683221B0CBF970042FF15 /* MPUTransactionParameters.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = MPUTransactionParameters.h; path = Internal/MPUTransactionParameters.h; sourceTree = SOURCE_ROOT; };
-		F48683231B0CBF970042FF15 /* MPUTransactionParameters.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; lineEnding = 0; name = MPUTransactionParameters.m; path = Internal/MPUTransactionParameters.m; sourceTree = SOURCE_ROOT; xcLanguageSpecificationIdentifier = xcode.lang.objc; };
 		F48683241B0CBF970042FF15 /* MPUUIHelper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = MPUUIHelper.h; path = Internal/MPUUIHelper.h; sourceTree = SOURCE_ROOT; };
 		F48683251B0CBF970042FF15 /* MPUUIHelper.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; lineEnding = 0; name = MPUUIHelper.m; path = Internal/MPUUIHelper.m; sourceTree = SOURCE_ROOT; xcLanguageSpecificationIdentifier = xcode.lang.objc; };
 		F486832A1B0CC0A10042FF15 /* MPUMposUi.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = MPUMposUi.h; path = External/MPUMposUi.h; sourceTree = SOURCE_ROOT; };
@@ -466,8 +462,6 @@
 		F48682C61B0CBBAC0042FF15 /* Util */ = {
 			isa = PBXGroup;
 			children = (
-				F48683221B0CBF970042FF15 /* MPUTransactionParameters.h */,
-				F48683231B0CBF970042FF15 /* MPUTransactionParameters.m */,
 				F48683241B0CBF970042FF15 /* MPUUIHelper.h */,
 				F48683251B0CBF970042FF15 /* MPUUIHelper.m */,
 				44D986061B4C3E53006F2F62 /* MPUEmptySegue.h */,
@@ -559,7 +553,6 @@
 				4461B25B1B973BA700EE55AF /* MPUSettingsContainerViewController.h in Headers */,
 				44E9181A1B4BE47C0085FB8E /* MPUTransactionContainerViewController.h in Headers */,
 				F486832B1B0CC0A10042FF15 /* MPUMposUi.h in Headers */,
-				F48683261B0CBF970042FF15 /* MPUTransactionParameters.h in Headers */,
 				4461B2601B973C6700EE55AF /* MPUSettingsMainController.h in Headers */,
 				F48683151B0CBF880042FF15 /* MPUApplicationSelectionController.h in Headers */,
 				F48683171B0CBF880042FF15 /* MPUErrorController.h in Headers */,
@@ -791,7 +784,6 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				F48683271B0CBF970042FF15 /* MPUTransactionParameters.m in Sources */,
 				4461B2611B973C6700EE55AF /* MPUSettingsMainController.m in Sources */,
 				4479656B1B1EF74600CB540E /* MPUPrintReceiptController.m in Sources */,
 				4461B2661B98888200EE55AF /* MPULoginMainController.m in Sources */,
@@ -1005,6 +997,9 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = A6420FC34248B24BC042BFE6 /* Pods.debug.xcconfig */;
 			buildSettings = {
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_OBJC_IMPLICIT_ATOMIC_PROPERTIES = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)/../Frameworks",
@@ -1014,6 +1009,10 @@
 					"DEBUG=1",
 					"$(inherited)",
 				);
+				GCC_WARN_ABOUT_MISSING_FIELD_INITIALIZERS = YES;
+				GCC_WARN_ABOUT_MISSING_PROTOTYPES = YES;
+				GCC_WARN_INITIALIZER_NOT_FULLY_BRACKETED = YES;
+				GCC_WARN_UNUSED_LABEL = YES;
 				OTHER_LDFLAGS = "$(inherited)";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SKIP_INSTALL = YES;
@@ -1024,11 +1023,18 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = 6747BEB343793F87F2CCCF64 /* Pods.release.xcconfig */;
 			buildSettings = {
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_OBJC_IMPLICIT_ATOMIC_PROPERTIES = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)/../Frameworks",
 				);
 				GCC_PREFIX_HEADER = "Resources/mpos-ui.pch";
+				GCC_WARN_ABOUT_MISSING_FIELD_INITIALIZERS = YES;
+				GCC_WARN_ABOUT_MISSING_PROTOTYPES = YES;
+				GCC_WARN_INITIALIZER_NOT_FULLY_BRACKETED = YES;
+				GCC_WARN_UNUSED_LABEL = YES;
 				OTHER_LDFLAGS = "$(inherited)";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SKIP_INSTALL = YES;

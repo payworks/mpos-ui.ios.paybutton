@@ -23,7 +23,9 @@
 /**
  * The transaction temnplate factory is used to create a new transaction template that can be used to create a new transaction via the MPServerSubsystem additions.
  * @since 2.0.0
+ * @deprecated 2.5.0
  */
+DEPRECATED_MSG_ATTRIBUTE("Use MPTransactionParameters instead")
 @interface MPTransactionTemplateFactory : NSObject
 
 /**

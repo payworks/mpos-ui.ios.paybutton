@@ -18,11 +18,14 @@
 #import "MPTransaction.h"
 
 
+@class MPTransactionTemplateDetails;
 /**
  * A template describing the initial parameters or a transaction.
  * The template is used to register a transaction via the MPServerSubsystem category.
  * @since 2.0.0
+ * @deprecated 2.5.0
  */
+DEPRECATED_MSG_ATTRIBUTE("Use MPTransactionParameters instead")
 @interface MPTransactionTemplate : NSObject
 
 /**
@@ -50,6 +53,13 @@
 @property (strong, readonly, nonatomic, nullable) NSString *subject;
 
 /**
+ * An arbitrary string to be displayed on your customer's credit card statement.
+ * @note Certain limitations may apply. Please check the documentation related to the aquirers you are working with.
+ * @since 2.4.9
+ */
+@property (strong, nonatomic, nonnull) NSString *statementDescriptor;
+
+/**
  * An (optional) custom identifier, that can be used to reference transaction to your internal system.
  * Valid range is ([A-Z][a-z][0-9])*{0,256}.
  * @since 2.0.0
@@ -63,10 +73,17 @@
  */
 @property (strong, readonly, nonatomic, nullable) NSString *referencedTransactionIdentifier;
 
-/*
+/**
  * A reference to the custom Identifier of a previous transaction
  * @since 2.4.0
  */
 @property (strong, readonly, nonatomic, nullable) NSString *referencedCustomIdentifier;
+
+/**
+ * Details for a transaction template which can be required by different aquirers.
+ * Please check the documentation related to the aquirers you are working with.
+ * @since 2.4.9
+ */
+@property (strong, readonly, nonatomic, nonnull) MPTransactionTemplateDetails *details;
 
 @end

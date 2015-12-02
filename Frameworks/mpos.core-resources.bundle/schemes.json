@@ -4,15 +4,15 @@
         "bins": {
             "excluded": [],
             "included": [
-                [
-                    340000,
-                    349999
-                ],
-                [
-                    370000,
-                    379999
-                ]
-            ]
+                         [
+                          340000,
+                          349999
+                          ],
+                         [
+                          370000,
+                          379999
+                          ]
+                         ]
         },
         "gateway": {
             "brand": "AMEX",
@@ -21,15 +21,58 @@
         "magstripeSupported": true,
         "name": "American Express"
     },
-    "DINERS": {
-        "aid": "A000000152",
+    "UNION_PAY": {
+        "aid": "A000000333010102",
         "bins": {
             "excluded": [],
-            "included": []
+            "included": [
+                         [
+                          62212600,
+                          62299800
+                          ],
+                         [
+                          62400000,
+                          62699999
+                          ],
+                         [
+                          62820000,
+                          62889999
+                          ]
+                         ]
+        },
+        "gateway": {
+            "brand": "CHINAUNIONPAY",
+            "method": "CC"
+        },
+        "magstripeSupported": true,
+        "name": "Union Pay"
+    },
+    "DINERS": {
+        "aid": "A0000001523010",
+        "bins": {
+            "excluded": [],
+            "included": [
+                         [
+                          30000000,
+                          30599999
+                          ],
+                         [
+                          30950000,
+                          30959999
+                          ],
+                         [
+                          36000000,
+                          36999999
+                          ],
+                         [
+                          38000000,
+                          39999999
+                          ]
+                         ]
         },
         "gateway": {
             "brand": "DINERS",
-            "method": "__"
+            "method": "CC"
         },
         "magstripeSupported": true,
         "name": "Diners Club"
@@ -48,14 +91,19 @@
         "name": "Discover"
     },
     "JCB": {
-        "aid": "A000000065",
+        "aid": "A0000000651010",
         "bins": {
             "excluded": [],
-            "included": []
+            "included": [
+                         [
+                          35280000,
+                          35899999
+                          ]
+                         ]
         },
         "gateway": {
             "brand": "JCB",
-            "method": "__"
+            "method": "CC"
         },
         "magstripeSupported": true,
         "name": "JCB"
@@ -64,45 +112,45 @@
         "aid": "A0000000043060",
         "bins": {
             "excluded": [
-                [
-                    601100,
-                    601109
-                ],
-                [
-                    601120,
-                    601149
-                ],
-                [
-                    601174,
-                    601174
-                ],
-                [
-                    601177,
-                    601179
-                ],
-                [
-                    601186,
-                    601199
-                ],
-                [
-                    644000,
-                    649999
-                ],
-                [
-                    650000,
-                    659999
-                ]
-            ],
+                         [
+                          601100,
+                          601109
+                          ],
+                         [
+                          601120,
+                          601149
+                          ],
+                         [
+                          601174,
+                          601174
+                          ],
+                         [
+                          601177,
+                          601179
+                          ],
+                         [
+                          601186,
+                          601199
+                          ],
+                         [
+                          644000,
+                          649999
+                          ],
+                         [
+                          650000,
+                          659999
+                          ]
+                         ],
             "included": [
-                [
-                    500000,
-                    509999
-                ],
-                [
-                    560000,
-                    699999
-                ]
-            ]
+                         [
+                          500000,
+                          509999
+                          ],
+                         [
+                          560000,
+                          699999
+                          ]
+                         ]
         },
         "gateway": {
             "brand": "MAESTRO",
@@ -116,11 +164,15 @@
         "bins": {
             "excluded": [],
             "included": [
-                [
-                    510000,
-                    559999
-                ]
-            ]
+                         [
+                          222100,
+                          272099
+                          ],
+                         [
+                          510000,
+                          559999
+                          ]
+                         ]
         },
         "gateway": {
             "brand": "MASTER",
@@ -129,29 +181,16 @@
         "magstripeSupported": true,
         "name": "MasterCard"
     },
-    "UNION_PAY": {
-        "aid": "A000000333",
-        "bins": {
-            "excluded": [],
-            "included": []
-        },
-        "gateway": {
-            "brand": "__",
-            "method": "__"
-        },
-        "magstripeSupported": true,
-        "name": "Union Pay"
-    },
     "VISA": {
         "aid": "A0000000031010",
         "bins": {
             "excluded": [],
             "included": [
-                [
-                    400000,
-                    499999
-                ]
-            ]
+                         [
+                          400000,
+                          499999
+                          ]
+                         ]
         },
         "gateway": {
             "brand": "VISA",

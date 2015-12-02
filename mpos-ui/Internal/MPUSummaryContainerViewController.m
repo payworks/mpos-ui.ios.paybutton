@@ -25,7 +25,6 @@
  */
 
 #import "MPUSummaryContainerViewController.h"
-#import "MPUTransactionParameters.h"
 #import "MPUUIHelper.h"
 
 NSString* const MPUSegueIdentifierSummary_LoadTransaction = @"smPushLoad";
@@ -190,7 +189,9 @@ NSString* const MPUSegueIdentifierSummary_Login = @"smPushLogin";
 }
 
 - (void)showRefundTransaction:(NSString *)transactionIdentifier {
-    UIViewController *viewController = [self.mposUi createRefundTransactionViewControllerWithTransactionIdentifer:transactionIdentifier subject:nil customIdentifier:nil completed:^(UIViewController *controller, MPUTransactionResult result, MPTransaction *transaction) {
+    
+    MPTransactionParameters *transactionParameters = [MPTransactionParameters refundForTransactionIdentifier:transactionIdentifier optionals:nil];
+    UIViewController *viewController = [self.mposUi createTransactionViewControllerWithTransactionParameters:transactionParameters completed:^(UIViewController * controller, MPUTransactionResult result, MPTransaction * transaction) {
         self.completed(self);
     }];
     

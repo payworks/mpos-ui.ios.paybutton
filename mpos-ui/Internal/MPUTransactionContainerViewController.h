@@ -44,7 +44,8 @@
                                                                                         MPULoadTransactionDelegate,
                                                                                         MPULoginDelegate>
 
-@property (nonatomic, strong) MPUTransactionParameters *parameters;
+@property (nonatomic, strong) MPTransactionParameters *parameters;
+@property (nonatomic, copy) NSString *sessionIdentifier;
 @property (nonatomic, copy) MPUTransactionCompleted completed;
 
 @end

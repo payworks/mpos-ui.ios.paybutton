@@ -21,7 +21,9 @@
 /**
  * Options that will be provided for opening a connection.
  * @since 2.0.0
+ * @deprecated 2.5.0
  */
+DEPRECATED_MSG_ATTRIBUTE("Use MPAccessoryParameters instead!")
 @interface MPAccessoryOptions : NSObject
 
 /**

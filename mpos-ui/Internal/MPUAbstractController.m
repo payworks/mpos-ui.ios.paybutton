@@ -30,7 +30,6 @@
 #import "MPUMposUi.h"
 
 #import "MPUUIHelper.h"
-#import "MPUTransactionParameters.h"
 
 
 @implementation MPUAbstractController

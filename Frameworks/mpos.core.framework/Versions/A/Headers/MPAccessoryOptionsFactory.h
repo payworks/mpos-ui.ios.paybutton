@@ -24,11 +24,13 @@
 /**
  * Factory able to create new accessory options. Those options are used to connect to a new accessory.
  * @since 2.0.0
+ * @deprecated 2.5.0
  */
+DEPRECATED_MSG_ATTRIBUTE("Use MPAccessoryParameters instead!")
 @interface MPAccessoryOptionsFactory : NSObject
 
 /**
- * Creates new accessory options for a device connected via as an External Accessory.
+ * Creates new accessory options for a device connected as an External Accessory.
  * @param type The type of device you want to connect to
  * @param protocol The protocol used by the device (e.g. com.miura.shuttle)
  * @param prefix A prefix for selecting the appropriate device if multiple are available
@@ -37,6 +39,7 @@
  * @since 2.0.0
  */
 - (nonnull MPAccessoryOptions *)externalAccessoryOptionsWithType:(MPAccessoryType)type protocol:(nonnull NSString *)protocol namePrefix:(nullable NSString *)prefix;
+
 
 /**
  * Creates new accessory options for a device connected via th audio jack.

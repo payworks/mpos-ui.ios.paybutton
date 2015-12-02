@@ -27,7 +27,6 @@
 @class MPTransactionProvider;
 @class MPAccessory;
 @class MPTransactionProcessDetails;
-@class MPReceiptFactory;
 
 /**
  * Callback indicating a successful registration of the transaction and provides access it. Save the .sessionIdentifier or .identifier to query the status in case of an error or application termination.
@@ -95,12 +94,6 @@ typedef void (^MPTransactionProcessCompleted)(MPTransactionProcess * _Nonnull tr
  */
 @property (strong, readonly, nonatomic, nonnull) MPTransactionProcessDetails *details;
 
-
-/**
- * The factory to generate transaction receipts for the customer and merchant;
- * @since 2.2.0
- */
-@property (strong, readonly, nonatomic, nonnull) MPReceiptFactory *receiptFactory;
 
 /**
  * Continues a transaction with a signature after a respective actionRequired callback was called.

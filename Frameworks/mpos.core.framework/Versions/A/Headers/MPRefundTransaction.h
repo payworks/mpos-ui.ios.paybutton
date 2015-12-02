@@ -17,7 +17,10 @@
 
 #import "MPTransaction.h"
 
-
+/**
+ * Object grouping some details about the associated refunds for a transaction.
+ * @since 2.4.1
+ */
 @interface MPRefundTransaction : NSObject
 
 /**

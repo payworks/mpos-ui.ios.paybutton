@@ -70,8 +70,9 @@
 
 - (void)startPrinting {
     DDLogDebug(@"TransactionID:%@",self.transactionIdentifer);
-    MPAccessoryFamily printerFamily = self.mposUi.configuration.printerFamily;
-    self.printingProcess = [self.mposUi.transactionProvider printCustomerReceiptForTransactionIdentifier:self.transactionIdentifer usingAccessory:printerFamily statusChanged:^(MPPrintingProcess *printingProcess, MPTransaction *transaction, MPPrintingProcessDetails *details) {
+    
+    MPAccessoryParameters *printerParameters = self.mposUi.configuration.printerParameters;
+    self.printingProcess = [self.mposUi.transactionProvider printCustomerReceiptForTransactionIdentifier:self.transactionIdentifer accessoryParameters:printerParameters statusChanged:^(MPPrintingProcess *printingProcess, MPTransaction *transaction, MPPrintingProcessDetails *details) {
         
             [self updatePrintStatus:details];
         

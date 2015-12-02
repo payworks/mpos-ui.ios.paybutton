@@ -19,6 +19,7 @@
 
 
 @class MPTransactionTemplate;
+@class MPTransactionParameters;
 @class MPTransactionTemplateFactory;
 
 /**
@@ -55,7 +56,17 @@ typedef void (^MPTransactionCreateFailure)(NSError * _Nonnull error);
  * @param failure The failure handler called when an error occured during registration
  * @throws NSException If the parameters are invalid
  * @since 2.0.0
+ * @deprecated 2.5.0
  */
-- (void)registerTransactionWithTemplate:(nonnull MPTransactionTemplate *)template success:(nonnull MPTransactionCreateSuccess)success failure:(nonnull MPTransactionCreateFailure)failure;
+- (void)registerTransactionWithTemplate:(nonnull MPTransactionTemplate *)template success:(nonnull MPTransactionCreateSuccess)success failure:(nonnull MPTransactionCreateFailure)failure DEPRECATED_MSG_ATTRIBUTE("Use registerTransactionWithParameters:success:failure: instead!");
 
+/**
+ * Registers a new transaction that can then be used to complete a transaction. This step is normally done via a direct server-to-server call but is exposed for testing and rapid prototyping applications.
+ * @param parameters The parameters to use to create the transaction
+ * @param success The success handler called when the transaction was registered successfully
+ * @param failure The failure handler called when an error occured during registration
+ * @throws NSException If the parameters are invalid
+ * @since 2.5.0
+ */
+- (void)registerTransactionWithParameters:(nonnull MPTransactionParameters *)parameters success:(nonnull MPTransactionCreateSuccess)success failure:(nonnull MPTransactionCreateFailure)failure;
 @end

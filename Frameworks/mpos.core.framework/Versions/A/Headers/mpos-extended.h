@@ -18,6 +18,7 @@
 #import "mpos.h"
 #import "MPProvider+Extended.h"
 #import "MPTransactionTemplate.h"
+#import "MPTransactionTemplateDetails.h"
 #import "MPTransactionTemplateFactory.h"
 #import "MPMpos+Extended.h"
 #import "MPMockConfiguration.h"

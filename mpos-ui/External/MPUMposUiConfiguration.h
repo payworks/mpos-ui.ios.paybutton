@@ -68,12 +68,25 @@ typedef NS_OPTIONS(NSUInteger, MPUMposUiConfigurationSummaryFeature) {
 /**
  * The accessory family that will be used for the transaction.
  */
-@property (nonatomic, assign) MPAccessoryFamily terminalFamily;
+@property (nonatomic, assign) MPAccessoryFamily terminalFamily DEPRECATED_MSG_ATTRIBUTE("Use terminalParameters instead!");
+
+
+/**
+ * The accessory parameters that will be used for the transaction.
+ */
+@property (nonatomic, strong, nonnull) MPAccessoryParameters *terminalParameters;
+
 
 /**
  * The accessory family that will be used for the printer.
  */
-@property (nonatomic, assign) MPAccessoryFamily printerFamily;
+@property (nonatomic, assign) MPAccessoryFamily printerFamily DEPRECATED_MSG_ATTRIBUTE("Use printerParameters instead!");
+
+
+/**
+ * The accessory parameters that will be used for the printer.
+ */
+@property (nonatomic, strong, nonnull) MPAccessoryParameters *printerParameters;
 
 /**
  * The appearance that will be used for the transaction.

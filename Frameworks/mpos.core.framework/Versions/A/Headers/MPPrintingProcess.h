@@ -18,13 +18,11 @@
 #import "MPTransaction.h"
 #import "MPProvider.h"
 
-
 @class MPTransaction;
 @class MPTransactionProvider;
 @class MPPrintingProcess;
 @class MPPrintingProcessDetails;
 @class MPAccessory;
-@class MPReceiptFactory;
 
 /**
  * Indicates a status change of the overall process and provides information about whats happening with process.

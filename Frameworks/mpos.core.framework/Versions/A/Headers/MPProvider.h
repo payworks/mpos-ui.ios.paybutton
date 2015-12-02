@@ -29,8 +29,9 @@
 @class MPAccessoryOptions;
 @class MPTransactionActionResponse;
 @class MPTransactionActionResponseFactory;
-@class MPReceiptFactory;
 @class MPTransactionTemplate;
+@class MPTransactionParameters;
+@class MPAccessoryParameters;
 
 /**
  * Success handler for connecting to an accessory (e.g. PED or a printer).
@@ -207,8 +208,17 @@ typedef void (^MPRefundTransactionWithoutCardDeclined)(MPTransaction * _Nonnull 
  * @param transactionTemplate The transaction template that should have been refunded
  * @param error The error that occured while refunding the transaction
  * @since 2.3.0
+ * @deprecated 2.5.0
  */
-typedef void (^MPRefundTransactionWithoutCardFailure)(MPTransactionTemplate * _Nonnull transactionTemplate, NSError * _Nonnull error);
+typedef void (^MPRefundTransactionWithoutCardFailure)(MPTransactionTemplate * _Nonnull transactionTemplate, NSError * _Nonnull error) DEPRECATED_ATTRIBUTE;
+
+/**
+ * Handler indicating an error during an attempted refund without card. If this is called, the transaction was NOT refunded:
+ * @param transactionParameters The transaction parameters that should have been refunded
+ * @param error The error that occured while refunding the transaction
+ * @since 2.5.0
+ */
+typedef void (^MPRefundTransactionParamsWithoutCardFailure)(MPTransactionParameters * _Nonnull transactionParameters, NSError * _Nonnull error);
 
 /**
  * Success handler for sending a receipt via email.
@@ -285,21 +295,15 @@ typedef NS_ENUM(NSUInteger, MPProviderMode){
 /**
  * Returns a factory that must be used to generate the accessory options.
  * @since 2.0.0
+ * @deprecated 2.5.0
  */
-
-@property (strong, readonly, nonatomic, nonnull) MPAccessoryOptionsFactory *accessoryOptionsFactory;
+@property (strong, readonly, nonatomic, nonnull) MPAccessoryOptionsFactory *accessoryOptionsFactory DEPRECATED_MSG_ATTRIBUTE("Use MPAccessoryParameters instead");
 
 /**
  * Returns a factory that must be used to generate action responses during transactions.
  * @since 2.0.0
  */
 @property (strong, readonly, nonatomic, nonnull) MPTransactionActionResponseFactory *transactionActionResponseFactory;
-
-/**
- * Returns a factory that must be used to generate receipts.
- * @since 2.0.0
- */
-@property (strong, readonly, nonatomic, nonnull) MPReceiptFactory *receiptFactory DEPRECATED_ATTRIBUTE;
 
 /**
  * Returns a set containing all accessories that are currently handled by the provider (either connected/disconnected/not in range).
@@ -326,8 +330,21 @@ typedef NS_ENUM(NSUInteger, MPProviderMode){
  * @param failure The failure handler called when no connection is possible
  * @throws NSException If the options are invalid
  * @since 2.0.0
+ * @deprecated 2.5.0
  */
-- (void)connectToAccessory:(nonnull MPAccessoryOptions *)options success:(nonnull MPAccessoryConnectSuccess)success failure:(nonnull MPAccessoryConnectFailure)failure;
+- (void)connectToAccessory:(nonnull MPAccessoryOptions *)options success:(nonnull MPAccessoryConnectSuccess)success failure:(nonnull MPAccessoryConnectFailure)failure DEPRECATED_MSG_ATTRIBUTE("Use connectToAccessoryWithParameters:success:failure: instead!");
+
+
+/**
+ * Connects to an accessory with the given parameters.
+ * @param parameters The options to be used for the connection effort
+ * @param success The success handler called when the connection is made
+ * @param failure The failure handler called when no connection is possible
+ * @throws NSException If the options are invalid
+ * @since 2.5.0
+ */
+- (void)connectToAccessoryWithParameters:(nonnull MPAccessoryParameters *)parameters success:(nonnull MPAccessoryConnectSuccess)success failure:(nonnull MPAccessoryConnectFailure)failure;
+
 
 /**
  * Checks if an update for the given accessory is available and must be installed before a transaction can take place.
@@ -398,8 +415,8 @@ typedef NS_ENUM(NSUInteger, MPProviderMode){
 - (void)lookupTransactionWithTransactionIdentifier:(nonnull NSString *)identifier success:(nonnull MPTransactionLookupSuccess)success failure:(nonnull MPTransactionLookupFailure)failure;
 
 /**
- * Queries previous transactions (including state).
- * @param customIdentifier
+ * Queries previous transactions (including state). If multiple transactions have the same customIdentifier, an arbitrary one will be returned, so make sure to use unique customIdentifiers.
+ * @param customIdentifier The custom identifier of the transaction
  * @param success The success handler called when the transaction lookup was successful
  * @param failure The failure handler called when the lookup failed
  * @throws NSException If the identifier is invalid
@@ -475,8 +492,20 @@ typedef NS_ENUM(NSUInteger, MPProviderMode){
  * @param failure The failure handler called when the refund failed
  * @throws NSException If the transation is invalid
  * @since 2.3.0
+ * @deprecated 2.5.0
  */
-- (void)refundTransactionWithoutCardForTemplate:(nonnull MPTransactionTemplate *)transactionTemplate approved:(nonnull MPRefundTransactionWithoutCardApproved)approved declined:(nonnull MPRefundTransactionWithoutCardDeclined)declined failure:(nonnull MPRefundTransactionWithoutCardFailure)failure;
+- (void)refundTransactionWithoutCardForTemplate:(nonnull MPTransactionTemplate *)transactionTemplate approved:(nonnull MPRefundTransactionWithoutCardApproved)approved declined:(nonnull MPRefundTransactionWithoutCardDeclined)declined failure:(nonnull MPRefundTransactionWithoutCardFailure)failure DEPRECATED_MSG_ATTRIBUTE("Use refundTransactionWithoutCardForParameters:approved:declined:failure: instead!");
+
+/**
+ * Refunds a transaction with the given parameters
+ * @param transactionParameters The transaction parameters for refunding
+ * @param approved The approved handler called when the refund was approved
+ * @param declined The declined handler called when the refund was declined
+ * @param failure The failure handler called when the refund failed
+ * @throws NSException If the transation is invalid
+ * @since 2.5.0
+ */
+- (void)refundTransactionWithoutCardForParameters:(nonnull MPTransactionParameters *)transactionParameters approved:(nonnull MPRefundTransactionWithoutCardApproved)approved declined:(nonnull MPRefundTransactionWithoutCardDeclined)declined failure:(nonnull MPRefundTransactionParamsWithoutCardFailure)failure;
 
 /**
  * Queries a receipt for a given transaction.

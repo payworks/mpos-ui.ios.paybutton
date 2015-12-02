@@ -36,7 +36,7 @@
     {
         return nil;
     }
-    NSDictionary *applicationDictionary = [self plistPathForApplicaiton:applicationName];
+    NSDictionary *applicationDictionary = [self plistPathForApplication:applicationName];
     self.applicationName = applicationName;
     self.identifier = [applicationDictionary objectForKey:@"applicationIdentifier"];
     self.helpUrl = [self generateHelpUrl];
@@ -46,15 +46,15 @@
     self.configuration.appearance.navigationBarTextColor =  [MPUUIHelper colorFromHexString:[applicationDictionary objectForKey:@"navigationBarTextColor"]];
     self.configuration.appearance.navigationBarTint = [MPUUIHelper colorFromHexString:[applicationDictionary objectForKey:@"navigationBarTint"]];
     self.configuration.appearance.backgroundColor = [MPUUIHelper colorFromHexString:[applicationDictionary objectForKey:@"backgroundColor"]];
-    self.configuration.printerFamily = [self printerFamily:[applicationDictionary objectForKey:@"printerFamily"]];
-    self.configuration.terminalFamily = [self terminalFamily:[applicationDictionary objectForKey:@"terminalFamily"]];
+    self.configuration.printerParameters = [self printerParametersForFamily:[applicationDictionary objectForKey:@"printerFamily"]];
+    self.configuration.terminalParameters = [self terminalParametersForFamily:[applicationDictionary objectForKey:@"terminalFamily"]];
     self.configuration.summaryFeatures = [self summaryFeatures:applicationDictionary];
     self.configuration.signatureCapture = MPUMposUiConfigurationSignatureCaptureOnScreen;
     
     return self;
 }
 
-- (NSDictionary *)plistPathForApplicaiton:(MPUApplicationName) applicationName {
+- (NSDictionary *)plistPathForApplication:(MPUApplicationName) applicationName {
     NSString *plistPath = nil;
     switch (applicationName) {
         case MPUApplicationNameMcashier:
@@ -90,21 +90,36 @@
     }
 }
 
-- (MPAccessoryFamily)printerFamily:(NSString *)printer {
-    if([printer isEqualToString:@"Sewoo"]) {
-        return MPAccessoryFamilySewoo;
+
+- (MPAccessoryParameters*)printerParametersForFamily:(NSString*)printer {
+    
+    MPAccessoryParameters *accessoryParameters = nil;
+    
+    if ([printer isEqualToString:@"Sewoo"]) {
+        accessoryParameters = [MPAccessoryParameters externalAccessoryParametersWithFamily:MPAccessoryFamilySewoo protocol:@"com.mobileprinter.datapath" optionals:nil];
+    } else {
+        accessoryParameters = [MPAccessoryParameters mockAccessoryParameters];
     }
-    return MPAccessoryFamilyMock;
+    
+    return accessoryParameters;
 }
 
-- (MPAccessoryFamily)terminalFamily:(NSString *)terminal {
+
+- (MPAccessoryParameters*)terminalParametersForFamily:(NSString*)terminal {
+    
+    MPAccessoryParameters *terminalParameters = nil;
+    
     if([terminal isEqualToString:@"Miura"]) {
-        return MPAccessoryFamilyMiuraMPI;
+        terminalParameters = [MPAccessoryParameters externalAccessoryParametersWithFamily:MPAccessoryFamilyMiuraMPI protocol:@"com.miura.shuttle" optionals:nil];
     } else if ([terminal isEqualToString:@"VerifoneE105"]) {
-        return MPAccessoryFamilyVerifoneE105;
+        terminalParameters = [MPAccessoryParameters audioJackAccessoryParametersWithFamily:MPAccessoryFamilyVerifoneE105 optionals:nil];
+    } else {
+        terminalParameters = [MPAccessoryParameters mockAccessoryParameters];
     }
-    return MPAccessoryFamilyMock;
+    
+    return terminalParameters;
 }
+
 
 - (MPUMposUiConfigurationSummaryFeature)summaryFeatures:(NSDictionary *)dictionary {
     BOOL printReceiptEnabled = [[dictionary objectForKey:@"featureSummaryPrintReceipt"] boolValue];

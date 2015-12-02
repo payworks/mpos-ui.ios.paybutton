@@ -26,7 +26,6 @@
 
 #import "MPUMposUi_Internal.h"
 #import "MPUUIHelper.h"
-#import "MPUTransactionParameters.h"
 #import "MPUMposUiConfiguration.h"
 #import "MPUApplicationData.h"
 #import "MPUSummaryMainController.h"
@@ -36,7 +35,7 @@
 #import "MPULoginMainController.h"
 #import <Lockbox/Lockbox.h>
 
-NSString *const MPMposUiSDKVersion = @"2.4.6";
+NSString *const MPMposUiSDKVersion = @"2.5.0";
 
 NSString *const MPUKeychainUsername =               @"MPUKeychainUsername";
 NSString *const MPUKeychainMerchantIdentifier =     @"MPUKeychainMerchantIdentifier";
@@ -151,51 +150,76 @@ static MPUMposUi *theInstance;
     self.transactionProvider = nil;
 }
 
+
 - (UIViewController *)createTransactionViewControllerWithSessionIdentifier:(NSString *)sessionIdentifier completed:(MPUTransactionCompleted)completed {
     if (self.mposUiMode != MPUMposUiModeProvider) {
         [self throwExceptionForWrongMode:MPUMposUiModeProvider];
     }
-    MPUTransactionParameters *parameters = [[MPUTransactionParameters alloc] initWithSessionIdentifier:sessionIdentifier];
-    return [self createTransactionViewControllerWithParameters:parameters completed:completed];
+    
+    MPUTransactionMainController *transactionMainController = [self createTransactionViewControllerWithCompleted:completed];
+    transactionMainController.sessionIdentifier = sessionIdentifier;
+    
+    return transactionMainController;
 }
 
+
 - (UIViewController *)createChargeTransactionViewControllerWithAmount:(NSDecimalNumber *)amount currency:(MPCurrency)currency subject:(NSString *)subject customIdentifier:(NSString *)customIdentifier completed:(MPUTransactionCompleted)completed {
-    MPUTransactionParameters *parameters = nil;
+
     
-    if(self.mposUiMode == MPUMposUiModeProvider) {
-        parameters = [[MPUTransactionParameters alloc] initWithAmount:amount currency:currency subject:subject customIdentifier:customIdentifier];
-    } else {
-        parameters = [[MPUTransactionParameters alloc] initWithAmount:amount currency:currency subject:subject customIdentifier:customIdentifier integratorIdentifier:self.integratorIdentifier];
-    }
+    MPTransactionParameters *parameters = [MPTransactionParameters chargeWithAmount:amount currency:currency optionals:^(id<MPTransactionParametersOptionals> optionals) {
+        
+        optionals.subject = subject;
+        
+        if (self.mposUiMode == MPUMposUiModeProvider) {
+            optionals.customIdentifier = customIdentifier;
+        } else {
+            optionals.customIdentifier = [NSString stringWithFormat:@"%@-%@", self.integratorIdentifier, customIdentifier];
+        }
+
+    }];
     
-    return [self createTransactionViewControllerWithParameters:parameters completed:completed];
+    return [self createTransactionViewControllerWithTransactionParameters:parameters completed:completed];
 }
 
 - (UIViewController *)createRefundTransactionViewControllerWithTransactionIdentifer:(NSString *)transactionIndentifier subject:(NSString *)subject customIdentifier:(NSString *)customIdentifier completed:(MPUTransactionCompleted)completed {
-    MPUTransactionParameters *parameters = nil;
     
-    if(self.mposUiMode == MPUMposUiModeProvider) {
-        parameters = [[MPUTransactionParameters alloc]initWithTransactionIdentifier:transactionIndentifier subject:subject customIdentifier:customIdentifier];
-    } else {
-        parameters = [[MPUTransactionParameters alloc]initWithTransactionIdentifier:transactionIndentifier subject:subject customIdentifier:customIdentifier integratorIdentifier:self.integratorIdentifier];
-    }
+    MPTransactionParameters *parameters = [MPTransactionParameters refundForTransactionIdentifier:transactionIndentifier optionals:^(id<MPTransactionParametersRefundOptionals>  _Nonnull optionals) {
+        
+        optionals.subject = subject;
+        
+        if (self.mposUiMode == MPUMposUiModeProvider) {
+            optionals.customIdentifier = customIdentifier;
+        } else {
+            optionals.customIdentifier = [NSString stringWithFormat:@"%@-%@", self.integratorIdentifier, customIdentifier];
+        }
+    }];
     
-    return [self createTransactionViewControllerWithParameters:parameters completed:completed];
+    return [self createTransactionViewControllerWithTransactionParameters:parameters completed:completed];
 }
 
 
-- (UIViewController *)createSummaryViewControllerWithTransactionIdentifier:(NSString *)transacitonIdentifier completed:(MPUSummaryCompleted)completed {
+- (UIViewController *)createTransactionViewControllerWithTransactionParameters:(MPTransactionParameters *)transactionParameters completed:(MPUTransactionCompleted)completed {
+ 
+    MPUTransactionMainController *transactionMainController = [self createTransactionViewControllerWithCompleted:completed];
+    transactionMainController.parameters = transactionParameters;
+
+    return transactionMainController;
+}
+
+
+#pragma mark - Private
+
+- (UIViewController *)createSummaryViewControllerWithTransactionIdentifier:(NSString *)transactionIdentifier completed:(MPUSummaryCompleted)completed {
     UIStoryboard *storyboard = [UIStoryboard storyboardWithName:@"mpos-ui" bundle:[MPUUIHelper frameworkBundle]];
     MPUSummaryMainController* viewController = [storyboard instantiateViewControllerWithIdentifier:@"MPUSummaryMainController"];
-    viewController.transactionIdentifer = transacitonIdentifier;
+    viewController.transactionIdentifer = transactionIdentifier;
     viewController.completed = completed;
     return viewController;
 }
 
-- (UIViewController *)createTransactionViewControllerWithParameters:(MPUTransactionParameters *)parameters completed:(MPUTransactionCompleted)completed {
+- (MPUTransactionMainController *)createTransactionViewControllerWithCompleted:(MPUTransactionCompleted)completed {
     UIStoryboard *storyboard = [UIStoryboard storyboardWithName:@"mpos-ui" bundle:[MPUUIHelper frameworkBundle]];
     MPUTransactionMainController *viewController = [storyboard instantiateViewControllerWithIdentifier:@"MPUTransactionMainController"];
-    viewController.parameters = parameters;
     viewController.completed = completed;
     return viewController;
 }

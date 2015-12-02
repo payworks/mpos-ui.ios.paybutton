@@ -37,7 +37,7 @@
                                 <rect key="frame" x="36" y="554" width="39" height="30"/>
                                 <accessibility key="accessibilityConfiguration" label="AbortButton"/>
                                 <state key="normal" title="Abort">
-                                    <color key="titleColor" cocoaTouchSystemColor="darkTextColor"/>
+                                    <color key="titleColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
                                 <connections>

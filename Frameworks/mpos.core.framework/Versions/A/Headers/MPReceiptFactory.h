@@ -16,9 +16,8 @@
 // TO REPRODUCE, DISCLOSE OR DISTRIBUTE ITS CONTENTS, OR TO MANUFACTURE, USE, OR SELL ANYTHING THAT IT  MAY DESCRIBE, IN WHOLE OR IN PART.
 
 #import <Foundation/Foundation.h>
-
-
 @class MPReceipt;
+
 @class MPTransaction;
 
 /**
@@ -32,13 +31,13 @@ DEPRECATED_ATTRIBUTE
  * @param transaction The transaction to create a receipt for.
  * @since 2.1
  */
-- (nonnull MPReceipt*)merchantReceiptForTransaction:(nonnull MPTransaction*)transaction;
+- (MPReceipt*)merchantReceiptForTransaction:(MPTransaction*)transaction;
 
 /**
  * Creates a receipt for the customer of the given transaction.
  * @param transaction The transaction to create a receipt for.
  * @since 2.1
  */
-- (nonnull MPReceipt*)customerReceiptForTransaction:(nonnull MPTransaction*)transaction;
+- (MPReceipt*)customerReceiptForTransaction:(MPTransaction*)transaction;
 
 @end

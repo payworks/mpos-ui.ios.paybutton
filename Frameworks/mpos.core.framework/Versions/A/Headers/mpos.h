@@ -63,7 +63,6 @@
 #import "MPApplicationInformation.h"
 
 #import "MPReceipt.h"
-#import "MPReceiptFactory.h"
 #import "MPReceiptLineItem.h"
 
 #import "MPPaymentDetailsFactory.h"
@@ -75,4 +74,8 @@
 #import "MPTransactionProcess.h"
 #import "MPTransactionProcessDetails.h"
 #import "MPTransactionTemplate.h"
+#import "MPTransactionTemplateDetails.h"
+#import "MPTransactionParameters.h"
+#import "MPAccessoryParameters.h"
+#import "MPTransactionTemplateDetails.h"
 #import "MPLocalizationToolbox.h"

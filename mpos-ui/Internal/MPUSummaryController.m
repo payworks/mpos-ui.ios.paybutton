@@ -28,7 +28,6 @@
 #import "MPUMposUi_Internal.h"
 #import "MPUUIHelper.h"
 #import "MPUMposUiConfiguration.h"
-#import "MPUTransactionParameters.h"
 #import "MPUSendReceiptController.h"
 #import "MPUPrintReceiptController.h"
 
@@ -372,7 +371,7 @@
         [self.refundButton removeFromSuperview];
     }
 
-    if (self.retryEnabled == NO || self.transaction.status == MPTransactionStatusApproved || self.parameters.sessionIdentifier) {
+    if (self.retryEnabled == NO || self.transaction.status == MPTransactionStatusApproved || self.sessionIdentifier) {
         [self.retryButton removeFromSuperview];
     }
 }

@@ -20,11 +20,33 @@
 
 @class MPMockConfiguration;
 
-
+/**
+ * Success handler for loggin into your application.
+ * @param username Your username.
+ * @param merchantIdentifier The merchantIdentifier to use with the SDK.
+ * @param merchantSecretKey The merchantSecretKey to use with the SDK.
+ * @since 2.4.4
+ */
 typedef void (^MPMposLoginSuccess)(NSString * _Nonnull username, NSString * _Nonnull merchantIdentifier, NSString * _Nonnull merchantSecretKey);
-typedef void (^MPMposLoginFailure)(NSString * _Nonnull username, NSError * _Nonnull error);
+/**
+ * Failure handler for loggin into your application.
+ * @param username Your username.
+ * @param error The error that occured.
+ * @since 2.4.4
+ */typedef void (^MPMposLoginFailure)(NSString * _Nonnull username, NSError * _Nonnull error);
 
+/**
+ * Success handler for resetting your password.
+ * @param username Your username.
+ * @since 2.4.4
+ */
 typedef void (^MPMposPasswordResetRequestSuccess)(NSString * _Nonnull username);
+/**
+ * Failure handler for resetting your password.
+ * @param username Your username.
+ * @param error The error that occured.
+ * @since 2.4.4
+ */
 typedef void (^MPMposPasswordResetRequestFailure)(NSString * _Nonnull username, NSError * _Nonnull error);
 
 /**
@@ -49,33 +71,35 @@ typedef void (^MPMposPasswordResetRequestFailure)(NSString * _Nonnull username, 
 
 /**
  * Login for whitelabel applications with the given credentials
- * @param mode
- * @param applicationIdentifier
- * @param username
- * @param password
- * @param success
- * @param failure
+ * @param mode The mode the provider should run in.
+ * @param applicationIdentifier The identifier of the application to login to.
+ * @param username Your username.
+ * @param password Your password.
+ * @param success Success block called when the login was successful.
+ * @param failure Failure block called when the login failed.
+ * @since 2.4.4
  */
 + (void)loginWithMode:(MPProviderMode)mode
- applicationIdentifier:(nonnull NSString *)applicationIdentifier
-              username:(nonnull NSString *)username
-              password:(nonnull NSString *)password
-               success:(nonnull MPMposLoginSuccess)success
-               failure:(nonnull MPMposLoginFailure)failure;
+applicationIdentifier:(nonnull NSString *)applicationIdentifier
+             username:(nonnull NSString *)username
+             password:(nonnull NSString *)password
+              success:(nonnull MPMposLoginSuccess)success
+              failure:(nonnull MPMposLoginFailure)failure;
 
 
 /**
  * Password reset for whitelabel applications with the given credentials
- * @param mode
- * @param applicationIdentifier
- * @param username
- * @param success
- * @param failure
+ * @param mode The mode the provider should run in.
+ * @param applicationIdentifier The identifier of the application to login to.
+ * @param username Your username.
+ * @param success Success block called when the reset was successful.
+ * @param failure Failure block called when the reset failed.
+ * @since 2.4.4 
  */
 + (void)passwordResetRequest:(MPProviderMode)mode
-        applicationIdentifier:(nonnull NSString *)applicationIdentifier
-                     username:(nonnull NSString *)username
-                      success:(nonnull MPMposPasswordResetRequestSuccess)success
-                      failure:(nonnull MPMposPasswordResetRequestFailure)failure;
+       applicationIdentifier:(nonnull NSString *)applicationIdentifier
+                    username:(nonnull NSString *)username
+                     success:(nonnull MPMposPasswordResetRequestSuccess)success
+                     failure:(nonnull MPMposPasswordResetRequestFailure)failure;
 
 @end

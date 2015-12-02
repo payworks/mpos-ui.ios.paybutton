@@ -83,8 +83,8 @@ NSString *const CheckoutControllerMerchantSecret = @"merchant_secret";
 
 - (void)startMockPayment:(NSString *)amount {
     self.mposUi = [MPUMposUi initializeWithProviderMode:MPProviderModeMOCK merchantIdentifier:CheckoutControllerMerchantIdentifier merchantSecret:CheckoutControllerMerchantSecret];
-    self.mposUi.configuration.terminalFamily = MPAccessoryFamilyMock;   // Using a mock accessory
-    self.mposUi.configuration.printerFamily = MPAccessoryFamilyMock;    // Using a mock printer
+    self.mposUi.configuration.terminalParameters = [MPAccessoryParameters mockAccessoryParameters];   // Using a mock accessory
+    self.mposUi.configuration.printerParameters = [MPAccessoryParameters mockAccessoryParameters];    // Using a mock printer
     
     self.mposUi.configuration.appearance.navigationBarTint = UIColorFromRGB(0x3F51B5);          // Color of the navigation bar
     self.mposUi.configuration.appearance.navigationBarTextColor = UIColorFromRGB(0xFFFFFF);     // Color of the text in the navigation bar
@@ -95,7 +95,15 @@ NSString *const CheckoutControllerMerchantSecret = @"merchant_secret";
                                                 MPUMposUiConfigurationSummaryFeatureRefundTransaction |
                                                 MPUMposUiConfigurationSummaryFeatureSendReceiptViaEmail;
     
-    UIViewController *viewController = [self.mposUi createChargeTransactionViewControllerWithAmount:[NSDecimalNumber decimalNumberWithString:amount] currency:MPCurrencyEUR subject:@"subject" customIdentifier:nil completed:^(UIViewController *controller, MPUTransactionResult result, MPTransaction *transaction) {
+    
+    MPTransactionParameters *parameters = [MPTransactionParameters chargeWithAmount:[NSDecimalNumber decimalNumberWithString:amount]
+                                                                           currency:MPCurrencyEUR
+                                                                          optionals:^(id<MPTransactionParametersOptionals> optionals) {
+                                                                              
+                                                                              optionals.subject = @"subject";
+                                                                          }];
+    
+    UIViewController *viewController = [self.mposUi createTransactionViewControllerWithTransactionParameters:parameters completed:^(UIViewController *controller, MPUTransactionResult result, MPTransaction *transaction) {
         
         [controller dismissViewControllerAnimated:YES completion:nil];
         if (result == MPUTransactionResultApproved) {
@@ -108,15 +116,22 @@ NSString *const CheckoutControllerMerchantSecret = @"merchant_secret";
     [self displayViewController:viewController];
 }
 
-- (void)startTestPayment:(NSString *)amount withAccessory:(MPAccessoryFamily)accessory {
+- (void)startTestPayment:(NSString *)amount withAccessoryParameters:(MPAccessoryParameters*)accessoryParameters {
     // Usually you only need initialize the provider only once in your app. Since the configuration is with MOCK configuration currently, we reinitialize again with TEST.
     
     if (!self.applicationMode) {
         [self initializeWithProvider];
-        self.mposUi.configuration.terminalFamily = accessory;               // Using a MIURA/Verifone accessory
+        self.mposUi.configuration.terminalParameters = accessoryParameters;
     }
     
-    UIViewController *viewController = [self.mposUi createChargeTransactionViewControllerWithAmount:[NSDecimalNumber decimalNumberWithString:amount] currency:MPCurrencyEUR subject:@"subject" customIdentifier:nil completed:^(UIViewController *controller, MPUTransactionResult result, MPTransaction *transaction) {
+    MPTransactionParameters *parameters = [MPTransactionParameters chargeWithAmount:[NSDecimalNumber decimalNumberWithString:amount]
+                                                                           currency:MPCurrencyEUR
+                                                                          optionals:^(id<MPTransactionParametersOptionals> optionals) {
+                                                                              optionals.subject = @"subject";
+                                                                          }];
+
+    
+    UIViewController *viewController = [self.mposUi createTransactionViewControllerWithTransactionParameters:parameters completed:^(UIViewController *controller, MPUTransactionResult result, MPTransaction *transaction) {
         
         [controller dismissViewControllerAnimated:YES completion:nil];
         if (result == MPUTransactionResultApproved) {
@@ -131,7 +146,7 @@ NSString *const CheckoutControllerMerchantSecret = @"merchant_secret";
 
 - (void)initializeWithProvider {
     self.mposUi = [MPUMposUi initializeWithProviderMode:MPProviderModeTEST merchantIdentifier:CheckoutControllerMerchantIdentifier merchantSecret:CheckoutControllerMerchantSecret];
-    self.mposUi.configuration.printerFamily = MPAccessoryFamilySewoo;    // Using a SEWOO printer
+    self.mposUi.configuration.printerParameters = [MPAccessoryParameters externalAccessoryParametersWithFamily:MPAccessoryFamilySewoo protocol:@"com.mobileprinter.datapath" optionals:nil];    // Using a SEWOO printer
     
     self.mposUi.configuration.appearance.navigationBarTint = UIColorFromRGB(0x2196F3);          // Color of the navigation bar
     self.mposUi.configuration.appearance.navigationBarTextColor = UIColorFromRGB(0xFFFFFF);     // Color of the text in the navigation bar
@@ -167,7 +182,11 @@ NSString *const CheckoutControllerMerchantSecret = @"merchant_secret";
 }
 
 - (void)startRefund:(NSString *)transactionIdentifier {
-    UIViewController *viewController = [self.mposUi createRefundTransactionViewControllerWithTransactionIdentifer:transactionIdentifier subject:self.lastTransaction.subject customIdentifier:nil completed:^(UIViewController *controller, MPUTransactionResult result, MPTransaction *transaction) {
+    MPTransactionParameters *params = [MPTransactionParameters refundForTransactionIdentifier:transactionIdentifier optionals:^(id<MPTransactionParametersRefundOptionals> optionals) {
+        optionals.subject = self.lastTransaction.subject;
+    }];
+    
+    UIViewController *viewController = [self.mposUi createTransactionViewControllerWithTransactionParameters:params completed:^(UIViewController *controller, MPUTransactionResult result, MPTransaction *transaction) {
         [controller dismissViewControllerAnimated:YES completion:nil];
         if (result == MPUTransactionResultApproved) {
             [self.view makeToast:@"Refund approved" duration:2.0 position:CSToastPositionBottom];
@@ -204,12 +223,12 @@ NSString *const CheckoutControllerMerchantSecret = @"merchant_secret";
 
 - (IBAction)chargeMiura:(id)sender {
     // Start transaction on a Miura
-    [self startTestPayment:@"13.37" withAccessory:MPAccessoryFamilyMiuraMPI];
+    [self startTestPayment:@"13.37" withAccessoryParameters:[MPAccessoryParameters externalAccessoryParametersWithFamily:MPAccessoryFamilyMiuraMPI protocol:@"com.miura.shuttle" optionals:nil]];
 }
 
 - (IBAction)chargeVerifone:(id)sender {
     // Start transaction on a Verifone E105
-    [self startTestPayment:@"13.37" withAccessory:MPAccessoryFamilyVerifoneE105];
+    [self startTestPayment:@"13.37" withAccessoryParameters:[MPAccessoryParameters audioJackAccessoryParametersWithFamily:MPAccessoryFamilyVerifoneE105 optionals:nil]];
 }
 
 - (IBAction)summary:(id)sender {

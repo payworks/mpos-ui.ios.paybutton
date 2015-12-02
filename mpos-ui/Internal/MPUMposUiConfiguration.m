@@ -42,12 +42,57 @@
     }
     
     self.appearance = [[MPUMposUiAppearance alloc] init];
-    self.terminalFamily = MPAccessoryFamilyMock;
-    self.printerFamily = MPAccessoryFamilyMock;
+    self.terminalParameters = [MPAccessoryParameters mockAccessoryParameters];
+    self.printerParameters = [MPAccessoryParameters mockAccessoryParameters];
     self.signatureCapture = MPUMposUiConfigurationSignatureCaptureOnScreen;
     self.summaryFeatures = MPUMposUiConfigurationSummaryFeatureNone;
 
     return self;
+}
+
+
+- (void)setTerminalFamily:(MPAccessoryFamily)terminalFamily {
+    self.terminalParameters = [self defaultAccessoryParametersFromFamily:terminalFamily];
+}
+
+- (MPAccessoryFamily)terminalFamily {
+    return  self.terminalParameters.accessoryFamily;
+}
+
+- (void)setPrinterFamily:(MPAccessoryFamily)printerFamily {
+    self.printerParameters = [self defaultAccessoryParametersFromFamily:printerFamily];
+}
+
+- (MPAccessoryFamily)printerFamily {
+    return self.printerParameters.accessoryFamily;
+}
+
+- (MPAccessoryParameters *)defaultAccessoryParametersFromFamily:(MPAccessoryFamily)accessoryFamily {
+    
+    switch (accessoryFamily) {
+        case MPAccessoryFamilyMiuraMPI:
+            return [MPAccessoryParameters externalAccessoryParametersWithFamily:accessoryFamily protocol:@"com.miura.shuttle" optionals:nil];
+            
+        case MPAccessoryFamilyVerifoneESeries:
+            return [MPAccessoryParameters externalAccessoryParametersWithFamily:accessoryFamily protocol:@"not.used" optionals:nil];
+            
+        case MPAccessoryFamilyVerifoneE105:
+            return [MPAccessoryParameters audioJackAccessoryParametersWithFamily:accessoryFamily optionals:nil];
+            
+        case MPAccessoryFamilyMock:
+            return [MPAccessoryParameters mockAccessoryParameters];
+            
+        case MPAccessoryFamilyBBPOS:
+            return [MPAccessoryParameters externalAccessoryParametersWithFamily:accessoryFamily protocol:@"not.used" optionals:nil];
+            
+        case MPAccessoryFamilyBBPOSChipper:
+            return [MPAccessoryParameters audioJackAccessoryParametersWithFamily:accessoryFamily optionals:nil];
+            
+        case MPAccessoryFamilySewoo:
+            return [MPAccessoryParameters externalAccessoryParametersWithFamily:accessoryFamily protocol:@"com.mobileprinter.datapath" optionals:nil];
+    }
+    
+    return [MPAccessoryParameters mockAccessoryParameters];
 }
 
 
