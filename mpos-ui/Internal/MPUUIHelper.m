@@ -45,20 +45,24 @@ NSString *const MPUUIHelperFrameworkBundleName = @"mpos-ui-resources";
 
 + (void)loadIconFont{
     // register the font:
-    NSURL *url = [[MPUUIHelper frameworkBundle] URLForResource:@"FontAwesome" withExtension:@"otf"];
-    NSData *fontData = [NSData dataWithContentsOfURL:url];
-    if (fontData) {
-        CFErrorRef error;
-        CGDataProviderRef provider = CGDataProviderCreateWithCFData((CFDataRef)fontData);
-        CGFontRef font = CGFontCreateWithDataProvider(provider);
-        if (! CTFontManagerRegisterGraphicsFont(font, &error)) {
-            CFStringRef errorDescription = CFErrorCopyDescription(error);
-            DDLogError(@"Failed to load font: %@", errorDescription);
-            CFRelease(errorDescription);
+    static dispatch_once_t loadIconFontOnce;
+    dispatch_once(&loadIconFontOnce, ^{
+        NSURL *url = [[MPUUIHelper frameworkBundle] URLForResource:@"FontAwesome" withExtension:@"otf"];
+        NSData *fontData = [NSData dataWithContentsOfURL:url];
+        if (fontData) {
+            CFErrorRef error;
+            CGDataProviderRef provider = CGDataProviderCreateWithCFData((CFDataRef)fontData);
+            CGFontRef font = CGFontCreateWithDataProvider(provider);
+            if (! CTFontManagerRegisterGraphicsFont(font, &error)) {
+                CFStringRef errorDescription = CFErrorCopyDescription(error);
+                DDLogError(@"Failed to load font: %@", errorDescription);
+                CFRelease(errorDescription);
+            }
+            CFRelease(font);
+            CFRelease(provider);
         }
-        CFRelease(font);
-        CFRelease(provider);
-    }
+    });
+
 }
 
 + (BOOL)isStringEmpty:(NSString *)string {

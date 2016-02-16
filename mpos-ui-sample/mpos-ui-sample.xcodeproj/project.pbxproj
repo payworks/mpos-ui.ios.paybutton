@@ -8,8 +8,8 @@
 
 /* Begin PBXBuildFile section */
 		06DC417B48345EDA5E412885 /* libPods.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 2B376F24A9F81427C7F57B9E /* libPods.a */; };
-		44296C1E1BAFFB7D00E8B880 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 44296C1D1BAFFB7D00E8B880 /* LaunchScreen.storyboard */; settings = {ASSET_TAGS = (); }; };
-		44296C201BB00CA000E8B880 /* Default-568h@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 44296C1F1BB00CA000E8B880 /* Default-568h@2x.png */; settings = {ASSET_TAGS = (); }; };
+		44296C1E1BAFFB7D00E8B880 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 44296C1D1BAFFB7D00E8B880 /* LaunchScreen.storyboard */; };
+		44296C201BB00CA000E8B880 /* Default-568h@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 44296C1F1BB00CA000E8B880 /* Default-568h@2x.png */; };
 		445D0E141B5E3E82009F794F /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 445D0E131B5E3E82009F794F /* main.m */; };
 		445D0E171B5E3E82009F794F /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 445D0E161B5E3E82009F794F /* AppDelegate.m */; };
 		445D0E1A1B5E3E82009F794F /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 445D0E191B5E3E82009F794F /* ViewController.m */; };
@@ -24,13 +24,6 @@
 		44C6B0331B62919A004C988C /* AVFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 44C6B0321B62919A004C988C /* AVFoundation.framework */; };
 		44C6B0351B6291A0004C988C /* AudioToolbox.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 44C6B0341B6291A0004C988C /* AudioToolbox.framework */; };
 		44C6B0371B6291AA004C988C /* MediaPlayer.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 44C6B0361B6291AA004C988C /* MediaPlayer.framework */; };
-		44C6B0481B629BA3004C988C /* mpos.accessories.miura-shuttle.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 44C6B0411B629BA3004C988C /* mpos.accessories.miura-shuttle.framework */; };
-		44C6B0491B629BA3004C988C /* mpos.accessories.sewoo.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 44C6B0421B629BA3004C988C /* mpos.accessories.sewoo.framework */; };
-		44C6B04A1B629BA3004C988C /* mpos.accessories.verifone-e105.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 44C6B0431B629BA3004C988C /* mpos.accessories.verifone-e105.framework */; };
-		44C6B04B1B629BA3004C988C /* mpos.comlinks.externalaccessory.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 44C6B0441B629BA3004C988C /* mpos.comlinks.externalaccessory.framework */; };
-		44C6B04C1B629BA3004C988C /* mpos.comlinks.verifone.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 44C6B0451B629BA3004C988C /* mpos.comlinks.verifone.framework */; };
-		44C6B04D1B629BA3004C988C /* mpos.core-resources.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 44C6B0461B629BA3004C988C /* mpos.core-resources.bundle */; };
-		44C6B04E1B629BA3004C988C /* mpos.core.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 44C6B0471B629BA3004C988C /* mpos.core.framework */; };
 		44E718011B6775E8004301EE /* mpos-ui-resources.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 44E717FF1B6775E8004301EE /* mpos-ui-resources.bundle */; };
 		44E718021B6775E8004301EE /* mpos-ui.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 44E718001B6775E8004301EE /* mpos-ui.framework */; };
 /* End PBXBuildFile section */
@@ -64,6 +57,7 @@
 		445D0E441B5F9276009F794F /* ExternalAccessory.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = ExternalAccessory.framework; path = System/Library/Frameworks/ExternalAccessory.framework; sourceTree = SDKROOT; };
 		445D0E461B5F9280009F794F /* MobileCoreServices.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MobileCoreServices.framework; path = System/Library/Frameworks/MobileCoreServices.framework; sourceTree = SDKROOT; };
 		445D0E481B5F9297009F794F /* SystemConfiguration.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SystemConfiguration.framework; path = System/Library/Frameworks/SystemConfiguration.framework; sourceTree = SDKROOT; };
+		445DAF541C5657EE00438186 /* pl */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = pl; path = pl.lproj/Main.strings; sourceTree = "<group>"; };
 		44B3EE1D1BDFD6EA0089D194 /* fi */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = fi; path = fi.lproj/Main.strings; sourceTree = "<group>"; };
 		44B3EE1E1BDFD6F20089D194 /* de */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = de; path = de.lproj/Main.strings; sourceTree = "<group>"; };
 		44B3EE221BDFD9AF0089D194 /* nl */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = nl; path = nl.lproj/Main.strings; sourceTree = "<group>"; };
@@ -76,13 +70,6 @@
 		44C6B0321B62919A004C988C /* AVFoundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AVFoundation.framework; path = System/Library/Frameworks/AVFoundation.framework; sourceTree = SDKROOT; };
 		44C6B0341B6291A0004C988C /* AudioToolbox.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AudioToolbox.framework; path = System/Library/Frameworks/AudioToolbox.framework; sourceTree = SDKROOT; };
 		44C6B0361B6291AA004C988C /* MediaPlayer.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MediaPlayer.framework; path = System/Library/Frameworks/MediaPlayer.framework; sourceTree = SDKROOT; };
-		44C6B0411B629BA3004C988C /* mpos.accessories.miura-shuttle.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = "mpos.accessories.miura-shuttle.framework"; path = "../Frameworks/mpos.accessories.miura-shuttle.framework"; sourceTree = "<group>"; };
-		44C6B0421B629BA3004C988C /* mpos.accessories.sewoo.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = mpos.accessories.sewoo.framework; path = ../Frameworks/mpos.accessories.sewoo.framework; sourceTree = "<group>"; };
-		44C6B0431B629BA3004C988C /* mpos.accessories.verifone-e105.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = "mpos.accessories.verifone-e105.framework"; path = "../Frameworks/mpos.accessories.verifone-e105.framework"; sourceTree = "<group>"; };
-		44C6B0441B629BA3004C988C /* mpos.comlinks.externalaccessory.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = mpos.comlinks.externalaccessory.framework; path = ../Frameworks/mpos.comlinks.externalaccessory.framework; sourceTree = "<group>"; };
-		44C6B0451B629BA3004C988C /* mpos.comlinks.verifone.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = mpos.comlinks.verifone.framework; path = ../Frameworks/mpos.comlinks.verifone.framework; sourceTree = "<group>"; };
-		44C6B0461B629BA3004C988C /* mpos.core-resources.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; name = "mpos.core-resources.bundle"; path = "../Frameworks/mpos.core-resources.bundle"; sourceTree = "<group>"; };
-		44C6B0471B629BA3004C988C /* mpos.core.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = mpos.core.framework; path = ../Frameworks/mpos.core.framework; sourceTree = "<group>"; };
 		44E717FF1B6775E8004301EE /* mpos-ui-resources.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; name = "mpos-ui-resources.bundle"; path = "../packaged/mpos-ui-resources.bundle"; sourceTree = "<group>"; };
 		44E718001B6775E8004301EE /* mpos-ui.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = "mpos-ui.framework"; path = "../packaged/mpos-ui.framework"; sourceTree = "<group>"; };
 		7C6ADE1514302FC2B5508670 /* Pods.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.debug.xcconfig; path = "Pods/Target Support Files/Pods/Pods.debug.xcconfig"; sourceTree = "<group>"; };
@@ -95,20 +82,14 @@
 			buildActionMask = 2147483647;
 			files = (
 				44C6B0371B6291AA004C988C /* MediaPlayer.framework in Frameworks */,
-				44C6B04A1B629BA3004C988C /* mpos.accessories.verifone-e105.framework in Frameworks */,
-				44C6B0481B629BA3004C988C /* mpos.accessories.miura-shuttle.framework in Frameworks */,
-				44C6B04B1B629BA3004C988C /* mpos.comlinks.externalaccessory.framework in Frameworks */,
 				44C6B0351B6291A0004C988C /* AudioToolbox.framework in Frameworks */,
 				44C6B0331B62919A004C988C /* AVFoundation.framework in Frameworks */,
 				44C6B0311B629191004C988C /* Security.framework in Frameworks */,
 				44E718021B6775E8004301EE /* mpos-ui.framework in Frameworks */,
-				44C6B04E1B629BA3004C988C /* mpos.core.framework in Frameworks */,
 				44C6B02F1B629183004C988C /* libstdc++.6.dylib in Frameworks */,
 				445D0E491B5F9297009F794F /* SystemConfiguration.framework in Frameworks */,
 				445D0E471B5F9280009F794F /* MobileCoreServices.framework in Frameworks */,
-				44C6B04C1B629BA3004C988C /* mpos.comlinks.verifone.framework in Frameworks */,
 				445D0E451B5F9276009F794F /* ExternalAccessory.framework in Frameworks */,
-				44C6B0491B629BA3004C988C /* mpos.accessories.sewoo.framework in Frameworks */,
 				06DC417B48345EDA5E412885 /* libPods.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -199,13 +180,6 @@
 			children = (
 				44E717FF1B6775E8004301EE /* mpos-ui-resources.bundle */,
 				44E718001B6775E8004301EE /* mpos-ui.framework */,
-				44C6B0411B629BA3004C988C /* mpos.accessories.miura-shuttle.framework */,
-				44C6B0421B629BA3004C988C /* mpos.accessories.sewoo.framework */,
-				44C6B0431B629BA3004C988C /* mpos.accessories.verifone-e105.framework */,
-				44C6B0441B629BA3004C988C /* mpos.comlinks.externalaccessory.framework */,
-				44C6B0451B629BA3004C988C /* mpos.comlinks.verifone.framework */,
-				44C6B0461B629BA3004C988C /* mpos.core-resources.bundle */,
-				44C6B0471B629BA3004C988C /* mpos.core.framework */,
 				44C6B0361B6291AA004C988C /* MediaPlayer.framework */,
 				44C6B0341B6291A0004C988C /* AudioToolbox.framework */,
 				44C6B0321B62919A004C988C /* AVFoundation.framework */,
@@ -302,7 +276,6 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				44C6B04D1B629BA3004C988C /* mpos.core-resources.bundle in Resources */,
 				445D0E1D1B5E3E82009F794F /* Main.storyboard in Resources */,
 				44296C1E1BAFFB7D00E8B880 /* LaunchScreen.storyboard in Resources */,
 				44E718011B6775E8004301EE /* mpos-ui-resources.bundle in Resources */,
@@ -394,6 +367,7 @@
 				44B3EE241BDFD9F70089D194 /* it */,
 				44B3EE251BDFDA050089D194 /* es */,
 				44B3EE261BDFDA260089D194 /* fr */,
+				445DAF541C5657EE00438186 /* pl */,
 			);
 			name = Main.storyboard;
 			sourceTree = "<group>";

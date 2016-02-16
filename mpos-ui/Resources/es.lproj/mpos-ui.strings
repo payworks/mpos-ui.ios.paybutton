@@ -40,11 +40,11 @@
 "MPUEmailAddress" = "Correo electrónico";
 "MPUPassword" = "Contraseña";
 "MPURequired" = "obligatorio";
-"MPUWrongCredentials" = "No existe ninguna cuenta con esa dirección de correo o a introducido una contraseña errónea.";
+"MPUWrongCredentials" = "No existe ninguna cuenta con esa dirección de correo o ha introducido una contraseña errónea.";
 "MPUUnknownUsername" = "No existe ninguna cuenta con esa dirección de correo.";
 "MPUBack" = "Atrás";
 "MPUPasswordReset" = "Le acabamos de enviar un correo electrónico con instrucciones sobre como dar los siguientes pasos.";
-"MPURequestPassword" = "Reestablecer contraseña";
+"MPURequestPassword" = "Restablecer contraseña";
 "MPUActions" = "Acciones";
 "MPUSettings" = "Configuración";
 "MPUInfo" = "Info";

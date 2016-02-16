@@ -42,7 +42,7 @@ NSString *const MPUKeychainMerchantIdentifier =     @"MPUKeychainMerchantIdentif
 NSString *const MPUKeychainMerchantSecretKey =      @"MPUKeychainMerchantSecretKey";
 NSString *const MPUKeychainApplicationIdentifier =  @"MPUKeychainApplicationIdentifier";
 
-static MPUMposUi *theInstance;
+static MPUMposUi *mpu_mposUiInstance;
 
 @implementation MPUMposUi
 
@@ -53,26 +53,25 @@ static MPUMposUi *theInstance;
 }
 
 + (id)initializeWithProviderMode:(MPProviderMode)providerMode merchantIdentifier:(NSString *)merchantIdentifier merchantSecret:(NSString *)merchantSecret {
-    static dispatch_once_t token;
-    dispatch_once(&token, ^{
-        [MPUUIHelper loadIconFont];
-    });
-
-    theInstance = [[MPUMposUi alloc] initWithProvider:providerMode identifier:merchantIdentifier secret:merchantSecret];
-    return theInstance;
+    [MPUUIHelper loadIconFont];
+    mpu_mposUiInstance = [[MPUMposUi alloc] initWithProvider:providerMode identifier:merchantIdentifier secret:merchantSecret];
+    return mpu_mposUiInstance;
 }
 
 + (id)initializeWithApplication:(MPUApplicationName)applicationName integratorIdentifier:(NSString *)integratorIdentifier {
-    static dispatch_once_t token;
-    dispatch_once(&token, ^{
-        [MPUUIHelper loadIconFont];
-    });
-    theInstance = [[MPUMposUi alloc] initWithApplication:applicationName integratorIdentifier:integratorIdentifier];
-    return theInstance;
+    mpu_mposUiInstance = [[MPUMposUi alloc] initWithProvider:MPProviderModeLIVE application:applicationName integratorIdentifier:integratorIdentifier];
+    return mpu_mposUiInstance;
+}
+
+
++ (instancetype)initializeWithProviderMode:(MPProviderMode)providerMode application:(MPUApplicationName)applicationName integratorIdentifier:(NSString *)integratorIdentifier {
+    [MPUUIHelper loadIconFont];
+    mpu_mposUiInstance = [[MPUMposUi alloc] initWithProvider:providerMode application:applicationName integratorIdentifier:integratorIdentifier];
+    return mpu_mposUiInstance;
 }
 
 + (MPUMposUi *)sharedInitializedInstance {
-    return theInstance;
+    return mpu_mposUiInstance;
 }
 
 - (id)initWithProvider:(MPProviderMode)providerMode identifier:(NSString *)merchantIdentifier secret:(NSString *)merchantSecret {
@@ -95,17 +94,23 @@ static MPUMposUi *theInstance;
     return self;
 }
 
-- (id)initWithApplication:(MPUApplicationName)applicationName integratorIdentifier:(NSString *)integratorIdentifier {
+- (id)initWithProvider:(MPProviderMode)providerMode application:(MPUApplicationName)applicationName integratorIdentifier:(NSString *)integratorIdentifier {
     self = [super init];
     if (self == nil) {
         return nil;
+    }
+    
+    if (integratorIdentifier == nil || [integratorIdentifier length] == 0) {
+        @throw [NSException exceptionWithName:NSInvalidArgumentException
+                                       reason:@"Integrator identifier cannot be nil / empty"
+                                     userInfo:nil];
     }
     
     self.mposUiMode = MPUMposUiModeApplication;
     self.applicationData =  [[MPUApplicationData alloc] initWithApplication:applicationName];
     self.configuration = self.applicationData.configuration;
     self.integratorIdentifier = integratorIdentifier;
-    self.providerMode = MPProviderModeLIVE;
+    self.providerMode = providerMode;
     self.merchantIdentifier = [Lockbox stringForKey:MPUKeychainMerchantIdentifier];
     self.merchantSecretKey = [Lockbox stringForKey:MPUKeychainMerchantSecretKey];
     self.username = [Lockbox stringForKey:MPUKeychainUsername];
@@ -190,7 +195,7 @@ static MPUMposUi *theInstance;
         if (self.mposUiMode == MPUMposUiModeProvider) {
             optionals.customIdentifier = customIdentifier;
         } else {
-            optionals.customIdentifier = [NSString stringWithFormat:@"%@-%@", self.integratorIdentifier, customIdentifier];
+            optionals.customIdentifier = [self generateCustomIdentifier:customIdentifier forIntegratorIdentifier:self.integratorIdentifier];
         }
     }];
     
@@ -201,7 +206,13 @@ static MPUMposUi *theInstance;
 - (UIViewController *)createTransactionViewControllerWithTransactionParameters:(MPTransactionParameters *)transactionParameters completed:(MPUTransactionCompleted)completed {
  
     MPUTransactionMainController *transactionMainController = [self createTransactionViewControllerWithCompleted:completed];
-    transactionMainController.parameters = transactionParameters;
+ 
+    if (self.mposUiMode == MPUMposUiModeProvider) {
+        transactionMainController.parameters = transactionParameters;
+    } else {
+        NSString *customIdentifier = [self generateCustomIdentifier:transactionParameters.customIdentifier forIntegratorIdentifier:self.integratorIdentifier];
+        transactionMainController.parameters = [self generateTransactionParameters:transactionParameters forCustomIdentifier:customIdentifier];
+    }
 
     return transactionMainController;
 }
@@ -282,6 +293,34 @@ static MPUMposUi *theInstance;
                                      userInfo:nil];
     }
     
+}
+
+- (NSString *)generateCustomIdentifier:(NSString *)customIdentifier forIntegratorIdentifier:(NSString *)integratorIdentifier {
+    if (customIdentifier != nil || [customIdentifier length] != 0) {
+        return [NSString stringWithFormat:@"%@-%@", integratorIdentifier, customIdentifier];
+    }
+    return integratorIdentifier;
+}
+
+- (MPTransactionParameters *)generateTransactionParameters:(MPTransactionParameters *) transactionParameters forCustomIdentifier:(NSString *)customIdentifier {
+    if(transactionParameters.transactionType == MPTransactionTypeCharge) {
+        return [MPTransactionParameters chargeWithAmount:transactionParameters.amount
+                                                currency:transactionParameters.currency
+                                                optionals:^(id<MPTransactionParametersOptionals> optionals) {
+                                                    optionals.subject = transactionParameters.subject;
+                                                    optionals.customIdentifier = customIdentifier;
+                                                    optionals.statementDescriptor = transactionParameters.statementDescriptor;
+                                                    optionals.metadata = transactionParameters.metadata;
+                                                    optionals.applicationFee = transactionParameters.applicationFee;
+                                                }];
+    }
+    
+    // Refund
+    return [MPTransactionParameters refundForTransactionIdentifier:transactionParameters.referencedTransactionIdentifier
+                                                         optionals:^(id<MPTransactionParametersRefundOptionals>  _Nonnull optionals) {
+                                                             optionals.subject = transactionParameters.subject;
+                                                             optionals.customIdentifier = customIdentifier;
+                                                         }];
 }
 
 @end

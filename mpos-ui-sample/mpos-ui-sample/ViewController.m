@@ -249,12 +249,17 @@ NSString *const CheckoutControllerMerchantSecret = @"merchant_secret";
 
 - (IBAction)initWithConCardis:(id)sender {
     self.applicationMode = YES;
-    self.mposUi = [MPUMposUi initializeWithApplication:MPUApplicationNameConcardis integratorIdentifier:@"TESTINTEGRATOR"];
+    self.mposUi = [MPUMposUi initializeWithProviderMode:MPProviderModeTEST application:MPUApplicationNameConcardis integratorIdentifier:@"TESTINTEGRATOR"];
 }
 
 - (IBAction)initWithMcashier:(id)sender {
     self.applicationMode = YES;
-    self.mposUi = [MPUMposUi initializeWithApplication:MPUApplicationNameMcashier integratorIdentifier:@"TESTINTEGRATOR"];
+    self.mposUi = [MPUMposUi initializeWithProviderMode:MPProviderModeTEST application:MPUApplicationNameMcashier integratorIdentifier:@"TESTINTEGRATOR"];
+}
+
+- (IBAction)initWithSecureRetail:(id)sender {
+    self.applicationMode = YES;
+    self.mposUi = [MPUMposUi initializeWithApplication:MPUApplicationNameSecureRetail integratorIdentifier:@"TESTINTEGRATOR"];
 }
 
 - (IBAction)settings:(id)sender {

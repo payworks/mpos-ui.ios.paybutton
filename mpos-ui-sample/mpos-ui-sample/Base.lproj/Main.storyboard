@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="8191" systemVersion="14F27" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="X4l-jg-4fw">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="9531" systemVersion="15C50" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="X4l-jg-4fw">
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="8154"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="9529"/>
     </dependencies>
     <scenes>
         <!--mpos-ui Sample-->
@@ -21,7 +21,7 @@
                                 <rect key="frame" x="0.0" y="0.0" width="600" height="836"/>
                                 <subviews>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Mj0-Fy-vSb" userLabel="Content View">
-                                        <rect key="frame" x="0.0" y="0.0" width="600" height="820"/>
+                                        <rect key="frame" x="0.0" y="0.0" width="600" height="870"/>
                                         <subviews>
                                             <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="pwLogo" translatesAutoresizingMaskIntoConstraints="NO" id="6B3-1c-0b1">
                                                 <rect key="frame" x="200" y="16" width="200" height="80"/>
@@ -30,8 +30,8 @@
                                                     <constraint firstAttribute="height" constant="80" id="cgY-wh-clL"/>
                                                 </constraints>
                                             </imageView>
-                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="mpos-ui version: " lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="U5U-9M-apd">
-                                                <rect key="frame" x="252" y="102" width="97" height="15"/>
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="mpos-ui version: " lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="U5U-9M-apd">
+                                                <rect key="frame" x="251" y="102" width="98" height="15"/>
                                                 <fontDescription key="fontDescription" type="system" pointSize="12"/>
                                                 <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                                 <nil key="highlightedColor"/>
@@ -42,8 +42,8 @@
                                                 <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                                 <nil key="highlightedColor"/>
                                             </label>
-                                            <button opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="7qa-aY-8t9">
-                                                <rect key="frame" x="16" y="334" width="165" height="30"/>
+                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="7qa-aY-8t9">
+                                                <rect key="frame" x="16" y="334" width="164" height="30"/>
                                                 <state key="normal" title="Charge 13.37€ on Miura">
                                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                                 </state>
@@ -51,8 +51,8 @@
                                                     <action selector="chargeMiura:" destination="BYZ-38-t0r" eventType="touchUpInside" id="qxQ-ib-Si5"/>
                                                 </connections>
                                             </button>
-                                            <button opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="08N-rK-lFO">
-                                                <rect key="frame" x="16" y="372" width="221" height="30"/>
+                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="08N-rK-lFO">
+                                                <rect key="frame" x="16" y="372" width="220" height="30"/>
                                                 <state key="normal" title="Charge 13.37€ on Verifone E105">
                                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                                 </state>
@@ -60,20 +60,20 @@
                                                     <action selector="chargeVerifone:" destination="BYZ-38-t0r" eventType="touchUpInside" id="gD8-aJ-tbe"/>
                                                 </connections>
                                             </button>
-                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="TEST : Test Environment and real card reader" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="aNy-Ts-UB4">
-                                                <rect key="frame" x="16" y="305" width="297" height="17"/>
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="TEST : Test Environment and real card reader" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="aNy-Ts-UB4">
+                                                <rect key="frame" x="16" y="305" width="310" height="17"/>
                                                 <fontDescription key="fontDescription" type="boldSystem" pointSize="14"/>
                                                 <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
                                                 <nil key="highlightedColor"/>
                                             </label>
-                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="MOCK: Simulated internet and card reader" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="XSN-LZ-ZYg">
-                                                <rect key="frame" x="16" y="158" width="280" height="17"/>
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="MOCK: Simulated internet and card reader" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="XSN-LZ-ZYg">
+                                                <rect key="frame" x="16" y="158" width="292" height="17"/>
                                                 <fontDescription key="fontDescription" type="boldSystem" pointSize="14"/>
                                                 <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
                                                 <nil key="highlightedColor"/>
                                             </label>
-                                            <button opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="uD9-tQ-kiK">
-                                                <rect key="frame" x="16" y="225" width="271" height="30"/>
+                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="uD9-tQ-kiK">
+                                                <rect key="frame" x="16" y="225" width="270" height="30"/>
                                                 <state key="normal" title="Charge 113.73€ (Application Selection) ">
                                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                                 </state>
@@ -81,8 +81,8 @@
                                                     <action selector="chargeAppSelection:" destination="BYZ-38-t0r" eventType="touchUpInside" id="r9M-W6-kmN"/>
                                                 </connections>
                                             </button>
-                                            <button opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="wDZ-LZ-i8n">
-                                                <rect key="frame" x="16" y="263" width="251" height="30"/>
+                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="wDZ-LZ-i8n">
+                                                <rect key="frame" x="16" y="263" width="252" height="30"/>
                                                 <state key="normal" title="Charge 110.40€ (Transaction Failure)">
                                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                                 </state>
@@ -90,8 +90,8 @@
                                                     <action selector="chargeTxFailure:" destination="BYZ-38-t0r" eventType="touchUpInside" id="OdE-j0-NXP"/>
                                                 </connections>
                                             </button>
-                                            <button opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="q8n-gI-68Z">
-                                                <rect key="frame" x="16" y="187" width="187" height="30"/>
+                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="q8n-gI-68Z">
+                                                <rect key="frame" x="16" y="187" width="190" height="30"/>
                                                 <state key="normal" title="Charge 108.20€ (Signature)">
                                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                                 </state>
@@ -117,14 +117,14 @@
                                                     <action selector="print:" destination="BYZ-38-t0r" eventType="touchUpInside" id="U7s-l0-vHw"/>
                                                 </connections>
                                             </button>
-                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="Last Transaction" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="SVi-X6-PBZ">
-                                                <rect key="frame" x="16" y="414" width="109" height="17"/>
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Last Transaction" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="SVi-X6-PBZ">
+                                                <rect key="frame" x="16" y="414" width="115" height="17"/>
                                                 <fontDescription key="fontDescription" type="boldSystem" pointSize="14"/>
                                                 <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
                                                 <nil key="highlightedColor"/>
                                             </label>
-                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="Application Mode" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="BNU-A9-lud">
-                                                <rect key="frame" x="16" y="599" width="116" height="17"/>
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Application Mode" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="BNU-A9-lud">
+                                                <rect key="frame" x="16" y="599" width="121" height="17"/>
                                                 <fontDescription key="fontDescription" type="boldSystem" pointSize="14"/>
                                                 <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
                                                 <nil key="highlightedColor"/>
@@ -138,8 +138,8 @@
                                                     <action selector="summary:" destination="BYZ-38-t0r" eventType="touchUpInside" id="bsT-zC-tne"/>
                                                 </connections>
                                             </button>
-                                            <button opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="GvX-fR-sXg">
-                                                <rect key="frame" x="18" y="666" width="246" height="30"/>
+                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="GvX-fR-sXg">
+                                                <rect key="frame" x="18" y="666" width="245" height="30"/>
                                                 <state key="normal" title="Initialize with ConCardis Application">
                                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                                 </state>
@@ -147,8 +147,8 @@
                                                     <action selector="initWithConCardis:" destination="BYZ-38-t0r" eventType="touchUpInside" id="bFl-B8-tIv"/>
                                                 </connections>
                                             </button>
-                                            <button opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="eUl-Kh-UQe">
-                                                <rect key="frame" x="16" y="704" width="239" height="30"/>
+                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="eUl-Kh-UQe">
+                                                <rect key="frame" x="16" y="704" width="238" height="30"/>
                                                 <state key="normal" title="Initialize with mCashier Application">
                                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                                 </state>
@@ -157,7 +157,7 @@
                                                 </connections>
                                             </button>
                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="KFh-Sh-xJh">
-                                                <rect key="frame" x="16" y="742" width="138" height="30"/>
+                                                <rect key="frame" x="16" y="780" width="138" height="30"/>
                                                 <state key="normal" title="Application Settings">
                                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                                 </state>
@@ -165,8 +165,8 @@
                                                     <action selector="settings:" destination="BYZ-38-t0r" eventType="touchUpInside" id="WGd-2i-Wja"/>
                                                 </connections>
                                             </button>
-                                            <button opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="5V2-tb-YqL">
-                                                <rect key="frame" x="18" y="780" width="196" height="30"/>
+                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="5V2-tb-YqL">
+                                                <rect key="frame" x="18" y="818" width="194" height="30"/>
                                                 <state key="normal" title="Force Login with Application">
                                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                                 </state>
@@ -183,8 +183,8 @@
                                                     <action selector="initWithTestProvider:" destination="BYZ-38-t0r" eventType="touchUpInside" id="B46-uC-JVY"/>
                                                 </connections>
                                             </button>
-                                            <button opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="sgA-M1-UiL">
-                                                <rect key="frame" x="16" y="557" width="111" height="30"/>
+                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="sgA-M1-UiL">
+                                                <rect key="frame" x="16" y="557" width="109" height="30"/>
                                                 <state key="normal" title="Custom Receipt">
                                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                                 </state>
@@ -192,11 +192,19 @@
                                                     <action selector="customReceipt:" destination="BYZ-38-t0r" eventType="touchUpInside" id="PB6-Ev-kv1"/>
                                                 </connections>
                                             </button>
+                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="a3b-7q-gYN">
+                                                <rect key="frame" x="16" y="742" width="183" height="30"/>
+                                                <state key="normal" title="Initialize with Secure Retail"/>
+                                                <connections>
+                                                    <action selector="initWithSecureRetail:" destination="BYZ-38-t0r" eventType="touchUpInside" id="8IM-cl-X2P"/>
+                                                </connections>
+                                            </button>
                                         </subviews>
                                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                         <constraints>
                                             <constraint firstItem="q8n-gI-68Z" firstAttribute="top" secondItem="XSN-LZ-ZYg" secondAttribute="bottom" constant="12" id="1VM-Ld-7YO"/>
                                             <constraint firstItem="aNy-Ts-UB4" firstAttribute="leading" secondItem="Mj0-Fy-vSb" secondAttribute="leading" constant="16" id="2Tl-Ov-hAG"/>
+                                            <constraint firstItem="a3b-7q-gYN" firstAttribute="leading" secondItem="Mj0-Fy-vSb" secondAttribute="leading" constant="16" id="37m-Tw-oHI"/>
                                             <constraint firstAttribute="centerX" secondItem="WbD-37-Qhn" secondAttribute="centerX" id="3Oz-z0-RG8"/>
                                             <constraint firstItem="XSN-LZ-ZYg" firstAttribute="leading" secondItem="Mj0-Fy-vSb" secondAttribute="leading" constant="16" id="3gL-dH-ysg"/>
                                             <constraint firstItem="HiT-jQ-J4V" firstAttribute="leading" secondItem="Mj0-Fy-vSb" secondAttribute="leading" constant="16" id="4Oe-m6-7St"/>
@@ -221,13 +229,14 @@
                                             <constraint firstItem="eUl-Kh-UQe" firstAttribute="leading" secondItem="Mj0-Fy-vSb" secondAttribute="leading" constant="16" id="Knf-ll-dQv"/>
                                             <constraint firstItem="sgA-M1-UiL" firstAttribute="top" secondItem="qBM-uB-WBb" secondAttribute="bottom" constant="8" id="LhC-tN-Vam"/>
                                             <constraint firstItem="p2d-l9-2k3" firstAttribute="top" secondItem="BNU-A9-lud" secondAttribute="bottom" constant="12" id="Lth-v6-49i"/>
+                                            <constraint firstItem="KFh-Sh-xJh" firstAttribute="top" secondItem="a3b-7q-gYN" secondAttribute="bottom" constant="8" id="M16-6F-V5y"/>
                                             <constraint firstItem="XSN-LZ-ZYg" firstAttribute="top" secondItem="WbD-37-Qhn" secondAttribute="bottom" constant="20" id="OgN-Cn-uiG"/>
                                             <constraint firstItem="p2d-l9-2k3" firstAttribute="top" secondItem="BNU-A9-lud" secondAttribute="bottom" constant="12" id="PIb-Mh-I39"/>
                                             <constraint firstAttribute="width" constant="600" id="Px1-Py-pge"/>
                                             <constraint firstItem="wDZ-LZ-i8n" firstAttribute="leading" secondItem="Mj0-Fy-vSb" secondAttribute="leading" constant="16" id="QLc-Ku-2jz"/>
                                             <constraint firstItem="uD9-tQ-kiK" firstAttribute="top" secondItem="q8n-gI-68Z" secondAttribute="bottom" constant="8" id="RuC-qx-7h5"/>
                                             <constraint firstItem="08N-rK-lFO" firstAttribute="top" secondItem="7qa-aY-8t9" secondAttribute="bottom" constant="8" id="Ryy-8w-y4e"/>
-                                            <constraint firstAttribute="height" constant="820" id="SdK-8C-a1S"/>
+                                            <constraint firstAttribute="height" constant="870" id="SdK-8C-a1S"/>
                                             <constraint firstItem="WbD-37-Qhn" firstAttribute="top" secondItem="U5U-9M-apd" secondAttribute="bottom" constant="6" id="UBJ-8Z-cqK"/>
                                             <constraint firstItem="5V2-tb-YqL" firstAttribute="leading" secondItem="Mj0-Fy-vSb" secondAttribute="leading" constant="18" id="UE5-ZJ-97P"/>
                                             <constraint firstItem="5V2-tb-YqL" firstAttribute="top" secondItem="KFh-Sh-xJh" secondAttribute="bottom" constant="8" id="V1P-Tq-jLk"/>
@@ -244,6 +253,7 @@
                                             <constraint firstItem="qBM-uB-WBb" firstAttribute="leading" secondItem="Mj0-Fy-vSb" secondAttribute="leading" constant="16" id="cf5-YQ-xzH"/>
                                             <constraint firstItem="7qa-aY-8t9" firstAttribute="leading" secondItem="Mj0-Fy-vSb" secondAttribute="leading" constant="16" id="dNH-jh-LgQ"/>
                                             <constraint firstItem="SVi-X6-PBZ" firstAttribute="top" secondItem="08N-rK-lFO" secondAttribute="bottom" constant="12" id="dt2-Vw-cXI"/>
+                                            <constraint firstItem="a3b-7q-gYN" firstAttribute="top" secondItem="eUl-Kh-UQe" secondAttribute="bottom" constant="8" id="eM4-Zp-jyN"/>
                                             <constraint firstItem="eUl-Kh-UQe" firstAttribute="top" secondItem="GvX-fR-sXg" secondAttribute="bottom" constant="8" id="fsy-Q9-sPF"/>
                                             <constraint firstItem="5V2-tb-YqL" firstAttribute="top" secondItem="KFh-Sh-xJh" secondAttribute="bottom" constant="8" id="gnU-ey-SWG"/>
                                             <constraint firstItem="7qa-aY-8t9" firstAttribute="top" secondItem="aNy-Ts-UB4" secondAttribute="bottom" constant="12" id="gsE-6V-yaJ"/>
@@ -256,11 +266,14 @@
                                             <constraint firstItem="HiT-jQ-J4V" firstAttribute="top" secondItem="SVi-X6-PBZ" secondAttribute="bottom" constant="12" id="q6J-dt-OFN"/>
                                             <constraint firstItem="GvX-fR-sXg" firstAttribute="top" secondItem="p2d-l9-2k3" secondAttribute="bottom" constant="8" id="qBL-sX-bUf"/>
                                             <constraint firstItem="BNU-A9-lud" firstAttribute="top" secondItem="sgA-M1-UiL" secondAttribute="bottom" constant="12" id="tHu-AC-iW8"/>
+                                            <constraint firstItem="KFh-Sh-xJh" firstAttribute="top" secondItem="a3b-7q-gYN" secondAttribute="bottom" constant="8" id="vi2-br-lRJ"/>
                                             <constraint firstItem="q8n-gI-68Z" firstAttribute="top" secondItem="XSN-LZ-ZYg" secondAttribute="bottom" constant="12" id="wZE-UQ-JU1"/>
                                         </constraints>
                                         <variation key="default">
                                             <mask key="constraints">
                                                 <exclude reference="9I3-Ao-PQm"/>
+                                                <exclude reference="8Rc-0f-nKX"/>
+                                                <exclude reference="WTI-qu-cBR"/>
                                             </mask>
                                         </variation>
                                     </view>
@@ -268,7 +281,7 @@
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                 <constraints>
                                     <constraint firstAttribute="trailing" secondItem="Mj0-Fy-vSb" secondAttribute="trailing" id="PKI-bb-sFI"/>
-                                    <constraint firstAttribute="bottom" secondItem="Mj0-Fy-vSb" secondAttribute="bottom" id="V0s-dA-VVk"/>
+                                    <constraint firstAttribute="bottom" secondItem="Mj0-Fy-vSb" secondAttribute="bottom" constant="-34" id="V0s-dA-VVk"/>
                                     <constraint firstItem="Mj0-Fy-vSb" firstAttribute="leading" secondItem="8yD-Fy-e1y" secondAttribute="leading" id="igK-cb-vcc"/>
                                     <constraint firstItem="Mj0-Fy-vSb" firstAttribute="top" secondItem="8yD-Fy-e1y" secondAttribute="top" id="wFy-Dx-13H"/>
                                 </constraints>

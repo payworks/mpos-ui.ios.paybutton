@@ -3,9 +3,9 @@
 <plist version="1.0">
 <dict>
 	<key>applicationIdentifier</key>
-	<string>concardis.terminal</string>
+	<string>secureretail.terminal</string>
 	<key>navigationBarTint</key>
-	<string>#dc4405</string>
+	<string>#1B0A40</string>
 	<key>navigationBarTextColor</key>
 	<string>#FFFFFF</string>
 	<key>backgroundColor</key>
@@ -15,7 +15,7 @@
 	<key>printerFamily</key>
 	<string>Sewoo</string>
 	<key>featureSummaryPrintReceipt</key>
-	<true/>
+	<false/>
 	<key>featureSummaryRefund</key>
 	<true/>
 	<key>featureSummarySendReceipt</key>

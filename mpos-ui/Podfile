@@ -3,11 +3,13 @@ source 'https://github.com/CocoaPods/Specs.git'
 
 platform :ios, '7.0'
 
+
 pod 'dummypod',                         :path => 'DummyPodspec'
 
 
 target :"mpos-ui.podsdummy", :exclusive => true do
-    pod 'CocoaLumberjack',              '~> 2.0'
+
+	pod 'payworks/mpos/core',           '2.6.1'
     pod 'MPBSignatureViewController',   '~> 1.4.12'
     pod 'Lockbox',                      '~> 2.1.0'
 end

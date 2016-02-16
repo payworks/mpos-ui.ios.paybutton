@@ -26,6 +26,8 @@
 		4278ED4B1D1CFC0039195A77 /* libPods-mpos-ui.podsdummy.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 3848B4A47AE3D5FA03324DB9 /* libPods-mpos-ui.podsdummy.a */; };
 		44234B361B0DE5F700C1ABAE /* MPULoadTransactionController.h in Headers */ = {isa = PBXBuildFile; fileRef = 44234B341B0DE5F700C1ABAE /* MPULoadTransactionController.h */; };
 		44234B371B0DE5F700C1ABAE /* MPULoadTransactionController.m in Sources */ = {isa = PBXBuildFile; fileRef = 44234B351B0DE5F700C1ABAE /* MPULoadTransactionController.m */; };
+		445DAF451C56314100438186 /* secureretail.plist in Resources */ = {isa = PBXBuildFile; fileRef = 445DAF441C56314100438186 /* secureretail.plist */; settings = {ASSET_TAGS = (); }; };
+		445DAF521C56569200438186 /* mpos-ui.strings in Resources */ = {isa = PBXBuildFile; fileRef = 445DAF501C56569200438186 /* mpos-ui.strings */; settings = {ASSET_TAGS = (); }; };
 		4461B23E1B9478F600EE55AF /* MPULoginController.h in Headers */ = {isa = PBXBuildFile; fileRef = 4461B23C1B9478F600EE55AF /* MPULoginController.h */; };
 		4461B23F1B9478F600EE55AF /* MPULoginController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4461B23D1B9478F600EE55AF /* MPULoginController.m */; };
 		4461B2421B9498BD00EE55AF /* MPUApplicationData.h in Headers */ = {isa = PBXBuildFile; fileRef = 4461B2401B9498BD00EE55AF /* MPUApplicationData.h */; };
@@ -55,7 +57,6 @@
 		44AEEBE51B58FB5600531369 /* MPUPrintReceiptContainerViewController.h in Headers */ = {isa = PBXBuildFile; fileRef = 44AEEBE31B58FB5600531369 /* MPUPrintReceiptContainerViewController.h */; };
 		44AEEBE61B58FB5600531369 /* MPUPrintReceiptContainerViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 44AEEBE41B58FB5600531369 /* MPUPrintReceiptContainerViewController.m */; };
 		44B3EE211BDFD8320089D194 /* mpos-ui.strings in Resources */ = {isa = PBXBuildFile; fileRef = 44B3EE1F1BDFD8320089D194 /* mpos-ui.strings */; };
-		44C6B0511B629C04004C988C /* mpos.core.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 44C6B0501B629C04004C988C /* mpos.core.framework */; };
 		44D986081B4C3E53006F2F62 /* MPUEmptySegue.h in Headers */ = {isa = PBXBuildFile; fileRef = 44D986061B4C3E53006F2F62 /* MPUEmptySegue.h */; };
 		44D986091B4C3E53006F2F62 /* MPUEmptySegue.m in Sources */ = {isa = PBXBuildFile; fileRef = 44D986071B4C3E53006F2F62 /* MPUEmptySegue.m */; };
 		44E918161B4BE30F0085FB8E /* MPUAbstractContainerViewController.h in Headers */ = {isa = PBXBuildFile; fileRef = 44E918141B4BE30F0085FB8E /* MPUAbstractContainerViewController.h */; };
@@ -150,6 +151,8 @@
 		3848B4A47AE3D5FA03324DB9 /* libPods-mpos-ui.podsdummy.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-mpos-ui.podsdummy.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		44234B341B0DE5F700C1ABAE /* MPULoadTransactionController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MPULoadTransactionController.h; sourceTree = "<group>"; };
 		44234B351B0DE5F700C1ABAE /* MPULoadTransactionController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MPULoadTransactionController.m; sourceTree = "<group>"; };
+		445DAF441C56314100438186 /* secureretail.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = secureretail.plist; sourceTree = "<group>"; };
+		445DAF511C56569200438186 /* pl */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = pl; path = "pl.lproj/mpos-ui.strings"; sourceTree = "<group>"; };
 		4461B23C1B9478F600EE55AF /* MPULoginController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MPULoginController.h; sourceTree = "<group>"; };
 		4461B23D1B9478F600EE55AF /* MPULoginController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MPULoginController.m; sourceTree = "<group>"; };
 		4461B2401B9498BD00EE55AF /* MPUApplicationData.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MPUApplicationData.h; sourceTree = "<group>"; };
@@ -239,7 +242,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				86336A1C9B7043E047DA8E75 /* libPods.a in Frameworks */,
-				44C6B0511B629C04004C988C /* mpos.core.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -303,8 +305,9 @@
 				F48682BA1B0CBA570042FF15 /* it.lproj */,
 				F48682BE1B0CBA570042FF15 /* nl.lproj */,
 				44B3EE141BDFD1870089D194 /* fi.lproj */,
-				F48682B51B0CBA570042FF15 /* FontAwesome.otf */,
+				445DAF531C5656A100438186 /* pl.lproj */,
 				F48682BD1B0CBA570042FF15 /* mpos-ui.storyboard */,
+				F48682B51B0CBA570042FF15 /* FontAwesome.otf */,
 				F48682B91B0CBA570042FF15 /* Images.xcassets */,
 				4461B2551B95B49700EE55AF /* application-customization */,
 			);
@@ -330,11 +333,20 @@
 			name = ContainerViewController;
 			sourceTree = "<group>";
 		};
+		445DAF531C5656A100438186 /* pl.lproj */ = {
+			isa = PBXGroup;
+			children = (
+				445DAF501C56569200438186 /* mpos-ui.strings */,
+			);
+			name = pl.lproj;
+			sourceTree = "<group>";
+		};
 		4461B2551B95B49700EE55AF /* application-customization */ = {
 			isa = PBXGroup;
 			children = (
 				4461B2541B95B48E00EE55AF /* concardis.plist */,
 				4461B2571B96ED1D00EE55AF /* mcashier.plist */,
+				445DAF441C56314100438186 /* secureretail.plist */,
 			);
 			path = "application-customization";
 			sourceTree = "<group>";
@@ -654,6 +666,7 @@
 				nl,
 				es,
 				fi,
+				pl,
 			);
 			mainGroup = 2D959B5B1A7B8D0F00DC5310;
 			productRefGroup = 2D959B661A7B8D0F00DC5310 /* Products */;
@@ -677,11 +690,13 @@
 				F486833C1B0E06650042FF15 /* mpos-ui.strings in Resources */,
 				F486833E1B0E06650042FF15 /* mpos-ui.strings in Resources */,
 				F486833F1B0E06650042FF15 /* mpos-ui.strings in Resources */,
+				445DAF521C56569200438186 /* mpos-ui.strings in Resources */,
 				F48683401B0E06650042FF15 /* mpos-ui.strings in Resources */,
 				F48683411B0E06650042FF15 /* mpos-ui.strings in Resources */,
 				44B3EE211BDFD8320089D194 /* mpos-ui.strings in Resources */,
 				4461B2561B96E27B00EE55AF /* concardis.plist in Resources */,
 				4461B2581B96ED1D00EE55AF /* mcashier.plist in Resources */,
+				445DAF451C56314100438186 /* secureretail.plist in Resources */,
 				F48683391B0D06C20042FF15 /* FontAwesome.otf in Resources */,
 				F486833A1B0D06C20042FF15 /* mpos-ui.storyboard in Resources */,
 				F486833B1B0D06C20042FF15 /* Images.xcassets in Resources */,
@@ -847,6 +862,14 @@
 /* End PBXTargetDependency section */
 
 /* Begin PBXVariantGroup section */
+		445DAF501C56569200438186 /* mpos-ui.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				445DAF511C56569200438186 /* pl */,
+			);
+			name = "mpos-ui.strings";
+			sourceTree = "<group>";
+		};
 		44B3EE1F1BDFD8320089D194 /* mpos-ui.strings */ = {
 			isa = PBXVariantGroup;
 			children = (
@@ -997,13 +1020,11 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = A6420FC34248B24BC042BFE6 /* Pods.debug.xcconfig */;
 			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = YES;
 				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
 				CLANG_WARN_OBJC_IMPLICIT_ATOMIC_PROPERTIES = YES;
 				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
-				FRAMEWORK_SEARCH_PATHS = (
-					"$(inherited)",
-					"$(PROJECT_DIR)/../Frameworks",
-				);
+				FRAMEWORK_SEARCH_PATHS = "\"${PODS_ROOT}\"/**";
 				GCC_PREFIX_HEADER = "Resources/mpos-ui.pch";
 				GCC_PREPROCESSOR_DEFINITIONS = (
 					"DEBUG=1",
@@ -1013,6 +1034,7 @@
 				GCC_WARN_ABOUT_MISSING_PROTOTYPES = YES;
 				GCC_WARN_INITIALIZER_NOT_FULLY_BRACKETED = YES;
 				GCC_WARN_UNUSED_LABEL = YES;
+				ONLY_ACTIVE_ARCH = NO;
 				OTHER_LDFLAGS = "$(inherited)";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SKIP_INSTALL = YES;
@@ -1023,13 +1045,11 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = 6747BEB343793F87F2CCCF64 /* Pods.release.xcconfig */;
 			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = YES;
 				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
 				CLANG_WARN_OBJC_IMPLICIT_ATOMIC_PROPERTIES = YES;
 				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
-				FRAMEWORK_SEARCH_PATHS = (
-					"$(inherited)",
-					"$(PROJECT_DIR)/../Frameworks",
-				);
+				FRAMEWORK_SEARCH_PATHS = "\"${PODS_ROOT}\"/**";
 				GCC_PREFIX_HEADER = "Resources/mpos-ui.pch";
 				GCC_WARN_ABOUT_MISSING_FIELD_INITIALIZERS = YES;
 				GCC_WARN_ABOUT_MISSING_PROTOTYPES = YES;

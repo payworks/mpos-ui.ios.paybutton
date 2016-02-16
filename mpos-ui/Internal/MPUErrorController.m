@@ -70,6 +70,8 @@
         if (self.mposUi.mposUiMode == MPUMposUiModeApplication) {
             [self.mposUi clearMerchantCredentialsIncludingUsername:NO];
         }
+    } else if(self.error.type == MPErrorTypeAccessoryBusy) {
+        self.retryButton.hidden = NO;
     }
     [self l10n];
 }

@@ -89,7 +89,13 @@ typedef NS_ENUM(NSUInteger, MPUApplicationName) {
     /**
      * Login to Concardis Optipay
      */
-    MPUApplicationNameConcardis
+    MPUApplicationNameConcardis,
+    
+    /**
+     * Login to Secure Retail
+     */
+    MPUApplicationNameSecureRetail
+    
 };
 
 typedef void (^MPUPrintReceiptCompleted)(UIViewController * _Nonnull controller, MPUPrintReceiptResult result);
@@ -157,11 +163,21 @@ typedef void (^MPULoginCompleted)(UIViewController * _Nonnull controller, MPULog
 
 #pragma mark - Initialize with Login / Logout with an exisiting application.
 /**
- * Initializes the MposUi with the given application name to login and integrator identifier. The method *MUST* be called before any transaction can be started.
+ * Initializes the MposUi with LIVE provider mode and the given application name to login and integrator identifier. The method *MUST* be called before any transaction can be started.
+ * @param applicationName The login to use.
+ * @param integratorIdentifier The integratorIdentifier to use.
+ * @deprecated
+ */
++ (nonnull instancetype)initializeWithApplication:(MPUApplicationName)applicationName integratorIdentifier:(nonnull NSString *)integratorIdentifier DEPRECATED_MSG_ATTRIBUTE("Use initializeWithProviderMode:application:integratorIdentifier instead");
+
+/**
+ * Initializes the MposUi with the given provider mode, application name to login and integrator identifier. The method *MUST* be called before any transaction can be started.
+ * @param providerMode The mode to use.
  * @param applicationName The login to use.
  * @param integratorIdentifier The integratorIdentifier to use.
  */
-+ (nonnull instancetype)initializeWithApplication:(MPUApplicationName)applicationName integratorIdentifier:(nonnull NSString *)integratorIdentifier;
++ (nonnull instancetype)initializeWithProviderMode:(MPProviderMode)providerMode application:(MPUApplicationName)applicationName integratorIdentifier:(nonnull NSString *)integratorIdentifier;
+
 
 #pragma mark - Transaction methods
 /**

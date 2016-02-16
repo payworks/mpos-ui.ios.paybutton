@@ -64,6 +64,9 @@
         case MPUApplicationNameConcardis:
             plistPath = [[MPUUIHelper frameworkBundle] pathForResource:@"concardis" ofType:@"plist"];
             break;
+        case MPUApplicationNameSecureRetail:
+            plistPath = [[MPUUIHelper frameworkBundle] pathForResource:@"secureretail" ofType:@"plist"];
+            break;
     }
     NSDictionary *dictionary = [[NSDictionary alloc] initWithContentsOfFile:plistPath];
 
@@ -79,10 +82,11 @@
         case MPUApplicationNameConcardis:
             image = @"ConCardis";
             break;
-        default:
-            return nil;
+        case MPUApplicationNameSecureRetail:
+            image = @"SecureRetail";
             break;
     }
+    
     if ([UIImage respondsToSelector:@selector(imageNamed:inBundle:compatibleWithTraitCollection:)]) {
         return [UIImage imageNamed:image inBundle:[MPUUIHelper frameworkBundle] compatibleWithTraitCollection:nil];
     } else {
