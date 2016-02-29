@@ -281,6 +281,22 @@
             self.paymentSchemeViewFallback.text = @"American Express";
             break;
             
+        case MPPaymentDetailsSchemeDinersClub:
+            self.paymentSchemeViewFallback.text = @"Diners";
+            break;
+        
+        case MPPaymentDetailsSchemeJCB:
+            self.paymentSchemeViewFallback.text = @"JCB";
+            break;
+        
+        case MPPaymentDetailsSchemeDiscover:
+            self.paymentSchemeViewFallback.text = @"Discover";
+            break;
+            
+        case MPPaymentDetailsSchemeUnionPay:
+            self.paymentSchemeViewFallback.text = @"Union Pay";
+            break;
+            
         default:
             [self.paymentSchemeView removeFromSuperview];
             [self.paymentSchemeViewFallback removeFromSuperview];
@@ -321,6 +337,22 @@
             
         case MPPaymentDetailsSchemeAmericanExpress:
             self.paymentSchemeView.image = [UIImage imageNamed:@"AmericanExpress" inBundle:[MPUUIHelper frameworkBundle] compatibleWithTraitCollection:nil];
+            break;
+            
+        case MPPaymentDetailsSchemeDinersClub:
+            self.paymentSchemeView.image = [UIImage imageNamed:@"Diners" inBundle:[MPUUIHelper frameworkBundle] compatibleWithTraitCollection:nil];
+            break;
+            
+        case MPPaymentDetailsSchemeJCB:
+            self.paymentSchemeView.image = [UIImage imageNamed:@"JCB" inBundle:[MPUUIHelper frameworkBundle] compatibleWithTraitCollection:nil];
+            break;
+            
+        case MPPaymentDetailsSchemeDiscover:
+            self.paymentSchemeView.image = [UIImage imageNamed:@"Discover" inBundle:[MPUUIHelper frameworkBundle] compatibleWithTraitCollection:nil];
+            break;
+            
+        case MPPaymentDetailsSchemeUnionPay:
+            self.paymentSchemeView.image = [UIImage imageNamed:@"UnionPay" inBundle:[MPUUIHelper frameworkBundle] compatibleWithTraitCollection:nil];
             break;
             
         default:

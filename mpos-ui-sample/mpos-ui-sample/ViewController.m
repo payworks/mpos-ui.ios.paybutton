@@ -116,7 +116,15 @@ NSString *const CheckoutControllerMerchantSecret = @"merchant_secret";
     [self displayViewController:viewController];
 }
 
+
 - (void)startTestPayment:(NSString *)amount withAccessoryParameters:(MPAccessoryParameters*)accessoryParameters {
+    // Usually you only need initialize the provider only once in your app. Since the configuration is with MOCK configuration currently, we reinitialize again with TEST.
+    
+    [self startTestPayment:amount tipAmount:nil withAccessoryParameters:accessoryParameters];
+}
+
+
+- (void)startTestPayment:(NSString *)amount tipAmount:(NSString*)tipAmount withAccessoryParameters:(MPAccessoryParameters*)accessoryParameters {
     // Usually you only need initialize the provider only once in your app. Since the configuration is with MOCK configuration currently, we reinitialize again with TEST.
     
     if (!self.applicationMode) {
@@ -129,9 +137,20 @@ NSString *const CheckoutControllerMerchantSecret = @"merchant_secret";
                                                                           optionals:^(id<MPTransactionParametersOptionals> optionals) {
                                                                               optionals.subject = @"subject";
                                                                           }];
-
     
-    UIViewController *viewController = [self.mposUi createTransactionViewControllerWithTransactionParameters:parameters completed:^(UIViewController *controller, MPUTransactionResult result, MPTransaction *transaction) {
+    
+    
+    MPTransactionProcessParameters *processParams = nil;
+    
+    if (tipAmount) {
+        
+        processParams = [MPTransactionProcessParameters parametersWithSteps:^(id<MPTransactionProcessParametersSteps>  _Nonnull steps) {
+            
+            [steps addAskForTipStepWithSuggestedAmount:[NSDecimalNumber decimalNumberWithString:tipAmount]];
+        }];
+    }
+
+    UIViewController *viewController = [self.mposUi createTransactionViewControllerWithTransactionParameters:parameters processParameters:processParams completed:^(UIViewController *controller, MPUTransactionResult result, MPTransaction *transaction) {
         
         [controller dismissViewControllerAnimated:YES completion:nil];
         if (result == MPUTransactionResultApproved) {
@@ -143,6 +162,8 @@ NSString *const CheckoutControllerMerchantSecret = @"merchant_secret";
     }];
     [self displayViewController:viewController];
 }
+
+
 
 - (void)initializeWithProvider {
     self.mposUi = [MPUMposUi initializeWithProviderMode:MPProviderModeTEST merchantIdentifier:CheckoutControllerMerchantIdentifier merchantSecret:CheckoutControllerMerchantSecret];
@@ -224,6 +245,11 @@ NSString *const CheckoutControllerMerchantSecret = @"merchant_secret";
 - (IBAction)chargeMiura:(id)sender {
     // Start transaction on a Miura
     [self startTestPayment:@"13.37" withAccessoryParameters:[MPAccessoryParameters externalAccessoryParametersWithFamily:MPAccessoryFamilyMiuraMPI protocol:@"com.miura.shuttle" optionals:nil]];
+}
+
+- (IBAction)chargeMiuraWithTip:(id)sender {
+
+    [self startTestPayment:@"13.37" tipAmount:@"1.63" withAccessoryParameters:[MPAccessoryParameters externalAccessoryParametersWithFamily:MPAccessoryFamilyMiuraMPI protocol:@"com.miura.shuttle" optionals:nil]];
 }
 
 - (IBAction)chargeVerifone:(id)sender {

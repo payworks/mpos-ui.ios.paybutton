@@ -205,15 +205,23 @@ static MPUMposUi *mpu_mposUiInstance;
 
 - (UIViewController *)createTransactionViewControllerWithTransactionParameters:(MPTransactionParameters *)transactionParameters completed:(MPUTransactionCompleted)completed {
  
+   return [self createTransactionViewControllerWithTransactionParameters:transactionParameters processParameters:nil completed:completed];
+}
+
+
+- (UIViewController *)createTransactionViewControllerWithTransactionParameters:(MPTransactionParameters *)transactionParameters processParameters:(MPTransactionProcessParameters *)processParameters completed:(MPUTransactionCompleted)completed {
+
     MPUTransactionMainController *transactionMainController = [self createTransactionViewControllerWithCompleted:completed];
- 
+    
     if (self.mposUiMode == MPUMposUiModeProvider) {
         transactionMainController.parameters = transactionParameters;
     } else {
         NSString *customIdentifier = [self generateCustomIdentifier:transactionParameters.customIdentifier forIntegratorIdentifier:self.integratorIdentifier];
         transactionMainController.parameters = [self generateTransactionParameters:transactionParameters forCustomIdentifier:customIdentifier];
     }
-
+    
+    transactionMainController.processParameters = processParameters;
+    
     return transactionMainController;
 }
 

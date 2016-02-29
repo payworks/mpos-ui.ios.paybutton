@@ -99,7 +99,7 @@
         self.mposUi.transaction = transaction;
         self.mposUi.transactionProcessDetails = details;
         [self updateTransactionStatus:details withTransaction:transaction];
-
+        [self.delegate transactionStatusChanged:transaction];
     };
     
     MPTransactionProcessActionRequired actionRequired = ^(MPTransactionProcess *transactionProcess, MPTransaction *transaction, MPTransactionAction action, MPTransactionActionSupport *support) {
@@ -147,6 +147,7 @@
     if (self.sessionIdentifier) {
         self.transactionProcess = [self.mposUi.transactionProvider startTransactionWithSessionIdentifier:self.sessionIdentifier
                                                                                      accessoryParameters:self.mposUi.configuration.terminalParameters
+                                                                                       processParameters:self.processParameters
                                                                                            statusChanged:statusChanged
                                                                                           actionRequired:actionRequired
                                                                                                completed:completed];
@@ -155,6 +156,7 @@
         
         self.transactionProcess = [self.mposUi.transactionProvider startTransactionWithParameters:self.parameters
                                                                               accessoryParameters:self.mposUi.configuration.terminalParameters
+                                                                                processParameters:self.processParameters
                                                                                      registered:registered
                                                                                   statusChanged:statusChanged
                                                                                  actionRequired:actionRequired
@@ -181,6 +183,10 @@
             return @"\uf023"; //fa-lock
         case MPTransactionProcessDetailsStateDetailsProcessingWaitingForPIN:
             return @"\uf00a"; //fa-th
+        
+        case MPTransactionProcessDetailsStateDetailsPreparingAskingForTip:
+            return @"\uf129"; //fa-info
+            
         case MPTransactionProcessDetailsStateDetailsCreated:
         case MPTransactionProcessDetailsStateDetailsWaitingForCardRemoval:
         case MPTransactionProcessDetailsStateDetailsInitializingTransactionQuerying:
@@ -214,6 +220,7 @@
         case MPTransactionProcessDetailsStateFailed:
             return @"\uf057"; //fa-circle
         case MPTransactionProcessDetailsStateNotRefundable:
+            case MPTransactionProcessDetailsStatePreparing:
             break; //We do nothing!
     }
     return @"";
@@ -229,6 +236,7 @@
         case MPTransactionProcessDetailsStateDetailsApproved:
         case MPTransactionProcessDetailsStateDetailsDeclined:
         case MPTransactionProcessDetailsStateDetailsFailed:
+        case MPTransactionProcessDetailsStateDetailsPreparingAskingForTip:
             visible = NO;
             break;
             

@@ -220,7 +220,17 @@ typedef void (^MPULoginCompleted)(UIViewController * _Nonnull controller, MPULog
  * @param completed Completed callback notifying about the completion of a transaction. The ViewController can be dismissed afterwards.
  * @return The ViewController ready to be pushed for display.
  */
-- (nonnull UIViewController *)createTransactionViewControllerWithTransactionParameters:(nonnull MPTransactionParameters*)transactionParameters completed:(nonnull MPUTransactionCompleted)completed;
+- (nonnull UIViewController *)createTransactionViewControllerWithTransactionParameters:(nonnull MPTransactionParameters *)transactionParameters completed:(nonnull MPUTransactionCompleted)completed;
+
+
+/**
+ * Creates an UIViewController that starts the transactions and updates its views accordingly.
+ * @param transactionParameters Parameters that describe the transaction to be started.
+ * @param completed Completed callback notifying about the completion of a transaction. The ViewController can be dismissed afterwards.
+ * @return The ViewController ready to be pushed for display.
+ */
+- (nonnull UIViewController *)createTransactionViewControllerWithTransactionParameters:(nonnull MPTransactionParameters *)transactionParameters processParameters:(nullable MPTransactionProcessParameters *)processParameters completed:(nonnull MPUTransactionCompleted)completed;
+
 
 /**
  * Creates an UIViewController that starts the summary view for the transaction.

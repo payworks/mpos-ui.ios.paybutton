@@ -35,12 +35,14 @@
 - (void)transactionError:(NSError *)error;
 - (void)transactionRefunded:(MPTransaction *)transaction;
 - (void)transactionSummary:(MPTransaction *)transaction;
+- (void)transactionStatusChanged:(MPTransaction *)transaction;
 
 @end
 
 @interface MPUTransactionController : MPUAbstractController
 
 @property (nonatomic, strong) MPTransactionParameters *parameters;
+@property (nonatomic, strong) MPTransactionProcessParameters *processParameters;
 @property (nonatomic, copy) NSString *sessionIdentifier;
 @property (nonatomic, weak) id<MPUTransactionDelegate> delegate;
 

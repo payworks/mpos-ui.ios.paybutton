@@ -31,6 +31,7 @@
 @interface MPUTransactionMainController : MPUAbstractMainController
 
 @property (nonatomic, strong) MPTransactionParameters *parameters;
+@property (nonatomic, strong) MPTransactionProcessParameters *processParameters;
 @property (nonatomic, copy) NSString *sessionIdentifier;
 @property (nonatomic, copy) MPUTransactionCompleted completed;
 

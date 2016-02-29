@@ -39,7 +39,10 @@
 
 + (BOOL)isStringEmpty:(NSString *)string;
 
-+ (NSString *)defaultControllerTitleBasedOnParameters:(MPTransactionParameters *)parameters toolbox:(MPLocalizationToolbox *)toolbox;
++ (NSString *)defaultControllerTitleBasedOnParameters:(MPTransactionParameters *)parameters
+                                          transaction:(MPTransaction *)transaction
+                                              toolbox:(MPLocalizationToolbox *)toolbox;
+
 
 + (UIColor *)colorFromHexString:(NSString *)hexString;
 

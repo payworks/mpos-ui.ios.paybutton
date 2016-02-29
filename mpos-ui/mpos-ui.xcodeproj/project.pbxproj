@@ -26,8 +26,8 @@
 		4278ED4B1D1CFC0039195A77 /* libPods-mpos-ui.podsdummy.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 3848B4A47AE3D5FA03324DB9 /* libPods-mpos-ui.podsdummy.a */; };
 		44234B361B0DE5F700C1ABAE /* MPULoadTransactionController.h in Headers */ = {isa = PBXBuildFile; fileRef = 44234B341B0DE5F700C1ABAE /* MPULoadTransactionController.h */; };
 		44234B371B0DE5F700C1ABAE /* MPULoadTransactionController.m in Sources */ = {isa = PBXBuildFile; fileRef = 44234B351B0DE5F700C1ABAE /* MPULoadTransactionController.m */; };
-		445DAF451C56314100438186 /* secureretail.plist in Resources */ = {isa = PBXBuildFile; fileRef = 445DAF441C56314100438186 /* secureretail.plist */; settings = {ASSET_TAGS = (); }; };
-		445DAF521C56569200438186 /* mpos-ui.strings in Resources */ = {isa = PBXBuildFile; fileRef = 445DAF501C56569200438186 /* mpos-ui.strings */; settings = {ASSET_TAGS = (); }; };
+		445DAF451C56314100438186 /* secureretail.plist in Resources */ = {isa = PBXBuildFile; fileRef = 445DAF441C56314100438186 /* secureretail.plist */; };
+		445DAF521C56569200438186 /* mpos-ui.strings in Resources */ = {isa = PBXBuildFile; fileRef = 445DAF501C56569200438186 /* mpos-ui.strings */; };
 		4461B23E1B9478F600EE55AF /* MPULoginController.h in Headers */ = {isa = PBXBuildFile; fileRef = 4461B23C1B9478F600EE55AF /* MPULoginController.h */; };
 		4461B23F1B9478F600EE55AF /* MPULoginController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4461B23D1B9478F600EE55AF /* MPULoginController.m */; };
 		4461B2421B9498BD00EE55AF /* MPUApplicationData.h in Headers */ = {isa = PBXBuildFile; fileRef = 4461B2401B9498BD00EE55AF /* MPUApplicationData.h */; };
@@ -57,6 +57,7 @@
 		44AEEBE51B58FB5600531369 /* MPUPrintReceiptContainerViewController.h in Headers */ = {isa = PBXBuildFile; fileRef = 44AEEBE31B58FB5600531369 /* MPUPrintReceiptContainerViewController.h */; };
 		44AEEBE61B58FB5600531369 /* MPUPrintReceiptContainerViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 44AEEBE41B58FB5600531369 /* MPUPrintReceiptContainerViewController.m */; };
 		44B3EE211BDFD8320089D194 /* mpos-ui.strings in Resources */ = {isa = PBXBuildFile; fileRef = 44B3EE1F1BDFD8320089D194 /* mpos-ui.strings */; };
+		44C6B0511B629C04004C988C /* mpos.core.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 44C6B0501B629C04004C988C /* mpos.core.framework */; };
 		44D986081B4C3E53006F2F62 /* MPUEmptySegue.h in Headers */ = {isa = PBXBuildFile; fileRef = 44D986061B4C3E53006F2F62 /* MPUEmptySegue.h */; };
 		44D986091B4C3E53006F2F62 /* MPUEmptySegue.m in Sources */ = {isa = PBXBuildFile; fileRef = 44D986071B4C3E53006F2F62 /* MPUEmptySegue.m */; };
 		44E918161B4BE30F0085FB8E /* MPUAbstractContainerViewController.h in Headers */ = {isa = PBXBuildFile; fileRef = 44E918141B4BE30F0085FB8E /* MPUAbstractContainerViewController.h */; };

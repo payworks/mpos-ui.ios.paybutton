@@ -38,7 +38,7 @@ NSString *const MPUUIHelperFrameworkBundleName = @"mpos-ui-resources";
     dispatch_once(&frameworkBundleOnce, ^{
         
         frameworkBundle = [NSBundle bundleWithURL:[[NSBundle mainBundle] URLForResource:@"mpos-ui-resources" withExtension:@"bundle"]];
-        DDLogDebug(@"bundle found: %@", ((frameworkBundle != nil) ? @"YES" : @"NO"));
+        DDLogDebug(@"bundle found: %@", ((frameworkBundle) ? @"YES" : @"NO"));
     });
     return frameworkBundle;
 }
@@ -73,27 +73,22 @@ NSString *const MPUUIHelperFrameworkBundleName = @"mpos-ui-resources";
     return ![[string stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceAndNewlineCharacterSet]] length];
 }
 
-+ (NSString *)defaultControllerTitleBasedOnParameters:(MPTransactionParameters *)parameters toolbox:(MPLocalizationToolbox *)toolbox {
++ (NSString *)defaultControllerTitleBasedOnParameters:(MPTransactionParameters *)parameters
+                                          transaction:(MPTransaction *)transaction
+                                              toolbox:(MPLocalizationToolbox *)toolbox {
+
+    NSString *token = (parameters.referencedTransactionIdentifier) ? @"MPURefund" : @"MPUSale";
+    NSString *title = [MPUUIHelper localizedString:token];
     
-    NSString *titlePrefix;
-    if (parameters.referencedTransactionIdentifier != nil){
-        titlePrefix = [MPUUIHelper localizedString:@"MPURefund"];
+    if (transaction) {
+        NSString *titleAmount = [toolbox textFormattedForAmount:transaction.amount currency:transaction.currency];
+        title = [title stringByAppendingFormat:@": %@", titleAmount];
     }
-    else {
-         titlePrefix = [MPUUIHelper localizedString:@"MPUSale"];
-    }
-    
-    NSString *title;
-    if (parameters.amount){
-        NSString *titleAmount = [toolbox textFormattedForAmount:parameters.amount currency:parameters.currency];
-        title = [NSString stringWithFormat:@"%@: %@", titlePrefix, titleAmount];
-    }
-    else {
-        title = [NSString stringWithFormat:@"%@", titlePrefix];
-    }
-    
+
     return title;
 }
+
+
 
 // Assumes input like "#00FF00" (#RRGGBB).
 + (UIColor *)colorFromHexString:(NSString *)hexString {

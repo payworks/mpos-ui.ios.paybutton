@@ -46,6 +46,7 @@ NSString* const MPUSegueIdentifierTransactionContainer = @"embedTransactionConta
     if ([segue.identifier isEqualToString:MPUSegueIdentifierTransactionContainer]) {
         self.transactionContainer = segue.destinationViewController;
         self.transactionContainer.parameters = self.parameters;
+        self.transactionContainer.processParameters = self.processParameters;
         self.transactionContainer.sessionIdentifier = self.sessionIdentifier;
         self.transactionContainer.completed = self.completed;
         self.transactionContainer.delegate = self;

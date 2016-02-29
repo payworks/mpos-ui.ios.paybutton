@@ -100,7 +100,7 @@ NSString* const MPUSegueIdentifierTransaction_Login = @"txPushLogin";
         // so just want to swap view controller back in so that we dont lose state when the transactoin is ongoing.
         if (!self.transactionInProgress) {
             self.transactionViewController = segue.destinationViewController;
-            [self showTransaction:self.parameters sessionIdentifier:self.sessionIdentifier];
+            [self showTransaction:self.parameters processParameters:self.processParameters sessionIdentifier:self.sessionIdentifier];
         }
         [self swapToViewController:self.transactionViewController];
     }
@@ -162,10 +162,13 @@ NSString* const MPUSegueIdentifierTransaction_Login = @"txPushLogin";
     }
 }
 
-- (void)showTransaction:(MPTransactionParameters *)parameters sessionIdentifier:(NSString*)sessionIdentifier {
-    NSString *title = [MPUUIHelper defaultControllerTitleBasedOnParameters:self.parameters toolbox:self.mposUi.transactionProvider.localizationToolbox];
+- (void)showTransaction:(MPTransactionParameters *)parameters processParameters:(MPTransactionProcessParameters*)processParameters sessionIdentifier:(NSString*)sessionIdentifier {
+    NSString *title = [MPUUIHelper defaultControllerTitleBasedOnParameters:self.parameters
+                                                               transaction:self.transaction
+                                                                   toolbox:self.mposUi.transactionProvider.localizationToolbox];
     [self.delegate titleChanged:title];
     self.transactionViewController.parameters = parameters;
+    self.transactionViewController.processParameters = processParameters;
     self.transactionViewController.sessionIdentifier = sessionIdentifier;
     self.transactionViewController.delegate = self;
 }
@@ -220,12 +223,19 @@ NSString* const MPUSegueIdentifierTransaction_Login = @"txPushLogin";
             config.scheme = MPBSignatureViewControllerConfigurationSchemeAmex;
             break;
         case MPPaymentDetailsSchemeDinersClub:
+            config.scheme = MPBSignatureViewControllerConfigurationSchemeDinersClub;
+            break;
         case MPPaymentDetailsSchemeDiscover:
+            config.scheme = MPBSignatureViewControllerConfigurationSchemeDiscover;
+            break;
         case MPPaymentDetailsSchemeJCB:
+            config.scheme = MPBSignatureViewControllerConfigurationSchemeJCB;
+            break;
         case MPPaymentDetailsSchemeUnionPay:
+            config.scheme = MPBSignatureViewControllerConfigurationSchemeUnionPay;
+            break;
         case MPPaymentDetailsSchemeUnknown:
             config.scheme = MPBSignatureViewControllerConfigurationSchemeNone;
-            //not supported atm
             break;
     }
 
@@ -315,6 +325,14 @@ NSString* const MPUSegueIdentifierTransaction_Login = @"txPushLogin";
     self.refundedTransaction = transaction;
     self.transactionIdentifier = transaction.referencedTransactionIdentifier;
     [self performSegueWithIdentifier:MPUSegueIdentifierTransaction_LoadTransaction sender:nil];
+}
+
+- (void)transactionStatusChanged:(MPTransaction *)transaction {
+    
+    NSString *title = [MPUUIHelper defaultControllerTitleBasedOnParameters:self.parameters
+                                                               transaction:transaction
+                                                                   toolbox:self.mposUi.transactionProvider.localizationToolbox];
+    [self.delegate titleChanged:title];
 }
 
 #pragma mark - MPULoginDelegate
