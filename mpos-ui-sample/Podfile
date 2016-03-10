@@ -2,7 +2,7 @@ source 'https://bitbucket.org/mpymnt/io.mpymnt.repo.pods.git'
 source 'https://github.com/CocoaPods/Specs.git'
 
 
-pod 'payworks',                     '2.7.0'
+pod 'payworks',                     '2.7.1'
 
 pod 'CocoaLumberjack',              '~> 2.0'
 pod 'MPBSignatureViewController',   '~> 1.5.0'

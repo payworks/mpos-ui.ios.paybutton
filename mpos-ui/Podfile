@@ -10,7 +10,7 @@ pod 'dummypod',                         :path => 'DummyPodspec'
 
 target :"mpos-ui.podsdummy", :exclusive => true do
 
-	pod 'payworks/mpos/core',           '2.7.0'
+	pod 'payworks/mpos/core',           '2.7.1'
 
     pod 'MPBSignatureViewController',   '~> 1.5.0'
     pod 'Lockbox',                      '~> 2.1.0'
