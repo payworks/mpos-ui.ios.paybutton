@@ -45,4 +45,11 @@
 }
 
 
+- (UIBarButtonItem *)backButtonItem {
+    return nil;
+}
+
+- (UIBarButtonItem *)rightButtonItem {
+    return nil;
+}
 @end

@@ -50,13 +50,15 @@ typedef NS_ENUM(NSUInteger, MPUMposUiConfigurationSignatureCapture) {
  */
 typedef NS_OPTIONS(NSUInteger, MPUMposUiConfigurationSummaryFeature) {
     /** Option to disable all features */
-    MPUMposUiConfigurationSummaryFeatureNone                    = 0,      // 00000000
+    MPUMposUiConfigurationSummaryFeatureNone                    = 0,
     /** Option to enable sending receipt to customer via email. */
-    MPUMposUiConfigurationSummaryFeatureSendReceiptViaEmail     = 1 << 0, // 00000001
+    MPUMposUiConfigurationSummaryFeatureSendReceiptViaEmail     = 1 << 0,
     /** Option to enable printing receipt using a hardware printer. */
-    MPUMposUiConfigurationSummaryFeaturePrintReceipt            = 1 << 1, // 00000010
-    /** Option to enable refund transaction button right away. */
-    MPUMposUiConfigurationSummaryFeatureRefundTransaction       = 1 << 2  // 00000100
+    MPUMposUiConfigurationSummaryFeaturePrintReceipt            = 1 << 1,
+    /** Option to enable refund transaction button. */
+    MPUMposUiConfigurationSummaryFeatureRefundTransaction       = 1 << 2,
+    /** Option to enable capture transaction button. */
+    MPUMposUiConfigurationSummaryFeatureCaptureTransaction      = 1 << 3
 };
 
 

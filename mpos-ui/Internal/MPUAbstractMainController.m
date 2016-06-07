@@ -99,19 +99,27 @@
 
 
 - (void)hideBackButton:(BOOL)hide {
-    if (hide) {
-        self.navigationItem.leftBarButtonItem = nil;
-    } else {
-        self.navigationItem.leftBarButtonItem = self.backButton;
-    }
+    
+    [self setBackButtonItem:(hide)?nil:self.backButton];
+    
 }
 
+
 - (void)hideCloseButton:(BOOL)hide {
-    if (hide) {
-        self.navigationItem.rightBarButtonItem = nil;
-    } else {
-        self.navigationItem.rightBarButtonItem = self.closeButton;
-    }
+
+    [self setRightButtonItem:(hide)?nil:self.closeButton];
+}
+
+
+- (void)setRightButtonItem:(UIBarButtonItem *)rightButtonItem {
+    
+    self.navigationItem.rightBarButtonItem = rightButtonItem;
+}
+
+
+- (void)setBackButtonItem:(UIBarButtonItem *)backButtonItem {
+    
+    self.navigationItem.leftBarButtonItem = backButtonItem;
 }
 
 @end

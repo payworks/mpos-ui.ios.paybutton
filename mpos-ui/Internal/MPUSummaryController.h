@@ -23,24 +23,22 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-
-#import <UIKit/UIKit.h>
-#import <Foundation/Foundation.h>
-#import <mpos.core/mpos-extended.h>
 #import "MPUAbstractController.h"
 
 @protocol MPUSummaryDelegate
 
 @required
 - (void)summaryRefundClicked:(NSString *)transactionIdentifier;
+- (void)summaryCaptureClicked:(NSString *)transactionIdentifier;
 - (void)summarySendReceiptClicked:(NSString *)transactionIdentifier;
 - (void)summaryPrintReceiptClicked:(NSString *)transactionIdentifier;
 - (void)summaryRetryClicked;
 - (void)summaryCloseClicked;
-
 @end
 
-@interface MPUSummaryController : MPUAbstractController<UIAlertViewDelegate>
+
+@interface MPUSummaryController : MPUAbstractController
+
 
 @property (nonatomic, strong) MPTransaction *transaction;
 @property (nonatomic, strong) MPTransactionParameters *parameters;
@@ -52,5 +50,6 @@
 
 - (void)updatePrintReceiptButtonText;
 - (void)updateSendReceiptButtonText;
+
 
 @end

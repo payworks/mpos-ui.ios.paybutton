@@ -51,7 +51,6 @@ NSString* const MPUSegueIdentifierSummary_Login = @"smPushLogin";
 @property (nonatomic, strong) UIImage *customerSignature;
 @property (nonatomic, strong) NSString *sendPrintTransactionIdentifier;
 @property (nonatomic, assign) BOOL modified;
-@property (nonatomic, assign) BOOL refundingInProgress;
 @property (nonatomic, assign) BOOL summaryShown;
 
 
@@ -78,6 +77,7 @@ NSString* const MPUSegueIdentifierSummary_Login = @"smPushLogin";
     // we can to show/hide the close button only after the first view is added.
     // we wait till the view is ready to appear and then hide/show naivgation bar buttons.
     if ([self.currentSegueIdentifier isEqualToString:MPUSegueIdentifierSummary_Login]) {
+        DDLogVerbose(@"show close button");
         [self.delegate hideCloseButton:NO];
     }
 }
@@ -94,6 +94,9 @@ NSString* const MPUSegueIdentifierSummary_Login = @"smPushLogin";
     self.previousSegueIdentifier = self.currentSegueIdentifier;
     self.currentSegueIdentifier = segue.identifier;
     
+    [self.delegate hideBackButton:YES];
+    [self.delegate hideCloseButton:YES];
+    
     if ([segue.identifier isEqualToString:MPUSegueIdentifierSummary_LoadTransaction]) {
         DDLogDebug(@"prepareForSegue:Load");
         self.loadTransactionViewController = segue.destinationViewController;
@@ -103,14 +106,12 @@ NSString* const MPUSegueIdentifierSummary_Login = @"smPushLogin";
     
     if ([segue.identifier isEqualToString:MPUSegueIdentifierSummary_Summary]) {
         DDLogDebug(@"prepareForSegue:Summary");
-        if(self.summaryShown) {
-            // We've already created the screen before. No need to create it again.
-            [self.delegate titleChanged:[MPUUIHelper localizedString:@"MPUSummary"]];
-            [self swapToViewController:self.summaryViewController];
-            return;
+        
+        if(!self.summaryShown) {
+            self.summaryViewController = segue.destinationViewController;
         }
+        
         self.summaryShown = YES;
-        self.summaryViewController = segue.destinationViewController;
         [self showSummary:self.transaction];
         [self swapToViewController:self.summaryViewController];
     }
@@ -156,6 +157,9 @@ NSString* const MPUSegueIdentifierSummary_Login = @"smPushLogin";
     self.summaryViewController.refundEnabled = YES;
     self.summaryViewController.retryEnabled = NO;
     self.summaryViewController.delegate = self;
+    [self.delegate setBackButtonItem:[self.summaryViewController backButtonItem]];
+    [self.delegate setRightButtonItem:[self.summaryViewController rightButtonItem]];
+    
 }
 
 - (void)showLogin {
@@ -198,13 +202,27 @@ NSString* const MPUSegueIdentifierSummary_Login = @"smPushLogin";
     [self.navigationController pushViewController:viewController animated:YES];
 }
 
+
+- (void)showCaptureTransaction:(NSString *)transactionIdentifier {
+    
+    MPTransactionParameters *transactionParameters = [MPTransactionParameters captureTransactionWithIdentifier:transactionIdentifier optionals:nil];
+    UIViewController *viewController = [self.mposUi createTransactionViewControllerWithTransactionParameters:transactionParameters completed:^(UIViewController * controller, MPUTransactionResult result, MPTransaction * transaction) {
+        self.completed(self);
+    }];
+    
+    [self.navigationController pushViewController:viewController animated:YES];
+}
+
+
 #pragma mark - Public
 
 - (void)backButtonPressed {
+    
+    [self.delegate hideBackButton:YES];
+
     if ([self.currentSegueIdentifier isEqualToString:MPUSegueIdentifierSummary_SendReceipt]) {
         [self performSegueWithIdentifier:MPUSegueIdentifierSummary_Summary sender:nil];
     }
-    [self.delegate hideBackButton:YES];
 }
 
 - (void)closeButtonPressed {
@@ -231,10 +249,15 @@ NSString* const MPUSegueIdentifierSummary_Login = @"smPushLogin";
 #pragma mark - MPUSummaryDelegate
 
 - (void) summaryRefundClicked:(NSString *)transactionIdentifier {
-    self.refundingInProgress = YES;
     //We push a viewcontroller for refund. Makes the lifecycle easier IMO.
     [self showRefundTransaction:self.transactionIdentifer];
 }
+
+- (void)summaryCaptureClicked:(NSString *)transactionIdentifier {
+
+    [self showCaptureTransaction:transactionIdentifier];
+}
+
 
 - (void) summaryRetryClicked {
     // NO-OP
@@ -254,6 +277,7 @@ NSString* const MPUSegueIdentifierSummary_Login = @"smPushLogin";
 - (void) summaryCloseClicked {
     self.completed(self);
 }
+
 
 #pragma mark - MPULoginDelegate
 
@@ -283,7 +307,6 @@ NSString* const MPUSegueIdentifierSummary_Login = @"smPushLogin";
         }
         else if ([self.previousSegueIdentifier isEqualToString:MPUSegueIdentifierSummary_PrintReceipt]) {
             [self performSegueWithIdentifier:MPUSegueIdentifierSummary_Summary sender:nil];
-        
         }
     }
 }

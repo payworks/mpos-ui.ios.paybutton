@@ -108,6 +108,12 @@ static MPUMposUi *mpu_mposUiInstance;
     
     self.mposUiMode = MPUMposUiModeApplication;
     self.applicationData =  [[MPUApplicationData alloc] initWithApplication:applicationName];
+    
+    if (providerMode == MPProviderModeMOCK) {
+        self.applicationData.configuration.terminalParameters = [MPAccessoryParameters mockAccessoryParameters];
+        self.applicationData.configuration.printerParameters = [MPAccessoryParameters mockAccessoryParameters];
+    }
+    
     self.configuration = self.applicationData.configuration;
     self.integratorIdentifier = integratorIdentifier;
     self.providerMode = providerMode;

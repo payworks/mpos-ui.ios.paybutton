@@ -94,8 +94,12 @@ typedef NS_ENUM(NSUInteger, MPUApplicationName) {
     /**
      * Login to Secure Retail
      */
-    MPUApplicationNameSecureRetail
+    MPUApplicationNameSecureRetail,
     
+    /**
+     * Login to YourBrand
+     */
+    MPUApplicationNameYourBrand
 };
 
 typedef void (^MPUPrintReceiptCompleted)(UIViewController * _Nonnull controller, MPUPrintReceiptResult result);

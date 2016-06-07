@@ -3,7 +3,7 @@
  *
  * The MIT License (MIT)
  *
- * Copyright (c) 2015 payworks GmbH
+ * Copyright (c) 2016 payworks GmbH
  *
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal
@@ -25,34 +25,27 @@
  */
 
 #import <UIKit/UIKit.h>
-#import "MPUMposUi_Internal.h"
 
-@protocol MPUContainerViewDelegate
-
-@required
-- (void)titleChanged:(NSString *)title;
-- (void)hideBackButton:(BOOL)hide;
-- (void)hideCloseButton:(BOOL)hide;
-- (void)setRightButtonItem:(UIBarButtonItem *)rightButtonItem;
-- (void)setBackButtonItem:(UIBarButtonItem *)backButtonItem;
-@end
-
-@interface MPUAbstractContainerViewController : UIViewController
-
-@property (nonatomic, strong) MPUMposUi *mposUi;
-@property (nonatomic, weak) id<MPUContainerViewDelegate> delegate;
-
-//These are used internally by the subclassing VC's
-@property (nonatomic, assign) BOOL viewTransitionInProgress;
-@property (nonatomic, strong) NSString *currentSegueIdentifier;
-@property (nonatomic, strong) NSString *previousSegueIdentifier;
-
-@property (nonatomic, assign) BOOL showLoginScreen;
+extern NSString * const MPUTransactionActionsCellIdentifier;
 
 
-- (void)swapToViewController:(UIViewController *)toViewController;
+typedef void (^MPUSCActionsCellAction)(void);
 
-- (void)backButtonPressed;
-- (void)closeButtonPressed;
+
+
+@interface MPUTransactionActionsCell : UITableViewCell
+
+@property (weak, nonatomic) IBOutlet UIButton *button0FromLeft;
+
+@property (weak, nonatomic) IBOutlet UIButton *button0FromRight;
+@property (weak, nonatomic) IBOutlet UIButton *button1FromRight;
+
+
+@property (copy, nonatomic) MPUSCActionsCellAction button0FromLeftAction;
+
+@property (copy, nonatomic) MPUSCActionsCellAction button0FromRightAction;
+@property (copy, nonatomic) MPUSCActionsCellAction button1FromRightAction;
+
+- (void)setAction:(MPUSCActionsCellAction)action forButton:(UIButton*)button ;
 
 @end

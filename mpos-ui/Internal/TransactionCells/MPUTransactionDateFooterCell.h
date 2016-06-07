@@ -3,7 +3,7 @@
  *
  * The MIT License (MIT)
  *
- * Copyright (c) 2015 payworks GmbH
+ * Copyright (c) 2016 payworks GmbH
  *
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal
@@ -25,34 +25,11 @@
  */
 
 #import <UIKit/UIKit.h>
-#import "MPUMposUi_Internal.h"
 
-@protocol MPUContainerViewDelegate
+extern NSString * const MPUTransactionDateFooterCellIdentifier;
 
-@required
-- (void)titleChanged:(NSString *)title;
-- (void)hideBackButton:(BOOL)hide;
-- (void)hideCloseButton:(BOOL)hide;
-- (void)setRightButtonItem:(UIBarButtonItem *)rightButtonItem;
-- (void)setBackButtonItem:(UIBarButtonItem *)backButtonItem;
-@end
+@interface MPUTransactionDateFooterCell : UITableViewCell
 
-@interface MPUAbstractContainerViewController : UIViewController
-
-@property (nonatomic, strong) MPUMposUi *mposUi;
-@property (nonatomic, weak) id<MPUContainerViewDelegate> delegate;
-
-//These are used internally by the subclassing VC's
-@property (nonatomic, assign) BOOL viewTransitionInProgress;
-@property (nonatomic, strong) NSString *currentSegueIdentifier;
-@property (nonatomic, strong) NSString *previousSegueIdentifier;
-
-@property (nonatomic, assign) BOOL showLoginScreen;
-
-
-- (void)swapToViewController:(UIViewController *)toViewController;
-
-- (void)backButtonPressed;
-- (void)closeButtonPressed;
+@property (weak, nonatomic) IBOutlet UILabel *dateLabel;
 
 @end

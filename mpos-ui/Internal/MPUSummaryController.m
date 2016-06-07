@@ -25,411 +25,996 @@
  */
 
 #import "MPUSummaryController.h"
-#import "MPUMposUi_Internal.h"
 #import "MPUUIHelper.h"
 #import "MPUMposUiConfiguration.h"
-#import "MPUSendReceiptController.h"
-#import "MPUPrintReceiptController.h"
+#import "MPUTransactionHeaderCell.h"
+#import "MPUTransactionCardCell.h"
+#import "MPUTransactionSubjectCell.h"
+#import "MPUTransactionActionsCell.h"
+#import "MPUTransactionHistoryDetailCell.h"
+#import "MPUTransactionDateFooterCell.h"
+#import "MPUCellBuilder.h"
+#import "MPUMposUiAppearance.h"
 
-@interface MPUSummaryController ()
+
+typedef NS_ENUM(NSUInteger, MPUSummaryControllerAlertTag) {
+    MPUSummaryControllerAlertTagRefund,
+    MPUSummaryControllerAlertTagCapture
+};
 
 
-@property (nonatomic, weak) IBOutlet UIView* containerView;
-@property (nonatomic, weak) IBOutlet UILabel* transactionStatusView;
-@property (nonatomic, weak) IBOutlet UILabel* amountView;
-@property (nonatomic, weak) IBOutlet UILabel* subjectView;
-@property (nonatomic, weak) IBOutlet UIView* subjectViewSeparator;
-@property (nonatomic, weak) IBOutlet UIImageView* paymentSchemeView;
-@property (nonatomic, weak) IBOutlet UILabel *paymentSchemeViewFallback;
-@property (nonatomic, weak) IBOutlet UILabel* maskedAccountNumberView;
-@property (nonatomic, weak) IBOutlet UIView* paymentSchemeViewSeparator;
-@property (nonatomic, weak) IBOutlet UILabel* dateView;
-@property (nonatomic, weak) IBOutlet UIButton* retryButton;
-@property (nonatomic, weak) IBOutlet UIButton* refundButton;
-@property (nonatomic, weak) IBOutlet UIButton* sendReceiptButton;
-@property (nonatomic, weak) IBOutlet UIButton *closeButton;
-@property (nonatomic, weak) IBOutlet UIButton *printReceiptButton;
-@property (nonatomic, weak) IBOutlet UILabel *transactionTypeView;
+
+@interface MPUSummaryController() <UITableViewDelegate, UITableViewDataSource>
+
+@property (strong, nonatomic) NSArray *cellBuilders;
+@property (weak, nonatomic) IBOutlet UITableView *tableView;
+
+
+@property (assign, nonatomic, getter=isReceiptPrinted) BOOL receiptPrinted;
+@property (assign, nonatomic, getter=isReceiptSent) BOOL receiptSent;
 
 @end
 
 
+
 @implementation MPUSummaryController
 
-#pragma mark - UIView lifecycle
 
 - (void)viewDidLoad {
+
     [super viewDidLoad];
-    [self updateViews];
-    [self l10n];
+    
+    self.tableView.tableFooterView = [[UIView alloc] initWithFrame:CGRectZero];
+    [self reloadCells];
 }
 
 
-- (void) l10n {
-    [self.refundButton setTitle:[MPUUIHelper localizedString:@"MPURefund"] forState:UIControlStateNormal];
-    [self.retryButton setTitle:[MPUUIHelper localizedString:@"MPURetry"] forState:UIControlStateNormal];
-    [self.sendReceiptButton setTitle:[MPUUIHelper localizedString:@"MPUSendReceipt"] forState:UIControlStateNormal];
-    [self.closeButton setTitle:[MPUUIHelper localizedString:@"MPUClose"] forState:UIControlStateNormal];
-    [self.printReceiptButton setTitle:[MPUUIHelper localizedString:@"MPUPrintReceipt"] forState:UIControlStateNormal];
+- (void)updatePrintReceiptButtonText {
+
+    self.receiptPrinted = YES;
+    [self reloadCells];
 }
 
 
-#pragma mark - IBActions
+- (void)updateSendReceiptButtonText {
 
-- (IBAction)didClose:(id)sender {
-    [self.delegate summaryCloseClicked];
+    self.receiptSent = YES;
+    // nothing else to do, the updated button will be requested when this VC will be displayed
 }
 
-- (IBAction)didTapRetryButton:(id)sender {
-    [self.delegate summaryRetryClicked];
+- (void)closeButtonTapped {
+    
+  [self.delegate summaryCloseClicked];
 }
 
-- (IBAction)didTapSendReceipt:(id)sender {
-    [self.delegate summarySendReceiptClicked:[self transactionIdentifierForSendingAndPrintingReceipt]];
+
+- (void)sendButtonTapped {
+    
+    [self.delegate summarySendReceiptClicked:[self transactionIdentifierForReceiptForTransaction:self.transaction]];
 }
 
-- (IBAction)didTapRefundButton:(id)sender {
+
+
+#pragma mark - Overload
+
+- (UIBarButtonItem *)backButtonItem {
+    
+    return [[UIBarButtonItem alloc]initWithTitle:[MPUUIHelper localizedString:@"MPUBack"] style:UIBarButtonItemStylePlain target:self action:@selector(closeButtonTapped)];
+}
+
+
+- (UIBarButtonItem *)rightButtonItem {
+    
+    if ([self hasTransactionReceipt]) {
+        return [[UIBarButtonItem alloc]initWithTitle:[MPUUIHelper localizedString:(self.receiptSent)?@"MPUResend":@"MPUSend"] style:UIBarButtonItemStylePlain target:self action:@selector(sendButtonTapped)];
+    }
+    
+    return nil;
+}
+
+
+
+- (void)viewWillAppear:(BOOL)animated {
+    [super viewWillAppear:animated];
+    
+    [self reloadCells];
+}
+
+#pragma mark - Cells
+
+- (void)reloadCells {
+    
+    NSMutableArray *cellBuilders = [NSMutableArray array];
+    
+    [self addCellBuilder:[self headerCellBuilder] toArray:cellBuilders];
+
+    NSArray *historyCellBuilders = [self historyCellBuildersForTransaction:self.transaction];
+    [cellBuilders addObjectsFromArray:historyCellBuilders];
+    
+    [self addCellBuilder:[self cardCellBuilderWithSeparatorHidden:(historyCellBuilders.count > 0)] toArray:cellBuilders];
+    
+    [self addCellBuilder:[self subjectCellBuilder] toArray:cellBuilders];
+    
+    [self addCellBuilder:[self actionCellBuilder] toArray:cellBuilders];
+    
+    [self addCellBuilder:[self dateCellBuilder] toArray:cellBuilders];
+
+    self.cellBuilders = cellBuilders;
+    [self.tableView reloadData];
+}
+
+
+- (void)addCellBuilder:(MPUCellBuilder*)builder toArray:(NSMutableArray*)cellBuilders {
+    
+    if (builder) {
+        [cellBuilders addObject:builder];
+    }
+}
+
+
+#pragma mark Header cell
+
+- (MPUCellBuilder*)headerCellBuilder {
+    
+    __weak typeof(self) weakSelf = self;
+    
+    MPUCellBuilder *headerCelBuilder = [MPUCellBuilder builderWithBlock:^UITableViewCell *{
+        
+        return [weakSelf headerCellForTransaction:weakSelf.transaction];
+    }];
+
+    return headerCelBuilder;
+}
+
+
+- (UITableViewCell*)headerCellForTransaction:(MPTransaction*)transaction {
+
+    MPUTransactionHeaderCell *cell = [self.tableView dequeueReusableCellWithIdentifier:MPUTransactionHeaderCellIdentifier];
+    
+    cell.titleLabel.text  = [self headerCellTitleTextForTransaction:transaction];
+    
+    cell.amountLabel.textColor = [self headerCellAmountTextColorForTransaction:transaction];
+    cell.amountLabel.text = [self finalAmountTextForTransaction:transaction];
+
+    return cell;
+}
+
+
+
+- (NSString*)headerCellTitleTextForTransaction:(MPTransaction*)transaction {
+    
+    NSString *localizationKey = [self localizationKeyForTitleForTransaction:transaction];
+    return [MPUUIHelper localizedString:localizationKey];
+}
+
+
+- (NSString*)localizationKeyForTitleForTransaction:(MPTransaction*)transaction {
+    
+    switch (transaction.status) {
+            
+        case MPTransactionStatusApproved:
+            
+            if ([self isTransactionPreauthorized:transaction]) {
+                return @"MPUPreauthorized";
+            }
+            
+            if ([self isTransactionSale:transaction]) {
+                return @"MPUSale";
+            }
+            
+            if ([self isTransactionRefund:transaction]) {
+                return @"MPURefund";
+            }
+            
+            return @"MPUTotal";
+            
+            
+        case MPTransactionStatusDeclined:   return @"MPUDeclined";
+        case MPTransactionStatusAborted:    return @"MPUAborted";
+        case MPTransactionStatusError:      return @"MPUError";
+            
+        case MPTransactionStatusUnknown:        //fallthrough
+        case MPTransactionStatusInitialized:    //fallthrough
+        case MPTransactionStatusPending:    return @"MPUUnknown";
+    }
+
+     return @"MPUUnknown";
+}
+
+
+- (NSString*)finalAmountTextForTransaction:(MPTransaction*)transaction {
+    
+    
+    NSDecimalNumber *refundedAmount = [NSDecimalNumber zero];
+    
+    for (MPRefundTransaction *refundTransaction in transaction.refundDetails.refundTransactions) {
+        
+        if (refundTransaction.status == MPTransactionStatusApproved) {
+            refundedAmount = [refundedAmount decimalNumberByAdding:refundTransaction.amount];
+        }
+    }
+    
+    
+    NSDecimalNumber *finalAmount = [transaction.amount decimalNumberBySubtracting:refundedAmount];
+    
+    NSString *finalAmountText = [self.mposUi.transactionProvider.localizationToolbox textFormattedForAmount:finalAmount currency:transaction.currency];
+    return finalAmountText;
+}
+
+
+- (UIColor*)headerCellAmountTextColorForTransaction:(MPTransaction*)transaction {
+    
+    switch (transaction.status) {
+            
+        case MPTransactionStatusApproved:
+            
+            if ([self isTransactionPreauthorized:transaction]) {
+                return [self preauthAmountColor];
+            }
+            
+            if ([self isTransactionRefund:transaction]) {
+                return [self refundAmountColor];
+            }
+            
+            return [self chargeAmountColor];
+          
+            
+        case MPTransactionStatusDeclined:   
+        case MPTransactionStatusAborted:    
+        case MPTransactionStatusError:
+            
+        case MPTransactionStatusUnknown:
+        case MPTransactionStatusInitialized:
+        case MPTransactionStatusPending: return [self declinedColor];
+    }
+
+    return [self declinedColor];
+}
+
+
+- (UIColor*)refundAmountColor {
+    
+    return [UIColor colorWithRed:0./255. green:88./255. blue:191./255. alpha:1.];
+}
+
+
+- (UIColor*)chargeAmountColor {
+    
+    return [UIColor colorWithRed:88./255. green:117./255. blue:5./255. alpha:1.];
+}
+
+
+- (UIColor*)preauthAmountColor {
+
+    return [UIColor colorWithRed:227./255. green:156./255. blue:3./255. alpha:1.];
+}
+
+- (UIColor*)declinedColor {
+
+    return [UIColor colorWithRed:189./255. green:4./255. blue:26./255. alpha:1.];
+}
+
+
+
+- (BOOL)isTransactionPreauthorized:(MPTransaction*)transaction {
+    
+    if (transaction.status == MPTransactionStatusApproved
+        && transaction.type == MPTransactionTypeCharge
+        && transaction.captured == NO) {
+        
+        return (transaction.refundDetails.refundTransactions.count == 0);
+    }
+    
+    return NO;
+}
+
+
+- (BOOL)isTransactionSale:(MPTransaction*)transaction {
+    
+    if (transaction.status == MPTransactionStatusApproved
+        && transaction.type == MPTransactionTypeCharge
+        && transaction.captured == YES) {
+        
+        // we look into the refund transactions because this is the only whay
+        // to make sure it was not partially captured or partialy refunded
+        return (transaction.refundDetails.refundTransactions.count == 0);
+    }
+    
+    return NO;
+}
+
+
+- (BOOL)isTransactionRefund:(MPTransaction*)transaction {
+    return (transaction.type == MPTransactionTypeRefund);
+}
+
+
+
+#pragma mark History cell
+
+- (NSArray*)historyCellBuildersForTransaction:(MPTransaction*)transaction {
+    
+    NSMutableArray *cellBuilders = [[NSMutableArray alloc] init];
+    
+    __weak typeof(self) weakSelf = self;
+    
+    if ([self isTransactionRefundedWithoutPartialCapture:self.transaction]) {
+        
+        MPUCellBuilder *chargeHistoryCellBuilder = [MPUCellBuilder builderWithBlock:^UITableViewCell *{
+            
+            return [weakSelf historyCellSaleForTransaction:weakSelf.transaction];
+        }];
+        
+        [cellBuilders addObject:chargeHistoryCellBuilder];
+    }
+    
+    
+    for (MPRefundTransaction *refundTx in self.transaction.refundDetails.refundTransactions) {
+        
+        if (refundTx.status != MPTransactionStatusApproved) {
+            continue;
+        }
+        
+        MPUCellBuilder *historyCellBuilder = [MPUCellBuilder builderWithBlock:^UITableViewCell *{
+            return [self historyCellForRefundTransaction:refundTx];
+        }];
+        
+        if (refundTx.code == MPRefundTransactionCodePartialCapture) {
+            historyCellBuilder.cellHeight = 68.;
+        } else {
+            historyCellBuilder.cellHeight = 48.;
+        }
+        
+        [cellBuilders addObject:historyCellBuilder];
+    }
+   
+    
+    return cellBuilders;
+}
+
+
+
+- (UITableViewCell*)historyCellSaleForTransaction:(MPTransaction*)transaction {
+    
+    MPUTransactionHistoryDetailCell *cell = [self.tableView dequeueReusableCellWithIdentifier:MPUTransactionHistoryDetailCellIdentifier];
+    
+    cell.transactionTypeLabel.text = [MPUUIHelper localizedString:(self.transaction.captured)?@"MPUTransactionTypeSale":@"MPUTransactionTypePreauthorization"];
+    cell.amountLabel.text = [self.mposUi.transactionProvider.localizationToolbox textFormattedForAmount:transaction.amount currency:transaction.currency];
+    cell.amountLabel.textColor = (self.transaction.captured)?[self chargeAmountColor]:[self preauthAmountColor];
+    cell.initialAmountLabel.text = @"";
+    cell.dateLabel.text = [self textFormattedForTimeAndDate:self.transaction.created];
+
+    return cell;
+}
+
+
+- (UITableViewCell*)historyCellForRefundTransaction:(MPRefundTransaction*)refundTransaction {
+ 
+    MPUTransactionHistoryDetailCell *cell = [self.tableView dequeueReusableCellWithIdentifier:MPUTransactionHistoryDetailCellIdentifier];
+    
+    cell.transactionTypeLabel.text = [self typeTextForRefundTransaction:refundTransaction];
+    cell.amountLabel.text = [self textAmountForRefundTransaction:refundTransaction];
+    cell.amountLabel.textColor = [self textAmountColorForRefundTransaction:refundTransaction];
+    cell.initialAmountLabel.text = [self textInitialAmountForRefundTransaction:refundTransaction];
+    cell.dateLabel.text = [self textFormattedForTimeAndDate:refundTransaction.created];
+    return cell;
+}
+
+
+
+- (NSString*)typeTextForRefundTransaction:(MPRefundTransaction*)refundTransaction {
+    
+    switch (refundTransaction.code) {
+        case MPRefundTransactionCodeRefundAfterClearing:
+        case MPRefundTransactionCodeRefundBeforeClearing:
+            return [MPUUIHelper localizedString:@"MPUTransactionTypeRefund"];
+            
+        case MPRefundTransactionCodePartialCapture:
+            return [MPUUIHelper localizedString:@"MPUTransactionTypeSale"];
+            
+        case MPRefundTransactionCodeUnknown:
+            return @"";
+    }
+    
+    return @"";
+}
+
+
+- (NSString*)textAmountForRefundTransaction:(MPRefundTransaction*)refundTransaction {
+
+    NSString *amountText = nil;
+    
+    switch (refundTransaction.code) {
+
+        case MPRefundTransactionCodeRefundAfterClearing:
+        case MPRefundTransactionCodeRefundBeforeClearing:
+            
+            amountText = [self.mposUi.transactionProvider.localizationToolbox textFormattedForAmount:refundTransaction.amount currency:refundTransaction.currency];
+            amountText = [@"-" stringByAppendingString:amountText];
+            break;
+            
+        case MPRefundTransactionCodePartialCapture:
+          
+            amountText = [self.mposUi.transactionProvider.localizationToolbox textFormattedForAmount:[self.transaction.amount decimalNumberBySubtracting:refundTransaction.amount]
+                                                                                            currency:refundTransaction.currency];
+            
+        break;
+            
+        case MPRefundTransactionCodeUnknown:
+            break;
+    }
+    
+    return amountText;
+}
+
+
+
+- (NSString*)textInitialAmountForRefundTransaction:(MPRefundTransaction*)refundTransaction {
+
+    
+    if (refundTransaction.code == MPRefundTransactionCodePartialCapture) {
+        
+        NSString *textAmount = [self.mposUi.transactionProvider.localizationToolbox textFormattedForAmount:self.transaction.amount
+                                                                                                  currency:self.transaction.currency];
+        
+        NSString *fullText = [NSString stringWithFormat:[[MPUUIHelper localizedString:@"MPUPartiallyCaptured"] stringByAppendingString:@" "], textAmount];
+        
+        DDLogVerbose(@"full text : '%@'", fullText);
+        return fullText;
+    }
+    
+    return @"";
+}
+
+
+- (UIColor*)textAmountColorForRefundTransaction:(MPRefundTransaction*)refundTransaction {
+ 
+    switch (refundTransaction.code) {
+            
+        case MPRefundTransactionCodeRefundAfterClearing:
+        case MPRefundTransactionCodeRefundBeforeClearing:
+            
+            return [self refundAmountColor];
+            
+        case MPRefundTransactionCodePartialCapture:
+            
+            return [self chargeAmountColor];
+            
+        case MPRefundTransactionCodeUnknown:
+            return [UIColor blackColor];
+    }
+    
+    return [UIColor blackColor];
+}
+
+
+- (BOOL)isTransactionRefundedWithoutPartialCapture:(MPTransaction*)transaction {
+
+    if (transaction.refundDetails.refundTransactions.count == 0) {
+        return NO;
+    }
+    
+    for (MPRefundTransaction *refundTransaction in transaction.refundDetails.refundTransactions) {
+        
+        if (refundTransaction.code == MPRefundTransactionCodePartialCapture) {
+            return NO;
+        }
+    }
+    
+    return YES;
+}
+
+#pragma mark Card cell
+
+
+- (MPUCellBuilder*)cardCellBuilderWithSeparatorHidden:(BOOL)separatorHidden {
+    
+    if (![self canShowCardCellForTransaction:self.transaction]) {
+        return nil;
+    }
+    
+    
+    __weak typeof(self) weakSelf = self;
+    
+    MPUCellBuilder *cardCell = [MPUCellBuilder builderWithBlock:^UITableViewCell *{
+        return [self cardCellForTransaction:weakSelf.transaction separatorHidden:separatorHidden];
+    }];
+    
+    return cardCell;
+}
+
+
+- (BOOL)canShowCardCellForTransaction:(MPTransaction*)transaction {
+    
+    return transaction.paymentDetails.scheme != MPPaymentDetailsSchemeUnknown;
+}
+
+- (UITableViewCell*)cardCellForTransaction:(MPTransaction*)transaction separatorHidden:(BOOL)separatorHidden {
+    
+    MPUTransactionCardCell *cell = [self.tableView dequeueReusableCellWithIdentifier:MPUTransactionCardCellIdentifier];
+    
+    UIImage *schemeImage = [self schemeImageForTransaction:transaction];
+    
+    if (schemeImage) {
+        cell.schemeImageView.image = schemeImage;
+        cell.schemeImageView.hidden = NO;
+        cell.schemeLabel.hidden = YES;
+    } else {
+        cell.imageView.hidden = YES;
+        cell.schemeLabel.hidden = NO;
+        cell.schemeLabel.text = [self schemeTextForTransaction:transaction];
+    }
+    
+    cell.cardNumberLabel.text = [self maskedAccountNumberForTransaction:transaction];
+    cell.separatorView.hidden = separatorHidden;
+    
+    return cell;
+}
+
+
+- (UIImage*)schemeImageForTransaction:(MPTransaction*)transaction {
+    
+    if (!IS_OS_8_OR_LATER) {
+        // on iOS 7, the method to load an image in a bundle does not exist.
+        DDLogDebug(@"Scheme Falling Back!Not iOS8");
+        return nil;
+    }
+    
+    MPPaymentDetailsScheme scheme = transaction.paymentDetails.scheme;
+    
+    switch (scheme) {
+        case MPPaymentDetailsSchemeVISA:
+        case MPPaymentDetailsSchemeVISAElectron:
+            return [UIImage imageNamed:@"VISA" inBundle:[MPUUIHelper frameworkBundle] compatibleWithTraitCollection:nil];
+            
+        case MPPaymentDetailsSchemeMaestro:
+            return [UIImage imageNamed:@"Maestro" inBundle:[MPUUIHelper frameworkBundle] compatibleWithTraitCollection:nil];
+            
+        case MPPaymentDetailsSchemeMasterCard:
+            return [UIImage imageNamed:@"MasterCard" inBundle:[MPUUIHelper frameworkBundle] compatibleWithTraitCollection:nil];
+            
+        case MPPaymentDetailsSchemeAmericanExpress:
+            return [UIImage imageNamed:@"AmericanExpress" inBundle:[MPUUIHelper frameworkBundle] compatibleWithTraitCollection:nil];
+            
+        case MPPaymentDetailsSchemeDinersClub:
+            return [UIImage imageNamed:@"Diners" inBundle:[MPUUIHelper frameworkBundle] compatibleWithTraitCollection:nil];
+            
+        case MPPaymentDetailsSchemeJCB:
+            return [UIImage imageNamed:@"JCB" inBundle:[MPUUIHelper frameworkBundle] compatibleWithTraitCollection:nil];
+            
+        case MPPaymentDetailsSchemeDiscover:
+            return [UIImage imageNamed:@"Discover" inBundle:[MPUUIHelper frameworkBundle] compatibleWithTraitCollection:nil];
+            
+        case MPPaymentDetailsSchemeUnionPay:
+            return [UIImage imageNamed:@"UnionPay" inBundle:[MPUUIHelper frameworkBundle] compatibleWithTraitCollection:nil];
+            
+        case MPPaymentDetailsSchemeUnknown:
+            return nil;
+    }
+    
+    return nil;
+}
+
+- (NSString*)schemeTextForTransaction:(MPTransaction*)transaction {
+    
+    MPPaymentDetailsScheme scheme = transaction.paymentDetails.scheme;
+    
+    switch (scheme) {
+        case MPPaymentDetailsSchemeVISA:
+            return @"VISA";
+            
+        case MPPaymentDetailsSchemeVISAElectron:
+            return @"VISA Electron";
+            
+        case MPPaymentDetailsSchemeMaestro:
+            return @"Maestro";
+            
+        case MPPaymentDetailsSchemeMasterCard:
+            return @"MasterCard";
+            
+        case MPPaymentDetailsSchemeAmericanExpress:
+            return @"American Express";
+            
+        case MPPaymentDetailsSchemeDinersClub:
+            return @"Diners";
+            
+        case MPPaymentDetailsSchemeJCB:
+            return @"JCB";
+            
+        case MPPaymentDetailsSchemeDiscover:
+            return @"Discover";
+            
+        case MPPaymentDetailsSchemeUnionPay:
+            return @"Union Pay";
+            
+        case MPPaymentDetailsSchemeUnknown:
+            return nil;
+    }
+    
+    return nil;
+}
+
+
+- (NSString *)maskedAccountNumberForTransaction:(MPTransaction*)transaction {
+    
+    NSString *maskedAccountNumber = transaction.paymentDetails.accountNumber;
+    
+    maskedAccountNumber = [maskedAccountNumber stringByReplacingOccurrencesOfString:@" " withString:@""];
+    maskedAccountNumber = [maskedAccountNumber stringByReplacingOccurrencesOfString:@"-" withString:@""];
+    
+    maskedAccountNumber = [maskedAccountNumber stringByReplacingOccurrencesOfString:@"[^0-9]"
+                                                                         withString:@"\u2022"
+                                                                            options:NSRegularExpressionSearch
+                                                                              range:NSMakeRange(0, [maskedAccountNumber length])];
+
+
+    
+    // next we separate string into groups of four separated with a space, starting with the end
+    // ie "**********1234" - becomes "** **** **** 1234"
+    
+    NSUInteger numberOfSpaces = (maskedAccountNumber.length-1) / 4; // length-1 - so that we don't insert the extra space at the begining when we have multiple of 4 chars
+    
+    NSMutableString *man = [maskedAccountNumber mutableCopy];
+    NSUInteger initalLength = man.length;
+    
+    // we add the space starting with the end, so only the indexes of the already inserted spaces are shifted
+    // the 'next' index is in the same position as it would be in the original string
+    for (int i = 1; i <= numberOfSpaces; i++) {
+        
+        [man insertString:@" " atIndex:initalLength - 4*i];
+    }
+    
+    return man;
+}
+
+
+#pragma mark Subject cell
+
+
+- (MPUCellBuilder*)subjectCellBuilder {
+    
+    if (self.transaction.subject.length == 0) {
+        return nil;
+    }
+    
+    __weak typeof(self) weakSelf = self;
+    MPUCellBuilder *subjectCellBuilder = [MPUCellBuilder builderWithBlock:^UITableViewCell *{
+
+        return [self subjectCellForTransaction:weakSelf.transaction];
+    }];
+
+    return subjectCellBuilder;
+}
+
+- (UITableViewCell*)subjectCellForTransaction:(MPTransaction*)transaction {
+    
+    MPUTransactionSubjectCell *cell = [self.tableView dequeueReusableCellWithIdentifier:MPUTransactionSubjectCellIdentifier];
+    cell.subjectLabel.text = transaction.subject;
+    return cell;
+}
+
+
+#pragma mark Actions cell 
+
+
+- (MPUCellBuilder*)actionCellBuilder {
+    
+    if (   ![self canPrint]
+        && ![self canRefund]
+        && ![self canCapture]) {
+        
+        return nil;
+    }
+    
+    __weak typeof(self) weakSelf = self;
+    MPUCellBuilder *actionsCellBuilder = [MPUCellBuilder builderWithBlock:^UITableViewCell *{
+        return [self actionCellForTransaction:weakSelf.transaction];
+    }];
+    
+    return actionsCellBuilder;
+}
+
+
+- (UITableViewCell*)actionCellForTransaction:(MPTransaction*)transaction {
+    
+    MPUTransactionActionsCell *cell = [self.tableView dequeueReusableCellWithIdentifier:MPUTransactionActionsCellIdentifier];
+
+    if ([self isPrintReceiptFeatureEnabled]) {
+        [self setupPrintActionInCell:cell button:cell.button0FromLeft forTransaction:transaction];
+    }
+    
+    
+    const BOOL canCapture = [self canCapture];
+    
+    if ([self canRefund]) {
+        
+        [self setupRefundActionInCell:cell
+                               button:(canCapture)?cell.button1FromRight:cell.button0FromRight
+                       forTransaction:transaction];
+    }
+    
+    if (canCapture) {
+        
+        [self setupCaptureActionInCell:cell button:cell.button0FromRight forTransaction:transaction];
+    }
+    
+    return cell;
+}
+
+
+#pragma mark .    print
+
+
+- (void)setupPrintActionInCell:(MPUTransactionActionsCell*)cell button:(UIButton*)button forTransaction:(MPTransaction*)transaction {
+
+    button.hidden = NO;
+    [button setTitle:[self printButtonTitle] forState:UIControlStateNormal];
+    [cell setAction:[self printActionForTransaction:transaction] forButton:button];
+}
+
+
+- (NSString*)printButtonTitle {
+    
+    return [MPUUIHelper localizedString:(self.isReceiptPrinted)?@"MPUReprint":@"MPUPrint"];
+}
+
+- (MPUSCActionsCellAction)printActionForTransaction:(MPTransaction*)transaction {
+    
+    __weak typeof(self) weakSelf = self;
+    
+    return ^(){
+        
+        [weakSelf.delegate summaryPrintReceiptClicked:[weakSelf transactionIdentifierForReceiptForTransaction:transaction]];
+    };
+}
+
+
+- (NSString *)transactionIdentifierForReceiptForTransaction:(MPTransaction*)transaction {
+    // If this is a refund, we look for the transaction identifier from the refundTransactions list.
+    
+    NSArray *refundTransactions = transaction.refundDetails.refundTransactions;
+    
+    
+    for (NSInteger i = refundTransactions.count-1; i >= 0; i--) {
+        
+        MPRefundTransaction *refundTransaction = refundTransactions[i];
+        
+        if (refundTransaction.status == MPTransactionStatusApproved
+            && refundTransaction.code != MPRefundTransactionCodePartialCapture) {
+            
+            return refundTransaction.identifier;
+        }
+    }
+
+    return transaction.identifier;
+}
+
+
+- (BOOL)isPrintReceiptFeatureEnabled {
+    
+    return ((self.mposUi.configuration.summaryFeatures & MPUMposUiConfigurationSummaryFeaturePrintReceipt) == MPUMposUiConfigurationSummaryFeaturePrintReceipt);
+}
+
+
+#pragma mark .    refund
+
+- (void)setupRefundActionInCell:(MPUTransactionActionsCell*)cell button:(UIButton*)button forTransaction:(MPTransaction*)transaction {
+    
+    button.hidden = NO;
+    
+    [button setTitle:[MPUUIHelper localizedString:@"MPURefund"] forState:UIControlStateNormal];
+    
+    __weak typeof(self) weakSelf = self;
+    [cell setAction:^{ [weakSelf didTapRefundButton]; } forButton:button];
+}
+
+
+- (void)didTapRefundButton {
     UIAlertView *alert = [[UIAlertView alloc]initWithTitle:[MPUUIHelper localizedString:@"MPURefundPayment"]
                                                    message:[MPUUIHelper localizedString:@"MPURefundPrompt"]
                                                   delegate:self
-                                         cancelButtonTitle:[MPUUIHelper localizedString:@"MPUAbort"] otherButtonTitles:nil];
+                                         cancelButtonTitle:[MPUUIHelper localizedString:@"MPUAbort"] otherButtonTitles:[MPUUIHelper localizedString:@"MPURefund"], nil];
     
-    [alert addButtonWithTitle:[MPUUIHelper localizedString:@"MPURefund"]];
+    alert.tag = MPUSummaryControllerAlertTagRefund;
+    
     [alert show];
 };
 
-- (IBAction)didTapPrintReceiptButton:(id)sender{
-    [self.delegate summaryPrintReceiptClicked:[self transactionIdentifierForSendingAndPrintingReceipt]];
+
+- (BOOL)canRefund {
+    
+    return (self.refundEnabled
+            && [self isRefundFeatureEnabled]
+            && [self isTransactionRefundable]);
 }
 
-#pragma mark - Public 
-- (void)updatePrintReceiptButtonText {
-    [self.printReceiptButton setTitle:[MPUUIHelper localizedString:@"MPUReprintReceipt"] forState:UIControlStateNormal];
+- (BOOL)canPrint {
+    
+    return ([self isPrintReceiptFeatureEnabled]
+            && [self hasTransactionReceipt]);
 }
 
-- (void)updateSendReceiptButtonText {
-    [self.sendReceiptButton setTitle:[MPUUIHelper localizedString:@"MPUResendReceipt"] forState:UIControlStateNormal];
+
+- (BOOL)isTransactionRefundable {
+    
+    return ((self.transaction.status == MPTransactionStatusApproved)
+            && (self.transaction.refundDetails.status != MPRefundDetailsStatusRefunded)
+            && (self.transaction.type != MPTransactionTypeRefund));
 }
+
+
+- (BOOL)hasTransactionReceipt {
+    
+    switch (self.transaction.status) {
+            
+        case MPTransactionStatusApproved:   //fallthrough
+        case MPTransactionStatusDeclined:   //fallthrough
+        case MPTransactionStatusAborted:    return YES;
+        
+        case MPTransactionStatusError:      //fallthrough
+        case MPTransactionStatusUnknown:    //fallthrough
+        case MPTransactionStatusInitialized://fallthrough
+        case MPTransactionStatusPending:    return NO;
+    }
+    
+    return NO;
+}
+
+
+- (BOOL)isRefundFeatureEnabled {
+  
+    return (self.mposUi.configuration.summaryFeatures & MPUMposUiConfigurationSummaryFeatureRefundTransaction);
+}
+
+
+
+#pragma mark .   capture
+
+
+- (void)setupCaptureActionInCell:(MPUTransactionActionsCell*)cell button:(UIButton*)button forTransaction:(MPTransaction*)transaction {
+    
+    button.hidden = NO;
+    
+    [button setTitle:[MPUUIHelper localizedString:@"MPUCapture"] forState:UIControlStateNormal];
+    
+    __weak typeof(self) weakSelf = self;
+    [cell setAction:^{ [weakSelf didTapCaptureButton]; } forButton:button];
+}
+
+
+- (void)didTapCaptureButton {
+
+    UIAlertView *alert = [[UIAlertView alloc]initWithTitle:[MPUUIHelper localizedString:@"MPUCapturePayment"]
+                                                   message:[MPUUIHelper localizedString:@"MPUCapturePrompt"]
+                                                  delegate:self
+                                         cancelButtonTitle:[MPUUIHelper localizedString:@"MPUAbort"] otherButtonTitles:[MPUUIHelper localizedString:@"MPUCapture"], nil];
+    
+    alert.tag = MPUSummaryControllerAlertTagCapture;
+    [alert show];
+};
+
+
+- (BOOL)canCapture {
+
+    return (self.refundEnabled
+            && [self isCaptureFeatureEnabled]
+            && [self isTransactionCapturable]);
+}
+
+
+- (BOOL)isCaptureFeatureEnabled {
+    
+    return (self.mposUi.configuration.summaryFeatures & MPUMposUiConfigurationSummaryFeatureCaptureTransaction);
+}
+
+- (BOOL)isTransactionCapturable {
+    
+    return ([self isTransactionRefundable]
+            && !self.transaction.captured);
+}
+
+
+
+- (BOOL)isSendReceiptFeatureEnabled {
+    
+    return (self.mposUi.configuration.summaryFeatures & MPUMposUiConfigurationSummaryFeatureSendReceiptViaEmail);
+}
+
+
+#pragma mark Date
+
+- (MPUCellBuilder*)dateCellBuilder {
+    
+    __weak typeof(self) weakSelf = self;
+    
+    MPUCellBuilder *dateCellBuilder = [MPUCellBuilder builderWithBlock:^UITableViewCell *{
+        return [self dateCellForTransaction:weakSelf.transaction];
+    }];
+    
+    return dateCellBuilder;
+}
+
+
+- (UITableViewCell*)dateCellForTransaction:(MPTransaction*)transaction {
+    
+    MPUTransactionDateFooterCell *dateCell = [self.tableView dequeueReusableCellWithIdentifier:MPUTransactionDateFooterCellIdentifier];
+    
+    dateCell.dateLabel.text = [self textFormattedForTimeAndDate:self.transaction.created];
+    
+    return dateCell;
+}
+
+- (NSString *)textFormattedForTimeAndDate:(NSDate *)date {
+
+    if (date == nil){
+        return nil;
+    }
+    
+    static NSDateFormatter *formatter = nil;
+    static dispatch_once_t onceToken;
+    dispatch_once(&onceToken, ^{
+        formatter = [[NSDateFormatter alloc] init];
+        formatter.timeZone =  [NSTimeZone localTimeZone];
+        formatter.dateFormat = @"dd MMMM yyyy, HH:mm";
+    });
+    
+    NSString *formattedText = [formatter stringFromDate:date];
+    return formattedText;
+}
+
 
 #pragma mark - UIAlertViewDelegate
 
 - (void)alertView:(UIAlertView *)alertView didDismissWithButtonIndex:(NSInteger)buttonIndex {
-    if (buttonIndex == 0){ //Abort was clicked
-        //let it dismiss...do nothing
-    } else if (buttonIndex == 1) { // Refund was clicked
-        [self.delegate summaryRefundClicked:self.transaction.identifier];
-    }
-}
 
-#pragma mark - Private
-
-- (NSString *)transactionIdentifierForSendingAndPrintingReceipt {
-    // If this is a refund, we look for the transaction identifier from the refundTransactions list.
-    if (self.transaction.refundDetails.status == MPRefundDetailsStatusRefunded
-        && self.transaction.refundDetails.refundTransactions != nil
-        && self.transaction.refundDetails.refundTransactions.count > 0) {
-        MPRefundTransaction *refundTransaction = self.transaction.refundDetails.refundTransactions[0];
-        return refundTransaction.identifier;
-    }
-    
-    return self.transaction.identifier;
-}
-
-- (void)updateViews {
-    [self initContainerView];
-    [self updateTransactionStatusView];
-    [self updateAmountView];
-    [self updateSchemeView];
-    [self updateMaskedAccountNumberView];
-    [self updateSubjectView];
-    [self updateDateView];
-    [self updateButtons];
-    [self updateTransactionTypeView];
-}
-
-- (void)updateTransactionTypeView {
-    switch (self.transaction.type) {
-        case MPTransactionTypePreauthorize:
-        case MPTransactionTypeCharge:
-            self.transactionTypeView.text = [MPUUIHelper localizedString:@"MPUSale"];
-            break;
-        case MPTransactionTypeCredit:
-        case MPTransactionTypeRefund:
-            self.transactionTypeView.text = [MPUUIHelper localizedString:@"MPURefund"];
-            break;
-        case MPTransactionTypeUnknown:
-            self.transactionTypeView.text = @"";
-            break;
-    }
-}
-
-- (void)initContainerView {
-    [self.containerView.layer setCornerRadius:2];
-    [self.containerView.layer setShadowColor:[UIColor darkGrayColor].CGColor];
-    [self.containerView.layer setShadowOpacity:0.4];
-    [self.containerView.layer setShadowRadius:2.0];
-    [self.containerView.layer setShadowOffset:CGSizeMake(-.2f, .2f)];
-}
-
-- (void)updateTransactionStatusView {
-    
-    if (self.transaction.type == MPTransactionTypeRefund) {
-        [self updateTransactionStatusViewForRefundTransaction];
-    }
-    else{
-        [self updateTransactionStatusViewForChargeTransaction];
-    }
-}
-
-
-- (void)updateTransactionStatusViewForChargeTransaction {
-    switch (self.transaction.status) {
-        case MPTransactionStatusApproved:
-            
-            if (self.transaction.refundDetails.status == MPRefundDetailsStatusRefunded){
-                self.transactionStatusView.text = [MPUUIHelper localizedString:@"MPUPaymentRefunded"];
-                self.transactionStatusView.textColor = [MPUUIHelper colorFromHexString:@"#4caf50"];
-            }
-            else {
-                self.transactionStatusView.text = [MPUUIHelper localizedString:@"MPUPaymentSuccessful"];
-                self.transactionStatusView.textColor = [MPUUIHelper colorFromHexString:@"#4caf50"];
-            }
-            break;
-            
-        case MPTransactionStatusDeclined:
-            self.transactionStatusView.text = [MPUUIHelper localizedString:@"MPUPaymentDeclined"];
-            self.transactionStatusView.textColor = [MPUUIHelper colorFromHexString:@"#f44336"];
-            break;
-            
-        case MPTransactionStatusAborted:
-            self.transactionStatusView.text = [MPUUIHelper localizedString:@"MPUPaymentAborted"];
-            self.transactionStatusView.textColor = [MPUUIHelper colorFromHexString:@"#f44336"];
-            break;
-            
-        case MPTransactionStatusError:
-            self.transactionStatusView.text = [MPUUIHelper localizedString:@"MPUError"];
-            self.transactionStatusView.textColor = [MPUUIHelper colorFromHexString:@"#f44336"];
-            break;
-            
-        case MPTransactionStatusInitialized:
-        case MPTransactionStatusPending:
-        case MPTransactionStatusUnknown:
-            self.transactionStatusView.text = [MPUUIHelper localizedString:@"MPUError"];
-            self.transactionStatusView.textColor = [MPUUIHelper colorFromHexString:@"#f44336"];
-            break;
-    }
-}
-
-- (void)updateTransactionStatusViewForRefundTransaction {
-    switch (self.transaction.status) {
-        case MPTransactionStatusApproved:
-            self.transactionStatusView.text = [MPUUIHelper localizedString:@"MPURefundApproved"];
-            self.transactionStatusView.textColor = [MPUUIHelper colorFromHexString:@"#4caf50"];
-            break;
-            
-        case MPTransactionStatusDeclined:
-            self.transactionStatusView.text = [MPUUIHelper localizedString:@"MPURefundDeclined"];
-            self.transactionStatusView.textColor = [MPUUIHelper colorFromHexString:@"#f44336"];
-            break;
-            
-        case MPTransactionStatusAborted:
-            self.transactionStatusView.text = [MPUUIHelper localizedString:@"MPURefundAborted"];
-            self.transactionStatusView.textColor = [MPUUIHelper colorFromHexString:@"#f44336"];
-            break;
-            
-        case MPTransactionStatusError:
-            self.transactionStatusView.text = [MPUUIHelper localizedString:@"MPUError"];
-            self.transactionStatusView.textColor = [MPUUIHelper colorFromHexString:@"#f44336"];
-            break;
-            
-        case MPTransactionStatusInitialized:
-        case MPTransactionStatusPending:
-        case MPTransactionStatusUnknown:
-            self.transactionStatusView.text = [MPUUIHelper localizedString:@"MPUError"];
-            self.transactionStatusView.textColor = [MPUUIHelper colorFromHexString:@"#f44336"];
-            break;
-    }
-    
-}
-
-- (void)updateAmountView {
-    self.amountView.text = [self.mposUi.transactionProvider.localizationToolbox textFormattedForAmount:self.transaction.amount currency:self.transaction.currency];
-}
-
-- (void)useSchemeViewFallback:(MPPaymentDetailsScheme)scheme {
-    self.paymentSchemeView.hidden = YES;
-    self.paymentSchemeViewFallback.hidden = NO;
-    
-    switch (scheme) {
-        case MPPaymentDetailsSchemeVISA:
-            self.paymentSchemeViewFallback.text = @"VISA";
-            break;
-            
-        case MPPaymentDetailsSchemeVISAElectron:
-            self.paymentSchemeViewFallback.text = @"VISA Electron";
-            break;
-            
-        case MPPaymentDetailsSchemeMaestro:
-            self.paymentSchemeViewFallback.text = @"Maestro";
-            break;
-            
-        case MPPaymentDetailsSchemeMasterCard:
-            self.paymentSchemeViewFallback.text = @"MasterCard";
-            break;
-            
-        case MPPaymentDetailsSchemeAmericanExpress:
-            self.paymentSchemeViewFallback.text = @"American Express";
-            break;
-            
-        case MPPaymentDetailsSchemeDinersClub:
-            self.paymentSchemeViewFallback.text = @"Diners";
-            break;
-        
-        case MPPaymentDetailsSchemeJCB:
-            self.paymentSchemeViewFallback.text = @"JCB";
-            break;
-        
-        case MPPaymentDetailsSchemeDiscover:
-            self.paymentSchemeViewFallback.text = @"Discover";
-            break;
-            
-        case MPPaymentDetailsSchemeUnionPay:
-            self.paymentSchemeViewFallback.text = @"Union Pay";
-            break;
-            
-        default:
-            [self.paymentSchemeView removeFromSuperview];
-            [self.paymentSchemeViewFallback removeFromSuperview];
-            [self.paymentSchemeViewSeparator removeFromSuperview];
-            return;
-    }
-    
-}
-
-- (void)updateSchemeView {
-    MPPaymentDetailsScheme scheme = self.transaction.paymentDetails.scheme;
-    if (scheme == MPPaymentDetailsSchemeUnknown) {
-        [self.paymentSchemeView removeFromSuperview];
-        [self.paymentSchemeViewFallback removeFromSuperview];
-        [self.paymentSchemeViewSeparator removeFromSuperview];
-        return;
-    }
-    if (!IS_OS_8_OR_LATER) {
-        // on iOS 7, the method to load an image in a bundle does not exist.
-        DDLogDebug(@"Scheme Falling Back!Not iOS8");
-        [self useSchemeViewFallback:scheme];
+    if (buttonIndex == 0) {
         return;
     }
     
-    switch (scheme) {
-        case MPPaymentDetailsSchemeVISA:
-        case MPPaymentDetailsSchemeVISAElectron:
-            self.paymentSchemeView.image = [UIImage imageNamed:@"VISA" inBundle:[MPUUIHelper frameworkBundle] compatibleWithTraitCollection:nil];
-            break;
-        
-        case MPPaymentDetailsSchemeMaestro:
-            self.paymentSchemeView.image = [UIImage imageNamed:@"Maestro" inBundle:[MPUUIHelper frameworkBundle] compatibleWithTraitCollection:nil];
-            break;
-            
-        case MPPaymentDetailsSchemeMasterCard:
-            self.paymentSchemeView.image = [UIImage imageNamed:@"MasterCard" inBundle:[MPUUIHelper frameworkBundle] compatibleWithTraitCollection:nil];
-            break;
-            
-        case MPPaymentDetailsSchemeAmericanExpress:
-            self.paymentSchemeView.image = [UIImage imageNamed:@"AmericanExpress" inBundle:[MPUUIHelper frameworkBundle] compatibleWithTraitCollection:nil];
-            break;
-            
-        case MPPaymentDetailsSchemeDinersClub:
-            self.paymentSchemeView.image = [UIImage imageNamed:@"Diners" inBundle:[MPUUIHelper frameworkBundle] compatibleWithTraitCollection:nil];
-            break;
-            
-        case MPPaymentDetailsSchemeJCB:
-            self.paymentSchemeView.image = [UIImage imageNamed:@"JCB" inBundle:[MPUUIHelper frameworkBundle] compatibleWithTraitCollection:nil];
-            break;
-            
-        case MPPaymentDetailsSchemeDiscover:
-            self.paymentSchemeView.image = [UIImage imageNamed:@"Discover" inBundle:[MPUUIHelper frameworkBundle] compatibleWithTraitCollection:nil];
-            break;
-            
-        case MPPaymentDetailsSchemeUnionPay:
-            self.paymentSchemeView.image = [UIImage imageNamed:@"UnionPay" inBundle:[MPUUIHelper frameworkBundle] compatibleWithTraitCollection:nil];
-            break;
-            
-        default:
-            [self useSchemeViewFallback: scheme];
-            break;
-    }
-}
-
-- (void)updateMaskedAccountNumberView {
-    NSString *maskedAccountNumber = self.transaction.paymentDetails.accountNumber;
-    maskedAccountNumber = [maskedAccountNumber stringByReplacingOccurrencesOfString:@"[^0-9]"
-                                                                         withString:@"*"
-                                                                            options:NSRegularExpressionSearch
-                                                                              range:NSMakeRange(0, [maskedAccountNumber length])];
-    if ((!maskedAccountNumber || [maskedAccountNumber length] == 0) && self.paymentSchemeView.superview == nil) {
-        [self.maskedAccountNumberView removeFromSuperview];
-    } else {
-        self.maskedAccountNumberView.text = maskedAccountNumber;   
-    }
-}
-
-- (void)updateSubjectView {
-    if ([MPUUIHelper isStringEmpty:self.transaction.subject]) {
-        [self.subjectView removeFromSuperview];
-        [self.subjectViewSeparator removeFromSuperview];
-    } else {
-        self.subjectView.text = self.transaction.subject;
-    }
-}
-
-- (void)updateDateView {
-    self.dateView.text = [self.mposUi.transactionProvider.localizationToolbox textFormattedForTimeAndDate:self.transaction.created];
-}
-
-- (void)updateButtons {
-    // if send receipt via email feature not enabled, remove sendReceiptButton.
-    if (![self isSendReceiptFeatureEnabled]) {
-        [self.sendReceiptButton removeFromSuperview];
-    }
     
-    // if print receipt feature not enabled, remove printReceiptButton.
-    if (![self isPrintReceiptFeatureEnabled]) {
-        [self.printReceiptButton removeFromSuperview];
+    switch (alertView.tag) {
+            
+        case MPUSummaryControllerAlertTagRefund:
+            
+            [self.delegate summaryRefundClicked:self.transaction.identifier];
+            break;
+            
+            
+        case MPUSummaryControllerAlertTagCapture:
+            
+            [self.delegate summaryCaptureClicked:self.transaction.identifier];
+            break;
     }
+}
+
+
+#pragma mark - Tableview datasource 
+
+
+- (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
     
-    // if refund receipt feature not enabled and other factors fail to satisfy refund button, remove refundButton.
-    if (self.refundEnabled == NO || ![self isRefundFeatureEnabled] || ![self isTransactionApproved] || [self isTransactionTypeRefund] || [self isTransactionRefunded]) {
-        [self.refundButton removeFromSuperview];
-    }
-
-    if (self.retryEnabled == NO || self.transaction.status == MPTransactionStatusApproved || self.sessionIdentifier) {
-        [self.retryButton removeFromSuperview];
-    }
+    return 1;
 }
 
-- (BOOL)isTransactionApproved {
-    return (self.transaction.status == MPTransactionStatusApproved);
+
+- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
+    
+    return self.cellBuilders.count;
 }
 
-- (BOOL)isTransactionRefunded {
-    return (self.transaction.refundDetails.status == MPRefundDetailsStatusRefunded);
+
+- (UITableViewCell*)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
+    
+    MPUCellBuilder *cellBuilder = self.cellBuilders[indexPath.row];
+    
+    return cellBuilder.build();
 }
 
-- (BOOL)isTransactionTypeRefund {
-    return (self.transaction.type == MPTransactionTypeRefund);
-}
 
--(BOOL)isRefundFeatureEnabled {
-    return ((self.mposUi.configuration.summaryFeatures & MPUMposUiConfigurationSummaryFeatureRefundTransaction) == MPUMposUiConfigurationSummaryFeatureRefundTransaction);
-}
-
--(BOOL)isPrintReceiptFeatureEnabled {
-    return ((self.mposUi.configuration.summaryFeatures & MPUMposUiConfigurationSummaryFeaturePrintReceipt) == MPUMposUiConfigurationSummaryFeaturePrintReceipt);
-}
-
--(BOOL)isSendReceiptFeatureEnabled {
-    return ((self.mposUi.configuration.summaryFeatures & MPUMposUiConfigurationSummaryFeatureSendReceiptViaEmail) == MPUMposUiConfigurationSummaryFeatureSendReceiptViaEmail);
+- (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
+    
+    MPUCellBuilder *cellBuilder = self.cellBuilders[indexPath.row];
+    return cellBuilder.cellHeight;
 }
 
 @end

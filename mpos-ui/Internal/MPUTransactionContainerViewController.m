@@ -94,6 +94,9 @@ NSString* const MPUSegueIdentifierTransaction_Login = @"txPushLogin";
     self.previousSegueIdentifier = self.currentSegueIdentifier;
     self.currentSegueIdentifier = segue.identifier;
     
+    [self.delegate hideBackButton:YES];
+    [self.delegate hideCloseButton:YES];
+    
     if ([segue.identifier isEqualToString:MPUSegueIdentifierTransaction_Transaction]) {
         DDLogDebug(@"Transaction");
         // we do this mainly to handle coming back from the application-selection view controller.
@@ -128,14 +131,12 @@ NSString* const MPUSegueIdentifierTransaction_Login = @"txPushLogin";
     
     if ([segue.identifier isEqualToString:MPUSegueIdentifierTransaction_Summary]) {
         DDLogDebug(@"Summary");
-        if(self.summaryShown) {
-            // We've already created the screen before. No need to create it again.
-            [self.delegate titleChanged:[MPUUIHelper localizedString:@"MPUSummary"]];
-            [self swapToViewController:self.summaryViewController];
-            return;
+        
+        if(!self.summaryShown) {
+            self.summaryViewController = segue.destinationViewController;
         }
+
         self.summaryShown = YES;
-        self.summaryViewController = segue.destinationViewController;
         [self showSummary:self.transaction];
         [self swapToViewController:self.summaryViewController];
     }
@@ -203,6 +204,9 @@ NSString* const MPUSegueIdentifierTransaction_Login = @"txPushLogin";
     self.summaryViewController.parameters = self.parameters;
     self.summaryViewController.sessionIdentifier = self.sessionIdentifier;
     self.summaryViewController.delegate = self;
+    
+    [self.delegate setBackButtonItem:self.summaryViewController.backButtonItem];
+    [self.delegate setRightButtonItem:[self.summaryViewController rightButtonItem]];
 }
 
 - (void)showSignatureScreenForScheme:(MPPaymentDetailsScheme)scheme amount:(NSString *) amount {
@@ -281,10 +285,12 @@ NSString* const MPUSegueIdentifierTransaction_Login = @"txPushLogin";
 #pragma mark - Public
 
 - (void)backButtonPressed {
+    
+    [self.delegate hideBackButton:YES];
+    
     if ([self.currentSegueIdentifier isEqualToString:MPUSegueIdentifierTransaction_SendReceipt]) {
         [self performSegueWithIdentifier:MPUSegueIdentifierTransaction_Summary sender:nil];
     }
-    [self.delegate hideBackButton:YES];
 }
 
 - (void)closeButtonPressed {
@@ -382,6 +388,10 @@ NSString* const MPUSegueIdentifierTransaction_Login = @"txPushLogin";
 #pragma mark - MPUSummaryDelegate
 
 - (void)summaryRefundClicked:(NSString *)transactionIdentifier {
+    //This is an illegal state. Should never happen!
+}
+
+- (void)summaryCaptureClicked:(NSString *)transactionIdentifier {
     //This is an illegal state. Should never happen!
 }
 

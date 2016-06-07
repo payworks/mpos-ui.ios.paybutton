@@ -57,7 +57,6 @@
 		44AEEBE51B58FB5600531369 /* MPUPrintReceiptContainerViewController.h in Headers */ = {isa = PBXBuildFile; fileRef = 44AEEBE31B58FB5600531369 /* MPUPrintReceiptContainerViewController.h */; };
 		44AEEBE61B58FB5600531369 /* MPUPrintReceiptContainerViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 44AEEBE41B58FB5600531369 /* MPUPrintReceiptContainerViewController.m */; };
 		44B3EE211BDFD8320089D194 /* mpos-ui.strings in Resources */ = {isa = PBXBuildFile; fileRef = 44B3EE1F1BDFD8320089D194 /* mpos-ui.strings */; };
-		44C6B0511B629C04004C988C /* mpos.core.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 44C6B0501B629C04004C988C /* mpos.core.framework */; };
 		44D986081B4C3E53006F2F62 /* MPUEmptySegue.h in Headers */ = {isa = PBXBuildFile; fileRef = 44D986061B4C3E53006F2F62 /* MPUEmptySegue.h */; };
 		44D986091B4C3E53006F2F62 /* MPUEmptySegue.m in Sources */ = {isa = PBXBuildFile; fileRef = 44D986071B4C3E53006F2F62 /* MPUEmptySegue.m */; };
 		44E918161B4BE30F0085FB8E /* MPUAbstractContainerViewController.h in Headers */ = {isa = PBXBuildFile; fileRef = 44E918141B4BE30F0085FB8E /* MPUAbstractContainerViewController.h */; };
@@ -68,7 +67,24 @@
 		44E9181F1B4BE4CA0085FB8E /* MPUSummaryContainerViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 44E9181D1B4BE4CA0085FB8E /* MPUSummaryContainerViewController.m */; };
 		44F4D1641B4FB20E00EC26C7 /* MPUSummaryMainController.h in Headers */ = {isa = PBXBuildFile; fileRef = 44F4D1621B4FB20E00EC26C7 /* MPUSummaryMainController.h */; };
 		44F4D1651B4FB20E00EC26C7 /* MPUSummaryMainController.m in Sources */ = {isa = PBXBuildFile; fileRef = 44F4D1631B4FB20E00EC26C7 /* MPUSummaryMainController.m */; };
-		86336A1C9B7043E047DA8E75 /* libPods.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 4DBF6407AE9A3A02E73062AB /* libPods.a */; };
+		7E49EEB39D1DBCD22ACF9559 /* libPods-mpos-ui.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 0F004FA6DDCFDE0143C0B06F /* libPods-mpos-ui.a */; };
+		B34C97861CCE4CEA0092A8D4 /* MPUSummaryController.h in Headers */ = {isa = PBXBuildFile; fileRef = B34C97841CCE4CEA0092A8D4 /* MPUSummaryController.h */; };
+		B34C97871CCE4CEA0092A8D4 /* MPUSummaryController.m in Sources */ = {isa = PBXBuildFile; fileRef = B34C97851CCE4CEA0092A8D4 /* MPUSummaryController.m */; };
+		B395AC4C1CD79ECA00C4CEE4 /* yourbrand.plist in Resources */ = {isa = PBXBuildFile; fileRef = B395AC4B1CD79ECA00C4CEE4 /* yourbrand.plist */; };
+		B395AC581CD8E53D00C4CEE4 /* MPUTransactionHeaderCell.h in Headers */ = {isa = PBXBuildFile; fileRef = B395AC561CD8E53D00C4CEE4 /* MPUTransactionHeaderCell.h */; };
+		B395AC591CD8E53D00C4CEE4 /* MPUTransactionHeaderCell.m in Sources */ = {isa = PBXBuildFile; fileRef = B395AC571CD8E53D00C4CEE4 /* MPUTransactionHeaderCell.m */; };
+		B395AC601CD8E6F800C4CEE4 /* MPUTransactionCardCell.h in Headers */ = {isa = PBXBuildFile; fileRef = B395AC5E1CD8E6F800C4CEE4 /* MPUTransactionCardCell.h */; };
+		B395AC611CD8E6F800C4CEE4 /* MPUTransactionCardCell.m in Sources */ = {isa = PBXBuildFile; fileRef = B395AC5F1CD8E6F800C4CEE4 /* MPUTransactionCardCell.m */; };
+		B395AC641CD8E75D00C4CEE4 /* MPUTransactionSubjectCell.h in Headers */ = {isa = PBXBuildFile; fileRef = B395AC621CD8E75D00C4CEE4 /* MPUTransactionSubjectCell.h */; };
+		B395AC651CD8E75D00C4CEE4 /* MPUTransactionSubjectCell.m in Sources */ = {isa = PBXBuildFile; fileRef = B395AC631CD8E75D00C4CEE4 /* MPUTransactionSubjectCell.m */; };
+		B395AC681CD8E79200C4CEE4 /* MPUTransactionActionsCell.h in Headers */ = {isa = PBXBuildFile; fileRef = B395AC661CD8E79200C4CEE4 /* MPUTransactionActionsCell.h */; };
+		B395AC691CD8E79200C4CEE4 /* MPUTransactionActionsCell.m in Sources */ = {isa = PBXBuildFile; fileRef = B395AC671CD8E79200C4CEE4 /* MPUTransactionActionsCell.m */; };
+		B395AC6C1CD8E82E00C4CEE4 /* MPUTransactionHistoryDetailCell.h in Headers */ = {isa = PBXBuildFile; fileRef = B395AC6A1CD8E82E00C4CEE4 /* MPUTransactionHistoryDetailCell.h */; };
+		B395AC6D1CD8E82E00C4CEE4 /* MPUTransactionHistoryDetailCell.m in Sources */ = {isa = PBXBuildFile; fileRef = B395AC6B1CD8E82E00C4CEE4 /* MPUTransactionHistoryDetailCell.m */; };
+		B395AC701CD8E85200C4CEE4 /* MPUTransactionDateFooterCell.h in Headers */ = {isa = PBXBuildFile; fileRef = B395AC6E1CD8E85200C4CEE4 /* MPUTransactionDateFooterCell.h */; };
+		B395AC711CD8E85200C4CEE4 /* MPUTransactionDateFooterCell.m in Sources */ = {isa = PBXBuildFile; fileRef = B395AC6F1CD8E85200C4CEE4 /* MPUTransactionDateFooterCell.m */; };
+		B395AC741CD8E9F900C4CEE4 /* MPUCellBuilder.h in Headers */ = {isa = PBXBuildFile; fileRef = B395AC721CD8E9F900C4CEE4 /* MPUCellBuilder.h */; };
+		B395AC751CD8E9F900C4CEE4 /* MPUCellBuilder.m in Sources */ = {isa = PBXBuildFile; fileRef = B395AC731CD8E9F900C4CEE4 /* MPUCellBuilder.m */; };
 		F46242B61B3C6A7A00274B6F /* mpos-ui.pch in Headers */ = {isa = PBXBuildFile; fileRef = F46242B51B3C6A7A00274B6F /* mpos-ui.pch */; };
 		F48682F01B0CBDEA0042FF15 /* mpos-ui.h in Headers */ = {isa = PBXBuildFile; fileRef = F48682C31B0CBAF70042FF15 /* mpos-ui.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		F48682F21B0CBDF40042FF15 /* MPUMposUiAppearance.h in Headers */ = {isa = PBXBuildFile; fileRef = 2DDA93CF1A8A0270002C246A /* MPUMposUiAppearance.h */; settings = {ATTRIBUTES = (Public, ); }; };
@@ -82,8 +98,6 @@
 		F48683161B0CBF880042FF15 /* MPUApplicationSelectionController.m in Sources */ = {isa = PBXBuildFile; fileRef = F48683071B0CBF880042FF15 /* MPUApplicationSelectionController.m */; };
 		F48683171B0CBF880042FF15 /* MPUErrorController.h in Headers */ = {isa = PBXBuildFile; fileRef = F48683081B0CBF880042FF15 /* MPUErrorController.h */; };
 		F48683181B0CBF880042FF15 /* MPUErrorController.m in Sources */ = {isa = PBXBuildFile; fileRef = F48683091B0CBF880042FF15 /* MPUErrorController.m */; };
-		F486831A1B0CBF880042FF15 /* MPUSummaryController.h in Headers */ = {isa = PBXBuildFile; fileRef = F486830B1B0CBF880042FF15 /* MPUSummaryController.h */; };
-		F486831B1B0CBF880042FF15 /* MPUSummaryController.m in Sources */ = {isa = PBXBuildFile; fileRef = F486830C1B0CBF880042FF15 /* MPUSummaryController.m */; };
 		F486831C1B0CBF880042FF15 /* MPUTransactionController.h in Headers */ = {isa = PBXBuildFile; fileRef = F486830D1B0CBF880042FF15 /* MPUTransactionController.h */; };
 		F486831D1B0CBF880042FF15 /* MPUTransactionController.m in Sources */ = {isa = PBXBuildFile; fileRef = F486830E1B0CBF880042FF15 /* MPUTransactionController.m */; };
 		F486831E1B0CBF880042FF15 /* MPUProgressView.h in Headers */ = {isa = PBXBuildFile; fileRef = F486830F1B0CBF880042FF15 /* MPUProgressView.h */; };
@@ -144,6 +158,7 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		0F004FA6DDCFDE0143C0B06F /* libPods-mpos-ui.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-mpos-ui.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		21A6586CE6DC2E960D917DF7 /* Pods-mpos-ui.podsdummy.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-mpos-ui.podsdummy.debug.xcconfig"; path = "Pods/Target Support Files/Pods-mpos-ui.podsdummy/Pods-mpos-ui.podsdummy.debug.xcconfig"; sourceTree = "<group>"; };
 		2D959B801A7B8D7200DC5310 /* ExternalAccessory.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = ExternalAccessory.framework; path = System/Library/Frameworks/ExternalAccessory.framework; sourceTree = SDKROOT; };
 		2D959B821A7B8D7A00DC5310 /* SystemConfiguration.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SystemConfiguration.framework; path = System/Library/Frameworks/SystemConfiguration.framework; sourceTree = SDKROOT; };
@@ -195,9 +210,25 @@
 		44E9181D1B4BE4CA0085FB8E /* MPUSummaryContainerViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MPUSummaryContainerViewController.m; sourceTree = "<group>"; };
 		44F4D1621B4FB20E00EC26C7 /* MPUSummaryMainController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MPUSummaryMainController.h; sourceTree = "<group>"; };
 		44F4D1631B4FB20E00EC26C7 /* MPUSummaryMainController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MPUSummaryMainController.m; sourceTree = "<group>"; };
-		4DBF6407AE9A3A02E73062AB /* libPods.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libPods.a; sourceTree = BUILT_PRODUCTS_DIR; };
-		6747BEB343793F87F2CCCF64 /* Pods.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.release.xcconfig; path = "Pods/Target Support Files/Pods/Pods.release.xcconfig"; sourceTree = "<group>"; };
-		A6420FC34248B24BC042BFE6 /* Pods.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.debug.xcconfig; path = "Pods/Target Support Files/Pods/Pods.debug.xcconfig"; sourceTree = "<group>"; };
+		5B9EB297CBE67376AE841023 /* Pods-mpos-ui.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-mpos-ui.release.xcconfig"; path = "Pods/Target Support Files/Pods-mpos-ui/Pods-mpos-ui.release.xcconfig"; sourceTree = "<group>"; };
+		75E6F9AC55DFE8CBF7E4A395 /* Pods-mpos-ui.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-mpos-ui.debug.xcconfig"; path = "Pods/Target Support Files/Pods-mpos-ui/Pods-mpos-ui.debug.xcconfig"; sourceTree = "<group>"; };
+		B34C97841CCE4CEA0092A8D4 /* MPUSummaryController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MPUSummaryController.h; sourceTree = "<group>"; };
+		B34C97851CCE4CEA0092A8D4 /* MPUSummaryController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MPUSummaryController.m; sourceTree = "<group>"; };
+		B395AC4B1CD79ECA00C4CEE4 /* yourbrand.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = yourbrand.plist; sourceTree = "<group>"; };
+		B395AC561CD8E53D00C4CEE4 /* MPUTransactionHeaderCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MPUTransactionHeaderCell.h; sourceTree = "<group>"; };
+		B395AC571CD8E53D00C4CEE4 /* MPUTransactionHeaderCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MPUTransactionHeaderCell.m; sourceTree = "<group>"; };
+		B395AC5E1CD8E6F800C4CEE4 /* MPUTransactionCardCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MPUTransactionCardCell.h; sourceTree = "<group>"; };
+		B395AC5F1CD8E6F800C4CEE4 /* MPUTransactionCardCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MPUTransactionCardCell.m; sourceTree = "<group>"; };
+		B395AC621CD8E75D00C4CEE4 /* MPUTransactionSubjectCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MPUTransactionSubjectCell.h; sourceTree = "<group>"; };
+		B395AC631CD8E75D00C4CEE4 /* MPUTransactionSubjectCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MPUTransactionSubjectCell.m; sourceTree = "<group>"; };
+		B395AC661CD8E79200C4CEE4 /* MPUTransactionActionsCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MPUTransactionActionsCell.h; sourceTree = "<group>"; };
+		B395AC671CD8E79200C4CEE4 /* MPUTransactionActionsCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MPUTransactionActionsCell.m; sourceTree = "<group>"; };
+		B395AC6A1CD8E82E00C4CEE4 /* MPUTransactionHistoryDetailCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MPUTransactionHistoryDetailCell.h; sourceTree = "<group>"; };
+		B395AC6B1CD8E82E00C4CEE4 /* MPUTransactionHistoryDetailCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MPUTransactionHistoryDetailCell.m; sourceTree = "<group>"; };
+		B395AC6E1CD8E85200C4CEE4 /* MPUTransactionDateFooterCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MPUTransactionDateFooterCell.h; sourceTree = "<group>"; };
+		B395AC6F1CD8E85200C4CEE4 /* MPUTransactionDateFooterCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MPUTransactionDateFooterCell.m; sourceTree = "<group>"; };
+		B395AC721CD8E9F900C4CEE4 /* MPUCellBuilder.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MPUCellBuilder.h; sourceTree = "<group>"; };
+		B395AC731CD8E9F900C4CEE4 /* MPUCellBuilder.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MPUCellBuilder.m; sourceTree = "<group>"; };
 		CCCBA9E84E7D3D6668670AEB /* Pods-mpos-ui.podsdummy.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-mpos-ui.podsdummy.release.xcconfig"; path = "Pods/Target Support Files/Pods-mpos-ui.podsdummy/Pods-mpos-ui.podsdummy.release.xcconfig"; sourceTree = "<group>"; };
 		F46242B51B3C6A7A00274B6F /* mpos-ui.pch */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "mpos-ui.pch"; sourceTree = "<group>"; };
 		F486823D1B0CA93C0042FF15 /* libmpos-ui.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libmpos-ui.a"; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -223,8 +254,6 @@
 		F48683071B0CBF880042FF15 /* MPUApplicationSelectionController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = MPUApplicationSelectionController.m; path = Internal/MPUApplicationSelectionController.m; sourceTree = SOURCE_ROOT; };
 		F48683081B0CBF880042FF15 /* MPUErrorController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = MPUErrorController.h; path = Internal/MPUErrorController.h; sourceTree = SOURCE_ROOT; };
 		F48683091B0CBF880042FF15 /* MPUErrorController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = MPUErrorController.m; path = Internal/MPUErrorController.m; sourceTree = SOURCE_ROOT; };
-		F486830B1B0CBF880042FF15 /* MPUSummaryController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = MPUSummaryController.h; path = Internal/MPUSummaryController.h; sourceTree = SOURCE_ROOT; };
-		F486830C1B0CBF880042FF15 /* MPUSummaryController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = MPUSummaryController.m; path = Internal/MPUSummaryController.m; sourceTree = SOURCE_ROOT; };
 		F486830D1B0CBF880042FF15 /* MPUTransactionController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = MPUTransactionController.h; path = Internal/MPUTransactionController.h; sourceTree = SOURCE_ROOT; };
 		F486830E1B0CBF880042FF15 /* MPUTransactionController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = MPUTransactionController.m; path = Internal/MPUTransactionController.m; sourceTree = SOURCE_ROOT; };
 		F486830F1B0CBF880042FF15 /* MPUProgressView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = MPUProgressView.h; path = Internal/MPUProgressView.h; sourceTree = SOURCE_ROOT; };
@@ -242,7 +271,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				86336A1C9B7043E047DA8E75 /* libPods.a in Frameworks */,
+				7E49EEB39D1DBCD22ACF9559 /* libPods-mpos-ui.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -348,6 +377,7 @@
 				4461B2541B95B48E00EE55AF /* concardis.plist */,
 				4461B2571B96ED1D00EE55AF /* mcashier.plist */,
 				445DAF441C56314100438186 /* secureretail.plist */,
+				B395AC4B1CD79ECA00C4CEE4 /* yourbrand.plist */,
 			);
 			path = "application-customization";
 			sourceTree = "<group>";
@@ -382,10 +412,10 @@
 		953122E2C857066A9B07E0DA /* Pods */ = {
 			isa = PBXGroup;
 			children = (
-				A6420FC34248B24BC042BFE6 /* Pods.debug.xcconfig */,
-				6747BEB343793F87F2CCCF64 /* Pods.release.xcconfig */,
 				21A6586CE6DC2E960D917DF7 /* Pods-mpos-ui.podsdummy.debug.xcconfig */,
 				CCCBA9E84E7D3D6668670AEB /* Pods-mpos-ui.podsdummy.release.xcconfig */,
+				75E6F9AC55DFE8CBF7E4A395 /* Pods-mpos-ui.debug.xcconfig */,
+				5B9EB297CBE67376AE841023 /* Pods-mpos-ui.release.xcconfig */,
 			);
 			name = Pods;
 			sourceTree = "<group>";
@@ -397,10 +427,31 @@
 				44C6B0501B629C04004C988C /* mpos.core.framework */,
 				2D959B821A7B8D7A00DC5310 /* SystemConfiguration.framework */,
 				2D959B801A7B8D7200DC5310 /* ExternalAccessory.framework */,
-				4DBF6407AE9A3A02E73062AB /* libPods.a */,
 				3848B4A47AE3D5FA03324DB9 /* libPods-mpos-ui.podsdummy.a */,
+				0F004FA6DDCFDE0143C0B06F /* libPods-mpos-ui.a */,
 			);
 			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		B395AC551CD8E50400C4CEE4 /* TransactionCells */ = {
+			isa = PBXGroup;
+			children = (
+				B395AC561CD8E53D00C4CEE4 /* MPUTransactionHeaderCell.h */,
+				B395AC571CD8E53D00C4CEE4 /* MPUTransactionHeaderCell.m */,
+				B395AC5E1CD8E6F800C4CEE4 /* MPUTransactionCardCell.h */,
+				B395AC5F1CD8E6F800C4CEE4 /* MPUTransactionCardCell.m */,
+				B395AC621CD8E75D00C4CEE4 /* MPUTransactionSubjectCell.h */,
+				B395AC631CD8E75D00C4CEE4 /* MPUTransactionSubjectCell.m */,
+				B395AC661CD8E79200C4CEE4 /* MPUTransactionActionsCell.h */,
+				B395AC671CD8E79200C4CEE4 /* MPUTransactionActionsCell.m */,
+				B395AC6A1CD8E82E00C4CEE4 /* MPUTransactionHistoryDetailCell.h */,
+				B395AC6B1CD8E82E00C4CEE4 /* MPUTransactionHistoryDetailCell.m */,
+				B395AC6E1CD8E85200C4CEE4 /* MPUTransactionDateFooterCell.h */,
+				B395AC6F1CD8E85200C4CEE4 /* MPUTransactionDateFooterCell.m */,
+				B395AC721CD8E9F900C4CEE4 /* MPUCellBuilder.h */,
+				B395AC731CD8E9F900C4CEE4 /* MPUCellBuilder.m */,
+			);
+			path = TransactionCells;
 			sourceTree = "<group>";
 		};
 		F48682AC1B0CBA570042FF15 /* de.lproj */ = {
@@ -498,8 +549,8 @@
 				F48683071B0CBF880042FF15 /* MPUApplicationSelectionController.m */,
 				F48683081B0CBF880042FF15 /* MPUErrorController.h */,
 				F48683091B0CBF880042FF15 /* MPUErrorController.m */,
-				F486830B1B0CBF880042FF15 /* MPUSummaryController.h */,
-				F486830C1B0CBF880042FF15 /* MPUSummaryController.m */,
+				B34C97841CCE4CEA0092A8D4 /* MPUSummaryController.h */,
+				B34C97851CCE4CEA0092A8D4 /* MPUSummaryController.m */,
 				F486830D1B0CBF880042FF15 /* MPUTransactionController.h */,
 				F486830E1B0CBF880042FF15 /* MPUTransactionController.m */,
 				F486830F1B0CBF880042FF15 /* MPUProgressView.h */,
@@ -514,6 +565,7 @@
 				4461B23D1B9478F600EE55AF /* MPULoginController.m */,
 				4461B2481B949E5B00EE55AF /* MPUSettingsController.h */,
 				4461B2491B949E5B00EE55AF /* MPUSettingsController.m */,
+				B395AC551CD8E50400C4CEE4 /* TransactionCells */,
 			);
 			name = UI;
 			sourceTree = "<group>";
@@ -536,17 +588,21 @@
 			isa = PBXHeadersBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				B395AC601CD8E6F800C4CEE4 /* MPUTransactionCardCell.h in Headers */,
 				4461B24A1B949E5B00EE55AF /* MPUSettingsController.h in Headers */,
 				44AEEBE11B58FACD00531369 /* MPUPrintReceiptMainController.h in Headers */,
 				44AEEBDD1B564DBE00531369 /* MPUAbstractMainController.h in Headers */,
+				B395AC641CD8E75D00C4CEE4 /* MPUTransactionSubjectCell.h in Headers */,
 				44234B361B0DE5F700C1ABAE /* MPULoadTransactionController.h in Headers */,
 				44D986081B4C3E53006F2F62 /* MPUEmptySegue.h in Headers */,
 				F486831E1B0CBF880042FF15 /* MPUProgressView.h in Headers */,
 				4461B2691B98893900EE55AF /* MPULoginContainerViewController.h in Headers */,
+				B395AC6C1CD8E82E00C4CEE4 /* MPUTransactionHistoryDetailCell.h in Headers */,
 				F48683281B0CBF970042FF15 /* MPUUIHelper.h in Headers */,
 				F48682F01B0CBDEA0042FF15 /* mpos-ui.h in Headers */,
 				F486832D1B0CECCE0042FF15 /* MPUMposUi_Internal.h in Headers */,
 				44E9181E1B4BE4CA0085FB8E /* MPUSummaryContainerViewController.h in Headers */,
+				B395AC701CD8E85200C4CEE4 /* MPUTransactionDateFooterCell.h in Headers */,
 				F48682F21B0CBDF40042FF15 /* MPUMposUiAppearance.h in Headers */,
 				4461B23E1B9478F600EE55AF /* MPULoginController.h in Headers */,
 				4461B24E1B94A26100EE55AF /* MPUAbstractTableViewController.h in Headers */,
@@ -558,13 +614,16 @@
 				44AEEBD91B540AA200531369 /* MPUTransactionMainController.h in Headers */,
 				F46242B61B3C6A7A00274B6F /* mpos-ui.pch in Headers */,
 				4461B2421B9498BD00EE55AF /* MPUApplicationData.h in Headers */,
+				B395AC581CD8E53D00C4CEE4 /* MPUTransactionHeaderCell.h in Headers */,
 				F48683201B0CBF880042FF15 /* MPUSendReceiptController.h in Headers */,
 				F486831C1B0CBF880042FF15 /* MPUTransactionController.h in Headers */,
 				4461B2651B98888200EE55AF /* MPULoginMainController.h in Headers */,
-				F486831A1B0CBF880042FF15 /* MPUSummaryController.h in Headers */,
 				44E918161B4BE30F0085FB8E /* MPUAbstractContainerViewController.h in Headers */,
 				4461B25B1B973BA700EE55AF /* MPUSettingsContainerViewController.h in Headers */,
+				B395AC681CD8E79200C4CEE4 /* MPUTransactionActionsCell.h in Headers */,
 				44E9181A1B4BE47C0085FB8E /* MPUTransactionContainerViewController.h in Headers */,
+				B395AC741CD8E9F900C4CEE4 /* MPUCellBuilder.h in Headers */,
+				B34C97861CCE4CEA0092A8D4 /* MPUSummaryController.h in Headers */,
 				F486832B1B0CC0A10042FF15 /* MPUMposUi.h in Headers */,
 				4461B2601B973C6700EE55AF /* MPUSettingsMainController.h in Headers */,
 				F48683151B0CBF880042FF15 /* MPUApplicationSelectionController.h in Headers */,
@@ -579,13 +638,13 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = F48682521B0CA93D0042FF15 /* Build configuration list for PBXNativeTarget "mpos-ui" */;
 			buildPhases = (
-				FD7D960E6D6FFEAC4B4DEED4 /* Check Pods Manifest.lock */,
+				80CCF78401BCB6100A27858F /* 📦 Check Pods Manifest.lock */,
 				F48682391B0CA93C0042FF15 /* Sources */,
 				F486823A1B0CA93C0042FF15 /* Frameworks */,
 				F48682911B0CB6D30042FF15 /* Headers */,
 				F486823B1B0CA93C0042FF15 /* CopyFiles */,
 				F48682831B0CABFC0042FF15 /* ShellScript */,
-				200E9671D0E17B0CC1CA23D3 /* Copy Pods Resources */,
+				6672B8A6B05A86E3E4E99DCA /* 📦 Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -617,11 +676,11 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = F48682E21B0CBC6A0042FF15 /* Build configuration list for PBXNativeTarget "mpos-ui.podsdummy" */;
 			buildPhases = (
-				4B933C11376EACDC2A9B55A4 /* Check Pods Manifest.lock */,
+				6102E4AE36D76A1557000D59 /* 📦 Check Pods Manifest.lock */,
 				F48682C91B0CBC6A0042FF15 /* Sources */,
 				F48682CA1B0CBC6A0042FF15 /* Frameworks */,
 				F48682CB1B0CBC6A0042FF15 /* CopyFiles */,
-				B10357588359A9F06940A1AE /* Copy Pods Resources */,
+				ACD6148CB2E1857B9B4A50BF /* 📦 Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -700,6 +759,7 @@
 				445DAF451C56314100438186 /* secureretail.plist in Resources */,
 				F48683391B0D06C20042FF15 /* FontAwesome.otf in Resources */,
 				F486833A1B0D06C20042FF15 /* mpos-ui.storyboard in Resources */,
+				B395AC4C1CD79ECA00C4CEE4 /* yourbrand.plist in Resources */,
 				F486833B1B0D06C20042FF15 /* Images.xcassets in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -707,29 +767,14 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXShellScriptBuildPhase section */
-		200E9671D0E17B0CC1CA23D3 /* Copy Pods Resources */ = {
+		6102E4AE36D76A1557000D59 /* 📦 Check Pods Manifest.lock */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
 			);
 			inputPaths = (
 			);
-			name = "Copy Pods Resources";
-			outputPaths = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods/Pods-resources.sh\"\n";
-			showEnvVarsInLog = 0;
-		};
-		4B933C11376EACDC2A9B55A4 /* Check Pods Manifest.lock */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputPaths = (
-			);
-			name = "Check Pods Manifest.lock";
+			name = "📦 Check Pods Manifest.lock";
 			outputPaths = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -737,14 +782,44 @@
 			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [[ $? != 0 ]] ; then\n    cat << EOM\nerror: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\nEOM\n    exit 1\nfi\n";
 			showEnvVarsInLog = 0;
 		};
-		B10357588359A9F06940A1AE /* Copy Pods Resources */ = {
+		6672B8A6B05A86E3E4E99DCA /* 📦 Copy Pods Resources */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
 			);
 			inputPaths = (
 			);
-			name = "Copy Pods Resources";
+			name = "📦 Copy Pods Resources";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-mpos-ui/Pods-mpos-ui-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		80CCF78401BCB6100A27858F /* 📦 Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "📦 Check Pods Manifest.lock";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [[ $? != 0 ]] ; then\n    cat << EOM\nerror: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\nEOM\n    exit 1\nfi\n";
+			showEnvVarsInLog = 0;
+		};
+		ACD6148CB2E1857B9B4A50BF /* 📦 Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "📦 Copy Pods Resources";
 			outputPaths = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -778,21 +853,6 @@
 			shellPath = /bin/sh;
 			shellScript = "set -e\nset +u\n# Avoid recursively calling this script.\nif [[ $SF_MASTER_SCRIPT_RUNNING ]]\nthen\nexit 0\nfi\nset -u\nexport SF_MASTER_SCRIPT_RUNNING=1\n\nSF_TARGET_NAME=\"mpos-ui\"\nSF_EXECUTABLE_PATH=\"lib${SF_TARGET_NAME}.a\"\nSF_EXECUTABLE_NAME=\"mpos-ui\"\nSF_WRAPPER_NAME=\"mpos-ui.framework\"\nSF_BUNDLE_NAME=\"mpos-ui-resources.bundle\"\n\n# The following conditionals come from\n# https://github.com/kstenerud/iOS-Universal-Framework\n\nif [[ \"$SDK_NAME\" =~ ([A-Za-z]+) ]]\nthen\nSF_SDK_PLATFORM=${BASH_REMATCH[1]}\nelse\necho \"Could not find platform name from SDK_NAME: $SDK_NAME\"\nexit 1\nfi\n\nif [[ \"$SDK_NAME\" =~ ([0-9]+.*$) ]]\nthen\nSF_SDK_VERSION=${BASH_REMATCH[1]}\nelse\necho \"Could not find sdk version from SDK_NAME: $SDK_NAME\"\nexit 1\nfi\n\nif [[ \"$SF_SDK_PLATFORM\" = \"iphoneos\" ]]\nthen\nSF_OTHER_PLATFORM=iphonesimulator\nelse\nSF_OTHER_PLATFORM=iphoneos\nfi\n\nif [[ \"$BUILT_PRODUCTS_DIR\" =~ (.*)$SF_SDK_PLATFORM$ ]]\nthen\nSF_OTHER_BUILT_PRODUCTS_DIR=\"${BASH_REMATCH[1]}${SF_OTHER_PLATFORM}\"\nelse\necho \"Could not find platform name from build products directory: $BUILT_PRODUCTS_DIR\"\nexit 1\nfi\n\n# Build the other platform.\n#xcodebuild -project \"${PROJECT_FILE_PATH}\" -target \"${TARGET_NAME}\" -configuration \"${CONFIGURATION}\" -sdk ${SF_OTHER_PLATFORM}${SF_SDK_VERSION} BUILD_DIR=\"${BUILD_DIR}\" OBJROOT=\"${OBJROOT}\" BUILD_ROOT=\"${BUILD_ROOT}\" SYMROOT=\"${SYMROOT}\" $ACTION\n\nxcodebuild -workspace \"mpos-ui.xcworkspace\" -scheme \"${SF_TARGET_NAME}\" -configuration \"${CONFIGURATION}\" -sdk ${SF_OTHER_PLATFORM}${SF_SDK_VERSION} BUILD_DIR=\"${BUILD_DIR}\" OBJROOT=\"${OBJROOT}\" BUILD_ROOT=\"${BUILD_ROOT}\" SYMROOT=\"${SYMROOT}\" $ACTION\n\n# Smash the two static libraries into one fat binary and store it in the .framework\nlipo -create \"${BUILT_PRODUCTS_DIR}/${SF_EXECUTABLE_PATH}\" \"${SF_OTHER_BUILT_PRODUCTS_DIR}/${SF_EXECUTABLE_PATH}\" -output \"${BUILT_PRODUCTS_DIR}/${SF_WRAPPER_NAME}/Versions/A/${SF_EXECUTABLE_NAME}\"\n\n\n# Copy the binary to the other architecture folder to have a complete framework in both.\ncp -a \"${BUILT_PRODUCTS_DIR}/${SF_WRAPPER_NAME}/Versions/A/${SF_EXECUTABLE_NAME}\" \"${SF_OTHER_BUILT_PRODUCTS_DIR}/${SF_WRAPPER_NAME}/Versions/A/${SF_EXECUTABLE_NAME}\"\n\n\n#and copy the framework somewhere else\n#+u triggers error for unbound variables, so specify in any case\nEXPORT_DIR=${FRAMEWORK_EXPORT_DIR:-}\nif [[ -n \"${EXPORT_DIR}\" ]]; then\necho \"### GOT FRAMEWORK DIR: ${EXPORT_DIR} ###\"\nmkdir -p \"${EXPORT_DIR}\"\ncp -avR \"${BUILT_PRODUCTS_DIR}/${SF_WRAPPER_NAME}\" \"${EXPORT_DIR}\"\ncp -avR \"${BUILT_PRODUCTS_DIR}/${SF_BUNDLE_NAME}\" \"${EXPORT_DIR}\"\nelse\necho \"### NO FRAMEWORK DIR PROVIDED: ${EXPORT_DIR} ###\"\nfi\n";
 		};
-		FD7D960E6D6FFEAC4B4DEED4 /* Check Pods Manifest.lock */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputPaths = (
-			);
-			name = "Check Pods Manifest.lock";
-			outputPaths = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [[ $? != 0 ]] ; then\n    cat << EOM\nerror: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\nEOM\n    exit 1\nfi\n";
-			showEnvVarsInLog = 0;
-		};
 /* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
@@ -800,6 +860,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				B34C97871CCE4CEA0092A8D4 /* MPUSummaryController.m in Sources */,
 				4461B2611B973C6700EE55AF /* MPUSettingsMainController.m in Sources */,
 				4479656B1B1EF74600CB540E /* MPUPrintReceiptController.m in Sources */,
 				4461B2661B98888200EE55AF /* MPULoginMainController.m in Sources */,
@@ -807,11 +868,16 @@
 				F48683031B0CBF760042FF15 /* MPUMposUiConfiguration.m in Sources */,
 				F48683141B0CBF880042FF15 /* MPUAbstractController.m in Sources */,
 				44E918171B4BE30F0085FB8E /* MPUAbstractContainerViewController.m in Sources */,
+				B395AC751CD8E9F900C4CEE4 /* MPUCellBuilder.m in Sources */,
+				B395AC711CD8E85200C4CEE4 /* MPUTransactionDateFooterCell.m in Sources */,
 				44AEEBDE1B564DBE00531369 /* MPUAbstractMainController.m in Sources */,
 				44AEEBE21B58FACD00531369 /* MPUPrintReceiptMainController.m in Sources */,
 				4461B25C1B973BA700EE55AF /* MPUSettingsContainerViewController.m in Sources */,
 				44F4D1651B4FB20E00EC26C7 /* MPUSummaryMainController.m in Sources */,
+				B395AC611CD8E6F800C4CEE4 /* MPUTransactionCardCell.m in Sources */,
 				F48683291B0CBF970042FF15 /* MPUUIHelper.m in Sources */,
+				B395AC6D1CD8E82E00C4CEE4 /* MPUTransactionHistoryDetailCell.m in Sources */,
+				B395AC691CD8E79200C4CEE4 /* MPUTransactionActionsCell.m in Sources */,
 				F48683181B0CBF880042FF15 /* MPUErrorController.m in Sources */,
 				44E9181F1B4BE4CA0085FB8E /* MPUSummaryContainerViewController.m in Sources */,
 				F48683021B0CBF760042FF15 /* MPUMposUiAppearance.m in Sources */,
@@ -822,13 +888,14 @@
 				F486831F1B0CBF880042FF15 /* MPUProgressView.m in Sources */,
 				44D986091B4C3E53006F2F62 /* MPUEmptySegue.m in Sources */,
 				F48683161B0CBF880042FF15 /* MPUApplicationSelectionController.m in Sources */,
+				B395AC591CD8E53D00C4CEE4 /* MPUTransactionHeaderCell.m in Sources */,
 				44E9181B1B4BE47C0085FB8E /* MPUTransactionContainerViewController.m in Sources */,
+				B395AC651CD8E75D00C4CEE4 /* MPUTransactionSubjectCell.m in Sources */,
 				44AEEBE61B58FB5600531369 /* MPUPrintReceiptContainerViewController.m in Sources */,
 				F486831D1B0CBF880042FF15 /* MPUTransactionController.m in Sources */,
 				44234B371B0DE5F700C1ABAE /* MPULoadTransactionController.m in Sources */,
 				44AEEBDA1B540AA200531369 /* MPUTransactionMainController.m in Sources */,
 				4461B24F1B94A26100EE55AF /* MPUAbstractTableViewController.m in Sources */,
-				F486831B1B0CBF880042FF15 /* MPUSummaryController.m in Sources */,
 				4461B26A1B98893900EE55AF /* MPULoginContainerViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -1019,7 +1086,7 @@
 		};
 		F486824E1B0CA93D0042FF15 /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = A6420FC34248B24BC042BFE6 /* Pods.debug.xcconfig */;
+			baseConfigurationReference = 75E6F9AC55DFE8CBF7E4A395 /* Pods-mpos-ui.debug.xcconfig */;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = YES;
 				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
@@ -1044,7 +1111,7 @@
 		};
 		F486824F1B0CA93D0042FF15 /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 6747BEB343793F87F2CCCF64 /* Pods.release.xcconfig */;
+			baseConfigurationReference = 5B9EB297CBE67376AE841023 /* Pods-mpos-ui.release.xcconfig */;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = YES;
 				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;

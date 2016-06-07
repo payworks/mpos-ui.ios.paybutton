@@ -77,7 +77,9 @@ NSString *const MPUUIHelperFrameworkBundleName = @"mpos-ui-resources";
                                           transaction:(MPTransaction *)transaction
                                               toolbox:(MPLocalizationToolbox *)toolbox {
 
-    NSString *token = (parameters.referencedTransactionIdentifier) ? @"MPURefund" : @"MPUSale";
+    NSString *token = [self titleTokenForParameters:parameters];
+    
+    
     NSString *title = [MPUUIHelper localizedString:token];
     
     if (transaction) {
@@ -88,6 +90,21 @@ NSString *const MPUUIHelperFrameworkBundleName = @"mpos-ui-resources";
     return title;
 }
 
+
++ (NSString*)titleTokenForParameters:(MPTransactionParameters*)parameters {
+    
+    switch (parameters.parametersType) {
+            
+        case MPTransactionParametersTypeCharge:
+            return @"MPUSale";
+            
+        case MPTransactionParametersTypeRefund:
+            return @"MPURefund";
+            
+        case MPTransactionParametersTypeCapture:
+            return @"MPUCapture";
+    }
+}
 
 
 // Assumes input like "#00FF00" (#RRGGBB).

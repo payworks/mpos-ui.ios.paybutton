@@ -29,11 +29,11 @@
 #import "MPUTransactionController.h"
 #import "MPUApplicationSelectionController.h"
 #import "MPUErrorController.h"
-#import "MPUSummaryController.h"
 #import "MPUSendReceiptController.h"
 #import "MPUPrintReceiptController.h"
 #import "MPULoadTransactionController.h"
 #import "MPULoginController.h"
+#import "MPUSummaryController.h"
 
 @interface MPUTransactionContainerViewController : MPUAbstractContainerViewController<MPUTransactionDelegate,
                                                                                         MPUApplicationSelectionDelegate,

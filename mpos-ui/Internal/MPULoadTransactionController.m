@@ -28,7 +28,6 @@
 #import "MPULoadTransactionController.h"
 #import "MPUMposUiAppearance.h"
 #import "MPUMposUiConfiguration.h"
-#import "MPUSummaryController.h"
 #import "MPUErrorController.h"
 #import "MPUMposUi_Internal.h"
 #import "MPUProgressView.h"

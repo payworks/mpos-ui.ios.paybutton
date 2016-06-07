@@ -26,7 +26,6 @@
 
 #import "MPUTransactionController.h"
 #import "MPUUIHelper.h"
-#import "MPUSummaryController.h"
 #import "MPUErrorController.h"
 #import "MPUMposUi_Internal.h"
 #import "MPUMposUiConfiguration.h"
@@ -87,12 +86,7 @@
     self.mposUi.transaction = nil;
     self.mposUi.transactionProcessDetails = nil;
     
-    MPTransactionProcessRegistered  registered = ^(MPTransactionProcess *transactionProcess, MPTransaction *transaction) {
-        DDLogDebug(@"transaction registered");
-        self.transaction = transaction;
-        self.mposUi.transaction = transaction;
-    };
-
+    
     MPTransactionProcessStatusChanged statusChanged = ^(MPTransactionProcess *transactionProcess, MPTransaction *transaction, MPTransactionProcessDetails *details) {
         DDLogDebug(@"transaction status changed");
         self.transaction = transaction;
@@ -101,22 +95,25 @@
         [self updateTransactionStatus:details withTransaction:transaction];
         [self.delegate transactionStatusChanged:transaction];
     };
-    
-    MPTransactionProcessActionRequired actionRequired = ^(MPTransactionProcess *transactionProcess, MPTransaction *transaction, MPTransactionAction action, MPTransactionActionSupport *support) {
-        DDLogDebug(@"transaction action required");
-        if (action == MPTransactionActionApplicationSelection) {
-            MPTransactionActionApplicationSelectionSupportWrapper *wrapper = [MPTransactionActionApplicationSelectionSupportWrapper wrapAround:support];
-            NSArray *applications = wrapper.applications;
-            [self displayApplicationSelection:applications];
-        } else if (action == MPTransactionActionCustomerSignature) {
-            [self displayCustomerSignature:transaction.paymentDetails.scheme];
-        } else if (action == MPTransactionActionCustomerIdentification) {
-            [self.transactionProcess continueWithCustomerIdentityVerified:false];
-        }
-    };
 
+    
     MPTransactionProcessCompleted completed = ^(MPTransactionProcess *transactionProcess, MPTransaction *transaction, MPTransactionProcessDetails *details) {
         DDLogDebug(@"transaction completed, error %@", details.error);
+        
+        if (transaction == nil && details == nil) {
+            
+            NSError *error = [NSError errorWithDomain:MPErrorDomainKey code:MPErrorTypeTransactionAborted userInfo:nil];
+            [self.delegate transactionError:error];
+            return;
+        }
+        
+        if (details.error != nil) {
+            
+            self.mposUi.error = details.error;
+            [self.delegate transactionError:details.error];
+            return;
+        }
+        
         switch (transaction.status) {
             case MPTransactionStatusApproved:
             case MPTransactionStatusDeclined:
@@ -142,8 +139,45 @@
                 break;
         }
     };
+    
+    if (self.parameters.parametersType == MPTransactionParametersTypeCharge) {
+
+        [self startChargeTransactionWithStatusChanged:statusChanged
+                                            completed:completed];
+    
+    } else {
+        
+        [self startAmendTransactionWithStatusChanged:statusChanged
+                                           completed:completed];
+    }
+}
 
 
+
+- (void)startChargeTransactionWithStatusChanged:(MPTransactionProcessStatusChanged)statusChanged completed:(MPTransactionProcessCompleted)completed {
+    
+    
+    MPTransactionProcessRegistered  registered = ^(MPTransactionProcess *transactionProcess, MPTransaction *transaction) {
+        DDLogDebug(@"transaction registered");
+        self.transaction = transaction;
+        self.mposUi.transaction = transaction;
+    };
+    
+    
+    MPTransactionProcessActionRequired actionRequired = ^(MPTransactionProcess *transactionProcess, MPTransaction *transaction, MPTransactionAction action, MPTransactionActionSupport *support) {
+        DDLogDebug(@"transaction action required");
+        if (action == MPTransactionActionApplicationSelection) {
+            MPTransactionActionApplicationSelectionSupportWrapper *wrapper = [MPTransactionActionApplicationSelectionSupportWrapper wrapAround:support];
+            NSArray *applications = wrapper.applications;
+            [self displayApplicationSelection:applications];
+        } else if (action == MPTransactionActionCustomerSignature) {
+            [self displayCustomerSignature:transaction.paymentDetails.scheme];
+        } else if (action == MPTransactionActionCustomerIdentification) {
+            [self.transactionProcess continueWithCustomerIdentityVerified:false];
+        }
+    };
+    
+    
     if (self.sessionIdentifier) {
         self.transactionProcess = [self.mposUi.transactionProvider startTransactionWithSessionIdentifier:self.sessionIdentifier
                                                                                      accessoryParameters:self.mposUi.configuration.terminalParameters
@@ -151,17 +185,26 @@
                                                                                            statusChanged:statusChanged
                                                                                           actionRequired:actionRequired
                                                                                                completed:completed];
-
+        
     } else  {
         
         self.transactionProcess = [self.mposUi.transactionProvider startTransactionWithParameters:self.parameters
                                                                               accessoryParameters:self.mposUi.configuration.terminalParameters
                                                                                 processParameters:self.processParameters
-                                                                                     registered:registered
-                                                                                  statusChanged:statusChanged
-                                                                                 actionRequired:actionRequired
-                                                                                      completed:completed];
+                                                                                       registered:registered
+                                                                                    statusChanged:statusChanged
+                                                                                   actionRequired:actionRequired
+                                                                                        completed:completed];
     }
+}
+
+
+- (void)startAmendTransactionWithStatusChanged:(MPTransactionProcessStatusChanged)statusChanged completed:(MPTransactionProcessCompleted)completed  {
+    
+    
+    self.transactionProcess = [self.mposUi.transactionProvider amendTransactionWithParameters:self.parameters
+                                                                                statusChanged:statusChanged
+                                                                                    completed:completed];
 }
 
 

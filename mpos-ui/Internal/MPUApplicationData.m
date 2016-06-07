@@ -36,7 +36,7 @@
     {
         return nil;
     }
-    NSDictionary *applicationDictionary = [self plistPathForApplication:applicationName];
+    NSDictionary *applicationDictionary = [self applicationDictionaryForApplicationName:applicationName];
     self.applicationName = applicationName;
     self.identifier = [applicationDictionary objectForKey:@"applicationIdentifier"];
     self.helpUrl = [self generateHelpUrl];
@@ -54,38 +54,38 @@
     return self;
 }
 
-- (NSDictionary *)plistPathForApplication:(MPUApplicationName) applicationName {
-    NSString *plistPath = nil;
-    switch (applicationName) {
-        case MPUApplicationNameMcashier:
-            plistPath = [[MPUUIHelper frameworkBundle] pathForResource:@"mcashier" ofType:@"plist"];
-            break;
-            
-        case MPUApplicationNameConcardis:
-            plistPath = [[MPUUIHelper frameworkBundle] pathForResource:@"concardis" ofType:@"plist"];
-            break;
-        case MPUApplicationNameSecureRetail:
-            plistPath = [[MPUUIHelper frameworkBundle] pathForResource:@"secureretail" ofType:@"plist"];
-            break;
-    }
-    NSDictionary *dictionary = [[NSDictionary alloc] initWithContentsOfFile:plistPath];
 
+- (NSDictionary *)applicationDictionaryForApplicationName:(MPUApplicationName) applicationName {
+    
+    NSDictionary *dictionary = [[NSDictionary alloc] initWithContentsOfFile:[self plistPathForApplication:applicationName]];
+    
     return dictionary;
 }
 
-- (UIImage *)logoForApplication {
-    NSString *image = nil;
-    switch (self.applicationName) {
+
+- (NSString *)plistPathForApplication:(MPUApplicationName) applicationName {
+
+    switch (applicationName) {
         case MPUApplicationNameMcashier:
-            image = @"mCashier";
-            break;
+            return [[MPUUIHelper frameworkBundle] pathForResource:@"mcashier" ofType:@"plist"];
+            
         case MPUApplicationNameConcardis:
-            image = @"ConCardis";
-            break;
+            return [[MPUUIHelper frameworkBundle] pathForResource:@"concardis" ofType:@"plist"];
+
         case MPUApplicationNameSecureRetail:
-            image = @"SecureRetail";
-            break;
+            return [[MPUUIHelper frameworkBundle] pathForResource:@"secureretail" ofType:@"plist"];
+
+        case MPUApplicationNameYourBrand:
+            return [[MPUUIHelper frameworkBundle] pathForResource:@"yourbrand" ofType:@"plist"];
     }
+    
+    return @"";
+}
+
+
+- (UIImage *)logoForApplication {
+
+    NSString *image = [self imageNameForApplication:self.applicationName];
     
     if ([UIImage respondsToSelector:@selector(imageNamed:inBundle:compatibleWithTraitCollection:)]) {
         return [UIImage imageNamed:image inBundle:[MPUUIHelper frameworkBundle] compatibleWithTraitCollection:nil];
@@ -93,6 +93,27 @@
         return [UIImage imageWithContentsOfFile:[[MPUUIHelper frameworkBundle] pathForResource:image ofType:@".png"]];
     }
 }
+
+
+- (NSString*)imageNameForApplication:(MPUApplicationName)applicationName {
+    
+    switch (applicationName) {
+        case MPUApplicationNameMcashier:
+            return @"mCashier";
+
+        case MPUApplicationNameConcardis:
+            return @"ConCardis";
+
+        case MPUApplicationNameSecureRetail:
+            return @"SecureRetail";
+
+        case MPUApplicationNameYourBrand:
+            return @"YourBrand";
+    }
+
+    return @"";
+}
+
 
 
 - (MPAccessoryParameters*)printerParametersForFamily:(NSString*)printer {

@@ -45,6 +45,7 @@ NSString *const CheckoutControllerMerchantSecret = @"merchant_secret";
 @property (weak, nonatomic) IBOutlet UIButton *printButton;
 @property (weak, nonatomic) IBOutlet UIButton *refundButton;
 @property (weak, nonatomic) IBOutlet UIButton *customReceiptButton;
+@property (weak, nonatomic) IBOutlet UIButton *captureButton;
 
 @property (nonatomic, strong) MPUMposUi *mposUi;
 @property (nonatomic, strong) MPTransaction *lastTransaction;
@@ -68,10 +69,6 @@ NSString *const CheckoutControllerMerchantSecret = @"merchant_secret";
     [self initWithTestProvider:nil];
 }
 
-- (void)didReceiveMemoryWarning {
-    [super didReceiveMemoryWarning];
-    // Dispose of any resources that can be recreated.
-}
 
 - (void)enableLastTransactionActions:(BOOL)enabled transaction:(MPTransaction *) transaction {
     self.lastTransaction = transaction;
@@ -79,7 +76,9 @@ NSString *const CheckoutControllerMerchantSecret = @"merchant_secret";
     self.printButton.enabled = enabled;
     self.refundButton.enabled = enabled;
     self.customReceiptButton.enabled = enabled;
+    self.captureButton.enabled = enabled;
 }
+
 
 - (void)startMockPayment:(NSString *)amount {
     self.mposUi = [MPUMposUi initializeWithProviderMode:MPProviderModeMOCK merchantIdentifier:CheckoutControllerMerchantIdentifier merchantSecret:CheckoutControllerMerchantSecret];
@@ -117,14 +116,24 @@ NSString *const CheckoutControllerMerchantSecret = @"merchant_secret";
 }
 
 
-- (void)startTestPayment:(NSString *)amount withAccessoryParameters:(MPAccessoryParameters*)accessoryParameters {
-    // Usually you only need initialize the provider only once in your app. Since the configuration is with MOCK configuration currently, we reinitialize again with TEST.
+
+- (void)startTestPaymentOnMiuraWithAmount:(NSString *)amount tipAmount:(NSString*)tipAmount autocapture:(BOOL)autocapture  {
     
-    [self startTestPayment:amount tipAmount:nil withAccessoryParameters:accessoryParameters];
+    [self startTestPayment:amount tipAmount:tipAmount autocapture:autocapture withAccessoryParameters:[MPAccessoryParameters externalAccessoryParametersWithFamily:MPAccessoryFamilyMiuraMPI
+                                                                                                                                            protocol:@"com.miura.shuttle"
+                                                                                                                                           optionals:nil]];
 }
 
 
-- (void)startTestPayment:(NSString *)amount tipAmount:(NSString*)tipAmount withAccessoryParameters:(MPAccessoryParameters*)accessoryParameters {
+
+- (void)startTestPayment:(NSString *)amount withAccessoryParameters:(MPAccessoryParameters*)accessoryParameters {
+    // Usually you only need initialize the provider only once in your app. Since the configuration is with MOCK configuration currently, we reinitialize again with TEST.
+    
+    [self startTestPayment:amount tipAmount:nil autocapture:YES withAccessoryParameters:accessoryParameters];
+}
+
+
+- (void)startTestPayment:(NSString *)amount tipAmount:(NSString*)tipAmount autocapture:(BOOL)autocapture withAccessoryParameters:(MPAccessoryParameters*)accessoryParameters {
     // Usually you only need initialize the provider only once in your app. Since the configuration is with MOCK configuration currently, we reinitialize again with TEST.
     
     if (!self.applicationMode) {
@@ -136,6 +145,7 @@ NSString *const CheckoutControllerMerchantSecret = @"merchant_secret";
                                                                            currency:MPCurrencyEUR
                                                                           optionals:^(id<MPTransactionParametersOptionals> optionals) {
                                                                               optionals.subject = @"subject";
+                                                                              optionals.autoCapture = autocapture;
                                                                           }];
     
     
@@ -176,6 +186,7 @@ NSString *const CheckoutControllerMerchantSecret = @"merchant_secret";
     // Features the summary screen should have.
     self.mposUi.configuration.summaryFeatures = MPUMposUiConfigurationSummaryFeaturePrintReceipt |
     MPUMposUiConfigurationSummaryFeatureRefundTransaction |
+    MPUMposUiConfigurationSummaryFeatureCaptureTransaction |
     MPUMposUiConfigurationSummaryFeatureSendReceiptViaEmail;
 }
 
@@ -201,6 +212,24 @@ NSString *const CheckoutControllerMerchantSecret = @"merchant_secret";
     
     [self displayViewController:viewController];
 }
+
+- (void)startCapture:(NSString *)transactionIdentifier {
+    
+    MPTransactionParameters *params = [MPTransactionParameters captureTransactionWithIdentifier:transactionIdentifier optionals:nil];
+    
+    UIViewController *viewController = [self.mposUi createTransactionViewControllerWithTransactionParameters:params completed:^(UIViewController *controller, MPUTransactionResult result, MPTransaction *transaction) {
+        [controller dismissViewControllerAnimated:YES completion:nil];
+        if (result == MPUTransactionResultApproved) {
+            [self.view makeToast:@"Captured" duration:2.0 position:CSToastPositionBottom];
+        } else {
+            [self.view makeToast:@"Capture Failed" duration:2.0 position:CSToastPositionBottom];
+        }
+    }];
+    
+    [self displayViewController:viewController];
+}
+
+
 
 - (void)startRefund:(NSString *)transactionIdentifier {
     MPTransactionParameters *params = [MPTransactionParameters refundForTransactionIdentifier:transactionIdentifier optionals:^(id<MPTransactionParametersRefundOptionals> optionals) {
@@ -244,12 +273,17 @@ NSString *const CheckoutControllerMerchantSecret = @"merchant_secret";
 
 - (IBAction)chargeMiura:(id)sender {
     // Start transaction on a Miura
-    [self startTestPayment:@"13.37" withAccessoryParameters:[MPAccessoryParameters externalAccessoryParametersWithFamily:MPAccessoryFamilyMiuraMPI protocol:@"com.miura.shuttle" optionals:nil]];
+    [self startTestPaymentOnMiuraWithAmount:@"13.37" tipAmount:nil autocapture:YES];
+}
+
+- (IBAction)chargeMiuraWithoutAutocapture:(id)sender {
+    
+    [self startTestPaymentOnMiuraWithAmount:@"13.37" tipAmount:nil autocapture:NO];
 }
 
 - (IBAction)chargeMiuraWithTip:(id)sender {
 
-    [self startTestPayment:@"13.37" tipAmount:@"1.63" withAccessoryParameters:[MPAccessoryParameters externalAccessoryParametersWithFamily:MPAccessoryFamilyMiuraMPI protocol:@"com.miura.shuttle" optionals:nil]];
+    [self startTestPaymentOnMiuraWithAmount:@"13.37" tipAmount:@"1.63" autocapture:YES];
 }
 
 - (IBAction)chargeVerifone:(id)sender {
@@ -264,6 +298,11 @@ NSString *const CheckoutControllerMerchantSecret = @"merchant_secret";
 - (IBAction)print:(id)sender {
     [self printReceipt:self.lastTransaction.identifier];
 }
+
+- (IBAction)captureLastTransaction:(id)sender {
+    [self startCapture:self.lastTransaction.identifier];
+}
+
 
 - (IBAction)refund:(id)sender {
     [self startRefund:self.lastTransaction.identifier];
@@ -285,7 +324,13 @@ NSString *const CheckoutControllerMerchantSecret = @"merchant_secret";
 
 - (IBAction)initWithSecureRetail:(id)sender {
     self.applicationMode = YES;
-    self.mposUi = [MPUMposUi initializeWithApplication:MPUApplicationNameSecureRetail integratorIdentifier:@"TESTINTEGRATOR"];
+    self.mposUi = [MPUMposUi initializeWithProviderMode:MPProviderModeTEST application:MPUApplicationNameSecureRetail integratorIdentifier:@"TESTINTEGRATOR"];
+}
+
+- (IBAction)initWithYourBrand:(id)sender {
+    self.applicationMode = YES;
+    self.mposUi = [MPUMposUi initializeWithProviderMode:MPProviderModeTEST application:MPUApplicationNameYourBrand integratorIdentifier:@"TESTINTEGRATOR"];
+
 }
 
 - (IBAction)settings:(id)sender {
