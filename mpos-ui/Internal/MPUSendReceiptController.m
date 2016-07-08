@@ -91,7 +91,7 @@
         self.emailField.enabled = NO;
         
         __weak typeof(self) weakSelf = self;
-        [self.mposUi.transactionProvider sendCustomerReceiptForTransactionIdentifier:self.transactionIdentifier emailAddress:self.emailField.text completed:^(NSString *transactionIdentifier, NSString *emailAddress, NSError *error) {
+        [self.mposUi.transactionProvider.transactionModule sendCustomerReceiptForTransactionIdentifier:self.transactionIdentifier emailAddress:self.emailField.text completed:^(NSString *transactionIdentifier, NSString *emailAddress, NSError *error) {
             
             if (error == nil){
                 [weakSelf success];

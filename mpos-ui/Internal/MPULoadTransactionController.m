@@ -64,7 +64,7 @@
 }
 
 - (void)fetchTransactionForId {
-    [self.mposUi.transactionProvider queryTransactionByTransactionIdentifier:self.transactionIdentifer completed:^(MPTransaction *transaction, NSError *error) {
+    [self.mposUi.transactionProvider.transactionModule lookupTransactionWithTransactionIdentifier:self.transactionIdentifer completed:^(MPTransaction *transaction, NSError *error) {
         if (error != nil) {
             self.mposUi.error = error;
             [self.delegate loadTransactionFailed:error];

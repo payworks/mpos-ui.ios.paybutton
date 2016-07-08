@@ -26,6 +26,7 @@
 		44E718011B6775E8004301EE /* mpos-ui-resources.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 44E717FF1B6775E8004301EE /* mpos-ui-resources.bundle */; };
 		44E718021B6775E8004301EE /* mpos-ui.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 44E718001B6775E8004301EE /* mpos-ui.framework */; };
 		911FB0528389D60BE5D07529 /* libPods-mpos-ui-sample.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 2CDE97F384F56C62120D8B0B /* libPods-mpos-ui-sample.a */; };
+		B317EB7C1D1173DB00865674 /* libicucore.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = B317EB7B1D1173DB00865674 /* libicucore.tbd */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -73,6 +74,8 @@
 		44E717FF1B6775E8004301EE /* mpos-ui-resources.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; name = "mpos-ui-resources.bundle"; path = "../packaged/mpos-ui-resources.bundle"; sourceTree = "<group>"; };
 		44E718001B6775E8004301EE /* mpos-ui.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = "mpos-ui.framework"; path = "../packaged/mpos-ui.framework"; sourceTree = "<group>"; };
 		A586296659B6297B0C1BAD7A /* Pods-mpos-ui-sample.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-mpos-ui-sample.release.xcconfig"; path = "Pods/Target Support Files/Pods-mpos-ui-sample/Pods-mpos-ui-sample.release.xcconfig"; sourceTree = "<group>"; };
+		B317EB7B1D1173DB00865674 /* libicucore.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libicucore.tbd; path = usr/lib/libicucore.tbd; sourceTree = SDKROOT; };
+		B3FBBFBF1D14476500A2EDB0 /* sv */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = sv; path = sv.lproj/Main.strings; sourceTree = "<group>"; };
 		F820EB861B22ADAE432F0549 /* Pods-mpos-ui-sample.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-mpos-ui-sample.debug.xcconfig"; path = "Pods/Target Support Files/Pods-mpos-ui-sample/Pods-mpos-ui-sample.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -81,6 +84,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				B317EB7C1D1173DB00865674 /* libicucore.tbd in Frameworks */,
 				44C6B0371B6291AA004C988C /* MediaPlayer.framework in Frameworks */,
 				44C6B0351B6291A0004C988C /* AudioToolbox.framework in Frameworks */,
 				44C6B0331B62919A004C988C /* AVFoundation.framework in Frameworks */,
@@ -169,6 +173,7 @@
 		98FAE6650764AE2A37E916C8 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				B317EB7B1D1173DB00865674 /* libicucore.tbd */,
 				44E717FF1B6775E8004301EE /* mpos-ui-resources.bundle */,
 				44E718001B6775E8004301EE /* mpos-ui.framework */,
 				44C6B0361B6291AA004C988C /* MediaPlayer.framework */,
@@ -260,6 +265,7 @@
 			knownRegions = (
 				en,
 				Base,
+				sv,
 			);
 			mainGroup = 445D0E051B5E3E82009F794F;
 			productRefGroup = 445D0E0F1B5E3E82009F794F /* Products */;
@@ -384,6 +390,7 @@
 				44B3EE251BDFDA050089D194 /* es */,
 				44B3EE261BDFDA260089D194 /* fr */,
 				445DAF541C5657EE00438186 /* pl */,
+				B3FBBFBF1D14476500A2EDB0 /* sv */,
 			);
 			name = Main.storyboard;
 			sourceTree = "<group>";

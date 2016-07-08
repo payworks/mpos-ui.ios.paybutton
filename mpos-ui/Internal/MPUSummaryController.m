@@ -53,6 +53,8 @@ typedef NS_ENUM(NSUInteger, MPUSummaryControllerAlertTag) {
 @property (assign, nonatomic, getter=isReceiptPrinted) BOOL receiptPrinted;
 @property (assign, nonatomic, getter=isReceiptSent) BOOL receiptSent;
 
+@property (assign, nonatomic) NSTimer *autoCloseTimer;
+
 @end
 
 
@@ -66,6 +68,17 @@ typedef NS_ENUM(NSUInteger, MPUSummaryControllerAlertTag) {
     
     self.tableView.tableFooterView = [[UIView alloc] initWithFrame:CGRectZero];
     [self reloadCells];
+    
+    if (self.mposUi.configuration.resultDisplayBehavior == MPUMposUiConfigurationResultDisplayBehaviorCloseAfterTimeout) {
+        
+        self.autoCloseTimer = [NSTimer scheduledTimerWithTimeInterval:MPUMposUiConfigurationResultDisplayCloseTimeout target:self selector:@selector(autoCloseTimerFired:) userInfo:nil repeats:NO];
+    }
+}
+
+- (void)viewWillDisappear:(BOOL)animated {
+    [super viewWillDisappear:animated];
+    
+    [self disableAutoCloseTimer];
 }
 
 
@@ -82,31 +95,84 @@ typedef NS_ENUM(NSUInteger, MPUSummaryControllerAlertTag) {
     // nothing else to do, the updated button will be requested when this VC will be displayed
 }
 
-- (void)closeButtonTapped {
+
+#pragma mark - Button tap
+
+- (void)didTapCloseButton {
     
-  [self.delegate summaryCloseClicked];
+    [self disableAutoCloseTimer];
+    [self.delegate summaryCloseClicked];
 }
 
 
-- (void)sendButtonTapped {
+- (void)didTapSendButton {
     
+    [self disableAutoCloseTimer];
     [self.delegate summarySendReceiptClicked:[self transactionIdentifierForReceiptForTransaction:self.transaction]];
 }
 
+
+- (void)didTapPrintButtonForTransactionWithId:(NSString*)transactionId {
+    
+    [self disableAutoCloseTimer];
+    [self.delegate summaryPrintReceiptClicked:transactionId];
+}
+
+
+
+- (void)didTapRefundButton {
+    
+    [self disableAutoCloseTimer];
+    UIAlertView *alert = [[UIAlertView alloc]initWithTitle:[MPUUIHelper localizedString:@"MPURefundPayment"]
+                                                   message:[MPUUIHelper localizedString:@"MPURefundPrompt"]
+                                                  delegate:self
+                                         cancelButtonTitle:[MPUUIHelper localizedString:@"MPUAbort"] otherButtonTitles:[MPUUIHelper localizedString:@"MPURefund"], nil];
+    
+    alert.tag = MPUSummaryControllerAlertTagRefund;
+    
+    [alert show];
+};
+
+- (void)didTapCaptureButton {
+    
+    [self disableAutoCloseTimer];
+    UIAlertView *alert = [[UIAlertView alloc]initWithTitle:[MPUUIHelper localizedString:@"MPUCapturePayment"]
+                                                   message:[MPUUIHelper localizedString:@"MPUCapturePrompt"]
+                                                  delegate:self
+                                         cancelButtonTitle:[MPUUIHelper localizedString:@"MPUAbort"] otherButtonTitles:[MPUUIHelper localizedString:@"MPUCapture"], nil];
+    
+    alert.tag = MPUSummaryControllerAlertTagCapture;
+    [alert show];
+};
+
+#pragma mark - Autoclose timer
+
+- (void)autoCloseTimerFired:(NSTimer*)timer {
+
+    self.autoCloseTimer = nil;
+    [self.delegate summaryCloseClicked];
+}
+
+
+- (void)disableAutoCloseTimer {
+    
+    [self.autoCloseTimer invalidate];
+    self.autoCloseTimer = nil;
+}
 
 
 #pragma mark - Overload
 
 - (UIBarButtonItem *)backButtonItem {
     
-    return [[UIBarButtonItem alloc]initWithTitle:[MPUUIHelper localizedString:@"MPUBack"] style:UIBarButtonItemStylePlain target:self action:@selector(closeButtonTapped)];
+    return [[UIBarButtonItem alloc]initWithTitle:[MPUUIHelper localizedString:@"MPUBack"] style:UIBarButtonItemStylePlain target:self action:@selector(didTapCloseButton)];
 }
 
 
 - (UIBarButtonItem *)rightButtonItem {
     
     if ([self hasTransactionReceipt]) {
-        return [[UIBarButtonItem alloc]initWithTitle:[MPUUIHelper localizedString:(self.receiptSent)?@"MPUResend":@"MPUSend"] style:UIBarButtonItemStylePlain target:self action:@selector(sendButtonTapped)];
+        return [[UIBarButtonItem alloc]initWithTitle:[MPUUIHelper localizedString:(self.receiptSent)?@"MPUResend":@"MPUSend"] style:UIBarButtonItemStylePlain target:self action:@selector(didTapSendButton)];
     }
     
     return nil;
@@ -764,7 +830,7 @@ typedef NS_ENUM(NSUInteger, MPUSummaryControllerAlertTag) {
     
     return ^(){
         
-        [weakSelf.delegate summaryPrintReceiptClicked:[weakSelf transactionIdentifierForReceiptForTransaction:transaction]];
+        [weakSelf didTapPrintButtonForTransactionWithId:[weakSelf transactionIdentifierForReceiptForTransaction:transaction]];
     };
 }
 
@@ -807,18 +873,6 @@ typedef NS_ENUM(NSUInteger, MPUSummaryControllerAlertTag) {
     __weak typeof(self) weakSelf = self;
     [cell setAction:^{ [weakSelf didTapRefundButton]; } forButton:button];
 }
-
-
-- (void)didTapRefundButton {
-    UIAlertView *alert = [[UIAlertView alloc]initWithTitle:[MPUUIHelper localizedString:@"MPURefundPayment"]
-                                                   message:[MPUUIHelper localizedString:@"MPURefundPrompt"]
-                                                  delegate:self
-                                         cancelButtonTitle:[MPUUIHelper localizedString:@"MPUAbort"] otherButtonTitles:[MPUUIHelper localizedString:@"MPURefund"], nil];
-    
-    alert.tag = MPUSummaryControllerAlertTagRefund;
-    
-    [alert show];
-};
 
 
 - (BOOL)canRefund {
@@ -881,17 +935,6 @@ typedef NS_ENUM(NSUInteger, MPUSummaryControllerAlertTag) {
     [cell setAction:^{ [weakSelf didTapCaptureButton]; } forButton:button];
 }
 
-
-- (void)didTapCaptureButton {
-
-    UIAlertView *alert = [[UIAlertView alloc]initWithTitle:[MPUUIHelper localizedString:@"MPUCapturePayment"]
-                                                   message:[MPUUIHelper localizedString:@"MPUCapturePrompt"]
-                                                  delegate:self
-                                         cancelButtonTitle:[MPUUIHelper localizedString:@"MPUAbort"] otherButtonTitles:[MPUUIHelper localizedString:@"MPUCapture"], nil];
-    
-    alert.tag = MPUSummaryControllerAlertTagCapture;
-    [alert show];
-};
 
 
 - (BOOL)canCapture {

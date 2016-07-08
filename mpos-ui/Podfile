@@ -7,7 +7,7 @@ target :"mpos-ui"
 
 target :"mpos-ui.podsdummy" do
 
-  pod 'payworks/mpos/core',         '2.8.1'
+  pod 'payworks/mpos/core',         '2.9.0'
   pod 'CocoaLumberjack',            '~> 2.0.0'
   pod 'MPBSignatureViewController', '~> 1.5.0'
   pod 'Lockbox',                    '~> 2.1.0'

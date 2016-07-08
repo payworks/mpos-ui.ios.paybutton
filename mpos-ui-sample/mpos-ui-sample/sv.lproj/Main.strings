@@ -1,0 +1,63 @@
+
+/* Class = "UIButton"; normalTitle = "Charge 13.37€ on Verifone E105"; ObjectID = "08N-rK-lFO"; */
+"08N-rK-lFO.normalTitle" = "Charge 13.37€ on Verifone E105";
+
+/* Class = "UINavigationItem"; title = "mpos-ui Sample"; ObjectID = "4cY-Pq-zLI"; */
+"4cY-Pq-zLI.title" = "mpos-ui Sample";
+
+/* Class = "UIButton"; normalTitle = "Force Login with Application"; ObjectID = "5V2-tb-YqL"; */
+"5V2-tb-YqL.normalTitle" = "Force Login with Application";
+
+/* Class = "UIButton"; normalTitle = "Print last transaction"; ObjectID = "5b1-13-QZk"; */
+"5b1-13-QZk.normalTitle" = "Print last transaction";
+
+/* Class = "UIButton"; normalTitle = "Charge 13.37€ on Miura"; ObjectID = "7qa-aY-8t9"; */
+"7qa-aY-8t9.normalTitle" = "Charge 13.37€ on Miura";
+
+/* Class = "UILabel"; text = "Application Mode"; ObjectID = "BNU-A9-lud"; */
+"BNU-A9-lud.text" = "Application Mode";
+
+/* Class = "UIButton"; normalTitle = "Initialize with ConCardis Application"; ObjectID = "GvX-fR-sXg"; */
+"GvX-fR-sXg.normalTitle" = "Initialize with ConCardis Application";
+
+/* Class = "UIButton"; normalTitle = "Summary of last transaction"; ObjectID = "HiT-jQ-J4V"; */
+"HiT-jQ-J4V.normalTitle" = "Summary of last transaction";
+
+/* Class = "UIButton"; normalTitle = "Application Settings"; ObjectID = "KFh-Sh-xJh"; */
+"KFh-Sh-xJh.normalTitle" = "Application Settings";
+
+/* Class = "UILabel"; text = "Last Transaction"; ObjectID = "SVi-X6-PBZ"; */
+"SVi-X6-PBZ.text" = "Last Transaction";
+
+/* Class = "UILabel"; text = "mpos-ui version: "; ObjectID = "U5U-9M-apd"; */
+"U5U-9M-apd.text" = "mpos-ui version: ";
+
+/* Class = "UILabel"; text = "mpos SDK version: "; ObjectID = "WbD-37-Qhn"; */
+"WbD-37-Qhn.text" = "mpos SDK version: ";
+
+/* Class = "UILabel"; text = "MOCK: Simulated internet and card reader"; ObjectID = "XSN-LZ-ZYg"; */
+"XSN-LZ-ZYg.text" = "MOCK: Simulated internet and card reader";
+
+/* Class = "UILabel"; text = "TEST : Test Environment and real card reader"; ObjectID = "aNy-Ts-UB4"; */
+"aNy-Ts-UB4.text" = "TEST : Test Environment and real card reader";
+
+/* Class = "UIButton"; normalTitle = "Initialize with mCashier Application"; ObjectID = "eUl-Kh-UQe"; */
+"eUl-Kh-UQe.normalTitle" = "Initialize with mCashier Application";
+
+/* Class = "UIButton"; normalTitle = "Initialize with Provider"; ObjectID = "p2d-l9-2k3"; */
+"p2d-l9-2k3.normalTitle" = "Initialize with Provider";
+
+/* Class = "UIButton"; normalTitle = "Charge 108.20€ (Signature)"; ObjectID = "q8n-gI-68Z"; */
+"q8n-gI-68Z.normalTitle" = "Charge 108.20€ (Signature)";
+
+/* Class = "UIButton"; normalTitle = "Refund last transaction"; ObjectID = "qBM-uB-WBb"; */
+"qBM-uB-WBb.normalTitle" = "Refund last transaction";
+
+/* Class = "UIButton"; normalTitle = "Custom Receipt"; ObjectID = "sgA-M1-UiL"; */
+"sgA-M1-UiL.normalTitle" = "Custom Receipt";
+
+/* Class = "UIButton"; normalTitle = "Charge 113.73€ (Application Selection) "; ObjectID = "uD9-tQ-kiK"; */
+"uD9-tQ-kiK.normalTitle" = "Charge 113.73€ (Application Selection) ";
+
+/* Class = "UIButton"; normalTitle = "Charge 110.40€ (Transaction Failure)"; ObjectID = "wDZ-LZ-i8n"; */
+"wDZ-LZ-i8n.normalTitle" = "Charge 110.40€ (Transaction Failure)";

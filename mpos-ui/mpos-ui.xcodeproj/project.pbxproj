@@ -85,6 +85,7 @@
 		B395AC711CD8E85200C4CEE4 /* MPUTransactionDateFooterCell.m in Sources */ = {isa = PBXBuildFile; fileRef = B395AC6F1CD8E85200C4CEE4 /* MPUTransactionDateFooterCell.m */; };
 		B395AC741CD8E9F900C4CEE4 /* MPUCellBuilder.h in Headers */ = {isa = PBXBuildFile; fileRef = B395AC721CD8E9F900C4CEE4 /* MPUCellBuilder.h */; };
 		B395AC751CD8E9F900C4CEE4 /* MPUCellBuilder.m in Sources */ = {isa = PBXBuildFile; fileRef = B395AC731CD8E9F900C4CEE4 /* MPUCellBuilder.m */; };
+		B3FBBFBB1D1445C700A2EDB0 /* mpos-ui.strings in Resources */ = {isa = PBXBuildFile; fileRef = B3FBBFB91D1445B600A2EDB0 /* mpos-ui.strings */; };
 		F46242B61B3C6A7A00274B6F /* mpos-ui.pch in Headers */ = {isa = PBXBuildFile; fileRef = F46242B51B3C6A7A00274B6F /* mpos-ui.pch */; };
 		F48682F01B0CBDEA0042FF15 /* mpos-ui.h in Headers */ = {isa = PBXBuildFile; fileRef = F48682C31B0CBAF70042FF15 /* mpos-ui.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		F48682F21B0CBDF40042FF15 /* MPUMposUiAppearance.h in Headers */ = {isa = PBXBuildFile; fileRef = 2DDA93CF1A8A0270002C246A /* MPUMposUiAppearance.h */; settings = {ATTRIBUTES = (Public, ); }; };
@@ -229,6 +230,7 @@
 		B395AC6F1CD8E85200C4CEE4 /* MPUTransactionDateFooterCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MPUTransactionDateFooterCell.m; sourceTree = "<group>"; };
 		B395AC721CD8E9F900C4CEE4 /* MPUCellBuilder.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MPUCellBuilder.h; sourceTree = "<group>"; };
 		B395AC731CD8E9F900C4CEE4 /* MPUCellBuilder.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MPUCellBuilder.m; sourceTree = "<group>"; };
+		B3FBBFBA1D1445B600A2EDB0 /* sv */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = sv; path = "mpos-ui.strings"; sourceTree = "<group>"; };
 		CCCBA9E84E7D3D6668670AEB /* Pods-mpos-ui.podsdummy.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-mpos-ui.podsdummy.release.xcconfig"; path = "Pods/Target Support Files/Pods-mpos-ui.podsdummy/Pods-mpos-ui.podsdummy.release.xcconfig"; sourceTree = "<group>"; };
 		F46242B51B3C6A7A00274B6F /* mpos-ui.pch */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "mpos-ui.pch"; sourceTree = "<group>"; };
 		F486823D1B0CA93C0042FF15 /* libmpos-ui.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libmpos-ui.a"; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -336,6 +338,7 @@
 				F48682BE1B0CBA570042FF15 /* nl.lproj */,
 				44B3EE141BDFD1870089D194 /* fi.lproj */,
 				445DAF531C5656A100438186 /* pl.lproj */,
+				B3FBBFB81D1445B600A2EDB0 /* sv.lproj */,
 				F48682BD1B0CBA570042FF15 /* mpos-ui.storyboard */,
 				F48682B51B0CBA570042FF15 /* FontAwesome.otf */,
 				F48682B91B0CBA570042FF15 /* Images.xcassets */,
@@ -452,6 +455,14 @@
 				B395AC731CD8E9F900C4CEE4 /* MPUCellBuilder.m */,
 			);
 			path = TransactionCells;
+			sourceTree = "<group>";
+		};
+		B3FBBFB81D1445B600A2EDB0 /* sv.lproj */ = {
+			isa = PBXGroup;
+			children = (
+				B3FBBFB91D1445B600A2EDB0 /* mpos-ui.strings */,
+			);
+			path = sv.lproj;
 			sourceTree = "<group>";
 		};
 		F48682AC1B0CBA570042FF15 /* de.lproj */ = {
@@ -727,6 +738,7 @@
 				es,
 				fi,
 				pl,
+				sv,
 			);
 			mainGroup = 2D959B5B1A7B8D0F00DC5310;
 			productRefGroup = 2D959B661A7B8D0F00DC5310 /* Products */;
@@ -747,6 +759,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				F486833D1B0E06650042FF15 /* mpos-ui.strings in Resources */,
+				B3FBBFBB1D1445C700A2EDB0 /* mpos-ui.strings in Resources */,
 				F486833C1B0E06650042FF15 /* mpos-ui.strings in Resources */,
 				F486833E1B0E06650042FF15 /* mpos-ui.strings in Resources */,
 				F486833F1B0E06650042FF15 /* mpos-ui.strings in Resources */,
@@ -942,6 +955,14 @@
 			isa = PBXVariantGroup;
 			children = (
 				44B3EE201BDFD8320089D194 /* fi */,
+			);
+			name = "mpos-ui.strings";
+			sourceTree = "<group>";
+		};
+		B3FBBFB91D1445B600A2EDB0 /* mpos-ui.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				B3FBBFBA1D1445B600A2EDB0 /* sv */,
 			);
 			name = "mpos-ui.strings";
 			sourceTree = "<group>";

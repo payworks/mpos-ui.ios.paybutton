@@ -40,6 +40,9 @@
 @property (nonatomic, weak) IBOutlet UIButton* cancelButton;
 @property (nonatomic, weak) IBOutlet NSLayoutConstraint* transactionStatusIconTopMargin;
 @property (nonatomic, assign) BOOL authFailed;
+
+@property (assign, nonatomic) NSTimer *autoCloseTimer;
+
 @end
 
 @implementation MPUErrorController
@@ -74,6 +77,12 @@
         self.retryButton.hidden = NO;
     }
     [self l10n];
+    
+    if (self.mposUi.configuration.resultDisplayBehavior == MPUMposUiConfigurationResultDisplayBehaviorCloseAfterTimeout) {
+        
+        self.autoCloseTimer = [NSTimer scheduledTimerWithTimeInterval:MPUMposUiConfigurationResultDisplayCloseTimeout target:self selector:@selector(autoCloseTimerFired:) userInfo:nil repeats:NO];
+    }
+
 }
 
 - (void)l10n {
@@ -86,9 +95,28 @@
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(orientationChanged:) name:UIDeviceOrientationDidChangeNotification  object:nil];
 }
 
-- (void)viewDidDisappear:(BOOL)animated {
-    [super viewDidDisappear:animated];
+- (void)viewWillDisappear:(BOOL)animated {
+    [super viewWillDisappear:animated];
+
     [[NSNotificationCenter defaultCenter]removeObserver:self name:UIDeviceOrientationDidChangeNotification object:nil];
+    [self disableAutoCloseTimer];
+}
+
+
+
+#pragma mark - Autoclose timer
+
+- (void)autoCloseTimerFired:(NSTimer*)timer {
+    
+    self.autoCloseTimer = nil;
+    [self.delegate errorCancelClicked:self.authFailed];
+}
+
+
+- (void)disableAutoCloseTimer {
+    
+    [self.autoCloseTimer invalidate];
+    self.autoCloseTimer = nil;
 }
 
 
@@ -107,10 +135,14 @@
 
 
 - (IBAction)didTapCancelButton:(id)sender {
+    
+    [self disableAutoCloseTimer];
     [self.delegate errorCancelClicked:self.authFailed];
 }
 
 - (IBAction)didTapRetryButton:(id)sender {
+    
+    [self disableAutoCloseTimer];
     [self.delegate errorRetryClicked];
 }
 

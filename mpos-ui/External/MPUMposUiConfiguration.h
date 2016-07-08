@@ -27,7 +27,12 @@
 #import <Foundation/Foundation.h>
 #import <mpos.core/MPTransactionProvider.h>
 
+
 @class MPUMposUiAppearance;
+
+
+
+
 
 /**
  * Enum that describes the uses signature method.
@@ -59,6 +64,19 @@ typedef NS_OPTIONS(NSUInteger, MPUMposUiConfigurationSummaryFeature) {
     MPUMposUiConfigurationSummaryFeatureRefundTransaction       = 1 << 2,
     /** Option to enable capture transaction button. */
     MPUMposUiConfigurationSummaryFeatureCaptureTransaction      = 1 << 3
+};
+
+/** Timeout after which result display will close */
+extern const NSTimeInterval MPUMposUiConfigurationResultDisplayCloseTimeout;
+
+/**
+ * Enum that describe the behaviour of the result screen
+ */
+typedef NS_ENUM(NSUInteger, MPUMposUiConfigurationResultDisplayBehavior) {
+    /** Display indefinitely, user has to close it manually */
+    MPUMposUiConfigurationResultDisplayBehaviorDisplayIndefinitely,
+    /** Result screen will close automatically after a timeout */
+    MPUMposUiConfigurationResultDisplayBehaviorCloseAfterTimeout
 };
 
 
@@ -104,6 +122,13 @@ typedef NS_OPTIONS(NSUInteger, MPUMposUiConfigurationSummaryFeature) {
  * The features that will be enabled for the summary screen.
  */
 @property (nonatomic, assign) MPUMposUiConfigurationSummaryFeature summaryFeatures;
+
+/**
+ * Controls if the summary or error screen should automatically complete.
+ */
+@property (nonatomic, assign) MPUMposUiConfigurationResultDisplayBehavior resultDisplayBehavior;
+
+
 
 
 @end

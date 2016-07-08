@@ -27,6 +27,8 @@
 #import "MPUMposUiConfiguration.h"
 #import "MPUMposUiAppearance.h"
 
+const NSTimeInterval MPUMposUiConfigurationResultDisplayCloseTimeout = 5.;
+
 @interface MPUMposUiConfiguration ()
 
 @end

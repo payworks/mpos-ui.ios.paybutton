@@ -20,7 +20,11 @@ Put this in your `Podfile` and then run `pod install`:
 ```
 source 'https://github.com/CocoaPods/Specs.git'
 source 'https://bitbucket.org/mpymnt/io.mpymnt.repo.pods.git'
-pod 'payworks'
+
+target :"<your-app-target>" do
+    pod 'payworks',
+    pod 'payworks.paybutton'
+end
 ```
 
 Import the framework in your header file:

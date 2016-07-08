@@ -351,7 +351,22 @@ NSString *const CheckoutControllerMerchantSecret = @"merchant_secret";
     }
 }
 
+
 - (IBAction)customReceipt:(id)sender {
+    
+    if (self.applicationMode) {
+        
+        [self fetchAndShowCustomReceiptForApplicationMode];
+    
+    } else {
+        
+        [self fetchAndShowCustomReceipt];
+    }
+}
+
+
+- (void)fetchAndShowCustomReceiptForApplicationMode {
+    
     if ([self.mposUi isApplicationLoggedIn]) {
         [self fetchAndShowCustomReceipt];
     } else {
@@ -370,26 +385,40 @@ NSString *const CheckoutControllerMerchantSecret = @"merchant_secret";
         
     }
     // NOTE : [self.mposUi isApplicationLoggedIn] will throw an exception if the MposUi is not initialized using the application.
-
 }
 
-- (void) fetchAndShowCustomReceipt {
+- (void)fetchAndShowCustomReceipt {
     // To fetch receipts from payworks, use the transactionProvider from the mposUi object.
-    [self.mposUi.transactionProvider queryCustomerTransactionReceiptByTransactionIdentifier:self.lastTransaction.identifier completed:^(NSString *transactionIdentifier, MPReceipt *receipt, NSError *error) {
-        
-        NSString *merchantName = [[receipt receiptLineItemForKey:MPReceiptLineKeyMerchantDetailsPublicName] value];
-        NSString *subject = [[receipt receiptLineItemForKey:MPReceiptLineKeySubject] value];
-        NSString *amount = [[receipt receiptLineItemForKey:MPReceiptLineKeyAmountAndCurrency] value];
-        
-        NSString *receiptText = [NSString stringWithFormat:@"%@ \n %@ \n %@",merchantName,subject,amount];
-        
-        UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Custom Receipt"
-                                                        message:receiptText
-                                                       delegate:nil
-                                              cancelButtonTitle:@"OK"
-                                              otherButtonTitles:nil];
-        [alert show];
-    }];
+    [self.mposUi.transactionProvider.transactionModule lookupTransactionWithTransactionIdentifier:self.lastTransaction.identifier completed:^(MPTransaction *transaction, NSError * error) {
+
+        if (!error) {
+            
+            MPReceipt *receipt = transaction.customerReceipt;
+            
+            NSString *merchantName = [[receipt receiptLineItemForKey:MPReceiptLineKeyMerchantDetailsPublicName] value];
+            NSString *subject = [[receipt receiptLineItemForKey:MPReceiptLineKeySubject] value];
+            NSString *amount = [[receipt receiptLineItemForKey:MPReceiptLineKeyAmountAndCurrency] value];
+            
+            NSString *receiptText = [NSString stringWithFormat:@"%@ \n %@ \n %@",merchantName,subject,amount];
+            
+            UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Custom Receipt"
+                                                            message:receiptText
+                                                           delegate:nil
+                                                  cancelButtonTitle:@"OK"
+                                                  otherButtonTitles:nil];
+            [alert show];
+
+        } else {
+            
+            UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Error!"
+                                                            message:error.localizedDescription
+                                                           delegate:nil
+                                                  cancelButtonTitle:@"OK"
+                                                  otherButtonTitles:nil];
+            [alert show];
+        }
+    } ];
+     
     // NOTE : Do not keep a reference to the mposUi.transactionProvider as it is subject to change and might result in unexpected behaviour if used improperly.
 }
 
