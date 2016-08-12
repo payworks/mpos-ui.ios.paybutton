@@ -204,6 +204,8 @@ NSString* const MPUSegueIdentifierTransaction_Login = @"txPushLogin";
     self.summaryViewController.parameters = self.parameters;
     self.summaryViewController.sessionIdentifier = self.sessionIdentifier;
     self.summaryViewController.delegate = self;
+    //needed since the [rightButtonItem] needs the mposUi to evaluate the feature
+    self.summaryViewController.mposUi = self.mposUi;
     
     [self.delegate setBackButtonItem:self.summaryViewController.backButtonItem];
     [self.delegate setRightButtonItem:[self.summaryViewController rightButtonItem]];

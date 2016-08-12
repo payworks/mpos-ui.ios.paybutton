@@ -85,6 +85,7 @@
 		B395AC711CD8E85200C4CEE4 /* MPUTransactionDateFooterCell.m in Sources */ = {isa = PBXBuildFile; fileRef = B395AC6F1CD8E85200C4CEE4 /* MPUTransactionDateFooterCell.m */; };
 		B395AC741CD8E9F900C4CEE4 /* MPUCellBuilder.h in Headers */ = {isa = PBXBuildFile; fileRef = B395AC721CD8E9F900C4CEE4 /* MPUCellBuilder.h */; };
 		B395AC751CD8E9F900C4CEE4 /* MPUCellBuilder.m in Sources */ = {isa = PBXBuildFile; fileRef = B395AC731CD8E9F900C4CEE4 /* MPUCellBuilder.m */; };
+		B3C1C62D1D47BAE800780E4B /* LICENSE.h in Headers */ = {isa = PBXBuildFile; fileRef = B3C1C62C1D47BAE800780E4B /* LICENSE.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		B3FBBFBB1D1445C700A2EDB0 /* mpos-ui.strings in Resources */ = {isa = PBXBuildFile; fileRef = B3FBBFB91D1445B600A2EDB0 /* mpos-ui.strings */; };
 		F46242B61B3C6A7A00274B6F /* mpos-ui.pch in Headers */ = {isa = PBXBuildFile; fileRef = F46242B51B3C6A7A00274B6F /* mpos-ui.pch */; };
 		F48682F01B0CBDEA0042FF15 /* mpos-ui.h in Headers */ = {isa = PBXBuildFile; fileRef = F48682C31B0CBAF70042FF15 /* mpos-ui.h */; settings = {ATTRIBUTES = (Public, ); }; };
@@ -230,6 +231,7 @@
 		B395AC6F1CD8E85200C4CEE4 /* MPUTransactionDateFooterCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MPUTransactionDateFooterCell.m; sourceTree = "<group>"; };
 		B395AC721CD8E9F900C4CEE4 /* MPUCellBuilder.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MPUCellBuilder.h; sourceTree = "<group>"; };
 		B395AC731CD8E9F900C4CEE4 /* MPUCellBuilder.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MPUCellBuilder.m; sourceTree = "<group>"; };
+		B3C1C62C1D47BAE800780E4B /* LICENSE.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LICENSE.h; sourceTree = "<group>"; };
 		B3FBBFBA1D1445B600A2EDB0 /* sv */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = sv; path = "mpos-ui.strings"; sourceTree = "<group>"; };
 		CCCBA9E84E7D3D6668670AEB /* Pods-mpos-ui.podsdummy.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-mpos-ui.podsdummy.release.xcconfig"; path = "Pods/Target Support Files/Pods-mpos-ui.podsdummy/Pods-mpos-ui.podsdummy.release.xcconfig"; sourceTree = "<group>"; };
 		F46242B51B3C6A7A00274B6F /* mpos-ui.pch */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "mpos-ui.pch"; sourceTree = "<group>"; };
@@ -520,6 +522,7 @@
 				F486832A1B0CC0A10042FF15 /* MPUMposUi.h */,
 				2DDA93CF1A8A0270002C246A /* MPUMposUiAppearance.h */,
 				2DDA93D01A8A0270002C246A /* MPUMposUiConfiguration.h */,
+				B3C1C62C1D47BAE800780E4B /* LICENSE.h */,
 			);
 			path = External;
 			sourceTree = "<group>";
@@ -626,6 +629,7 @@
 				F46242B61B3C6A7A00274B6F /* mpos-ui.pch in Headers */,
 				4461B2421B9498BD00EE55AF /* MPUApplicationData.h in Headers */,
 				B395AC581CD8E53D00C4CEE4 /* MPUTransactionHeaderCell.h in Headers */,
+				B3C1C62D1D47BAE800780E4B /* LICENSE.h in Headers */,
 				F48683201B0CBF880042FF15 /* MPUSendReceiptController.h in Headers */,
 				F486831C1B0CBF880042FF15 /* MPUTransactionController.h in Headers */,
 				4461B2651B98888200EE55AF /* MPULoginMainController.h in Headers */,
@@ -649,13 +653,15 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = F48682521B0CA93D0042FF15 /* Build configuration list for PBXNativeTarget "mpos-ui" */;
 			buildPhases = (
-				80CCF78401BCB6100A27858F /* 📦 Check Pods Manifest.lock */,
+				9D4F291CAE99F54B02702D24 /* 📦 Check Pods Manifest.lock */,
+				80CCF78401BCB6100A27858F /* [CP] Check Pods Manifest.lock */,
 				F48682391B0CA93C0042FF15 /* Sources */,
 				F486823A1B0CA93C0042FF15 /* Frameworks */,
 				F48682911B0CB6D30042FF15 /* Headers */,
 				F486823B1B0CA93C0042FF15 /* CopyFiles */,
 				F48682831B0CABFC0042FF15 /* ShellScript */,
-				6672B8A6B05A86E3E4E99DCA /* 📦 Copy Pods Resources */,
+				6672B8A6B05A86E3E4E99DCA /* [CP] Copy Pods Resources */,
+				94F24945BB7D9B34D55ACFB6 /* 📦 Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -687,11 +693,13 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = F48682E21B0CBC6A0042FF15 /* Build configuration list for PBXNativeTarget "mpos-ui.podsdummy" */;
 			buildPhases = (
-				6102E4AE36D76A1557000D59 /* 📦 Check Pods Manifest.lock */,
+				02FC2826DEEA0BEF0DF81E13 /* 📦 Check Pods Manifest.lock */,
+				6102E4AE36D76A1557000D59 /* [CP] Check Pods Manifest.lock */,
 				F48682C91B0CBC6A0042FF15 /* Sources */,
 				F48682CA1B0CBC6A0042FF15 /* Frameworks */,
 				F48682CB1B0CBC6A0042FF15 /* CopyFiles */,
-				ACD6148CB2E1857B9B4A50BF /* 📦 Copy Pods Resources */,
+				ACD6148CB2E1857B9B4A50BF /* [CP] Copy Pods Resources */,
+				0E000CA5921FF5AE00EA4824 /* 📦 Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -780,7 +788,7 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXShellScriptBuildPhase section */
-		6102E4AE36D76A1557000D59 /* 📦 Check Pods Manifest.lock */ = {
+		02FC2826DEEA0BEF0DF81E13 /* 📦 Check Pods Manifest.lock */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -795,7 +803,67 @@
 			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [[ $? != 0 ]] ; then\n    cat << EOM\nerror: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\nEOM\n    exit 1\nfi\n";
 			showEnvVarsInLog = 0;
 		};
-		6672B8A6B05A86E3E4E99DCA /* 📦 Copy Pods Resources */ = {
+		0E000CA5921FF5AE00EA4824 /* 📦 Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "📦 Copy Pods Resources";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-mpos-ui.podsdummy/Pods-mpos-ui.podsdummy-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		6102E4AE36D76A1557000D59 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [[ $? != 0 ]] ; then\n    cat << EOM\nerror: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\nEOM\n    exit 1\nfi\n";
+			showEnvVarsInLog = 0;
+		};
+		6672B8A6B05A86E3E4E99DCA /* [CP] Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Copy Pods Resources";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-mpos-ui/Pods-mpos-ui-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		80CCF78401BCB6100A27858F /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [[ $? != 0 ]] ; then\n    cat << EOM\nerror: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\nEOM\n    exit 1\nfi\n";
+			showEnvVarsInLog = 0;
+		};
+		94F24945BB7D9B34D55ACFB6 /* 📦 Copy Pods Resources */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -810,7 +878,7 @@
 			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-mpos-ui/Pods-mpos-ui-resources.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
-		80CCF78401BCB6100A27858F /* 📦 Check Pods Manifest.lock */ = {
+		9D4F291CAE99F54B02702D24 /* 📦 Check Pods Manifest.lock */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -825,14 +893,14 @@
 			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [[ $? != 0 ]] ; then\n    cat << EOM\nerror: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\nEOM\n    exit 1\nfi\n";
 			showEnvVarsInLog = 0;
 		};
-		ACD6148CB2E1857B9B4A50BF /* 📦 Copy Pods Resources */ = {
+		ACD6148CB2E1857B9B4A50BF /* [CP] Copy Pods Resources */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
 			);
 			inputPaths = (
 			);
-			name = "📦 Copy Pods Resources";
+			name = "[CP] Copy Pods Resources";
 			outputPaths = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
