@@ -157,6 +157,8 @@ NSString* const MPUSegueIdentifierSummary_Login = @"smPushLogin";
     self.summaryViewController.refundEnabled = YES;
     self.summaryViewController.retryEnabled = NO;
     self.summaryViewController.delegate = self;
+    //needed since the [rightButtonItem] needs the mposUi to evaluate the feature
+    self.summaryViewController.mposUi = self.mposUi;
     [self.delegate setBackButtonItem:[self.summaryViewController backButtonItem]];
     [self.delegate setRightButtonItem:[self.summaryViewController rightButtonItem]];
     

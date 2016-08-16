@@ -171,7 +171,7 @@ typedef NS_ENUM(NSUInteger, MPUSummaryControllerAlertTag) {
 
 - (UIBarButtonItem *)rightButtonItem {
     
-    if ([self hasTransactionReceipt]) {
+    if ([self isSendReceiptFeatureEnabled] && [self hasTransactionReceipt]) {
         return [[UIBarButtonItem alloc]initWithTitle:[MPUUIHelper localizedString:(self.receiptSent)?@"MPUResend":@"MPUSend"] style:UIBarButtonItemStylePlain target:self action:@selector(didTapSendButton)];
     }
     
