@@ -1,7 +1,7 @@
 "MPUAbort" = "Interrompre";
-"MPURetry" = "Répéter";
+"MPURetry" = "Réessayer";
 "MPUSendReceipt" = "Envoyer le justificatif";
-"MPUResendReceipt" = "Reenvoyer le justificatif";
+"MPUResendReceipt" = "Renvoyer le justificatif";
 "MPUClose" = "Fermer";
 "MPUPaymentSuccessful" = "Paiement effectué avec succès";
 "MPURefunded" = "Remboursé";
@@ -16,7 +16,7 @@
 "MPURefundAborted" = "Remboursement interrompu.";
 "MPURefundPayment" = "Rembourser le paiement";
 "MPUCapturePayment" = "Saisir le paiement";
-"MPURefundPrompt" = "Etes-vous sûr que vous voulez rembourser cette paiement?";
+"MPURefundPrompt" = "Etes-vous sûr que vous voulez rembourser ce paiement ?";
 "MPUCapturePrompt" = "Etes-vous sûr de vouloir saisir ce paiement ?";
 "MPUTransactionTypeSale" = "Paiement";
 "MPUTransactionTypeRefund" = "Remboursement";
@@ -24,12 +24,12 @@
 "MPURefund" = "Remboursement";
 "MPUCapture" = "Saisir";
 "MPUSummary" = "Résumé";
-"MPUInvalidEmailAddress" = "Adresse mail invalide";
+"MPUInvalidEmailAddress" = "Adresse e-mail invalide";
 "MPUEnterValidEmailAddress" = "Veuillez saisir une adresse e-mail valide.";
 "MPUOK" = "OK";
 "MPUCouldNotSendReceipt" = "Impossible d'envoyer le justifactif";
 "MPUPleaseTryAgain" = "Veuillez réessayer.";
-"MPUSelectAccount" = "Sélectionnez compte";
+"MPUSelectAccount" = "Sélectionnez un compte";
 "MPUEnterEmailAddress" = "Saisir l'adresse e-mail";
 "MPUSend" = "Envoyer";
 "MPUResend" = "Renvoyer";
@@ -54,8 +54,8 @@
 "MPUUnknownUsername" = "Il n’existe pas de compte pour cette adresse e-mail.";
 "MPUBack" = "Retour";
 "MPUPasswordReset" = "Un e-mail vous a été adressé. Veuillez le consulter pour en savoir plus.";
-"MPURequestPassword" = "Réinitialiser mot de passe";
-"MPUActions" = "Actes";
+"MPURequestPassword" = "Réinitialiser le mot de passe";
+"MPUActions" = "Actions";
 "MPUSettings" = "Paramètres";
 "MPUInfo" = "Infos";
 "MPUVisa" = "Visa";
@@ -63,6 +63,6 @@
 "MPUMaestro" = "Maestro";
 "MPUAmericanExpress" = "American Express";
 "MPUReprint" = "Réimprimer";
-"MPUPrinting" = "Imprimant...";
+"MPUPrinting" = "Impression...";
 "MPUPrint" = "Imprimer";
 "MPUPartiallyCaptured" = "de pré-autorisation pour %@";
