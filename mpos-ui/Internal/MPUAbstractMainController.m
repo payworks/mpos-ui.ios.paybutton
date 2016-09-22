@@ -100,26 +100,14 @@
 
 - (void)hideBackButton:(BOOL)hide {
     
-    [self setBackButtonItem:(hide)?nil:self.backButton];
-    
+    self.navigationItem.leftBarButtonItem = (hide)?nil:self.backButton;
 }
 
 
 - (void)hideCloseButton:(BOOL)hide {
 
-    [self setRightButtonItem:(hide)?nil:self.closeButton];
+    self.navigationItem.rightBarButtonItem = (hide)?nil:self.closeButton;
 }
 
-
-- (void)setRightButtonItem:(UIBarButtonItem *)rightButtonItem {
-    
-    self.navigationItem.rightBarButtonItem = rightButtonItem;
-}
-
-
-- (void)setBackButtonItem:(UIBarButtonItem *)backButtonItem {
-    
-    self.navigationItem.leftBarButtonItem = backButtonItem;
-}
 
 @end

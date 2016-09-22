@@ -25,10 +25,11 @@
  */
 
 #import <UIKit/UIKit.h>
+#import "MPUTransactionCell.h"
 
 extern NSString * const MPUTransactionHistoryDetailCellIdentifier;
 
-@interface MPUTransactionHistoryDetailCell : UITableViewCell
+@interface MPUTransactionHistoryDetailCell : MPUTransactionCell
 
 @property (weak, nonatomic) IBOutlet UILabel *transactionTypeLabel;
 @property (weak, nonatomic) IBOutlet UILabel *amountLabel;

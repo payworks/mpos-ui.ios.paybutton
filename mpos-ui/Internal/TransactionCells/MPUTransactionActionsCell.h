@@ -25,6 +25,7 @@
  */
 
 #import <UIKit/UIKit.h>
+#import "MPUTransactionCell.h"
 
 extern NSString * const MPUTransactionActionsCellIdentifier;
 
@@ -32,20 +33,11 @@ extern NSString * const MPUTransactionActionsCellIdentifier;
 typedef void (^MPUSCActionsCellAction)(void);
 
 
-
-@interface MPUTransactionActionsCell : UITableViewCell
-
-@property (weak, nonatomic) IBOutlet UIButton *button0FromLeft;
-
-@property (weak, nonatomic) IBOutlet UIButton *button0FromRight;
-@property (weak, nonatomic) IBOutlet UIButton *button1FromRight;
+@interface MPUTransactionActionsCell : MPUTransactionCell
 
 
-@property (copy, nonatomic) MPUSCActionsCellAction button0FromLeftAction;
+@property (copy, nonatomic) MPUSCActionsCellAction action;
 
-@property (copy, nonatomic) MPUSCActionsCellAction button0FromRightAction;
-@property (copy, nonatomic) MPUSCActionsCellAction button1FromRightAction;
-
-- (void)setAction:(MPUSCActionsCellAction)action forButton:(UIButton*)button ;
+- (void)setActionTitle:(NSString *)actionTitle bold:(BOOL)bold;
 
 @end

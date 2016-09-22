@@ -26,6 +26,8 @@
 
 #import "MPUUIHelper.h"
 #import "MPUMposUi_Internal.h"
+#import "MPUMposUiAppearance.h"
+#import "MPUMposUiConfiguration.h"
 #import <CoreText/CoreText.h>
 
 NSString *const MPUUIHelperFrameworkBundleName = @"mpos-ui-resources";
@@ -105,6 +107,46 @@ NSString *const MPUUIHelperFrameworkBundleName = @"mpos-ui-resources";
             return @"MPUCapture";
     }
 }
+
+
++ (NSDictionary*)actionButtonTitleAttributesBold:(BOOL)bold {
+    
+    
+    NSDictionary *attributes = @{NSForegroundColorAttributeName : [self buttonTitleColor],
+                                 NSFontAttributeName : [self fontForBold:bold]};
+    
+    return attributes;
+}
+
+
++ (UIColor*)buttonTitleColor {
+    
+     MPUMposUiAppearance *appearance = [[[MPUMposUi sharedInitializedInstance] configuration] appearance];
+    
+    if (appearance.actionButtonTextColor) {
+        return appearance.actionButtonTextColor;
+    }
+    
+    if (appearance.navigationBarTint) {
+        return appearance.navigationBarTint;
+    }
+    
+    return [UIColor blackColor];
+}
+
+
++ (UIFont*)fontForBold:(BOOL)bold {
+    
+    const CGFloat fontSize = 17.0;
+    
+    if (bold) {
+        return [UIFont boldSystemFontOfSize:fontSize];
+    }
+    
+    return [UIFont systemFontOfSize:fontSize];
+}
+
+
 
 
 // Assumes input like "#00FF00" (#RRGGBB).

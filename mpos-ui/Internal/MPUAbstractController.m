@@ -38,18 +38,11 @@
     [super viewDidLoad];
 
     self.mposUi = [MPUMposUi sharedInitializedInstance];
-    if (self.view.backgroundColor) {
+    if (self.mposUi.configuration.appearance.backgroundColor) {
         self.view.backgroundColor = self.mposUi.configuration.appearance.backgroundColor;
     }
     self.navigationItem.hidesBackButton = YES;
 }
 
 
-- (UIBarButtonItem *)backButtonItem {
-    return nil;
-}
-
-- (UIBarButtonItem *)rightButtonItem {
-    return nil;
-}
 @end

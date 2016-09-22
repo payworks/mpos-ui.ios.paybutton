@@ -25,10 +25,11 @@
  */
 
 #import <UIKit/UIKit.h>
+#import "MPUTransactionCell.h"
 
 extern NSString * const MPUTransactionSubjectCellIdentifier;
 
-@interface MPUTransactionSubjectCell : UITableViewCell
+@interface MPUTransactionSubjectCell : MPUTransactionCell
 
 @property (weak, nonatomic) IBOutlet UILabel *subjectLabel;
 

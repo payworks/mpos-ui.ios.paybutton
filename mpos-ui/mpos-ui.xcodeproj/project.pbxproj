@@ -70,6 +70,8 @@
 		7E49EEB39D1DBCD22ACF9559 /* libPods-mpos-ui.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 0F004FA6DDCFDE0143C0B06F /* libPods-mpos-ui.a */; };
 		B34C97861CCE4CEA0092A8D4 /* MPUSummaryController.h in Headers */ = {isa = PBXBuildFile; fileRef = B34C97841CCE4CEA0092A8D4 /* MPUSummaryController.h */; };
 		B34C97871CCE4CEA0092A8D4 /* MPUSummaryController.m in Sources */ = {isa = PBXBuildFile; fileRef = B34C97851CCE4CEA0092A8D4 /* MPUSummaryController.m */; };
+		B35AFE651D7854E60088C3B7 /* MPUTransactionCell.h in Headers */ = {isa = PBXBuildFile; fileRef = B35AFE631D7854E60088C3B7 /* MPUTransactionCell.h */; };
+		B35AFE661D7854E60088C3B7 /* MPUTransactionCell.m in Sources */ = {isa = PBXBuildFile; fileRef = B35AFE641D7854E60088C3B7 /* MPUTransactionCell.m */; };
 		B395AC4C1CD79ECA00C4CEE4 /* yourbrand.plist in Resources */ = {isa = PBXBuildFile; fileRef = B395AC4B1CD79ECA00C4CEE4 /* yourbrand.plist */; };
 		B395AC581CD8E53D00C4CEE4 /* MPUTransactionHeaderCell.h in Headers */ = {isa = PBXBuildFile; fileRef = B395AC561CD8E53D00C4CEE4 /* MPUTransactionHeaderCell.h */; };
 		B395AC591CD8E53D00C4CEE4 /* MPUTransactionHeaderCell.m in Sources */ = {isa = PBXBuildFile; fileRef = B395AC571CD8E53D00C4CEE4 /* MPUTransactionHeaderCell.m */; };
@@ -216,6 +218,8 @@
 		75E6F9AC55DFE8CBF7E4A395 /* Pods-mpos-ui.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-mpos-ui.debug.xcconfig"; path = "Pods/Target Support Files/Pods-mpos-ui/Pods-mpos-ui.debug.xcconfig"; sourceTree = "<group>"; };
 		B34C97841CCE4CEA0092A8D4 /* MPUSummaryController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MPUSummaryController.h; sourceTree = "<group>"; };
 		B34C97851CCE4CEA0092A8D4 /* MPUSummaryController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MPUSummaryController.m; sourceTree = "<group>"; };
+		B35AFE631D7854E60088C3B7 /* MPUTransactionCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MPUTransactionCell.h; sourceTree = "<group>"; };
+		B35AFE641D7854E60088C3B7 /* MPUTransactionCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MPUTransactionCell.m; sourceTree = "<group>"; };
 		B395AC4B1CD79ECA00C4CEE4 /* yourbrand.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = yourbrand.plist; sourceTree = "<group>"; };
 		B395AC561CD8E53D00C4CEE4 /* MPUTransactionHeaderCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MPUTransactionHeaderCell.h; sourceTree = "<group>"; };
 		B395AC571CD8E53D00C4CEE4 /* MPUTransactionHeaderCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MPUTransactionHeaderCell.m; sourceTree = "<group>"; };
@@ -441,6 +445,8 @@
 		B395AC551CD8E50400C4CEE4 /* TransactionCells */ = {
 			isa = PBXGroup;
 			children = (
+				B35AFE631D7854E60088C3B7 /* MPUTransactionCell.h */,
+				B35AFE641D7854E60088C3B7 /* MPUTransactionCell.m */,
 				B395AC561CD8E53D00C4CEE4 /* MPUTransactionHeaderCell.h */,
 				B395AC571CD8E53D00C4CEE4 /* MPUTransactionHeaderCell.m */,
 				B395AC5E1CD8E6F800C4CEE4 /* MPUTransactionCardCell.h */,
@@ -610,6 +616,7 @@
 				44234B361B0DE5F700C1ABAE /* MPULoadTransactionController.h in Headers */,
 				44D986081B4C3E53006F2F62 /* MPUEmptySegue.h in Headers */,
 				F486831E1B0CBF880042FF15 /* MPUProgressView.h in Headers */,
+				B35AFE651D7854E60088C3B7 /* MPUTransactionCell.h in Headers */,
 				4461B2691B98893900EE55AF /* MPULoginContainerViewController.h in Headers */,
 				B395AC6C1CD8E82E00C4CEE4 /* MPUTransactionHistoryDetailCell.h in Headers */,
 				F48683281B0CBF970042FF15 /* MPUUIHelper.h in Headers */,
@@ -944,6 +951,7 @@
 				B34C97871CCE4CEA0092A8D4 /* MPUSummaryController.m in Sources */,
 				4461B2611B973C6700EE55AF /* MPUSettingsMainController.m in Sources */,
 				4479656B1B1EF74600CB540E /* MPUPrintReceiptController.m in Sources */,
+				B35AFE661D7854E60088C3B7 /* MPUTransactionCell.m in Sources */,
 				4461B2661B98888200EE55AF /* MPULoginMainController.m in Sources */,
 				F48683211B0CBF880042FF15 /* MPUSendReceiptController.m in Sources */,
 				F48683031B0CBF760042FF15 /* MPUMposUiConfiguration.m in Sources */,
@@ -1123,7 +1131,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 6.1;
+				IPHONEOS_DEPLOYMENT_TARGET = 7.1;
 				MTL_ENABLE_DEBUG_INFO = YES;
 				ONLY_ACTIVE_ARCH = YES;
 				SDKROOT = iphoneos;
@@ -1163,7 +1171,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 6.1;
+				IPHONEOS_DEPLOYMENT_TARGET = 7.1;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				SDKROOT = iphoneos;
 				TARGETED_DEVICE_FAMILY = "1,2";

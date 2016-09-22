@@ -25,14 +25,15 @@
  */
 
 #import <UIKit/UIKit.h>
+#import "MPUTransactionCell.h"
 
 extern NSString * const MPUTransactionCardCellIdentifier;
 
-@interface MPUTransactionCardCell : UITableViewCell
+@interface MPUTransactionCardCell : MPUTransactionCell
 
 @property (weak, nonatomic) IBOutlet UIImageView *schemeImageView;
 @property (weak, nonatomic) IBOutlet UILabel *schemeLabel;
 @property (weak, nonatomic) IBOutlet UILabel *cardNumberLabel;
-@property (weak, nonatomic) IBOutlet UIView *separatorView;
+
 
 @end

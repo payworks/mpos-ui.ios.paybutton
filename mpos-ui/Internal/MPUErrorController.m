@@ -86,8 +86,15 @@
 }
 
 - (void)l10n {
-    [self.retryButton setTitle:[MPUUIHelper localizedString:@"MPURetry"] forState:UIControlStateNormal];
-    [self.cancelButton setTitle:[MPUUIHelper localizedString:@"MPUClose"] forState:UIControlStateNormal];
+    
+    NSAttributedString *retryAttString = [[NSAttributedString alloc] initWithString:[MPUUIHelper localizedString:@"MPURetry"] attributes:[MPUUIHelper actionButtonTitleAttributesBold:NO]];
+    [self.retryButton setAttributedTitle:retryAttString forState:UIControlStateNormal];
+    self.retryButton.contentHorizontalAlignment = UIControlContentHorizontalAlignmentLeft;
+    
+    
+    NSAttributedString *cancelAttString = [[NSAttributedString alloc] initWithString:[MPUUIHelper localizedString:@"MPUClose"] attributes:[MPUUIHelper actionButtonTitleAttributesBold:YES]];
+    [self.cancelButton setAttributedTitle:cancelAttString forState:UIControlStateNormal];
+    self.cancelButton.contentHorizontalAlignment = UIControlContentHorizontalAlignmentLeft;
 }
 
 - (void)viewWillAppear:(BOOL)animated {

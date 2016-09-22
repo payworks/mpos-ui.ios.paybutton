@@ -33,19 +33,21 @@
 
 @interface MPUUIHelper : NSObject
 
-+ (NSBundle *)frameworkBundle;
++ (NSBundle*)frameworkBundle;
 
 + (void)loadIconFont;
 
-+ (BOOL)isStringEmpty:(NSString *)string;
++ (BOOL)isStringEmpty:(NSString*)string;
 
-+ (NSString *)defaultControllerTitleBasedOnParameters:(MPTransactionParameters *)parameters
++ (NSString*)defaultControllerTitleBasedOnParameters:(MPTransactionParameters *)parameters
                                           transaction:(MPTransaction *)transaction
                                               toolbox:(MPLocalizationToolbox *)toolbox;
 
 
-+ (UIColor *)colorFromHexString:(NSString *)hexString;
++ (UIColor*)colorFromHexString:(NSString *)hexString;
 
-+ (NSString *)localizedString:(NSString *)token;
++ (NSString*)localizedString:(NSString *)token;
+
++ (NSDictionary*)actionButtonTitleAttributesBold:(BOOL)bold;
 
 @end

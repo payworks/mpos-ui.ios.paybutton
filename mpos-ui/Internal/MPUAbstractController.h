@@ -31,7 +31,5 @@
 
 @property (nonatomic, weak) MPUMposUi *mposUi;
 
-- (UIBarButtonItem *)rightButtonItem;
-- (UIBarButtonItem *)backButtonItem;
 
 @end

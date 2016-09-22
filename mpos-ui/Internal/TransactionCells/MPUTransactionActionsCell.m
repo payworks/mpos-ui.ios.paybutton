@@ -25,8 +25,16 @@
  */
 
 #import "MPUTransactionActionsCell.h"
+#import "MPUUIHelper.h"
 
 NSString * const MPUTransactionActionsCellIdentifier = @"MPUTransactionActionsCell";
+
+@interface MPUTransactionActionsCell()
+
+@property (weak, nonatomic) IBOutlet UIButton *button;
+
+@end
+
 
 @implementation MPUTransactionActionsCell
 
@@ -45,54 +53,27 @@ NSString * const MPUTransactionActionsCellIdentifier = @"MPUTransactionActionsCe
 
 - (void)clearEveryThing {
     
-    self.button0FromLeft.hidden = YES;
-    self.button0FromRight.hidden = YES;
-    self.button1FromRight.hidden = YES;
+    [self setActionTitle:@"" bold:NO];
+}
+
+- (void)setActionTitle:(NSString *)actionTitle bold:(BOOL)bold {
     
-    self.button0FromLeftAction = nil;
-    self.button0FromRightAction = nil;
-    self.button1FromRightAction = nil;
+    
+    NSAttributedString *attString = [[NSAttributedString alloc] initWithString:actionTitle attributes:[MPUUIHelper actionButtonTitleAttributesBold:bold]];
+    
+    self.button.contentHorizontalAlignment = UIControlContentHorizontalAlignmentLeft;
+    [self.button setAttributedTitle:attString forState:UIControlStateNormal];
 }
 
 
-- (void)setAction:(MPUSCActionsCellAction)action forButton:(UIButton*)button {
+
+- (IBAction)didTapButton:(id)sender {
     
-    if (button == self.button0FromLeft) {
-        self.button0FromLeftAction = action;
-    }
-    
-    if (button == self.button0FromRight) {
-        self.button0FromRightAction = action;
-    }
-    
-    if (button == self.button1FromRight) {
-        self.button1FromRightAction = action;
+    if (self.action) {
+        self.action();
     }
 }
 
-
-- (IBAction)didTapButton0FromLeft:(id)sender {
-    
-    if (self.button0FromLeftAction) {
-        self.button0FromLeftAction();
-    }
-}
-
-
-- (IBAction)didTapButton0FromRight:(id)sender {
-    
-    if (self.button0FromRightAction) {
-        self.button0FromRightAction();
-    }
-}
-
-
-- (IBAction)didTapButton1FromRight:(id)sender {
-    
-    if (self.button1FromRightAction) {
-        self.button1FromRightAction();
-    }
-}
 
 
 @end

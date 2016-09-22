@@ -25,10 +25,11 @@
  */
 
 #import <UIKit/UIKit.h>
+#import "MPUTransactionCell.h"
 
 extern NSString * const MPUTransactionDateFooterCellIdentifier;
 
-@interface MPUTransactionDateFooterCell : UITableViewCell
+@interface MPUTransactionDateFooterCell : MPUTransactionCell
 
 @property (weak, nonatomic) IBOutlet UILabel *dateLabel;
 

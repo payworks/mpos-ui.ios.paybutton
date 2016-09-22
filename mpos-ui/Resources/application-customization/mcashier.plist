@@ -9,7 +9,7 @@
 	<key>navigationBarTextColor</key>
 	<string>#FFFFFF</string>
 	<key>backgroundColor</key>
-	<string>#EEEEEE</string>
+	<string>#FFFFFF</string>
 	<key>terminalFamily</key>
 	<string>Miura</string>
 	<key>printerFamily</key>

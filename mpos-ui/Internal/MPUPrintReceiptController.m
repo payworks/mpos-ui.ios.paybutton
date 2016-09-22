@@ -38,6 +38,7 @@
 @property (nonatomic, weak) IBOutlet UILabel *printingStatusIcon;
 @property (nonatomic, weak) IBOutlet MPUProgressView *progressView;
 @property (nonatomic, weak) IBOutlet UIButton *abortButton;
+@property (weak, nonatomic) IBOutlet UIView *cancelViewContainer;
 @property (nonatomic, weak) IBOutlet NSLayoutConstraint *progressViewMarginTopConstraint;
 
 @property (nonatomic, strong) MPPrintingProcess *printingProcess;
@@ -65,7 +66,10 @@
 #pragma mark - Private methods
 
 - (void) l10n {
-    [self.abortButton setTitle:[MPUUIHelper localizedString:@"MPUAbort"] forState:UIControlStateNormal];
+    
+    NSAttributedString *retryAttString = [[NSAttributedString alloc] initWithString:[MPUUIHelper localizedString:@"MPUAbort"] attributes:[MPUUIHelper actionButtonTitleAttributesBold:YES]];
+    [self.abortButton setAttributedTitle:retryAttString forState:UIControlStateNormal];
+    self.abortButton.contentHorizontalAlignment = UIControlContentHorizontalAlignmentLeft;
 }
 
 - (void)startPrinting {
@@ -91,7 +95,7 @@
 
 - (void)updatePrintStatus:(MPPrintingProcessDetails *) details {
     self.printingStatusInfo.text = [details.information componentsJoinedByString:@"\n"];
-    self.abortButton.hidden = ![self.printingProcess canBeAborted];
+    self.cancelViewContainer.hidden = ![self.printingProcess canBeAborted];
     [self updateProgressView:details];
 }
 

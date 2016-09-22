@@ -34,6 +34,7 @@
 
 @property (nonatomic, weak) IBOutlet UILabel* selectAccountLabel;
 @property (nonatomic, weak) IBOutlet UITableView* applicationsTableView;
+@property (weak, nonatomic) IBOutlet UIButton *cancelButton;
 
 @end
 
@@ -50,11 +51,18 @@
     self.applicationsTableView.backgroundColor = appearance.backgroundColor;
     
     self.applicationsTableView.hidden = YES;
-    self.applicationsTableView.tableFooterView = [[UIView alloc] initWithFrame:CGRectZero];
+    self.applicationsTableView.tableFooterView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, 0, 1.)];
+    self.applicationsTableView.tableFooterView.backgroundColor = [MPUUIHelper colorFromHexString:@"#e7e7e7"];
+    
+    [self l10n];
 }
 
 - (void)l10n {
     self.selectAccountLabel.text = [MPUUIHelper localizedString:@"MPUSelectAccount"];
+    
+    NSAttributedString *abortAttString = [[NSAttributedString alloc] initWithString:[MPUUIHelper localizedString:@"MPUAbort"] attributes:[MPUUIHelper actionButtonTitleAttributesBold:YES]];
+    [self.cancelButton setAttributedTitle:abortAttString forState:UIControlStateNormal];
+    self.cancelButton.contentHorizontalAlignment = UIControlContentHorizontalAlignmentLeft;
 }
 
 - (void)viewDidAppear:(BOOL)animated {
@@ -81,6 +89,7 @@
     UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:cellIdentifier];
     if (cell == nil) {
         cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:cellIdentifier];
+        cell.contentView.backgroundColor = [UIColor whiteColor];
     }
 
     MPApplicationInformation *applicationInformation = self.applications[indexPath.row];
@@ -96,6 +105,8 @@
 - (void)tableView:(UITableView *)tableView willDisplayCell:(UITableViewCell *)cell forRowAtIndexPath:(NSIndexPath *)indexPath {
     cell.backgroundColor = self.mposUi.configuration.appearance.backgroundColor;
 }
+
+
 
 #pragma mark - IBActions
 

@@ -35,8 +35,8 @@
                  blue:((float)((rgbValue & 0x0000FF) >>  0))/255.0 \
                 alpha:1.0]
 
-NSString *const CheckoutControllerMerchantIdentifier = @"merchant_identifier";
-NSString *const CheckoutControllerMerchantSecret = @"merchant_secret";
+NSString *const CheckoutControllerMerchantIdentifier    = @"merchant_identifier";
+NSString *const CheckoutControllerMerchantSecret        = @"merchant_secret";
 
 @interface ViewController ()
 @property (weak, nonatomic) IBOutlet UILabel *mposUiVersion;
@@ -58,7 +58,7 @@ NSString *const CheckoutControllerMerchantSecret = @"merchant_secret";
 - (void)viewDidLoad {
 
     [super viewDidLoad];
-    [self.navigationController.navigationBar setBarTintColor:UIColorFromRGB(0x25A0DB)];
+    [self.navigationController.navigationBar setBarTintColor:UIColorFromRGB(0x0d2048)];
     // Do any additional setup after loading the view, typically from a nib.
     self.mposUiVersion.text = [self.mposUiVersion.text stringByAppendingString:[MPUMposUi version]];
     self.mposSdkVersion.text = [self.mposSdkVersion.text stringByAppendingString:[MPMpos version]];
@@ -85,7 +85,7 @@ NSString *const CheckoutControllerMerchantSecret = @"merchant_secret";
     self.mposUi.configuration.terminalParameters = [MPAccessoryParameters mockAccessoryParameters];   // Using a mock accessory
     self.mposUi.configuration.printerParameters = [MPAccessoryParameters mockAccessoryParameters];    // Using a mock printer
     
-    self.mposUi.configuration.appearance.navigationBarTint = UIColorFromRGB(0x3F51B5);          // Color of the navigation bar
+    self.mposUi.configuration.appearance.navigationBarTint = UIColorFromRGB(0x4562a1);          // Color of the navigation bar
     self.mposUi.configuration.appearance.navigationBarTextColor = UIColorFromRGB(0xFFFFFF);     // Color of the text in the navigation bar
     self.mposUi.configuration.appearance.backgroundColor = UIColorFromRGB(0xF7F5F4);            // Background color is customizable. Recommended light colors.
     
@@ -99,7 +99,7 @@ NSString *const CheckoutControllerMerchantSecret = @"merchant_secret";
                                                                            currency:MPCurrencyEUR
                                                                           optionals:^(id<MPTransactionParametersOptionals> optionals) {
                                                                               
-                                                                              optionals.subject = @"subject";
+                                                                              optionals.subject = @"Subject";
                                                                           }];
     
     UIViewController *viewController = [self.mposUi createTransactionViewControllerWithTransactionParameters:parameters completed:^(UIViewController *controller, MPUTransactionResult result, MPTransaction *transaction) {
@@ -144,7 +144,7 @@ NSString *const CheckoutControllerMerchantSecret = @"merchant_secret";
     MPTransactionParameters *parameters = [MPTransactionParameters chargeWithAmount:[NSDecimalNumber decimalNumberWithString:amount]
                                                                            currency:MPCurrencyEUR
                                                                           optionals:^(id<MPTransactionParametersOptionals> optionals) {
-                                                                              optionals.subject = @"subject";
+                                                                              optionals.subject = @"Subject";
                                                                               optionals.autoCapture = autocapture;
                                                                           }];
     
@@ -160,6 +160,8 @@ NSString *const CheckoutControllerMerchantSecret = @"merchant_secret";
         }];
     }
 
+
+    
     UIViewController *viewController = [self.mposUi createTransactionViewControllerWithTransactionParameters:parameters processParameters:processParams completed:^(UIViewController *controller, MPUTransactionResult result, MPTransaction *transaction) {
         
         [controller dismissViewControllerAnimated:YES completion:nil];
@@ -179,7 +181,7 @@ NSString *const CheckoutControllerMerchantSecret = @"merchant_secret";
     self.mposUi = [MPUMposUi initializeWithProviderMode:MPProviderModeTEST merchantIdentifier:CheckoutControllerMerchantIdentifier merchantSecret:CheckoutControllerMerchantSecret];
     self.mposUi.configuration.printerParameters = [MPAccessoryParameters externalAccessoryParametersWithFamily:MPAccessoryFamilySewoo protocol:@"com.mobileprinter.datapath" optionals:nil];    // Using a SEWOO printer
     
-    self.mposUi.configuration.appearance.navigationBarTint = UIColorFromRGB(0x2196F3);          // Color of the navigation bar
+    self.mposUi.configuration.appearance.navigationBarTint = UIColorFromRGB(0x0d2048);          // Color of the navigation bar
     self.mposUi.configuration.appearance.navigationBarTextColor = UIColorFromRGB(0xFFFFFF);     // Color of the text in the navigation bar
     self.mposUi.configuration.appearance.backgroundColor = UIColorFromRGB(0xF7F5F4);            // Background color is customizable. Recommended light colors.
     
@@ -193,6 +195,7 @@ NSString *const CheckoutControllerMerchantSecret = @"merchant_secret";
 
 - (void)showSummary:(NSString *)transactionIdentifier {
     // We make use of the exisiting mposUi configurations.
+    
     UIViewController *viewController = [self.mposUi createSummaryViewControllerWithTransactionIdentifier:transactionIdentifier completed:^(UIViewController *controller) {
         [controller dismissViewControllerAnimated:YES completion:nil];
         [self.view makeToast:@"Summary Completed" duration:2.0 position:CSToastPositionBottom];

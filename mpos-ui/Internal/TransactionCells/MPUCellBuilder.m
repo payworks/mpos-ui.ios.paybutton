@@ -26,6 +26,9 @@
 
 #import "MPUCellBuilder.h"
 
+
+const CGFloat MPUCellBuilderDefaultCellHeight = 56.0;
+
 @implementation MPUCellBuilder
 
 
@@ -33,7 +36,7 @@
     
     MPUCellBuilder *builder = [[self alloc] init];
     builder.build = block;
-    builder.cellHeight = 44.;
+    builder.cellHeight = MPUCellBuilderDefaultCellHeight;
     return builder;
 }
 

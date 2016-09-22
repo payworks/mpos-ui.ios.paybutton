@@ -4,7 +4,7 @@ source 'https://github.com/CocoaPods/Specs.git'
 
 target :"mpos-ui-sample" do
 
-  pod 'payworks',                     '2.11.1'
+  pod 'payworks',                     '2.13.0'
 
   pod 'CocoaLumberjack',              '~> 2.0'
   pod 'MPBSignatureViewController',   '~> 1.5.1'

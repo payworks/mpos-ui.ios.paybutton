@@ -57,7 +57,12 @@ typedef NS_ENUM(NSUInteger, MPUSummaryControllerAlertTag) {
 
 @end
 
+const CGFloat MPUSummaryControllerActionCellHeight = 44.0;
 
+const CGFloat MPUSummaryControllerHeaderBigCellHeight = 82.0;
+const CGFloat MPUSummaryControllerHeaderSmallCellHeight = 64.0;
+const CGFloat MPUSummaryControllerHistoryBigCellHeight = 72.0;
+const CGFloat MPUSummaryControllerHistorySmallCellHeight = 56.0;
 
 @implementation MPUSummaryController
 
@@ -66,7 +71,6 @@ typedef NS_ENUM(NSUInteger, MPUSummaryControllerAlertTag) {
 
     [super viewDidLoad];
     
-    self.tableView.tableFooterView = [[UIView alloc] initWithFrame:CGRectZero];
     [self reloadCells];
     
     if (self.mposUi.configuration.resultDisplayBehavior == MPUMposUiConfigurationResultDisplayBehaviorCloseAfterTimeout) {
@@ -112,10 +116,10 @@ typedef NS_ENUM(NSUInteger, MPUSummaryControllerAlertTag) {
 }
 
 
-- (void)didTapPrintButtonForTransactionWithId:(NSString*)transactionId {
+- (void)didTapPrintButton {
     
     [self disableAutoCloseTimer];
-    [self.delegate summaryPrintReceiptClicked:transactionId];
+    [self.delegate summaryPrintReceiptClicked:[self transactionIdentifierForReceiptForTransaction:self.transaction]];
 }
 
 
@@ -123,7 +127,7 @@ typedef NS_ENUM(NSUInteger, MPUSummaryControllerAlertTag) {
 - (void)didTapRefundButton {
     
     [self disableAutoCloseTimer];
-    UIAlertView *alert = [[UIAlertView alloc]initWithTitle:[MPUUIHelper localizedString:@"MPURefundPayment"]
+    UIAlertView *alert = [[UIAlertView alloc]initWithTitle:[MPUUIHelper localizedString:@"MPURefundTransaction"]
                                                    message:[MPUUIHelper localizedString:@"MPURefundPrompt"]
                                                   delegate:self
                                          cancelButtonTitle:[MPUUIHelper localizedString:@"MPUAbort"] otherButtonTitles:[MPUUIHelper localizedString:@"MPURefund"], nil];
@@ -136,7 +140,7 @@ typedef NS_ENUM(NSUInteger, MPUSummaryControllerAlertTag) {
 - (void)didTapCaptureButton {
     
     [self disableAutoCloseTimer];
-    UIAlertView *alert = [[UIAlertView alloc]initWithTitle:[MPUUIHelper localizedString:@"MPUCapturePayment"]
+    UIAlertView *alert = [[UIAlertView alloc]initWithTitle:[MPUUIHelper localizedString:@"MPUCaptureTransaction"]
                                                    message:[MPUUIHelper localizedString:@"MPUCapturePrompt"]
                                                   delegate:self
                                          cancelButtonTitle:[MPUUIHelper localizedString:@"MPUAbort"] otherButtonTitles:[MPUUIHelper localizedString:@"MPUCapture"], nil];
@@ -163,22 +167,6 @@ typedef NS_ENUM(NSUInteger, MPUSummaryControllerAlertTag) {
 
 #pragma mark - Overload
 
-- (UIBarButtonItem *)backButtonItem {
-    
-    return [[UIBarButtonItem alloc]initWithTitle:[MPUUIHelper localizedString:@"MPUBack"] style:UIBarButtonItemStylePlain target:self action:@selector(didTapCloseButton)];
-}
-
-
-- (UIBarButtonItem *)rightButtonItem {
-    
-    if ([self isSendReceiptFeatureEnabled] && [self hasTransactionReceipt]) {
-        return [[UIBarButtonItem alloc]initWithTitle:[MPUUIHelper localizedString:(self.receiptSent)?@"MPUResend":@"MPUSend"] style:UIBarButtonItemStylePlain target:self action:@selector(didTapSendButton)];
-    }
-    
-    return nil;
-}
-
-
 
 - (void)viewWillAppear:(BOOL)animated {
     [super viewWillAppear:animated];
@@ -192,18 +180,40 @@ typedef NS_ENUM(NSUInteger, MPUSummaryControllerAlertTag) {
     
     NSMutableArray *cellBuilders = [NSMutableArray array];
     
-    [self addCellBuilder:[self headerCellBuilder] toArray:cellBuilders];
+    
+    NSMutableArray *receiptSection = [NSMutableArray array];
+    
+    [self addCellBuilder:[self headerCellBuilder] toArray:receiptSection];
 
     NSArray *historyCellBuilders = [self historyCellBuildersForTransaction:self.transaction];
-    [cellBuilders addObjectsFromArray:historyCellBuilders];
+    [receiptSection addObjectsFromArray:historyCellBuilders];
     
-    [self addCellBuilder:[self cardCellBuilderWithSeparatorHidden:(historyCellBuilders.count > 0)] toArray:cellBuilders];
+    [self addCellBuilder:[self cardCellBuilderWithSeparatorHidden:(historyCellBuilders.count == 0)] toArray:receiptSection];
     
-    [self addCellBuilder:[self subjectCellBuilder] toArray:cellBuilders];
+    [self addCellBuilder:[self subjectCellBuilder] toArray:receiptSection];
     
-    [self addCellBuilder:[self actionCellBuilder] toArray:cellBuilders];
+    [self addCellBuilder:[self dateCellBuilder] toArray:receiptSection];
     
-    [self addCellBuilder:[self dateCellBuilder] toArray:cellBuilders];
+    [cellBuilders addObject:receiptSection];
+    
+    
+    NSMutableArray *buttonsSection = [NSMutableArray array];
+    
+    [self addCellBuilder:[self captureCellBuilder] toArray:buttonsSection];
+    
+    [self addCellBuilder:[self refundCellBuilder] toArray:buttonsSection];
+    
+    [self addCellBuilder:[self sendReceiptCellBuilder] toArray:buttonsSection];
+    
+    [self addCellBuilder:[self printReceiptCellBuilder] toArray:buttonsSection];
+    
+    
+    if (buttonsSection.count > 0) {
+        [cellBuilders addObject:buttonsSection];
+    }
+    
+    
+    [cellBuilders addObject:@[[self closeCellBuilder]]];
 
     self.cellBuilders = cellBuilders;
     [self.tableView reloadData];
@@ -224,24 +234,33 @@ typedef NS_ENUM(NSUInteger, MPUSummaryControllerAlertTag) {
     
     __weak typeof(self) weakSelf = self;
     
-    MPUCellBuilder *headerCelBuilder = [MPUCellBuilder builderWithBlock:^UITableViewCell *{
+    MPUCellBuilder *headerCelBuilder = [MPUCellBuilder builderWithBlock:^MPUTransactionCell *{
         
         return [weakSelf headerCellForTransaction:weakSelf.transaction];
     }];
+    
+    headerCelBuilder.cellHeight = [self headerCellHeightForTransaction:self.transaction];
 
     return headerCelBuilder;
 }
 
 
-- (UITableViewCell*)headerCellForTransaction:(MPTransaction*)transaction {
+- (MPUTransactionCell*)headerCellForTransaction:(MPTransaction*)transaction {
 
     MPUTransactionHeaderCell *cell = [self.tableView dequeueReusableCellWithIdentifier:MPUTransactionHeaderCellIdentifier];
     
     cell.titleLabel.text  = [self headerCellTitleTextForTransaction:transaction];
-    
-    cell.amountLabel.textColor = [self headerCellAmountTextColorForTransaction:transaction];
     cell.amountLabel.text = [self finalAmountTextForTransaction:transaction];
-
+    cell.detailLabel.text = [self headerDetailTextForTransaction:transaction];
+    
+    UIColor *textColor = [self headerCellTextColorForTransaction:transaction];
+    
+    cell.titleLabel.textColor = textColor;
+    cell.amountLabel.textColor = textColor;
+    cell.detailLabel.textColor = textColor;
+    
+    cell.contentView.backgroundColor = [self headerCellBackgroundColorForTransaction:transaction];
+    
     return cell;
 }
 
@@ -265,7 +284,7 @@ typedef NS_ENUM(NSUInteger, MPUSummaryControllerAlertTag) {
             }
             
             if ([self isTransactionSale:transaction]) {
-                return @"MPUSale";
+                return @"MPUApproved";
             }
             
             if ([self isTransactionRefund:transaction]) {
@@ -308,21 +327,53 @@ typedef NS_ENUM(NSUInteger, MPUSummaryControllerAlertTag) {
 }
 
 
-- (UIColor*)headerCellAmountTextColorForTransaction:(MPTransaction*)transaction {
+- (CGFloat)headerCellHeightForTransaction:(MPTransaction*)transaction {
+    
+    NSString *detail = [self headerDetailTextForTransaction:transaction];
+    
+    CGFloat height = (detail.length > 0)? MPUSummaryControllerHeaderBigCellHeight : MPUSummaryControllerHeaderSmallCellHeight;
+    
+    return height;
+}
+
+
+- (NSString*)headerDetailTextForTransaction:(MPTransaction*)transaction {
+    
+    switch (transaction.status) {
+        
+        case MPTransactionStatusDeclined:
+        case MPTransactionStatusError:
+            return  [self.mposUi.transactionProvider.localizationToolbox informationForTransactionStatusDetailsCode:transaction.statusDetails.code] ;
+            
+        case MPTransactionStatusApproved:
+        case MPTransactionStatusUnknown:
+        case MPTransactionStatusInitialized:
+        case MPTransactionStatusPending:
+        case MPTransactionStatusAborted:
+            return @"";
+    }
+    
+    return @"";
+}
+
+- (UIColor*)headerCellBackgroundColorForTransaction:(MPTransaction*)transaction {
+    
+    MPUMposUiAppearance *appearance = self.mposUi.configuration.appearance;
+    
     
     switch (transaction.status) {
             
         case MPTransactionStatusApproved:
             
             if ([self isTransactionPreauthorized:transaction]) {
-                return [self preauthAmountColor];
+                return appearance.preauthorizedBackgroundColor;
             }
             
             if ([self isTransactionRefund:transaction]) {
-                return [self refundAmountColor];
+                return appearance.refundedBackgroundColor;
             }
             
-            return [self chargeAmountColor];
+            return appearance.approvedBackgroundColor;
           
             
         case MPTransactionStatusDeclined:   
@@ -331,34 +382,45 @@ typedef NS_ENUM(NSUInteger, MPUSummaryControllerAlertTag) {
             
         case MPTransactionStatusUnknown:
         case MPTransactionStatusInitialized:
-        case MPTransactionStatusPending: return [self declinedColor];
+        case MPTransactionStatusPending: return appearance.declinedBackgroundColor;
     }
 
-    return [self declinedColor];
+    return appearance.declinedBackgroundColor;
 }
 
 
-- (UIColor*)refundAmountColor {
+- (UIColor*)headerCellTextColorForTransaction:(MPTransaction*)transaction {
     
-    return [UIColor colorWithRed:0./255. green:88./255. blue:191./255. alpha:1.];
-}
-
-
-- (UIColor*)chargeAmountColor {
+    MPUMposUiAppearance *appearance = self.mposUi.configuration.appearance;
     
-    return [UIColor colorWithRed:88./255. green:117./255. blue:5./255. alpha:1.];
+    
+    switch (transaction.status) {
+            
+        case MPTransactionStatusApproved:
+            
+            if ([self isTransactionPreauthorized:transaction]) {
+                return appearance.preauthorizedTextColor;
+            }
+            
+            if ([self isTransactionRefund:transaction]) {
+                return appearance.refundedTextColor;
+            }
+            
+            return appearance.approvedTextColor;
+            
+            
+        case MPTransactionStatusDeclined:
+        case MPTransactionStatusAborted:
+        case MPTransactionStatusError:
+            
+        case MPTransactionStatusUnknown:
+        case MPTransactionStatusInitialized:
+        case MPTransactionStatusPending: return appearance.declinedTextColor;
+    }
+    
+    return appearance.declinedTextColor;
 }
 
-
-- (UIColor*)preauthAmountColor {
-
-    return [UIColor colorWithRed:227./255. green:156./255. blue:3./255. alpha:1.];
-}
-
-- (UIColor*)declinedColor {
-
-    return [UIColor colorWithRed:189./255. green:4./255. blue:26./255. alpha:1.];
-}
 
 
 
@@ -406,7 +468,7 @@ typedef NS_ENUM(NSUInteger, MPUSummaryControllerAlertTag) {
     
     if ([self isTransactionRefundedWithoutPartialCapture:self.transaction]) {
         
-        MPUCellBuilder *chargeHistoryCellBuilder = [MPUCellBuilder builderWithBlock:^UITableViewCell *{
+        MPUCellBuilder *chargeHistoryCellBuilder = [MPUCellBuilder builderWithBlock:^MPUTransactionCell *{
             
             return [weakSelf historyCellSaleForTransaction:weakSelf.transaction];
         }];
@@ -421,14 +483,14 @@ typedef NS_ENUM(NSUInteger, MPUSummaryControllerAlertTag) {
             continue;
         }
         
-        MPUCellBuilder *historyCellBuilder = [MPUCellBuilder builderWithBlock:^UITableViewCell *{
+        MPUCellBuilder *historyCellBuilder = [MPUCellBuilder builderWithBlock:^MPUTransactionCell *{
             return [self historyCellForRefundTransaction:refundTx];
         }];
         
         if (refundTx.code == MPRefundTransactionCodePartialCapture) {
-            historyCellBuilder.cellHeight = 68.;
+            historyCellBuilder.cellHeight = MPUSummaryControllerHistoryBigCellHeight;
         } else {
-            historyCellBuilder.cellHeight = 48.;
+            historyCellBuilder.cellHeight = MPUSummaryControllerHistorySmallCellHeight;
         }
         
         [cellBuilders addObject:historyCellBuilder];
@@ -440,13 +502,14 @@ typedef NS_ENUM(NSUInteger, MPUSummaryControllerAlertTag) {
 
 
 
-- (UITableViewCell*)historyCellSaleForTransaction:(MPTransaction*)transaction {
+- (MPUTransactionCell*)historyCellSaleForTransaction:(MPTransaction*)transaction {
     
     MPUTransactionHistoryDetailCell *cell = [self.tableView dequeueReusableCellWithIdentifier:MPUTransactionHistoryDetailCellIdentifier];
     
     cell.transactionTypeLabel.text = [MPUUIHelper localizedString:(self.transaction.captured)?@"MPUTransactionTypeSale":@"MPUTransactionTypePreauthorization"];
     cell.amountLabel.text = [self.mposUi.transactionProvider.localizationToolbox textFormattedForAmount:transaction.amount currency:transaction.currency];
-    cell.amountLabel.textColor = (self.transaction.captured)?[self chargeAmountColor]:[self preauthAmountColor];
+    MPUMposUiAppearance *appearance = self.mposUi.configuration.appearance;
+    cell.amountLabel.textColor = (self.transaction.captured)?appearance.approvedBackgroundColor:appearance.preauthorizedBackgroundColor;
     cell.initialAmountLabel.text = @"";
     cell.dateLabel.text = [self textFormattedForTimeAndDate:self.transaction.created];
 
@@ -454,7 +517,7 @@ typedef NS_ENUM(NSUInteger, MPUSummaryControllerAlertTag) {
 }
 
 
-- (UITableViewCell*)historyCellForRefundTransaction:(MPRefundTransaction*)refundTransaction {
+- (MPUTransactionCell*)historyCellForRefundTransaction:(MPRefundTransaction*)refundTransaction {
  
     MPUTransactionHistoryDetailCell *cell = [self.tableView dequeueReusableCellWithIdentifier:MPUTransactionHistoryDetailCellIdentifier];
     
@@ -535,16 +598,18 @@ typedef NS_ENUM(NSUInteger, MPUSummaryControllerAlertTag) {
 
 - (UIColor*)textAmountColorForRefundTransaction:(MPRefundTransaction*)refundTransaction {
  
+    MPUMposUiAppearance *appearance = self.mposUi.configuration.appearance;
+    
     switch (refundTransaction.code) {
             
         case MPRefundTransactionCodeRefundAfterClearing:
         case MPRefundTransactionCodeRefundBeforeClearing:
             
-            return [self refundAmountColor];
+            return appearance.refundedBackgroundColor;
             
         case MPRefundTransactionCodePartialCapture:
             
-            return [self chargeAmountColor];
+            return appearance.approvedBackgroundColor;
             
         case MPRefundTransactionCodeUnknown:
             return [UIColor blackColor];
@@ -582,9 +647,11 @@ typedef NS_ENUM(NSUInteger, MPUSummaryControllerAlertTag) {
     
     __weak typeof(self) weakSelf = self;
     
-    MPUCellBuilder *cardCell = [MPUCellBuilder builderWithBlock:^UITableViewCell *{
-        return [self cardCellForTransaction:weakSelf.transaction separatorHidden:separatorHidden];
+    MPUCellBuilder *cardCell = [MPUCellBuilder builderWithBlock:^MPUTransactionCell *{
+        return [self cardCellForTransaction:weakSelf.transaction];
     }];
+    
+    cardCell.forceHideSepparator = separatorHidden;
     
     return cardCell;
 }
@@ -595,7 +662,7 @@ typedef NS_ENUM(NSUInteger, MPUSummaryControllerAlertTag) {
     return transaction.paymentDetails.scheme != MPPaymentDetailsSchemeUnknown;
 }
 
-- (UITableViewCell*)cardCellForTransaction:(MPTransaction*)transaction separatorHidden:(BOOL)separatorHidden {
+- (MPUTransactionCell*)cardCellForTransaction:(MPTransaction*)transaction {
     
     MPUTransactionCardCell *cell = [self.tableView dequeueReusableCellWithIdentifier:MPUTransactionCardCellIdentifier];
     
@@ -612,7 +679,6 @@ typedef NS_ENUM(NSUInteger, MPUSummaryControllerAlertTag) {
     }
     
     cell.cardNumberLabel.text = [self maskedAccountNumberForTransaction:transaction];
-    cell.separatorView.hidden = separatorHidden;
     
     return cell;
 }
@@ -744,7 +810,7 @@ typedef NS_ENUM(NSUInteger, MPUSummaryControllerAlertTag) {
     }
     
     __weak typeof(self) weakSelf = self;
-    MPUCellBuilder *subjectCellBuilder = [MPUCellBuilder builderWithBlock:^UITableViewCell *{
+    MPUCellBuilder *subjectCellBuilder = [MPUCellBuilder builderWithBlock:^MPUTransactionCell *{
 
         return [self subjectCellForTransaction:weakSelf.transaction];
     }];
@@ -752,7 +818,7 @@ typedef NS_ENUM(NSUInteger, MPUSummaryControllerAlertTag) {
     return subjectCellBuilder;
 }
 
-- (UITableViewCell*)subjectCellForTransaction:(MPTransaction*)transaction {
+- (MPUTransactionCell*)subjectCellForTransaction:(MPTransaction*)transaction {
     
     MPUTransactionSubjectCell *cell = [self.tableView dequeueReusableCellWithIdentifier:MPUTransactionSubjectCellIdentifier];
     cell.subjectLabel.text = transaction.subject;
@@ -760,78 +826,197 @@ typedef NS_ENUM(NSUInteger, MPUSummaryControllerAlertTag) {
 }
 
 
-#pragma mark Actions cell 
+#pragma mark Capture cell
 
-
-- (MPUCellBuilder*)actionCellBuilder {
+- (MPUCellBuilder*)captureCellBuilder {
     
-    if (   ![self canPrint]
-        && ![self canRefund]
-        && ![self canCapture]) {
+    if (![self canCapture]) {
         
         return nil;
     }
     
-    __weak typeof(self) weakSelf = self;
-    MPUCellBuilder *actionsCellBuilder = [MPUCellBuilder builderWithBlock:^UITableViewCell *{
-        return [self actionCellForTransaction:weakSelf.transaction];
+    MPUCellBuilder *actionsCellBuilder = [MPUCellBuilder builderWithBlock:^MPUTransactionCell *{
+        return [self captureCell];
     }];
+    
+    actionsCellBuilder.cellHeight = MPUSummaryControllerActionCellHeight;
     
     return actionsCellBuilder;
 }
 
 
-- (UITableViewCell*)actionCellForTransaction:(MPTransaction*)transaction {
+- (MPUTransactionCell*)captureCell {
     
     MPUTransactionActionsCell *cell = [self.tableView dequeueReusableCellWithIdentifier:MPUTransactionActionsCellIdentifier];
-
-    if ([self isPrintReceiptFeatureEnabled]) {
-        [self setupPrintActionInCell:cell button:cell.button0FromLeft forTransaction:transaction];
-    }
+    
+    [cell setActionTitle:[MPUUIHelper localizedString:@"MPUCaptureTransaction"] bold:NO];
+    
+    __weak typeof(self) weakSelf = self;
+    [cell setAction:^{ [weakSelf didTapCaptureButton]; }];
     
     
-    const BOOL canCapture = [self canCapture];
-    
-    if ([self canRefund]) {
-        
-        [self setupRefundActionInCell:cell
-                               button:(canCapture)?cell.button1FromRight:cell.button0FromRight
-                       forTransaction:transaction];
-    }
-    
-    if (canCapture) {
-        
-        [self setupCaptureActionInCell:cell button:cell.button0FromRight forTransaction:transaction];
-    }
     
     return cell;
 }
 
 
-#pragma mark .    print
-
-
-- (void)setupPrintActionInCell:(MPUTransactionActionsCell*)cell button:(UIButton*)button forTransaction:(MPTransaction*)transaction {
-
-    button.hidden = NO;
-    [button setTitle:[self printButtonTitle] forState:UIControlStateNormal];
-    [cell setAction:[self printActionForTransaction:transaction] forButton:button];
-}
-
-
-- (NSString*)printButtonTitle {
+- (BOOL)canCapture {
     
-    return [MPUUIHelper localizedString:(self.isReceiptPrinted)?@"MPUReprint":@"MPUPrint"];
+    return (self.refundEnabled
+            && [self isCaptureFeatureEnabled]
+            && [self isTransactionCapturable]);
 }
 
-- (MPUSCActionsCellAction)printActionForTransaction:(MPTransaction*)transaction {
+
+- (BOOL)isCaptureFeatureEnabled {
+    
+    return (self.mposUi.configuration.summaryFeatures & MPUMposUiConfigurationSummaryFeatureCaptureTransaction);
+}
+
+- (BOOL)isTransactionCapturable {
+    
+    return ([self isTransactionRefundable]
+            && !self.transaction.captured);
+}
+
+
+#pragma mark Refund cell
+
+
+- (MPUCellBuilder*)refundCellBuilder {
+    
+    if (![self canRefund]) {
+        
+        return nil;
+    }
     
     __weak typeof(self) weakSelf = self;
-    
-    return ^(){
+    MPUCellBuilder *actionsCellBuilder = [MPUCellBuilder builderWithBlock:^MPUTransactionCell *{
         
-        [weakSelf didTapPrintButtonForTransactionWithId:[weakSelf transactionIdentifierForReceiptForTransaction:transaction]];
-    };
+        return [self refundCellForTransaction:weakSelf.transaction];
+    }];
+    
+    actionsCellBuilder.cellHeight = MPUSummaryControllerActionCellHeight;
+    
+    return actionsCellBuilder;
+}
+
+
+- (MPUTransactionCell*)refundCellForTransaction:(MPTransaction*)transaction {
+    
+    MPUTransactionActionsCell *cell = [self.tableView dequeueReusableCellWithIdentifier:MPUTransactionActionsCellIdentifier];
+    
+    [cell setActionTitle:[MPUUIHelper localizedString:@"MPURefundTransaction"] bold:NO];
+    
+    __weak typeof(self) weakSelf = self;
+    [cell setAction:^{ [weakSelf didTapRefundButton]; }];
+    
+    return cell;
+}
+
+
+- (BOOL)canRefund {
+    
+    return (self.refundEnabled
+            && [self isRefundFeatureEnabled]
+            && [self isTransactionRefundable]);
+}
+
+
+
+
+- (BOOL)isRefundFeatureEnabled {
+    
+    return (self.mposUi.configuration.summaryFeatures & MPUMposUiConfigurationSummaryFeatureRefundTransaction);
+}
+
+
+- (BOOL)isTransactionRefundable {
+    
+    return ((self.transaction.status == MPTransactionStatusApproved)
+            && (self.transaction.refundDetails.status != MPRefundDetailsStatusRefunded)
+            && (self.transaction.type != MPTransactionTypeRefund));
+}
+
+
+#pragma Send receipt cell
+
+- (MPUCellBuilder*)sendReceiptCellBuilder {
+    
+    if (![self isSendReceiptFeatureEnabled]
+        || ![self hasTransactionReceipt]) {
+        
+        return nil;
+    }
+    
+    __weak typeof(self) weakSelf = self;
+    MPUCellBuilder *actionsCellBuilder = [MPUCellBuilder builderWithBlock:^MPUTransactionCell *{
+        return [weakSelf sendReceiptCell];
+    }];
+    
+    actionsCellBuilder.cellHeight = MPUSummaryControllerActionCellHeight;
+    
+    return actionsCellBuilder;
+}
+
+
+- (MPUTransactionCell*)sendReceiptCell {
+    
+    MPUTransactionActionsCell *cell = [self.tableView dequeueReusableCellWithIdentifier:MPUTransactionActionsCellIdentifier];
+    
+    [cell setActionTitle:[MPUUIHelper localizedString:(self.receiptSent)?@"MPUResendReceipt":@"MPUSendReceipt"] bold:NO];
+    
+    __weak typeof(self) weakSelf = self;
+    [cell setAction:^{ [weakSelf didTapSendButton]; }];
+    
+    return cell;
+}
+
+
+- (BOOL)isSendReceiptFeatureEnabled {
+    
+    return (self.mposUi.configuration.summaryFeatures & MPUMposUiConfigurationSummaryFeatureSendReceiptViaEmail);
+}
+
+
+
+#pragma mark Print receipt cell
+
+- (MPUCellBuilder*)printReceiptCellBuilder {
+    
+    if (![self isPrintReceiptFeatureEnabled]
+        || ![self hasTransactionReceipt]) {
+        
+        return nil;
+    }
+    
+    __weak typeof(self) weakSelf = self;
+    MPUCellBuilder *actionsCellBuilder = [MPUCellBuilder builderWithBlock:^MPUTransactionCell *{
+        return [weakSelf printReceiptCell];
+    }];
+    
+    actionsCellBuilder.cellHeight = MPUSummaryControllerActionCellHeight;
+    
+    return actionsCellBuilder;
+}
+
+
+- (MPUTransactionCell*)printReceiptCell {
+    
+    MPUTransactionActionsCell *cell = [self.tableView dequeueReusableCellWithIdentifier:MPUTransactionActionsCellIdentifier];
+    
+    [cell setActionTitle:[MPUUIHelper localizedString:(self.isReceiptPrinted)?@"MPUReprintReceipt":@"MPUPrintReceipt"] bold:NO];
+    
+    __weak typeof(self) weakSelf = self;
+    [cell setAction:^{ [weakSelf didTapPrintButton]; }];
+    
+    return cell;
+}
+
+
+- (BOOL)isPrintReceiptFeatureEnabled {
+    
+    return ((self.mposUi.configuration.summaryFeatures & MPUMposUiConfigurationSummaryFeaturePrintReceipt) == MPUMposUiConfigurationSummaryFeaturePrintReceipt);
 }
 
 
@@ -856,45 +1041,7 @@ typedef NS_ENUM(NSUInteger, MPUSummaryControllerAlertTag) {
 }
 
 
-- (BOOL)isPrintReceiptFeatureEnabled {
-    
-    return ((self.mposUi.configuration.summaryFeatures & MPUMposUiConfigurationSummaryFeaturePrintReceipt) == MPUMposUiConfigurationSummaryFeaturePrintReceipt);
-}
 
-
-#pragma mark .    refund
-
-- (void)setupRefundActionInCell:(MPUTransactionActionsCell*)cell button:(UIButton*)button forTransaction:(MPTransaction*)transaction {
-    
-    button.hidden = NO;
-    
-    [button setTitle:[MPUUIHelper localizedString:@"MPURefund"] forState:UIControlStateNormal];
-    
-    __weak typeof(self) weakSelf = self;
-    [cell setAction:^{ [weakSelf didTapRefundButton]; } forButton:button];
-}
-
-
-- (BOOL)canRefund {
-    
-    return (self.refundEnabled
-            && [self isRefundFeatureEnabled]
-            && [self isTransactionRefundable]);
-}
-
-- (BOOL)canPrint {
-    
-    return ([self isPrintReceiptFeatureEnabled]
-            && [self hasTransactionReceipt]);
-}
-
-
-- (BOOL)isTransactionRefundable {
-    
-    return ((self.transaction.status == MPTransactionStatusApproved)
-            && (self.transaction.refundDetails.status != MPRefundDetailsStatusRefunded)
-            && (self.transaction.type != MPTransactionTypeRefund));
-}
 
 
 - (BOOL)hasTransactionReceipt {
@@ -915,53 +1062,33 @@ typedef NS_ENUM(NSUInteger, MPUSummaryControllerAlertTag) {
 }
 
 
-- (BOOL)isRefundFeatureEnabled {
-  
-    return (self.mposUi.configuration.summaryFeatures & MPUMposUiConfigurationSummaryFeatureRefundTransaction);
-}
+#pragma mark Close cell
 
-
-
-#pragma mark .   capture
-
-
-- (void)setupCaptureActionInCell:(MPUTransactionActionsCell*)cell button:(UIButton*)button forTransaction:(MPTransaction*)transaction {
-    
-    button.hidden = NO;
-    
-    [button setTitle:[MPUUIHelper localizedString:@"MPUCapture"] forState:UIControlStateNormal];
+- (MPUCellBuilder*)closeCellBuilder {
     
     __weak typeof(self) weakSelf = self;
-    [cell setAction:^{ [weakSelf didTapCaptureButton]; } forButton:button];
-}
+    MPUCellBuilder *actionsCellBuilder = [MPUCellBuilder builderWithBlock:^MPUTransactionCell *{
+        return [weakSelf closeCell];
+    }];
 
-
-
-- (BOOL)canCapture {
-
-    return (self.refundEnabled
-            && [self isCaptureFeatureEnabled]
-            && [self isTransactionCapturable]);
-}
-
-
-- (BOOL)isCaptureFeatureEnabled {
+    actionsCellBuilder.cellHeight = MPUSummaryControllerActionCellHeight;
     
-    return (self.mposUi.configuration.summaryFeatures & MPUMposUiConfigurationSummaryFeatureCaptureTransaction);
+    return actionsCellBuilder;
 }
 
-- (BOOL)isTransactionCapturable {
+
+- (MPUTransactionCell*)closeCell {
     
-    return ([self isTransactionRefundable]
-            && !self.transaction.captured);
-}
-
-
-
-- (BOOL)isSendReceiptFeatureEnabled {
+    MPUTransactionActionsCell *cell = [self.tableView dequeueReusableCellWithIdentifier:MPUTransactionActionsCellIdentifier];
     
-    return (self.mposUi.configuration.summaryFeatures & MPUMposUiConfigurationSummaryFeatureSendReceiptViaEmail);
+    [cell setActionTitle:[MPUUIHelper localizedString:@"MPUClose"] bold:YES];
+    
+    __weak typeof(self) weakSelf = self;
+    [cell setAction:^{ [weakSelf didTapCloseButton]; }];
+    
+    return cell;
 }
+
 
 
 #pragma mark Date
@@ -970,7 +1097,7 @@ typedef NS_ENUM(NSUInteger, MPUSummaryControllerAlertTag) {
     
     __weak typeof(self) weakSelf = self;
     
-    MPUCellBuilder *dateCellBuilder = [MPUCellBuilder builderWithBlock:^UITableViewCell *{
+    MPUCellBuilder *dateCellBuilder = [MPUCellBuilder builderWithBlock:^MPUTransactionCell *{
         return [self dateCellForTransaction:weakSelf.transaction];
     }];
     
@@ -978,7 +1105,7 @@ typedef NS_ENUM(NSUInteger, MPUSummaryControllerAlertTag) {
 }
 
 
-- (UITableViewCell*)dateCellForTransaction:(MPTransaction*)transaction {
+- (MPUTransactionCell*)dateCellForTransaction:(MPTransaction*)transaction {
     
     MPUTransactionDateFooterCell *dateCell = [self.tableView dequeueReusableCellWithIdentifier:MPUTransactionDateFooterCellIdentifier];
     
@@ -1036,28 +1163,86 @@ typedef NS_ENUM(NSUInteger, MPUSummaryControllerAlertTag) {
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
     
-    return 1;
+    return self.cellBuilders.count;
 }
 
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
     
-    return self.cellBuilders.count;
+    return [self.cellBuilders[section] count];
 }
 
 
 - (UITableViewCell*)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     
-    MPUCellBuilder *cellBuilder = self.cellBuilders[indexPath.row];
+    NSArray *section = self.cellBuilders[indexPath.section];
     
-    return cellBuilder.build();
+    MPUCellBuilder *cellBuilder = section[indexPath.row];
+    MPUTransactionCell *cell = cellBuilder.build();
+    
+    BOOL hideSeparator = cellBuilder.forceHideSepparator || (indexPath.row == 0);
+    
+    [cell hideSeparatorView:hideSeparator];
+    
+    return cell;
 }
 
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
     
-    MPUCellBuilder *cellBuilder = self.cellBuilders[indexPath.row];
+    NSArray *section = self.cellBuilders[indexPath.section];
+    
+    MPUCellBuilder *cellBuilder = section[indexPath.row];
+    
     return cellBuilder.cellHeight;
+}
+
+
+
+- (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section {
+    
+    return  (section == 0) ? CGFLOAT_MIN : 1.0;
+}
+
+- (UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section {
+    UIView *view = [[UIView alloc] initWithFrame:CGRectZero];
+    
+    view.backgroundColor = [MPUUIHelper colorFromHexString:@"#e7e7e7"];
+    
+    return view;
+}
+
+
+- (CGFloat)tableView:(UITableView *)tableView heightForFooterInSection:(NSInteger)section {
+    
+    return 36.0;
+}
+
+- (UIView*)tableView:(UITableView *)tableView viewForFooterInSection:(NSInteger)section {
+    
+    UIView *view = [[UIView alloc] initWithFrame:CGRectZero];
+    UIView *separator = [[UIView alloc] initWithFrame:CGRectZero];
+    [view addSubview:separator];
+    
+    separator.translatesAutoresizingMaskIntoConstraints = NO;
+    
+    NSArray *horizontalConstraints = [NSLayoutConstraint constraintsWithVisualFormat:@"H:|[separator]|"
+                                                                             options:0
+                                                                             metrics:nil
+                                                                               views:@{@"separator" : separator}];
+   
+    NSArray *verticalConstraints = [NSLayoutConstraint constraintsWithVisualFormat:@"V:|[separator(1)]"
+                                                                             options:0
+                                                                             metrics:nil
+                                                                               views:@{@"separator" : separator}];
+    
+    [view addConstraints:horizontalConstraints];
+    [view addConstraints:verticalConstraints];
+    
+    view.backgroundColor = [UIColor clearColor];
+    separator.backgroundColor = [MPUUIHelper colorFromHexString:@"#e7e7e7"];
+    
+    return view;
 }
 
 @end

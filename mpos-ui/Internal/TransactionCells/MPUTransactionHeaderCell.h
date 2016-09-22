@@ -25,12 +25,14 @@
  */
 
 #import <UIKit/UIKit.h>
+#import "MPUTransactionCell.h"
 
 extern NSString * const MPUTransactionHeaderCellIdentifier;
 
-@interface MPUTransactionHeaderCell : UITableViewCell
+@interface MPUTransactionHeaderCell : MPUTransactionCell
 
 @property (weak, nonatomic) IBOutlet UILabel *titleLabel;
 @property (weak, nonatomic) IBOutlet UILabel *amountLabel;
+@property (weak, nonatomic) IBOutlet UILabel *detailLabel;
 
 @end

@@ -43,10 +43,12 @@
 @property (nonatomic, weak) IBOutlet UILabel *transactionStatusIcon;
 @property (nonatomic, weak) IBOutlet MPUProgressView *progressView;
 @property (nonatomic, weak) IBOutlet UIButton *abortButton;
+@property (weak, nonatomic) IBOutlet UIView *abortView;
 @property (nonatomic, weak) IBOutlet NSLayoutConstraint *progressViewMarginTopConstraint;
 @property (nonatomic, assign) BOOL isRefund;
 
 @end
+
 
 @implementation MPUTransactionController
 
@@ -77,7 +79,10 @@
 #pragma mark - Private
 
 - (void) l10n {
-    [self.abortButton setTitle:[MPUUIHelper localizedString:@"MPUAbort"] forState:UIControlStateNormal];
+    
+    NSAttributedString *abortAttString = [[NSAttributedString alloc] initWithString:[MPUUIHelper localizedString:@"MPUAbort"] attributes:[MPUUIHelper actionButtonTitleAttributesBold:YES]];
+    [self.abortButton setAttributedTitle:abortAttString forState:UIControlStateNormal];
+    self.abortButton.contentHorizontalAlignment = UIControlContentHorizontalAlignmentLeft;
 }
 
 - (void)startTransaction {
@@ -107,37 +112,38 @@
             return;
         }
         
-        if (details.error != nil) {
-            
-            self.mposUi.error = details.error;
-            [self.delegate transactionError:details.error];
-            return;
-        }
         
         switch (transaction.status) {
             case MPTransactionStatusApproved:
             case MPTransactionStatusDeclined:
+                
                 if (self.isRefund) {
                     [self.delegate transactionRefunded:transaction];
                     return;
                 }
                 [self.delegate transactionSummary:transaction];
-                break;
+                return;
                 
             case MPTransactionStatusAborted:
+                
                 self.mposUi.error = details.error;
                 if (self.transaction){
                     [self.delegate transactionSummary:transaction];
                 }
-                break;
+                return;
+                
             case MPTransactionStatusError:
             case MPTransactionStatusInitialized:
             case MPTransactionStatusPending:
             case MPTransactionStatusUnknown:
+                
                 self.mposUi.error = details.error;
                 [self.delegate transactionError:details.error];
-                break;
+                return;
         }
+        
+        self.mposUi.error = [NSError errorWithDomain:MPErrorDomainKey code:MPErrorTypeInternalInconsistency userInfo:nil];
+        [self.delegate transactionError:details.error];
     };
     
     if (self.parameters.parametersType == MPTransactionParametersTypeCharge) {
@@ -212,7 +218,7 @@
 - (void)updateTransactionStatus:(MPTransactionProcessDetails *)details withTransaction:(MPTransaction *)transaction {
     self.transactionStatusInfo.text = [details.information componentsJoinedByString:@"\n"];
     self.transactionStatusIcon.text = [self iconForTransactionState:details];
-    self.abortButton.hidden = ![self.transactionProcess canBeAborted];
+    self.abortView.hidden = ![self.transactionProcess canBeAborted];
     [self updateProgressView:details];
 }
 

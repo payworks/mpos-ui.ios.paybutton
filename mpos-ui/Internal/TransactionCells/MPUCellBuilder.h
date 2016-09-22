@@ -27,12 +27,17 @@
 #import <Foundation/Foundation.h>
 #import <UIKit/UIKit.h>
 
-typedef  UITableViewCell * (^MPUCellBuilderBlock)(void);
+@class MPUTransactionCell;
+
+typedef  MPUTransactionCell* (^MPUCellBuilderBlock)(void);
+
+extern const CGFloat MPUCellBuilderDefaultCellHeight;
 
 @interface MPUCellBuilder : NSObject
 
 @property (copy, nonatomic) MPUCellBuilderBlock build;
 @property (assign, nonatomic) CGFloat cellHeight;
+@property (assign, nonatomic) BOOL forceHideSepparator;
 
 + (instancetype)builderWithBlock:(MPUCellBuilderBlock)block;
 

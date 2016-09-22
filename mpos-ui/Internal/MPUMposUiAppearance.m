@@ -37,15 +37,29 @@
 - (instancetype)init {
 
     self = [super init];
-    if (self == nil)
-    {
+    if (self == nil) {
         return nil;
     }
     
-    self.navigationBarTextColor = [UINavigationBar appearance].titleTextAttributes[NSForegroundColorAttributeName];
-    self.navigationBarTint = [UINavigationBar appearance].barTintColor;
-    self.backgroundColor = [MPUUIHelper colorFromHexString:@"#eeeeee"];
+    self.navigationBarTextColor = [UIColor whiteColor];
+    self.navigationBarTint = [MPUUIHelper colorFromHexString:@"#0D2048"];
+    self.backgroundColor = [MPUUIHelper colorFromHexString:@"#F7F5F4"];
     self.statusBarStyle = UIStatusBarStyleDefault;
+    
+    self.preauthorizedBackgroundColor = [MPUUIHelper colorFromHexString:@"#DCA54C"];
+    self.preauthorizedTextColor  = [MPUUIHelper colorFromHexString:@"#FFFFFF"];
+    
+    self.approvedBackgroundColor = [MPUUIHelper colorFromHexString:@"#638D31"];
+    self.approvedTextColor = [MPUUIHelper colorFromHexString:@"#FFFFFF"];
+    
+    self.declinedBackgroundColor = [MPUUIHelper colorFromHexString:@"#B03B3B"];
+    self.declinedTextColor = [MPUUIHelper colorFromHexString:@"#FFFFFF"];
+    
+    self.refundedBackgroundColor = [MPUUIHelper colorFromHexString:@"#3F6CA1"];
+    self.refundedTextColor = [MPUUIHelper colorFromHexString:@"#FFFFFF"];
+    
+    self.actionButtonTextColor = nil;
+    
     return self;
 }
 

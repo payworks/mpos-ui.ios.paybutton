@@ -33,8 +33,6 @@
 - (void)titleChanged:(NSString *)title;
 - (void)hideBackButton:(BOOL)hide;
 - (void)hideCloseButton:(BOOL)hide;
-- (void)setRightButtonItem:(UIBarButtonItem *)rightButtonItem;
-- (void)setBackButtonItem:(UIBarButtonItem *)backButtonItem;
 @end
 
 @interface MPUAbstractContainerViewController : UIViewController
