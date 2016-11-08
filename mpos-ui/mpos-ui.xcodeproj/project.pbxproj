@@ -68,8 +68,7 @@
 		44F4D1641B4FB20E00EC26C7 /* MPUSummaryMainController.h in Headers */ = {isa = PBXBuildFile; fileRef = 44F4D1621B4FB20E00EC26C7 /* MPUSummaryMainController.h */; };
 		44F4D1651B4FB20E00EC26C7 /* MPUSummaryMainController.m in Sources */ = {isa = PBXBuildFile; fileRef = 44F4D1631B4FB20E00EC26C7 /* MPUSummaryMainController.m */; };
 		7E49EEB39D1DBCD22ACF9559 /* libPods-mpos-ui.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 0F004FA6DDCFDE0143C0B06F /* libPods-mpos-ui.a */; };
-		B34C97861CCE4CEA0092A8D4 /* MPUSummaryController.h in Headers */ = {isa = PBXBuildFile; fileRef = B34C97841CCE4CEA0092A8D4 /* MPUSummaryController.h */; };
-		B34C97871CCE4CEA0092A8D4 /* MPUSummaryController.m in Sources */ = {isa = PBXBuildFile; fileRef = B34C97851CCE4CEA0092A8D4 /* MPUSummaryController.m */; };
+		B34C97861CCE4CEA0092A8D4 /* MPUSummaryController.h in Headers */ = {isa = PBXBuildFile; fileRef = B34C97841CCE4CEA0092A8D4 /* MPUSummaryController.h */; settings = {ATTRIBUTES = (Private, ); }; };
 		B35AFE651D7854E60088C3B7 /* MPUTransactionCell.h in Headers */ = {isa = PBXBuildFile; fileRef = B35AFE631D7854E60088C3B7 /* MPUTransactionCell.h */; };
 		B35AFE661D7854E60088C3B7 /* MPUTransactionCell.m in Sources */ = {isa = PBXBuildFile; fileRef = B35AFE641D7854E60088C3B7 /* MPUTransactionCell.m */; };
 		B395AC4C1CD79ECA00C4CEE4 /* yourbrand.plist in Resources */ = {isa = PBXBuildFile; fileRef = B395AC4B1CD79ECA00C4CEE4 /* yourbrand.plist */; };
@@ -87,6 +86,7 @@
 		B395AC711CD8E85200C4CEE4 /* MPUTransactionDateFooterCell.m in Sources */ = {isa = PBXBuildFile; fileRef = B395AC6F1CD8E85200C4CEE4 /* MPUTransactionDateFooterCell.m */; };
 		B395AC741CD8E9F900C4CEE4 /* MPUCellBuilder.h in Headers */ = {isa = PBXBuildFile; fileRef = B395AC721CD8E9F900C4CEE4 /* MPUCellBuilder.h */; };
 		B395AC751CD8E9F900C4CEE4 /* MPUCellBuilder.m in Sources */ = {isa = PBXBuildFile; fileRef = B395AC731CD8E9F900C4CEE4 /* MPUCellBuilder.m */; };
+		B3C15C091DA7F8C100BD60C8 /* MPUSummaryController.m in Sources */ = {isa = PBXBuildFile; fileRef = B34C97851CCE4CEA0092A8D4 /* MPUSummaryController.m */; };
 		B3C1C62D1D47BAE800780E4B /* LICENSE.h in Headers */ = {isa = PBXBuildFile; fileRef = B3C1C62C1D47BAE800780E4B /* LICENSE.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		B3FBBFBB1D1445C700A2EDB0 /* mpos-ui.strings in Resources */ = {isa = PBXBuildFile; fileRef = B3FBBFB91D1445B600A2EDB0 /* mpos-ui.strings */; };
 		F46242B61B3C6A7A00274B6F /* mpos-ui.pch in Headers */ = {isa = PBXBuildFile; fileRef = F46242B51B3C6A7A00274B6F /* mpos-ui.pch */; };
@@ -661,13 +661,11 @@
 			buildConfigurationList = F48682521B0CA93D0042FF15 /* Build configuration list for PBXNativeTarget "mpos-ui" */;
 			buildPhases = (
 				9D4F291CAE99F54B02702D24 /* 📦 Check Pods Manifest.lock */,
-				80CCF78401BCB6100A27858F /* [CP] Check Pods Manifest.lock */,
 				F48682391B0CA93C0042FF15 /* Sources */,
 				F486823A1B0CA93C0042FF15 /* Frameworks */,
 				F48682911B0CB6D30042FF15 /* Headers */,
 				F486823B1B0CA93C0042FF15 /* CopyFiles */,
 				F48682831B0CABFC0042FF15 /* ShellScript */,
-				6672B8A6B05A86E3E4E99DCA /* [CP] Copy Pods Resources */,
 				94F24945BB7D9B34D55ACFB6 /* 📦 Copy Pods Resources */,
 			);
 			buildRules = (
@@ -701,11 +699,9 @@
 			buildConfigurationList = F48682E21B0CBC6A0042FF15 /* Build configuration list for PBXNativeTarget "mpos-ui.podsdummy" */;
 			buildPhases = (
 				02FC2826DEEA0BEF0DF81E13 /* 📦 Check Pods Manifest.lock */,
-				6102E4AE36D76A1557000D59 /* [CP] Check Pods Manifest.lock */,
 				F48682C91B0CBC6A0042FF15 /* Sources */,
 				F48682CA1B0CBC6A0042FF15 /* Frameworks */,
 				F48682CB1B0CBC6A0042FF15 /* CopyFiles */,
-				ACD6148CB2E1857B9B4A50BF /* [CP] Copy Pods Resources */,
 				0E000CA5921FF5AE00EA4824 /* 📦 Copy Pods Resources */,
 			);
 			buildRules = (
@@ -723,7 +719,7 @@
 		2D959B5C1A7B8D0F00DC5310 /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
-				LastUpgradeCheck = 0700;
+				LastUpgradeCheck = 0800;
 				ORGANIZATIONNAME = payworks;
 				TargetAttributes = {
 					F486823C1B0CA93C0042FF15 = {
@@ -825,51 +821,6 @@
 			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-mpos-ui.podsdummy/Pods-mpos-ui.podsdummy-resources.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
-		6102E4AE36D76A1557000D59 /* [CP] Check Pods Manifest.lock */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputPaths = (
-			);
-			name = "[CP] Check Pods Manifest.lock";
-			outputPaths = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [[ $? != 0 ]] ; then\n    cat << EOM\nerror: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\nEOM\n    exit 1\nfi\n";
-			showEnvVarsInLog = 0;
-		};
-		6672B8A6B05A86E3E4E99DCA /* [CP] Copy Pods Resources */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputPaths = (
-			);
-			name = "[CP] Copy Pods Resources";
-			outputPaths = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-mpos-ui/Pods-mpos-ui-resources.sh\"\n";
-			showEnvVarsInLog = 0;
-		};
-		80CCF78401BCB6100A27858F /* [CP] Check Pods Manifest.lock */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputPaths = (
-			);
-			name = "[CP] Check Pods Manifest.lock";
-			outputPaths = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [[ $? != 0 ]] ; then\n    cat << EOM\nerror: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\nEOM\n    exit 1\nfi\n";
-			showEnvVarsInLog = 0;
-		};
 		94F24945BB7D9B34D55ACFB6 /* 📦 Copy Pods Resources */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
@@ -898,21 +849,6 @@
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
 			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [[ $? != 0 ]] ; then\n    cat << EOM\nerror: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\nEOM\n    exit 1\nfi\n";
-			showEnvVarsInLog = 0;
-		};
-		ACD6148CB2E1857B9B4A50BF /* [CP] Copy Pods Resources */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputPaths = (
-			);
-			name = "[CP] Copy Pods Resources";
-			outputPaths = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-mpos-ui.podsdummy/Pods-mpos-ui.podsdummy-resources.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
 		F48682831B0CABFC0042FF15 /* ShellScript */ = {
@@ -948,7 +884,6 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				B34C97871CCE4CEA0092A8D4 /* MPUSummaryController.m in Sources */,
 				4461B2611B973C6700EE55AF /* MPUSettingsMainController.m in Sources */,
 				4479656B1B1EF74600CB540E /* MPUPrintReceiptController.m in Sources */,
 				B35AFE661D7854E60088C3B7 /* MPUTransactionCell.m in Sources */,
@@ -984,6 +919,7 @@
 				F486831D1B0CBF880042FF15 /* MPUTransactionController.m in Sources */,
 				44234B371B0DE5F700C1ABAE /* MPULoadTransactionController.m in Sources */,
 				44AEEBDA1B540AA200531369 /* MPUTransactionMainController.m in Sources */,
+				B3C15C091DA7F8C100BD60C8 /* MPUSummaryController.m in Sources */,
 				4461B24F1B94A26100EE55AF /* MPUAbstractTableViewController.m in Sources */,
 				4461B26A1B98893900EE55AF /* MPULoginContainerViewController.m in Sources */,
 			);
@@ -1131,7 +1067,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 7.1;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				MTL_ENABLE_DEBUG_INFO = YES;
 				ONLY_ACTIVE_ARCH = YES;
 				SDKROOT = iphoneos;
@@ -1171,7 +1107,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 7.1;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				SDKROOT = iphoneos;
 				TARGETED_DEVICE_FAMILY = "1,2";

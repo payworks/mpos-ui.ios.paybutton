@@ -12,7 +12,7 @@ PWC_PACKAGE_DIR="${PWC_CURRENT_DIR}/packaged"
 
 PWC_SCHEME="mpos-ui-framework"
 PWC_FRAMEWORK_NAME="mpos-ui"
-PWC_BUILD_TOOL="xctool"
+
 
 
 if [ "$#" -lt 1 ]; then
@@ -33,17 +33,6 @@ echo ""
 echo ""
 echo ""
 
-#check whether xctool is installed
-if hash xctool 2>/dev/null; then
-    PWC_BUILD_TOOL="xctool"
-else
-    if [ -z "$PWC_BUILD_TOOL_PATH" ]; then
-        echo "### xctool not found, please install it ###"
-        exit 1
-    else
-        PWC_BUILD_TOOL="${PWC_BUILD_TOOL_PATH}"
-    fi
-fi
 
 echo ""
 echo ""
@@ -61,8 +50,8 @@ echo ""
 echo ""
 echo "### Building Versions ###"
 echo ""
-echo "iphoneos build: ${PWC_BUILD_TOOL} -workspace ${PWC_WORKSPACE} -scheme ${PWC_SCHEME} -configuration ${PWC_CONFIGURATION} -sdk ${PWC_SDK_NAME_IPHONEOS} ${PWC_ACTION} FRAMEWORK_EXPORT_DIR=${PWC_PACKAGE_DIR}"
-${PWC_BUILD_TOOL} -workspace "${PWC_WORKSPACE}" -scheme "${PWC_SCHEME}" -configuration "${PWC_CONFIGURATION}" -sdk "${PWC_SDK_NAME_IPHONEOS}" ${PWC_ACTION} FRAMEWORK_EXPORT_DIR="${PWC_PACKAGE_DIR}" OTHER_CFLAGS="-fembed-bitcode -Qunused-arguments"
+echo "iphoneos build: xcodebuild -workspace ${PWC_WORKSPACE} -scheme ${PWC_SCHEME} -configuration ${PWC_CONFIGURATION} -sdk iphoneos ${PWC_ACTION} FRAMEWORK_EXPORT_DIR=${PWC_PACKAGE_DIR}"
+xcodebuild -workspace "${PWC_WORKSPACE}" -scheme "${PWC_SCHEME}" -configuration "${PWC_CONFIGURATION}" -sdk iphoneos clean build FRAMEWORK_EXPORT_DIR="${PWC_PACKAGE_DIR}" OTHER_CFLAGS="-fembed-bitcode -Qunused-arguments"
 
 echo ""
 echo ""

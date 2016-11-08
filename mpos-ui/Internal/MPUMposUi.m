@@ -35,7 +35,7 @@
 #import "MPULoginMainController.h"
 #import <Lockbox/Lockbox.h>
 
-NSString *const MPMposUiSDKVersion = @"2.11.1";
+NSString *const MPMposUiSDKVersion = @"2.14.0";
 
 NSString *const MPUKeychainUsername =               @"MPUKeychainUsername";
 NSString *const MPUKeychainMerchantIdentifier =     @"MPUKeychainMerchantIdentifier";

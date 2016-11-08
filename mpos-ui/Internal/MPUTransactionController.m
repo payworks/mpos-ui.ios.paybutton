@@ -131,7 +131,8 @@
                     [self.delegate transactionSummary:transaction];
                 }
                 return;
-                
+
+            case MPTransactionStatusInconclusive:
             case MPTransactionStatusError:
             case MPTransactionStatusInitialized:
             case MPTransactionStatusPending:
@@ -249,6 +250,7 @@
         case MPTransactionProcessDetailsStateDetailsProcessingActionRequired:
         case MPTransactionProcessDetailsStateDetailsProcessingCompleted:
         case MPTransactionProcessDetailsStateDetailsWaitingForCardPresentation:
+        case MPTransactionProcessDetailsStateDetailsInconclusive:
             break; // We do nothing here.
     };
 
@@ -267,9 +269,10 @@
         case MPTransactionProcessDetailsStateDeclined:
             return @"\u202F\uf19c"; //fa-bank - mind the gap
         case MPTransactionProcessDetailsStateFailed:
+        case MPTransactionProcessDetailsStateInconclusive:
             return @"\uf057"; //fa-circle
         case MPTransactionProcessDetailsStateNotRefundable:
-            case MPTransactionProcessDetailsStatePreparing:
+        case MPTransactionProcessDetailsStatePreparing:
             break; //We do nothing!
     }
     return @"";

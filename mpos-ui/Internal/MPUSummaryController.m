@@ -293,14 +293,14 @@ const CGFloat MPUSummaryControllerHistorySmallCellHeight = 56.0;
             
             return @"MPUTotal";
             
-            
-        case MPTransactionStatusDeclined:   return @"MPUDeclined";
-        case MPTransactionStatusAborted:    return @"MPUAborted";
-        case MPTransactionStatusError:      return @"MPUError";
+        case MPTransactionStatusInconclusive:   return @"MPUInconclusive";
+        case MPTransactionStatusDeclined:       return @"MPUDeclined";
+        case MPTransactionStatusAborted:        return @"MPUAborted";
+        case MPTransactionStatusError:          return @"MPUError";
             
         case MPTransactionStatusUnknown:        //fallthrough
         case MPTransactionStatusInitialized:    //fallthrough
-        case MPTransactionStatusPending:    return @"MPUUnknown";
+        case MPTransactionStatusPending:        return @"MPUUnknown";
     }
 
      return @"MPUUnknown";
@@ -343,8 +343,11 @@ const CGFloat MPUSummaryControllerHistorySmallCellHeight = 56.0;
         
         case MPTransactionStatusDeclined:
         case MPTransactionStatusError:
+        case MPTransactionStatusInconclusive:
             return  [self.mposUi.transactionProvider.localizationToolbox informationForTransactionStatusDetailsCode:transaction.statusDetails.code] ;
-            
+
+
+
         case MPTransactionStatusApproved:
         case MPTransactionStatusUnknown:
         case MPTransactionStatusInitialized:
@@ -375,8 +378,8 @@ const CGFloat MPUSummaryControllerHistorySmallCellHeight = 56.0;
             
             return appearance.approvedBackgroundColor;
           
-            
-        case MPTransactionStatusDeclined:   
+        case MPTransactionStatusInconclusive:
+        case MPTransactionStatusDeclined:
         case MPTransactionStatusAborted:    
         case MPTransactionStatusError:
             
@@ -412,6 +415,7 @@ const CGFloat MPUSummaryControllerHistorySmallCellHeight = 56.0;
         case MPTransactionStatusDeclined:
         case MPTransactionStatusAborted:
         case MPTransactionStatusError:
+        case MPTransactionStatusInconclusive:
             
         case MPTransactionStatusUnknown:
         case MPTransactionStatusInitialized:
@@ -770,7 +774,11 @@ const CGFloat MPUSummaryControllerHistorySmallCellHeight = 56.0;
 - (NSString *)maskedAccountNumberForTransaction:(MPTransaction*)transaction {
     
     NSString *maskedAccountNumber = transaction.paymentDetails.accountNumber;
-    
+
+    if (maskedAccountNumber.length == 0) {
+        return maskedAccountNumber;
+    }
+
     maskedAccountNumber = [maskedAccountNumber stringByReplacingOccurrencesOfString:@" " withString:@""];
     maskedAccountNumber = [maskedAccountNumber stringByReplacingOccurrencesOfString:@"-" withString:@""];
     
@@ -779,12 +787,10 @@ const CGFloat MPUSummaryControllerHistorySmallCellHeight = 56.0;
                                                                             options:NSRegularExpressionSearch
                                                                               range:NSMakeRange(0, [maskedAccountNumber length])];
 
-
-    
     // next we separate string into groups of four separated with a space, starting with the end
     // ie "**********1234" - becomes "** **** **** 1234"
     
-    NSUInteger numberOfSpaces = (maskedAccountNumber.length-1) / 4; // length-1 - so that we don't insert the extra space at the begining when we have multiple of 4 chars
+    NSInteger numberOfSpaces = (maskedAccountNumber.length-1) / 4; // length-1 - so that we don't insert the extra space at the begining when we have multiple of 4 chars
     
     NSMutableString *man = [maskedAccountNumber mutableCopy];
     NSUInteger initalLength = man.length;
@@ -1051,12 +1057,13 @@ const CGFloat MPUSummaryControllerHistorySmallCellHeight = 56.0;
         case MPTransactionStatusApproved:   //fallthrough
         case MPTransactionStatusDeclined:   //fallthrough
         case MPTransactionStatusAborted:    return YES;
-        
+
+        case MPTransactionStatusInconclusive:
         case MPTransactionStatusError:      //fallthrough
         case MPTransactionStatusUnknown:    //fallthrough
         case MPTransactionStatusInitialized://fallthrough
         case MPTransactionStatusPending:    return NO;
-    }
+    }	
     
     return NO;
 }
