@@ -23,6 +23,7 @@
 /* End PBXAggregateTarget section */
 
 /* Begin PBXBuildFile section */
+		088EE62D1DE598F3008F6480 /* barclaycard.plist in Resources */ = {isa = PBXBuildFile; fileRef = 088EE62C1DE598F3008F6480 /* barclaycard.plist */; };
 		4278ED4B1D1CFC0039195A77 /* libPods-mpos-ui.podsdummy.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 3848B4A47AE3D5FA03324DB9 /* libPods-mpos-ui.podsdummy.a */; };
 		44234B361B0DE5F700C1ABAE /* MPULoadTransactionController.h in Headers */ = {isa = PBXBuildFile; fileRef = 44234B341B0DE5F700C1ABAE /* MPULoadTransactionController.h */; };
 		44234B371B0DE5F700C1ABAE /* MPULoadTransactionController.m in Sources */ = {isa = PBXBuildFile; fileRef = 44234B351B0DE5F700C1ABAE /* MPULoadTransactionController.m */; };
@@ -162,6 +163,7 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		088EE62C1DE598F3008F6480 /* barclaycard.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = barclaycard.plist; sourceTree = "<group>"; };
 		0F004FA6DDCFDE0143C0B06F /* libPods-mpos-ui.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-mpos-ui.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		21A6586CE6DC2E960D917DF7 /* Pods-mpos-ui.podsdummy.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-mpos-ui.podsdummy.debug.xcconfig"; path = "Pods/Target Support Files/Pods-mpos-ui.podsdummy/Pods-mpos-ui.podsdummy.debug.xcconfig"; sourceTree = "<group>"; };
 		2D959B801A7B8D7200DC5310 /* ExternalAccessory.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = ExternalAccessory.framework; path = System/Library/Frameworks/ExternalAccessory.framework; sourceTree = SDKROOT; };
@@ -387,6 +389,7 @@
 				4461B2571B96ED1D00EE55AF /* mcashier.plist */,
 				445DAF441C56314100438186 /* secureretail.plist */,
 				B395AC4B1CD79ECA00C4CEE4 /* yourbrand.plist */,
+				088EE62C1DE598F3008F6480 /* barclaycard.plist */,
 			);
 			path = "application-customization";
 			sourceTree = "<group>";
@@ -660,13 +663,13 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = F48682521B0CA93D0042FF15 /* Build configuration list for PBXNativeTarget "mpos-ui" */;
 			buildPhases = (
-				9D4F291CAE99F54B02702D24 /* 📦 Check Pods Manifest.lock */,
+				9D4F291CAE99F54B02702D24 /* [CP] Check Pods Manifest.lock */,
 				F48682391B0CA93C0042FF15 /* Sources */,
 				F486823A1B0CA93C0042FF15 /* Frameworks */,
 				F48682911B0CB6D30042FF15 /* Headers */,
 				F486823B1B0CA93C0042FF15 /* CopyFiles */,
 				F48682831B0CABFC0042FF15 /* ShellScript */,
-				94F24945BB7D9B34D55ACFB6 /* 📦 Copy Pods Resources */,
+				94F24945BB7D9B34D55ACFB6 /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -698,11 +701,11 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = F48682E21B0CBC6A0042FF15 /* Build configuration list for PBXNativeTarget "mpos-ui.podsdummy" */;
 			buildPhases = (
-				02FC2826DEEA0BEF0DF81E13 /* 📦 Check Pods Manifest.lock */,
+				02FC2826DEEA0BEF0DF81E13 /* [CP] Check Pods Manifest.lock */,
 				F48682C91B0CBC6A0042FF15 /* Sources */,
 				F48682CA1B0CBC6A0042FF15 /* Frameworks */,
 				F48682CB1B0CBC6A0042FF15 /* CopyFiles */,
-				0E000CA5921FF5AE00EA4824 /* 📦 Copy Pods Resources */,
+				0E000CA5921FF5AE00EA4824 /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -777,6 +780,7 @@
 				445DAF521C56569200438186 /* mpos-ui.strings in Resources */,
 				F48683401B0E06650042FF15 /* mpos-ui.strings in Resources */,
 				F48683411B0E06650042FF15 /* mpos-ui.strings in Resources */,
+				088EE62D1DE598F3008F6480 /* barclaycard.plist in Resources */,
 				44B3EE211BDFD8320089D194 /* mpos-ui.strings in Resources */,
 				4461B2561B96E27B00EE55AF /* concardis.plist in Resources */,
 				4461B2581B96ED1D00EE55AF /* mcashier.plist in Resources */,
@@ -791,14 +795,14 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXShellScriptBuildPhase section */
-		02FC2826DEEA0BEF0DF81E13 /* 📦 Check Pods Manifest.lock */ = {
+		02FC2826DEEA0BEF0DF81E13 /* [CP] Check Pods Manifest.lock */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
 			);
 			inputPaths = (
 			);
-			name = "📦 Check Pods Manifest.lock";
+			name = "[CP] Check Pods Manifest.lock";
 			outputPaths = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -806,14 +810,14 @@
 			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [[ $? != 0 ]] ; then\n    cat << EOM\nerror: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\nEOM\n    exit 1\nfi\n";
 			showEnvVarsInLog = 0;
 		};
-		0E000CA5921FF5AE00EA4824 /* 📦 Copy Pods Resources */ = {
+		0E000CA5921FF5AE00EA4824 /* [CP] Copy Pods Resources */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
 			);
 			inputPaths = (
 			);
-			name = "📦 Copy Pods Resources";
+			name = "[CP] Copy Pods Resources";
 			outputPaths = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -821,14 +825,14 @@
 			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-mpos-ui.podsdummy/Pods-mpos-ui.podsdummy-resources.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
-		94F24945BB7D9B34D55ACFB6 /* 📦 Copy Pods Resources */ = {
+		94F24945BB7D9B34D55ACFB6 /* [CP] Copy Pods Resources */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
 			);
 			inputPaths = (
 			);
-			name = "📦 Copy Pods Resources";
+			name = "[CP] Copy Pods Resources";
 			outputPaths = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -836,14 +840,14 @@
 			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-mpos-ui/Pods-mpos-ui-resources.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
-		9D4F291CAE99F54B02702D24 /* 📦 Check Pods Manifest.lock */ = {
+		9D4F291CAE99F54B02702D24 /* [CP] Check Pods Manifest.lock */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
 			);
 			inputPaths = (
 			);
-			name = "📦 Check Pods Manifest.lock";
+			name = "[CP] Check Pods Manifest.lock";
 			outputPaths = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;

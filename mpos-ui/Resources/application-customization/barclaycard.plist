@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>applicationIdentifier</key>
+	<string>barclaycard.terminal</string>
+	<key>navigationBarTint</key>
+	<string>#018fd0</string>
+	<key>navigationBarTextColor</key>
+	<string>#FFFFFF</string>
+	<key>backgroundColor</key>
+	<string>#F7F5F4</string>
+	<key>summaryColors</key>
+	<dict>
+		<key>approvedText</key>
+		<string>#ffffff</string>
+		<key>approvedBackground</key>
+		<string>#72bf44</string>
+		<key>declinedText</key>
+		<string>#ffffff</string>
+		<key>declinedBackground</key>
+		<string>#e03030</string>
+		<key>refundedText</key>
+		<string>#ffffff</string>
+		<key>refundedBackground</key>
+		<string>#085DA9</string>
+		<key>preauthorizedText</key>
+		<string>#ffffff</string>
+		<key>preauthorizedBackground</key>
+		<string>#e9b319</string>
+	</dict>
+	<key>terminalFamily</key>
+	<string>Miura</string>
+	<key>printerFamily</key>
+	<string>Sewoo</string>
+	<key>featureSummaryPrintReceipt</key>
+	<false/>
+	<key>featureSummaryRefund</key>
+	<true/>
+	<key>featureSummarySendReceipt</key>
+	<true/>
+</dict>
+</plist>

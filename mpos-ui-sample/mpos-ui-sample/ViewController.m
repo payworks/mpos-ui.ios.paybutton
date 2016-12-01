@@ -336,6 +336,11 @@ NSString *const CheckoutControllerMerchantSecret        = @"merchant_secret";
 
 }
 
+- (IBAction)initWithBarclaycard:(id)sender {
+    self.applicationMode = YES;
+    self.mposUi = [MPUMposUi initializeWithProviderMode:MPProviderModeTEST application:MPUApplicationNameBarclaycard integratorIdentifier:@"TESTINTEGRATOR"];
+}
+
 - (IBAction)settings:(id)sender {
     if ( self.applicationMode ) {
         UIViewController *viewController = [self.mposUi createSettingsViewController:^(UIViewController *controller) {

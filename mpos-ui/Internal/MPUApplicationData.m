@@ -51,7 +51,28 @@
     self.configuration.summaryFeatures = [self summaryFeatures:applicationDictionary];
     self.configuration.signatureCapture = MPUMposUiConfigurationSignatureCaptureOnScreen;
     
+    [self configureSummaryColorsFromDictionary:[applicationDictionary objectForKey:@"summaryColors"]];
+    
     return self;
+}
+    
+    
+- (void)configureSummaryColorsFromDictionary:(NSDictionary *)summaryDict {
+    
+    MPUMposUiAppearance *appearance = self.configuration.appearance;
+    
+    if (summaryDict == nil) {
+        return;
+    }
+    
+    appearance.approvedTextColor = [MPUUIHelper colorFromHexString:[summaryDict objectForKey:@"approvedText"]] ?: appearance.approvedTextColor;
+    appearance.approvedBackgroundColor = [MPUUIHelper colorFromHexString:[summaryDict objectForKey:@"approvedBackground"]] ?: appearance.approvedBackgroundColor;
+    appearance.declinedTextColor = [MPUUIHelper colorFromHexString:[summaryDict objectForKey:@"declinedText"]] ?: appearance.declinedTextColor;
+    appearance.declinedBackgroundColor = [MPUUIHelper colorFromHexString:[summaryDict objectForKey:@"declinedBackground"]] ?: appearance.declinedBackgroundColor;
+    appearance.refundedTextColor = [MPUUIHelper colorFromHexString:[summaryDict objectForKey:@"refundedText"]] ?: appearance.refundedTextColor;
+    appearance.refundedBackgroundColor = [MPUUIHelper colorFromHexString:[summaryDict objectForKey:@"refundedBackground"]] ?: appearance.refundedBackgroundColor;
+    appearance.preauthorizedTextColor = [MPUUIHelper colorFromHexString:[summaryDict objectForKey:@"preauthorizedText"]] ?: appearance.preauthorizedTextColor;
+    appearance.preauthorizedBackgroundColor = [MPUUIHelper colorFromHexString:[summaryDict objectForKey:@"preauthorizedBackground"]] ?: appearance.preauthorizedBackgroundColor;
 }
 
 
@@ -77,6 +98,9 @@
 
         case MPUApplicationNameYourBrand:
             return [[MPUUIHelper frameworkBundle] pathForResource:@"yourbrand" ofType:@"plist"];
+            
+        case MPUApplicationNameBarclaycard:
+            return [[MPUUIHelper frameworkBundle] pathForResource:@"barclaycard" ofType:@"plist"];
     }
     
     return @"";
@@ -109,6 +133,9 @@
 
         case MPUApplicationNameYourBrand:
             return @"YourBrand";
+            
+        case MPUApplicationNameBarclaycard:
+            return @"Barclaycard";
     }
 
     return @"";

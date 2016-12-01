@@ -99,7 +99,12 @@ typedef NS_ENUM(NSUInteger, MPUApplicationName) {
     /**
      * Login to YourBrand
      */
-    MPUApplicationNameYourBrand
+    MPUApplicationNameYourBrand,
+    
+    /**
+     * Login to Barclaycard
+     */
+    MPUApplicationNameBarclaycard
 };
 
 typedef void (^MPUPrintReceiptCompleted)(UIViewController * _Nonnull controller, MPUPrintReceiptResult result);
