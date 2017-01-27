@@ -1,7 +1,5 @@
 /*
- * mpos-ui : http://www.payworks.com
- *
- * The MIT License (MIT)
+ * Payment Signature View: http://www.payworks.com
  *
  * Copyright (c) 2015 Payworks GmbH
  *
@@ -22,34 +20,33 @@
  * LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
+ *
  */
 
 #import <UIKit/UIKit.h>
-#import <mpos.core/MPTransaction.h>
-@class MPLocalizationToolbox;
-
-#define IS_OS_8_OR_LATER    ([[[UIDevice currentDevice] systemVersion] floatValue] >= 8.0)
+#import "MPUSignatureViewControllerConfiguration.h"
+#import "MPUUIHelper.h"
 
 
-@interface MPUUIHelper : NSObject
+@implementation MPUSignatureViewControllerConfiguration
 
-+ (NSBundle*)frameworkBundle;
+- (instancetype)initWithFormattedAmount:(NSString *)formattedAmount scheme:(MPPaymentDetailsScheme)scheme {
 
-+ (void)loadIconFont;
+    self = [self init];
 
-+ (BOOL)isStringEmpty:(NSString*)string;
+    if (!self) {
+        return nil;
+    }
 
-+ (UIImage*)imageForScheme:(MPPaymentDetailsScheme)scheme;
+    self.formattedAmount = formattedAmount;
+    self.scheme = scheme;
+    self.legalText = [NSString stringWithFormat:[MPUUIHelper localizedString:@"MPUSignatureStatusLine"], self.formattedAmount];
+    self.clearButtonTitle = [MPUUIHelper localizedString:@"MPUClear"];
+    self.cancelButtonTitle = [MPUUIHelper localizedString:@"MPUAbort"];
+    self.continueButtonTitle = [MPUUIHelper localizedString:@"MPUContinue"];
 
-+ (NSString*)defaultControllerTitleBasedOnParameters:(MPTransactionParameters *)parameters
-                                          transaction:(MPTransaction *)transaction
-                                              toolbox:(MPLocalizationToolbox *)toolbox;
+    return self;
+}
 
-
-+ (UIColor*)colorFromHexString:(NSString *)hexString;
-
-+ (NSString*)localizedString:(NSString *)token;
-
-+ (NSDictionary*)actionButtonTitleAttributesBold:(BOOL)bold;
 
 @end

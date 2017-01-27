@@ -1,7 +1,5 @@
 /*
- * mpos-ui : http://www.payworks.com
- *
- * The MIT License (MIT)
+ * Payment Signature View: http://www.payworks.com
  *
  * Copyright (c) 2015 Payworks GmbH
  *
@@ -22,35 +20,27 @@
  * LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
+ *
  */
 
 #import <UIKit/UIKit.h>
-#import "MPUAbstractController.h"
+#import "MPUSignatureViewControllerConfiguration.h"
 
-@protocol MPUTransactionDelegate
+typedef void (^MPUSignatureViewControllerContinue)(UIImage * _Nonnull signature);
+typedef void (^MPUSignatureViewControllerCancel)();
 
-@required
-- (void)transactionApplicationSelectionRequired:(NSArray *)applicaitons;
-- (void)transactionCreditDebitSelectionRequired;
-- (void)transactionSignatureRequired:(MPPaymentDetailsScheme)scheme amount:(NSString *)amount;
-- (void)transactionError:(NSError *)error;
-- (void)transactionRefunded:(MPTransaction *)transaction;
-- (void)transactionSummary:(MPTransaction *)transaction;
-- (void)transactionStatusChanged:(MPTransaction *)transaction;
 
-@end
+@interface MPUSignatureViewController : UIViewController
 
-@interface MPUTransactionController : MPUAbstractController
+@property (nonatomic, readonly, strong, nonnull) MPUSignatureViewControllerConfiguration *configuration;
 
-@property (nonatomic, strong) MPTransactionParameters *parameters;
-@property (nonatomic, strong) MPTransactionProcessParameters *processParameters;
-@property (nonatomic, copy) NSString *sessionIdentifier;
-@property (nonatomic, weak) id<MPUTransactionDelegate> delegate;
+@property (nonatomic, copy, nullable) MPUSignatureViewControllerContinue continueBlock;
+@property (nonatomic, copy, nullable) MPUSignatureViewControllerCancel cancelBlock;
 
-- (void)continueWithCreditSelection;
-- (void)continueWithDebitSelection;
-- (void)continueWithSelectedApplication:(id)application;
-- (void)continueWithCustomerSignature:(UIImage *)signature verified:(BOOL)verified;
-- (void)requestAbort;
+
+- (nullable instancetype)initWithConfiguration:(nonnull MPUSignatureViewControllerConfiguration *)configuration;
+
 
 @end
+
+

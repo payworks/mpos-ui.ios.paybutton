@@ -1,7 +1,5 @@
 /*
- * mpos-ui : http://www.payworks.com
- *
- * The MIT License (MIT)
+ * Payment Signature View: http://www.payworks.com
  *
  * Copyright (c) 2015 Payworks GmbH
  *
@@ -22,34 +20,24 @@
  * LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
+ *
  */
 
-#import <UIKit/UIKit.h>
-#import <mpos.core/MPTransaction.h>
-@class MPLocalizationToolbox;
-
-#define IS_OS_8_OR_LATER    ([[[UIDevice currentDevice] systemVersion] floatValue] >= 8.0)
+#import <Foundation/Foundation.h>
 
 
-@interface MPUUIHelper : NSObject
+@interface MPUSignatureViewControllerConfiguration : NSObject
 
-+ (NSBundle*)frameworkBundle;
+@property (nonatomic, strong, nonnull) NSString *formattedAmount;
+@property (nonatomic, strong, nonnull) NSString *legalText;
+@property (nonatomic, strong, nonnull) NSString *clearButtonTitle;
+@property (nonatomic, strong, nonnull) NSString *cancelButtonTitle;
+@property (nonatomic, strong, nonnull) NSString *continueButtonTitle;
 
-+ (void)loadIconFont;
-
-+ (BOOL)isStringEmpty:(NSString*)string;
-
-+ (UIImage*)imageForScheme:(MPPaymentDetailsScheme)scheme;
-
-+ (NSString*)defaultControllerTitleBasedOnParameters:(MPTransactionParameters *)parameters
-                                          transaction:(MPTransaction *)transaction
-                                              toolbox:(MPLocalizationToolbox *)toolbox;
+@property (nonatomic, assign) MPPaymentDetailsScheme scheme;
 
 
-+ (UIColor*)colorFromHexString:(NSString *)hexString;
 
-+ (NSString*)localizedString:(NSString *)token;
-
-+ (NSDictionary*)actionButtonTitleAttributesBold:(BOOL)bold;
+- (nullable instancetype)initWithFormattedAmount:(nonnull NSString *)formattedAmount scheme:(MPPaymentDetailsScheme)scheme;
 
 @end

@@ -28,6 +28,7 @@
 #import "MPUAbstractContainerViewController.h"
 #import "MPUTransactionController.h"
 #import "MPUApplicationSelectionController.h"
+#import "MPUCreditDebitSelectionController.h"
 #import "MPUErrorController.h"
 #import "MPUSendReceiptController.h"
 #import "MPUPrintReceiptController.h"
@@ -37,6 +38,7 @@
 
 @interface MPUTransactionContainerViewController : MPUAbstractContainerViewController<MPUTransactionDelegate,
                                                                                         MPUApplicationSelectionDelegate,
+                                                                                        MPUCreditDebitSelectionDelegate,
                                                                                         MPUErrorDelegate,
                                                                                         MPUSummaryDelegate,
                                                                                         MPUPrintReceiptDelegate,

@@ -58,7 +58,7 @@
 }
 
 - (void)l10n {
-    self.selectAccountLabel.text = [MPUUIHelper localizedString:@"MPUSelectAccount"];
+    self.selectAccountLabel.text = [MPUUIHelper localizedString:@"MPUPleaseSelect"];
     
     NSAttributedString *abortAttString = [[NSAttributedString alloc] initWithString:[MPUUIHelper localizedString:@"MPUAbort"] attributes:[MPUUIHelper actionButtonTitleAttributesBold:YES]];
     [self.cancelButton setAttributedTitle:abortAttString forState:UIControlStateNormal];

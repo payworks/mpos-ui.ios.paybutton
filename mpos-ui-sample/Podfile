@@ -5,11 +5,10 @@ platform :ios, '8.0'
 
 target :"mpos-ui-sample" do
 
-  pod 'payworks',                     '2.16.0'
+  pod 'payworks',         '2.18.0'
 
-  pod 'CocoaLumberjack',              '~> 2.0'
-  pod 'MPBSignatureViewController',   '~> 1.5.1'
-  pod 'Toast',                        '~> 2.4'
-  pod 'Lockbox',                      '~> 2.1.0'
+  pod 'CocoaLumberjack',            '~> 2.0'
+  pod 'Toast',                      '~> 2.4'
+  pod 'Lockbox',                    '~> 2.1.0'
 
 end

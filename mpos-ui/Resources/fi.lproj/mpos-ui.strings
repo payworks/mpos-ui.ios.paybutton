@@ -68,9 +68,14 @@
 "MPUUnionPay" = "UnionPay";
 "MPUDiners" = "Diners";
 "MPUDiscover" = "Discover";
+"MPUGhLink" = "Gh-Link";
 "MPUJcb" = "JCB";
 "MPUPrinting" = "Tulostetaan…";
 "MPUReadCard" = "Lue kortti";
 "MPUPrintReceipt" = "Tulosta kuitti";
 "MPUReprintReceipt" = "Tulosta kuitti uudelleen";
 "MPUCapture" = "Veloita";
+"MPUCredit" = "Credit";
+"MPUDebit" = "Debit";
+"MPUPleaseSelect" = "Please select";
+"MPUClear" = "Tyhjätä";

@@ -317,24 +317,40 @@ static MPUMposUi *mpu_mposUiInstance;
 }
 
 - (MPTransactionParameters *)generateTransactionParameters:(MPTransactionParameters *) transactionParameters forCustomIdentifier:(NSString *)customIdentifier {
-    if(transactionParameters.transactionType == MPTransactionTypeCharge) {
-        return [MPTransactionParameters chargeWithAmount:transactionParameters.amount
-                                                currency:transactionParameters.currency
-                                                optionals:^(id<MPTransactionParametersOptionals> optionals) {
-                                                    optionals.subject = transactionParameters.subject;
-                                                    optionals.customIdentifier = customIdentifier;
-                                                    optionals.statementDescriptor = transactionParameters.statementDescriptor;
-                                                    optionals.metadata = transactionParameters.metadata;
-                                                    optionals.applicationFee = transactionParameters.applicationFee;
-                                                }];
+
+
+    switch (transactionParameters.parametersType) {
+
+        case MPTransactionParametersTypeCharge:
+
+            return [MPTransactionParameters chargeWithAmount:transactionParameters.amount
+                                                    currency:transactionParameters.currency
+                                                   optionals:^(id<MPTransactionParametersOptionals> optionals) {
+                                                       optionals.subject = transactionParameters.subject;
+                                                       optionals.customIdentifier = customIdentifier;
+                                                       optionals.statementDescriptor = transactionParameters.statementDescriptor;
+                                                       optionals.metadata = transactionParameters.metadata;
+                                                       optionals.applicationFee = transactionParameters.applicationFee;
+                                                       optionals.includedTipAmount = transactionParameters.includedTipAmount;
+                                                       optionals.autoCapture = transactionParameters.autoCapture;
+                                                   }];
+
+        case MPTransactionParametersTypeCapture:
+            return transactionParameters;
+
+        case MPTransactionParametersTypeRefund:
+            return [MPTransactionParameters refundForTransactionIdentifier:transactionParameters.referencedTransactionIdentifier
+                                                                 optionals:^(id<MPTransactionParametersRefundOptionals> optionals) {
+                                                                     optionals.subject = transactionParameters.subject;
+                                                                     optionals.customIdentifier = customIdentifier;
+
+                                                                     if (transactionParameters.amount) {
+                                                                         [optionals setAmount:transactionParameters.amount currency:transactionParameters.currency];
+                                                                     }
+                                                                 }];
     }
-    
-    // Refund
-    return [MPTransactionParameters refundForTransactionIdentifier:transactionParameters.referencedTransactionIdentifier
-                                                         optionals:^(id<MPTransactionParametersRefundOptionals>  _Nonnull optionals) {
-                                                             optionals.subject = transactionParameters.subject;
-                                                             optionals.customIdentifier = customIdentifier;
-                                                         }];
+
+    return transactionParameters;
 }
 
 @end

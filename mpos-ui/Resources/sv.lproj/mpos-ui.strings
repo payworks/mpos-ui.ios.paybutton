@@ -68,9 +68,14 @@
 "MPUUnionPay" = "UnionPay";
 "MPUDiners" = "Diners";
 "MPUDiscover" = "Discover";
+"MPUGhLink" = "Gh-Link";
 "MPUJcb" = "JCB";
 "MPUPrinting" = "Skriver ut…";
 "MPUReadCard" = "Se kort";
 "MPUPrintReceipt" = "Skriv ut kvitto";
 "MPUReprintReceipt" = "Skriv ut kvitto igen";
 "MPUCapture" = "Hämta";
+"MPUCredit" = "Credit";
+"MPUDebit" = "Debit";
+"MPUPleaseSelect" = "Please select";
+"MPUClear" = "Återställa";

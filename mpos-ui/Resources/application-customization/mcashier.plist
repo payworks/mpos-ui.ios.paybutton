@@ -20,5 +20,7 @@
 	<true/>
 	<key>featureSummarySendReceipt</key>
 	<true/>
+	<key>featureSummaryCapture</key>
+	<true/>
 </dict>
 </plist>

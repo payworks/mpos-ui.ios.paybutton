@@ -32,7 +32,6 @@
 #import "MPUMposUiAppearance.h"
 #import "MPUApplicationSelectionController.h"
 #import "MPUProgressView.h"
-#import <MPBSignatureViewController/MPBSignatureViewController.h>
 
 @interface MPUTransactionController ()
 
@@ -75,6 +74,13 @@
     [self.transactionProcess continueWithSelectedApplication:application];
 }
 
+- (void)continueWithCreditSelection {
+    [self.transactionProcess continueCreditDebitSelectionWithCredit];
+}
+
+- (void)continueWithDebitSelection {
+    [self.transactionProcess continueCreditDebitSelectionWithDebit];
+}
 
 #pragma mark - Private
 
@@ -177,6 +183,8 @@
             MPTransactionActionApplicationSelectionSupportWrapper *wrapper = [MPTransactionActionApplicationSelectionSupportWrapper wrapAround:support];
             NSArray *applications = wrapper.applications;
             [self displayApplicationSelection:applications];
+        } else if (action == MPTransactionActionCreditDebitSelection) {
+            [self displayCreditDebitSelection];
         } else if (action == MPTransactionActionCustomerSignature) {
             [self displayCustomerSignature:transaction.paymentDetails.scheme];
         } else if (action == MPTransactionActionCustomerIdentification) {
@@ -318,6 +326,10 @@
 
 - (void)displayApplicationSelection:(NSArray *)applications {
     [self.delegate transactionApplicationSelectionRequired:applications];
+}
+
+- (void)displayCreditDebitSelection {
+    [self.delegate transactionCreditDebitSelectionRequired];
 }
 
 #pragma mark - IBActions

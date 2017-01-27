@@ -670,7 +670,7 @@ const CGFloat MPUSummaryControllerHistorySmallCellHeight = 56.0;
     
     MPUTransactionCardCell *cell = [self.tableView dequeueReusableCellWithIdentifier:MPUTransactionCardCellIdentifier];
     
-    UIImage *schemeImage = [self schemeImageForTransaction:transaction];
+    UIImage *schemeImage = [MPUUIHelper imageForScheme:transaction.paymentDetails.scheme];
     
     if (schemeImage) {
         cell.schemeImageView.image = schemeImage;
@@ -688,48 +688,6 @@ const CGFloat MPUSummaryControllerHistorySmallCellHeight = 56.0;
 }
 
 
-- (UIImage*)schemeImageForTransaction:(MPTransaction*)transaction {
-    
-    if (!IS_OS_8_OR_LATER) {
-        // on iOS 7, the method to load an image in a bundle does not exist.
-        DDLogDebug(@"Scheme Falling Back!Not iOS8");
-        return nil;
-    }
-    
-    MPPaymentDetailsScheme scheme = transaction.paymentDetails.scheme;
-    
-    switch (scheme) {
-        case MPPaymentDetailsSchemeVISA:
-        case MPPaymentDetailsSchemeVISAElectron:
-            return [UIImage imageNamed:@"VISA" inBundle:[MPUUIHelper frameworkBundle] compatibleWithTraitCollection:nil];
-            
-        case MPPaymentDetailsSchemeMaestro:
-            return [UIImage imageNamed:@"Maestro" inBundle:[MPUUIHelper frameworkBundle] compatibleWithTraitCollection:nil];
-            
-        case MPPaymentDetailsSchemeMasterCard:
-            return [UIImage imageNamed:@"MasterCard" inBundle:[MPUUIHelper frameworkBundle] compatibleWithTraitCollection:nil];
-            
-        case MPPaymentDetailsSchemeAmericanExpress:
-            return [UIImage imageNamed:@"AmericanExpress" inBundle:[MPUUIHelper frameworkBundle] compatibleWithTraitCollection:nil];
-            
-        case MPPaymentDetailsSchemeDinersClub:
-            return [UIImage imageNamed:@"Diners" inBundle:[MPUUIHelper frameworkBundle] compatibleWithTraitCollection:nil];
-            
-        case MPPaymentDetailsSchemeJCB:
-            return [UIImage imageNamed:@"JCB" inBundle:[MPUUIHelper frameworkBundle] compatibleWithTraitCollection:nil];
-            
-        case MPPaymentDetailsSchemeDiscover:
-            return [UIImage imageNamed:@"Discover" inBundle:[MPUUIHelper frameworkBundle] compatibleWithTraitCollection:nil];
-            
-        case MPPaymentDetailsSchemeUnionPay:
-            return [UIImage imageNamed:@"UnionPay" inBundle:[MPUUIHelper frameworkBundle] compatibleWithTraitCollection:nil];
-            
-        case MPPaymentDetailsSchemeUnknown:
-            return nil;
-    }
-    
-    return nil;
-}
 
 - (NSString*)schemeTextForTransaction:(MPTransaction*)transaction {
     
@@ -737,31 +695,36 @@ const CGFloat MPUSummaryControllerHistorySmallCellHeight = 56.0;
     
     switch (scheme) {
         case MPPaymentDetailsSchemeVISA:
-            return @"VISA";
-            
         case MPPaymentDetailsSchemeVISAElectron:
-            return @"VISA Electron";
+        case MPPaymentDetailsSchemeVisaInterlink:
+        case MPPaymentDetailsSchemeVisaCommonDebit:            
+            return [MPUUIHelper localizedString:@"MPUVisa"];
             
         case MPPaymentDetailsSchemeMaestro:
-            return @"Maestro";
+            return [MPUUIHelper localizedString:@"MPUMaestro"];
             
         case MPPaymentDetailsSchemeMasterCard:
-            return @"MasterCard";
+        case MPPaymentDetailsSchemeMastercardCommonDebit:
+            return [MPUUIHelper localizedString:@"MPUMastercard"];
             
         case MPPaymentDetailsSchemeAmericanExpress:
-            return @"American Express";
+            return [MPUUIHelper localizedString:@"MPUAmericanExpress"];
             
         case MPPaymentDetailsSchemeDinersClub:
-            return @"Diners";
+            return [MPUUIHelper localizedString:@"MPUDiners"];
             
         case MPPaymentDetailsSchemeJCB:
-            return @"JCB";
+            return [MPUUIHelper localizedString:@"MPUJcb"];
             
         case MPPaymentDetailsSchemeDiscover:
-            return @"Discover";
+        case MPPaymentDetailsSchemeDiscoverCommonDebit:
+            return [MPUUIHelper localizedString:@"MPUDiscover"];
             
         case MPPaymentDetailsSchemeUnionPay:
-            return @"Union Pay";
+            return [MPUUIHelper localizedString:@"MPUUnionPay"];
+        
+        case MPPaymentDetailsSchemeGhLink:
+            return [MPUUIHelper localizedString:@"MPUGhLink"];
             
         case MPPaymentDetailsSchemeUnknown:
             return nil;

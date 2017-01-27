@@ -177,17 +177,24 @@
     BOOL printReceiptEnabled = [[dictionary objectForKey:@"featureSummaryPrintReceipt"] boolValue];
     BOOL sendReceiptEnabled = [[dictionary objectForKey:@"featureSummarySendReceipt"] boolValue];
     BOOL refundEnabled = [[dictionary objectForKey:@"featureSummaryRefund"] boolValue];
+    BOOL captureEnabled = [[dictionary objectForKey:@"featureSummaryCapture"] boolValue];
     
     MPUMposUiConfigurationSummaryFeature features = MPUMposUiConfigurationSummaryFeatureNone;
     
     if(printReceiptEnabled) {
-        features = features | MPUMposUiConfigurationSummaryFeaturePrintReceipt;
+        features |= MPUMposUiConfigurationSummaryFeaturePrintReceipt;
     }
+
     if (sendReceiptEnabled) {
-        features = features | MPUMposUiConfigurationSummaryFeatureSendReceiptViaEmail;
+        features |= MPUMposUiConfigurationSummaryFeatureSendReceiptViaEmail;
     }
+
     if (refundEnabled) {
-        features = features | MPUMposUiConfigurationSummaryFeatureRefundTransaction;
+        features |= MPUMposUiConfigurationSummaryFeatureRefundTransaction;
+    }
+
+    if (captureEnabled) {
+        features |= MPUMposUiConfigurationSummaryFeatureCaptureTransaction;
     }
     
     return features;

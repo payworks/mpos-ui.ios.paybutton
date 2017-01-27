@@ -67,6 +67,63 @@ NSString *const MPUUIHelperFrameworkBundleName = @"mpos-ui-resources";
 
 }
 
+
++ (UIImage*)imageForScheme:(MPPaymentDetailsScheme)scheme {
+
+
+    NSString *imageName = [self imageNameForScheme:scheme];
+
+    if (imageName.length > 0) {
+
+        return [UIImage imageNamed:imageName inBundle:[self frameworkBundle] compatibleWithTraitCollection:nil];
+    }
+
+    return nil;
+}
+
++ (NSString*)imageNameForScheme:(MPPaymentDetailsScheme)scheme {
+
+    switch (scheme) {
+        case MPPaymentDetailsSchemeVISA:
+        case MPPaymentDetailsSchemeVISAElectron:
+        case MPPaymentDetailsSchemeVisaInterlink:
+        case MPPaymentDetailsSchemeVisaCommonDebit:
+            return @"VISA";
+
+        case MPPaymentDetailsSchemeMaestro:
+            return @"Maestro";
+
+        case MPPaymentDetailsSchemeMasterCard:
+        case MPPaymentDetailsSchemeMastercardCommonDebit:
+            return @"MasterCard";
+
+        case MPPaymentDetailsSchemeAmericanExpress:
+            return @"AmericanExpress";
+
+        case MPPaymentDetailsSchemeDinersClub:
+            return @"Diners";
+
+        case MPPaymentDetailsSchemeJCB:
+            return @"JCB";
+
+        case MPPaymentDetailsSchemeDiscover:
+        case MPPaymentDetailsSchemeDiscoverCommonDebit:
+            return @"Discover";
+
+        case MPPaymentDetailsSchemeUnionPay:
+            return @"UnionPay";
+
+        case MPPaymentDetailsSchemeGhLink:
+            return @"GhLink";
+            
+        case MPPaymentDetailsSchemeUnknown:
+            return nil;
+    }
+    
+    return nil;
+}
+
+
 + (BOOL)isStringEmpty:(NSString *)string {
     if ([string length] == 0) {
         return YES;

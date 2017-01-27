@@ -3,7 +3,7 @@
  *
  * The MIT License (MIT)
  *
- * Copyright (c) 2015 Payworks GmbH
+ * Copyright (c) 2016 Payworks GmbH
  *
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal
@@ -27,30 +27,17 @@
 #import <UIKit/UIKit.h>
 #import "MPUAbstractController.h"
 
-@protocol MPUTransactionDelegate
+@protocol MPUCreditDebitSelectionDelegate
 
 @required
-- (void)transactionApplicationSelectionRequired:(NSArray *)applicaitons;
-- (void)transactionCreditDebitSelectionRequired;
-- (void)transactionSignatureRequired:(MPPaymentDetailsScheme)scheme amount:(NSString *)amount;
-- (void)transactionError:(NSError *)error;
-- (void)transactionRefunded:(MPTransaction *)transaction;
-- (void)transactionSummary:(MPTransaction *)transaction;
-- (void)transactionStatusChanged:(MPTransaction *)transaction;
+- (void)creditSelected;
+- (void)debitSelected;
+- (void)creditDebitSelectionAbortClicked;
 
 @end
 
-@interface MPUTransactionController : MPUAbstractController
+@interface MPUCreditDebitSelectionController : MPUAbstractController<UITableViewDataSource, UITableViewDelegate>
 
-@property (nonatomic, strong) MPTransactionParameters *parameters;
-@property (nonatomic, strong) MPTransactionProcessParameters *processParameters;
-@property (nonatomic, copy) NSString *sessionIdentifier;
-@property (nonatomic, weak) id<MPUTransactionDelegate> delegate;
-
-- (void)continueWithCreditSelection;
-- (void)continueWithDebitSelection;
-- (void)continueWithSelectedApplication:(id)application;
-- (void)continueWithCustomerSignature:(UIImage *)signature verified:(BOOL)verified;
-- (void)requestAbort;
+@property(nonatomic, weak) id<MPUCreditDebitSelectionDelegate> delegate;
 
 @end

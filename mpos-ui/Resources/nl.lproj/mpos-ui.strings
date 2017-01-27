@@ -68,9 +68,14 @@
 "MPUUnionPay" = "UnionPay";
 "MPUDiners" = "Diners";
 "MPUDiscover" = "Discover";
+"MPUGhLink" = "Gh-Link";
 "MPUJcb" = "JCB";
 "MPUPrinting" = "Afdrukken...";
 "MPUReadCard" = "Kaart lezen";
 "MPUPrintReceipt" = "Betalingsbewijs afdrukken";
 "MPUReprintReceipt" = "Betalingsbewijs opnieuw afdrukken";
 "MPUCapture" = "Boeken";
+"MPUCredit" = "Credit";
+"MPUDebit" = "Debit";
+"MPUPleaseSelect" = "Please select";
+"MPUClear" = "Opnieuw Zetten";

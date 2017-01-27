@@ -26,10 +26,11 @@
 
 #import "MPUTransactionContainerViewController.h"
 #import "MPUUIHelper.h"
-#import <MPBSignatureViewController/MPBSignatureViewController.h>
+#import "MPUSignatureViewController.h"
 
 NSString* const MPUSegueIdentifierTransaction_Transaction = @"txPushTransaction";
 NSString* const MPUSegueIdentifierTransaction_ApplicationSelection = @"txPushApplicationSelection";
+NSString* const MPUSegueIdentifierTransaction_CreditDebitSelection = @"txPushCreditDebitSelection";
 NSString* const MPUSegueIdentifierTransaction_Error = @"txPushError";
 NSString* const MPUSegueIdentifierTransaction_Summary = @"txPushSummary";
 NSString* const MPUSegueIdentifierTransaction_SendReceipt = @"txPushSend";
@@ -44,6 +45,7 @@ NSString* const MPUSegueIdentifierTransaction_Login = @"txPushLogin";
 @property (nonatomic, strong) MPUSummaryController *summaryViewController;          // We reuse this. So we keep this strong.
 @property (nonatomic, weak) MPULoginController *loginViewController;
 @property (nonatomic, weak) MPUApplicationSelectionController *applicationSelectionViewController;
+@property (nonatomic, weak) MPUApplicationSelectionController *creditDebitSelectionViewController;
 @property (nonatomic, weak) MPUErrorController *errorViewController;
 @property (nonatomic, weak) MPUSendReceiptController *sendReceiptViewController;
 @property (nonatomic, weak) MPUPrintReceiptController *printReceiptViewController;
@@ -122,6 +124,13 @@ NSString* const MPUSegueIdentifierTransaction_Login = @"txPushLogin";
         [self swapToViewController:self.applicationSelectionViewController];
     }
     
+    if ([segue.identifier isEqualToString:MPUSegueIdentifierTransaction_CreditDebitSelection]) {
+        DDLogDebug(@"Credit/Debit Selection");
+        self.creditDebitSelectionViewController = segue.destinationViewController;
+        [self showCreditDebitSelection];
+        [self swapToViewController:self.creditDebitSelectionViewController];
+    }
+    
     if ([segue.identifier isEqualToString:MPUSegueIdentifierTransaction_Error]) {
         DDLogDebug(@"Error");
         self.errorViewController = segue.destinationViewController;
@@ -186,6 +195,10 @@ NSString* const MPUSegueIdentifierTransaction_Login = @"txPushLogin";
     self.applicationSelectionViewController.delegate = self;
 }
 
+- (void)showCreditDebitSelection {
+    self.creditDebitSelectionViewController.delegate = self;
+}
+
 - (void)showError:(NSError *)error {
     [self.delegate titleChanged:[MPUUIHelper localizedString:@"MPUError"]];
     self.errorViewController.error = error;
@@ -209,53 +222,19 @@ NSString* const MPUSegueIdentifierTransaction_Login = @"txPushLogin";
 
 - (void)showSignatureScreenForScheme:(MPPaymentDetailsScheme)scheme amount:(NSString *) amount {
 
-    MPBSignatureViewControllerConfiguration *config = [MPBSignatureViewControllerConfiguration configurationWithMerchantName:nil formattedAmount:amount];
-    switch(scheme) {
-        case MPPaymentDetailsSchemeMasterCard:
-            config.scheme = MPBSignatureViewControllerConfigurationSchemeMastercard;
-            break;
-        case MPPaymentDetailsSchemeVISA:
-        case MPPaymentDetailsSchemeVISAElectron:
-            config.scheme = MPBSignatureViewControllerConfigurationSchemeVisa;
-            break;
-        case MPPaymentDetailsSchemeMaestro:
-            config.scheme = MPBSignatureViewControllerConfigurationSchemeMaestro;
-            break;
-        case MPPaymentDetailsSchemeAmericanExpress:
-            config.scheme = MPBSignatureViewControllerConfigurationSchemeAmex;
-            break;
-        case MPPaymentDetailsSchemeDinersClub:
-            config.scheme = MPBSignatureViewControllerConfigurationSchemeDinersClub;
-            break;
-        case MPPaymentDetailsSchemeDiscover:
-            config.scheme = MPBSignatureViewControllerConfigurationSchemeDiscover;
-            break;
-        case MPPaymentDetailsSchemeJCB:
-            config.scheme = MPBSignatureViewControllerConfigurationSchemeJCB;
-            break;
-        case MPPaymentDetailsSchemeUnionPay:
-            config.scheme = MPBSignatureViewControllerConfigurationSchemeUnionPay;
-            break;
-        case MPPaymentDetailsSchemeUnknown:
-            config.scheme = MPBSignatureViewControllerConfigurationSchemeNone;
-            break;
-    }
-
-    MPBMposUIStyleSignatureViewController *vc = [[MPBMposUIStyleSignatureViewController alloc] initWithConfiguration: config];
-    if (UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPhone) {
-        vc.modalPresentationStyle = UIModalPresentationFullScreen;
-    } else { // on iPad
-        vc.modalPresentationStyle = UIModalPresentationCurrentContext;
-    }
-
+    MPUSignatureViewControllerConfiguration *config = [[MPUSignatureViewControllerConfiguration alloc] initWithFormattedAmount:amount scheme:scheme];
+    
+    MPUSignatureViewController *vc = [[MPUSignatureViewController alloc] initWithConfiguration:config];
+    vc.modalPresentationStyle = (UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPhone) ? UIModalPresentationFullScreen : UIModalPresentationCurrentContext;
+    __weak typeof(self) weakSelf = self;
     vc.continueBlock = ^(UIImage *signature) {
-        [self.navigationController dismissViewControllerAnimated:YES completion:^{
-            [self.transactionViewController continueWithCustomerSignature:signature verified:YES];
+        [weakSelf.navigationController dismissViewControllerAnimated:YES completion:^{
+            [weakSelf.transactionViewController continueWithCustomerSignature:signature verified:YES];
         }];
     };
     vc.cancelBlock = ^{
-        [self.navigationController dismissViewControllerAnimated:YES completion:^{
-            [self.transactionViewController continueWithCustomerSignature:nil verified:NO];
+        [weakSelf.navigationController dismissViewControllerAnimated:YES completion:^{
+            [weakSelf.transactionViewController continueWithCustomerSignature:nil verified:NO];
         }];
     };
 
@@ -307,6 +286,11 @@ NSString* const MPUSegueIdentifierTransaction_Login = @"txPushLogin";
     [self performSegueWithIdentifier:MPUSegueIdentifierTransaction_ApplicationSelection sender:nil];
 }
 
+- (void)transactionCreditDebitSelectionRequired {
+    [self performSegueWithIdentifier:MPUSegueIdentifierTransaction_CreditDebitSelection sender:nil];
+}
+
+
 - (void)transactionSignatureRequired:(MPPaymentDetailsScheme)scheme amount:(NSString *)amount {
     [self showSignatureScreenForScheme:scheme amount:amount];
 }
@@ -355,6 +339,23 @@ NSString* const MPUSegueIdentifierTransaction_Login = @"txPushLogin";
 }
 
 - (void)applicationSelectionAbortClicked {
+    [self.transactionViewController requestAbort];
+    [self performSegueWithIdentifier:MPUSegueIdentifierTransaction_Transaction sender:nil];
+}
+
+#pragma mark - MPUCreditDebitSelectionDelegate
+
+- (void)creditSelected {
+    [self.transactionViewController continueWithCreditSelection];
+    [self performSegueWithIdentifier:MPUSegueIdentifierTransaction_Transaction sender:nil];
+}
+
+- (void)debitSelected {
+    [self.transactionViewController continueWithDebitSelection];
+    [self performSegueWithIdentifier:MPUSegueIdentifierTransaction_Transaction sender:nil];
+}
+
+- (void)creditDebitSelectionAbortClicked {
     [self.transactionViewController requestAbort];
     [self performSegueWithIdentifier:MPUSegueIdentifierTransaction_Transaction sender:nil];
 }
