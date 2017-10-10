@@ -1,4 +1,6 @@
-## payworks Pay Button(BETA) for iOS
+## Payworks Pay Button(BETA) for iOS
+
+**The repository is EOL and will no longer be updated. The latest binary builds can be accessed as usual at http://www.payworks.mpymnt.com/**
 
 <img src="http://payworksmobile.com/blog/wp-content/uploads/2015/02/export_ipadmini_white_angle1.png"/>
 
